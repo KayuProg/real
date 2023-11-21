@@ -1,0 +1,181 @@
+@charset "utf-8";
+.loadpa{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    position:fixed;
+    background-color: rgb(238, 236, 236);
+    z-index:99999;
+}
+
+.loadslide{
+    animation-name: slider;
+    animation-duration: 1.2s;
+    animation-timing-function:ease-in;
+    animation-fill-mode:forwards;/*終了時の状態を維持する*/
+    animation-iteration-count:1;
+    animation-delay:1.0s; /*スライダーが上がるまでの時間*/
+}
+
+@keyframes slider{
+    from {
+        transform: translateY(0);
+    }
+    to {
+        position:fixed;
+        display:none;
+        transform: translateY(-200%);
+    }
+}
+.fadeIn-load {
+    animation-name: fadeInAnime-load;
+    animation-duration:2.5s;
+    animation-fill-mode:forwards;
+    opacity: 0;
+    animation-delay: 1.7s;
+}
+@keyframes fadeInAnime-load{
+    0% {
+    opacity: 0;
+    }
+
+    100% {
+    opacity: 1;
+    }
+}
+#link { 
+    color: rgb(241, 239, 239);
+    display:block;
+    font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align:center; 
+    text-decoration: none;
+}
+#link:hover {color: #CCCCCC}
+
+#link, #link:hover {
+    -webkit-transition: color 0.5s ease-out;
+    -moz-transition: color 0.5s ease-out;
+    -ms-transition: color 0.5s ease-out;
+    -o-transition: color 0.5s ease-out;
+    transition: color 0.5s ease-out;
+}
+
+/** BEGIN CSS **/
+@keyframes rotate-loading {
+0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+}
+
+@-moz-keyframes rotate-loading {
+0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+}
+
+@-webkit-keyframes rotate-loading {
+0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+}
+
+@-o-keyframes rotate-loading {
+0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+}
+
+@keyframes rotate-loading {
+0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+}
+
+@-moz-keyframes rotate-loading {
+0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+}
+
+@-webkit-keyframes rotate-loading {
+0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+}
+
+@-o-keyframes rotate-loading {
+0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
+100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
+}
+
+.loading-container,
+.loading {
+height: 180px;
+position: relative;
+width: 180px;
+border-radius: 100%;
+}
+
+.loading-container { margin:auto;
+                 top: 120px; 
+}
+
+.loading {
+border: 4px solid transparent;
+border-color: transparent rgb(12, 12, 12) transparent rgb(10, 10, 10);
+-moz-animation: rotate-loading 1.5s linear 0s infinite normal;
+-moz-transform-origin: 50% 50%;
+-o-animation: rotate-loading 1.5s linear 0s infinite normal;
+-o-transform-origin: 50% 50%;
+-webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
+-webkit-transform-origin: 50% 50%;
+animation: rotate-loading 1.5s linear 0s infinite normal;
+transform-origin: 50% 50%;
+}
+
+.loading-container:hover .loading {
+border-color: transparent black transparent black;
+}
+.loading-container:hover .loading,
+.loading-container .loading {
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+-ms-transition: all 0.5s ease-in-out;
+-o-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+}
+
+#loading-text {
+color: #000000;
+font-family: "Helvetica Neue, "Helvetica", ""arial";
+position:relative;
+top:-102px;
+font-weight: bold;
+text-align: center;
+text-transform: uppercase;
+}
+
+
+
+
+
+
+
+.splash-setting{
+    position: relative;
+    width:40%;
+    margin:auto;
+    top:270px;
+                  }
+  
+  #splash {
+      /*fixedで全面に固定*/
+    z-index: 99999;
+    text-align:center;
+    border-radius:20px;
+            }
+  
+  /* Loadingバー中央配置　*/
+  #splash_text {
+      z-index: 99999;
+  
+                  }
+  
+  
+
+                  

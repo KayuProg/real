@@ -1,0 +1,273 @@
+@charset "utf-8";
+
+*{
+    margin:0; padding:0;
+    border:0;
+  }
+
+.fmin{font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','Yu Mincho Light','YuMincho','Yu Mincho','游明朝体',sans-serif;}
+
+.fen{font-family: 'Georgia','Athelas','Cochin',sans-serif;}
+
+.fgo{font-family: YuGothic,'Yu Gothic','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;}
+
+.fb{font-weight:bold;}
+
+.ib{display:inline-block;} 
+
+.fba{/*fontbasec windowsでは日本語明朝体・macスマホではゴシック*/
+  font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','Cambria','Courier New','ヒラギノ明朝 ProN','Hiragino Mincho ProN',sans-serif;
+}
+
+.red{color:red;}
+
+.blue{color:blue;}
+
+.bgred{background-color: red;}
+
+.bgyellow{background-color: yellow;}
+
+.big{font-size:1.3rem;}
+
+.middle{font-size:1rem;}
+
+.small{font-size:0.8rem;}
+
+.imgfullleft{ 
+  width:95%;
+  margin:0px 5% 0px 0%;
+}
+
+.imgfullright{
+  width:95%;
+  margin:0px 0% 0px 5%;
+}
+
+.imgfullcenter{
+  width:95%;
+  margin:0px 2.5% 0px 2.5%;
+}
+
+.imghalf{
+  width:48%;
+}
+
+.imghalfleft{
+  width:50%;
+  margin:0px 50% 0px 0%;
+}
+
+.imghalfcenter{
+  width:50%;
+  margin:0px 25% 0px 25%;
+}
+
+.imghalfright{
+  width:50%;
+  margin:0px 0% 0px 50%;
+}
+
+.flex{
+  display:flex;
+  flex-direction: row;
+}
+  /*===============================================================
+  activity main contents
+===============================================================*/
+.mainContentsPa{
+    width:90%;
+    margin:0 auto;
+    padding:70px 0px 120px 0px;/*コンテンツの位置の指定主に上下の空白の指定*/
+}
+
+#tab1:checked~.pages #page1 {
+	display: block;
+}
+
+#tab2:checked~.pages #page2 {
+	display: block;
+}
+
+#tab3:checked~.pages #page3 {
+	display: block;
+}
+
+
+input[name="check"], input[name="checkbottom"] {/*ラジオボタン消す*/
+	display: none;
+}
+
+/*上タブ選択*/
+.pagetabTop{/*ページタブスタイル*/
+    cursor: pointer;
+    font-size:0.8rem;
+    font-weight:bold;
+    font-family: 'Georgia','Athelas','Cochin',sans-serif;
+    margin:0px 2px 0px 0px;
+    background-color: #ffb566;
+    border-top:1px solid black;
+    border-right:1px solid black;
+    border-left:1px solid black;
+    border-radius:5px 5px 0px 0px ;
+    padding:5px 3px 3px 3px;
+    transition:all 0.1s;
+    z-index:9;
+}
+
+input[name="check"]:checked+.pagetabTop{
+  background-color: rgb(193,150,120);
+  color:rgb(0, 0, 0);
+  border-top:2px solid black;
+  border-right:2px solid black;
+  border-left:2px solid black;
+  transform: translateZ(50px);
+  padding:5px 3px 6.5px 3px;
+  z-index:11;
+}
+
+/*すべてのページを統一してスタイルを指定する*/
+.pages{
+    width:100%;
+    height:100%;
+    background-color: rgb(193,150,120);
+    border:2px solid rgb(0, 0, 0);
+    box-shadow: 0 0 30px 0px rgba(0, 0, 0, 0.25);
+    z-index:10;
+}
+
+.panel {/*それぞれのコンテンツをタブでしているとき以外は消す*/
+    display:none;
+    margin:1% 1% 1% 1%;
+    width:95%;
+    height:98%;
+    background-color: rgb(250, 250, 250);
+    padding:0px 5px 0px 5px;/*ブログ本体と茶色外枠との距離*/
+}
+
+/*===============================================================
+contents 
+===============================================================*/
+.aChead{
+  font-family: 'Georgia','Athelas','Cochin',sans-serif;
+  font-size:1.5rem;
+  font-weight:bold;
+  width:fit-content;
+  margin:0 auto;
+  padding:18px 0px 3px 0px;/*日付とkayuprog storageの差*/
+  text-align: center;
+  
+}
+
+.cp_hr06 {
+	position: relative;
+	height: 5px;
+	border-width: 0;
+	background-image: -webkit-linear-gradient(left,
+	transparent 0%,rgb(255, 94, 0) 50%,transparent 100%);
+	background-image:         linear-gradient(90deg,
+	transparent 0%,rgb(255, 94, 0) 50%,transparent 100%);
+    margin:0px 0px 30px 0px;
+}
+
+.aCUpDate, .aCReUpDate{
+  font-size:0.7rem;
+  color:rgb(91, 91, 91);
+  margin:0px 0px 0px 0px;
+}
+
+/*title*/
+.aCtitle{
+  position: relative;
+  overflow: hidden;
+  padding: 0.2rem 1rem 0.2rem 70px;
+  border: 1.5px solid   #9a3939;
+  width:fit-content;
+  font-size:1.4rem;
+}
+
+.aCtitle span {
+    font-size: 1.4rem;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: block;
+    padding-left: 10px;
+    color: #fff;
+  }
+  
+.aCtitle:before {
+  position: absolute;
+  top: -150%;
+  left: -100px;
+  width: 155px;
+  height: 300%;
+  content: '';
+  -webkit-transform: rotate(25deg);
+  transform: rotate(25deg);
+  background: #9a3939;
+}
+
+/*Eye catch*/
+.aCeyecatch{
+  width:95%;
+  margin:20px 2.5% 0px 2.5%;
+  border:2px solid orange;
+}
+
+/*headline*/
+.headline{
+  padding: 0.3rem 1rem;
+  border-left: 6px double #000;
+  background: #f4f4f4;
+  font-size:1.2rem;
+}
+
+/*topage*/
+.toPageFlex{
+  display:flex;
+  flex-direction: row;
+  width:100%;
+}
+
+.toPagePaRight1{
+  width:30%;
+  text-align: center;
+  position:relative;
+  padding-top:5%;
+  padding-bottom:5%;
+  margin-left:70%;
+}
+
+.toPagePaRight{
+  text-align: center;
+  width:30%;
+  position:relative;
+  padding-top:5%;
+  padding-bottom:5%;
+  margin-left:20%;
+}
+
+.toPagePaLeft{
+ text-align: center;
+  width:30%;
+  position:relative;
+  padding-top:5%;
+  padding-bottom:5%;
+  margin-right:20%;
+}
+
+.topage{
+  background-color: #9a4747;
+  padding:5px 0px;
+  color:white;
+  font-size:1rem;
+  border-radius: 5px;
+  transition:all 0.2s;
+  font-weight:bold;
+  border:1px solid black;
+}
+.topage:hover{
+  transform:translateY(-3px);
+  filter:brightness(110%);
+}

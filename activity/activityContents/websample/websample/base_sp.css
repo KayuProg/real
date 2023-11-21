@@ -1,0 +1,139 @@
+@charset "utf-8";
+ /*====================================================
+  全般的なスタイル
+  ===================================================*/
+  body{
+    width:100%;
+    background-color: #ffffff;
+    background-image: none;
+    font-size: 100%;
+        }
+div#pagebody{
+    width:100%; margin:0px auto;
+    background-image:none;
+    background-repeat:no-repeat;
+            }  
+ /*======================================================
+ 　ヘッダー
+ =======================================================*/
+div#header{
+    height:46px;
+            }
+div#header h1{
+    padding:0px;
+            }
+div#header img{
+    width:320px; height:46px;
+                }
+ /*=======================================================
+　メインメニュー
+========================================================== */
+ul#menu{
+    width:100%;
+    margin:0px;
+        }
+#menu li a{
+    background-color:#ffffff;
+    color:blue;
+    width:100px; height:45px;
+    padding:15px 0px 0px 60px;
+    background-image:url(image/icon_menu.png);
+    background-repeat:no-repeat;
+    font-size:120%;
+            }
+#menu li a:hover {
+    background-color:#ffffff; 	/*リンクにマウスが乗っても背景色は白のまま*/
+    background-image:url(image/icon_menu.png); /*リンクにマウスが乗っても同じ背景画像のまま*/
+    text-decoration:underline;
+    background-color: #cccccc;
+                    }
+
+/*============================================
+ヘッダ画像
+============================================*/
+#img_index {
+    width:500px;			
+    margin:0px 0px 2% 0px;
+            }
+@media screen and (max-width:500px){
+    #img_index{
+        width:500px;
+        margin:0px 0px 2% 0px;
+    }
+}
+
+/*============================================
+サブメニュー
+============================================*/
+h2 {
+    width:100%; height:40px;	/*幅と高さ*/
+    padding:15px 0px 0px 10px;	/*パディング*/
+    font-size:16px;			/*フォントサイズ*/
+    background-image:none;		/*背景画像を無しにする*/
+    background-repeat:no-repeat;	/*背景画像を繰り返さない*/
+    background-color:#000033;	/*背景色*/
+    color:#ffffff;			/*文字色*/
+    clear:both;			/*フロートをクリアする*/
+    }
+div#submenu {
+    width:100%;			/*幅の指定*/
+    margin:0px;			/*マージン*/
+    float:none;			/*フロートしない*/
+                }
+div#submenu ul li a {
+    display:block;			/*リンク部分をブロック表示にする*/
+    width:100%; height:40px;	/*幅と高さ*/
+    padding:15px 0px 0px 10px;	/*パディング*/
+    text-decoration:none;		/*リンクの下線を無くす*/
+    border-bottom:1px dotted gray;	/*リンク領域の下部にボーダーを付ける*/
+    background-image:none;		/*リンク領域に背景画像を無しにする*/
+    background-repeat:no-repeat;	/*背景画像を繰り返さない*/
+    background-color:#cccccc;	/*背景色*/
+    color:#000000;			/*文字色*/
+                        }
+
+/*============================================
+インフォメーション
+============================================*/
+div#info {
+    width:100%;			/*幅の指定*/
+    float:none;			/*フロートしない*/
+    padding:0px;			/*パディング*/
+            }
+h3 {
+    font-size:14px;			/*文字サイズ*/
+    width:100%;			/*幅の指定*/
+    margin:10px 0px 0px 0px;	/*マージン*/
+    padding:10px 0px 10px 10px;	/*パディング*/
+    background-color:#003399;	/*背景色*/
+    color:#ffffff;			/*文字色*/
+    border-radius:0px;		/*角丸にしない*/
+    }
+p {
+    width:95%;			/*幅の指定*/
+    margin:10px;			/*マージン*/
+    text-indent:1em;		/*インデント幅*/
+    }
+.infoimg_index {
+    display:block;			/*ブロック表示にする*/
+    width:300px; height:225px;	/*画像の表示サイズを指定*/
+    margin:0px 0px 20px 0px;	/*マージン*/
+    float:none;			/*フロートしない*/
+                }
+.infoimg_subpage {
+    display:block;			/*ブロック表示にする*/
+    width:300px; height:225px;	/*画像の表示サイズを指定*/
+    margin:0px 0px 20px 0px;	/*マージン*/
+    float:none;			/*フロートしない*/
+                    }
+.infoimg_tel {
+    display:block;			/*ブロック表示にする*/
+    width:300px; height:60px;	/*画像の表示サイズを指定*/
+    margin:0px 0px 20px 0px;	/*マージン*/
+                }
+hr {
+    clear:both;			/*フロート配置をクリアする*/
+    width:100%;			/*幅の指定*/
+    margin:10px 0px;		/*マージン*/
+    border:1px dotted #cccccc;	/*内容の区切りをグレーの点線表示にする*/
+    }   

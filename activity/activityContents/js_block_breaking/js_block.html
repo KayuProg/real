@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html land="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>Gamedev Canvas Workshop</title>
+        <style>
+            *{padding:0;
+              margin:0;}
+       canvas{background:#eee;
+              display:block;
+              margin:0 auto;}
+        </style>
+
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+ <script type="text/javascript">
+//jscode here
+const canvas=document.getElementById("myCanvas");
+const ctx=canvas.getContext("2d");
+
+
+ /*最初の描画練習*/
+// ctx.beginPath();//beginPathとclosePathではさむ
+//     ctx.rect(20,40,50,50);//四角形（左からの座標，上からの座標，width,height）
+//     ctx.fillStyle="red";//塗りつぶしの色指定
+//     ctx.fill();//塗りつぶし
+// ctx.closePath();
+
+//         ctx.beginPath();
+//             ctx.arc(240,160,20,0,Math.PI*2,false);
+// /*円の描写(円の中心の x座標,y座標,半径,開始角度と終了角度 (円を描く始める時点の角度と描き終えたあとの角度をラジアンで),
+// 描く方向 (時計回りは false で、既定値。反時計回りは true。) この最後の引数は省略可能*/
+//             ctx.fillStyle="blue";
+//             ctx.fill();
+//         ctx.closePath();
+
+//         ctx.beginPath();
+//             ctx.rect(160,10,100,40);
+//             ctx.strokeStyle="rgba(0, 0, 255, 0.5)";
+//             ctx.stroke();//縁取り
+//         ctx.closePath();
+
+let x=canvas.width/2;//canvasの横幅widthの２分の１をxと定義した。値の定義
+let y=canvas.height-30;//canwasの立幅ー３０をｙと定義した。値の定義
+let dx=1.5;
+let dy=-1.5;//フレームごとに動く玉の移動距離指定。
+const ballRadius=10;
+
+/*パドル制作変数*/
+const paddleHeight=10;
+const paddleWidth=75;
+let paddleX=(canvas.width-paddleWidth)/2;//パドルのｘ座標上の開始地点
+/*ボタンが押されたか押されてないかの変数定義*/
+let rightPressed=false;//ボタンの押されている押されていないは論理値で初期化
+let lehtPressed=false;//初期値はfalse
+
+/*レンガ制作*/
+//変数設定
+const brickRowCount=3;//レンガの行
+const brickColumnCount=5;//レンガの列
+const brickWidth=75;
+const brickHeight=20;
+const brickPadding=10;
+const brickOffsetTop=30;  //オフセットある基準からの推移
+const brickOffsetLeft=30;
+
+/*スコア*/
+let score=0;
+
+/*ライフ*/
+let lives=3;
+
+/*最初に書いたボール描画*/
+// function draw(){
+//             //描画コード
+//             ctx.clearRect(0,0,canvas.width,canvas.height);//キャンバス内容のリセット（四角形の左上端の x座標,y 座標,四角形の右下端の x座標,y 座標)ないがすべて消去。
+//             ctx.beginPath();
+//                 ctx.arc(x,y,10,0,Math.PI*2);//Math.PIはπと同じ。Math.PI×２ということ
+//                 ctx.fillStyle="#0095DD";
+//                 ctx.fill();
+//             ctx.closePath();
+//             x +=dx;
+//             y +=dy;
+//         }
+//         setInterval(draw,10);
+
+/*実際に使うボール関数*/
+function drawBall(){
+    ctx.beginPath();
+        ctx.arc(x,y,ballRadius,0,Math.PI*2);
+        ctx.fillStyle="black";
+        ctx.fill();
+    ctx.closePath();
+}
+
+/*パドル制作-描画*/
+function drawPaddle(){
+    ctx.beginPath();
+        ctx.rect(paddleX,canvas.height-paddleHeight,paddleWidth,paddleHeight);
+        //四角形はcanvasの左端から四角形の左端をxの正の座標ととる
+        ctx.fillStyle="#0095DD";
+        ctx.fill();
+    ctx.closePath();
+}
+
+/*レンガ制作-描画*/
+const bricks=[];
+    for(let c=0; c<brickColumnCount; c++){
+        bricks[c]=[];//cという配列の中に新しく配列を定義している
+        for(let r=0; r<brickRowCount; r++){
+            bricks[c][r]={x:0, y:0, status:1};//連想配列。オブジェクトみたいなの。コロンの左が名前、右がデータ
+        }
+    }
+
+function drawBricks(){
+     for(let c=0; c<brickColumnCount; c++){
+        for(let r=0; r<brickRowCount; r++){
+            if(bricks[c][r].status===1){
+            const brickX=c*(brickWidth+brickPadding)+brickOffsetLeft;
+            //brickoffsetLeftは画面左端からの最初のブロックとの距離
+            const brickY=r*(brickHeight+brickPadding)+brickOffsetTop;
+            bricks[c][r].x=brickX;//bricksの中の[c][r]のxの値をbricksXにする。オブジェクトみたいな感じ
+            bricks[c][r].y=brickY;
+            ctx.beginPath();
+                ctx.rect(brickX,brickY,brickWidth, brickHeight);
+                ctx.fillStyle="#191970";
+                ctx.fill();
+            ctx.closePath();
+            }
+        }
+    }
+}
+
+/*eventListener*/
+//ターゲット（操作対象）,addEventListener（"イベント",何らかの処理）;
+//第三引数false/trueについて：親から先に発火はtrue,子から発火はfalse
+//親要素と子要素が同時に発火してしまう場合に主に指定する。
+document.addEventListener("keydown",keyDownHandler,false);
+//どれかのキーボードが押されたときkeyDownHandler関数が実行
+document.addEventListener("keyup",keyUpHandler,false);
+
+
+/*マウス動作監視*/
+document.addEventListener("mousemove",mouseMoveHandler, false);
+
+/*マウス-パドル関数*/
+function mouseMoveHandler (e){
+    const relativeX=e.clientX-canvas.offsetLeft;
+    //.clientXはアクティブウィンドウ内の左からのマウスの位置を返す。左上原点
+    if(relativeX>0 && relativeX <canvas.width){
+        paddleX=relativeX-paddleWidth/2;
+    }
+}
+
+function keyDownHandler(e){
+    if (e.key==="Right"||e.key==="ArrowRight"){
+        //Arrowrightは右矢印キー、RightはEdgeとかではRightも確認する必要があるため。
+        rightPressed=true;//e.keyのkeyは引数eに押したキーボードの情報を持たせる役割か？
+    }else if(e.key==="Left"||e.key==="ArrowLeft"){//leftも同様
+        leftPressed=true;
+    }
+}
+
+function keyUpHandler(e){
+    if (e.key==="Right"||e.key==="ArrowRight"){
+        rightPressed=false;
+    }else if(e.key==="Left"||e.key==="ArrowLeft"){
+        leftPressed=false;
+    }
+}
+
+/*衝突検出関数*/
+function collisionDetection(){
+    for (var c=0; c<brickColumnCount; c++){
+        for(var r=0; r<brickRowCount; r++){
+            const b=bricks[c][r];//ブロックオブジェクトをbに保存
+            if(b.status ===1){
+            if (x/*ボールのx座標*/>b.x && x<b.x+brickWidth && y/*ボールのy座標*/>b.y && y<b.y+brickHeight ){
+                dy=-dy;
+                b.status=0;
+                score++;
+            }
+
+            /*勝利*/
+            if(score === brickRowCount*brickColumnCount){
+                alert("!!!!YOU WIN, CONGTATULATION!!!!\n"+"LET'S MAKE GAMES")
+                document.location.reload();
+
+                clearInterval(interval);
+            }
+        }
+        }
+    }
+}
+
+/*スコア関数*/
+function drawScore(){
+    ctx.font="16px Arial";//大きさとフォント指定
+    ctx.fillStyle="purple";//色指定
+    ctx.fillText('Score:'+ score,8 , 20);//fillText('文章',座標)
+}
+
+/*ライフ関数*/
+function drawLives(){
+    ctx.font="16px Arial";
+    ctx.fillStyle="purple";
+    ctx.fillText('Lives:'+lives, canvas.width-65, 20);
+}
+
+/*メイン関数*/
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    drawBall();
+    drawBricks();
+    drawPaddle();
+    collisionDetection();
+    drawScore();
+    drawLives();
+    x +=dx;
+    y +=dy;
+    /*跳ね返り*/
+        // if(y+dy<0){//上端での反射
+        //     dy=-dy;//座標系は左上が原点。右にｘ正の向き下にｙ正の向き
+        // }
+        // if(y+dy>canvas.height){//下端での反射
+        //     dy=-dy;
+        // }
+    //上記の跳ね返るの短縮かつボールの外周で反射
+    if(x+dx<ballRadius||x+dx>canvas.width-ballRadius){
+        dx=-dx;
+    }
+
+    if(y+dy<ballRadius){
+        dy=-dy;
+    }else if(y+dy>canvas.height-ballRadius){
+        if(x>paddleX-2 && x<paddleX+paddleWidth+2){
+            dy=dy+0.2;
+            dx=dx+0.2;
+            dy= -dy;
+        }else{
+        alert("!!!!GAME OVER!!!! Click 'OK'");
+
+
+        /*ライフ設定前GAME OVER*/
+        // document.location.reload(false);
+        // //location.reload()で一つ。強制的にreloadする。基本的なwebsiteでは無視される。
+        // //引数にtrueはキャッシュ（読み込み済みの画像など）をすべてもう一度再読み込み
+        // //引数にfalseはキャッシュを残して再読み込み。ページの読み込みが早くなる。
+        // clearInterval(interval);//Chromeで必要
+        // //clearIntervalは関数の実行の停止clearInterval(関数名,秒数)で指定可能。
+    
+    
+        /*ライフ設定後GAME OVER*/
+        lives--;
+        if(!lives){//「！」は論理否定演算子と呼ばれ、livesの論理値を逆転させる
+            alert("!!!!GAME OVER!!!! Click 'OK'");
+            document.location.reload();
+            clearInterval(interva);
+        }else{
+            //ライフが減った時に初期位置に戻す
+            alert("Push 'OK' to restart");
+            x=canvas.width/2;
+            y=canvas.height-30;
+            dx=2;
+            dy=-2;
+            paddleX=((canvas.width-paddleWidth)/2);
+        }
+    
+    }
+    }
+    
+
+    /*パドル制作-座標*/
+
+    if (rightPressed==true){
+        paddleX =Math.min(paddleX+3.5,canvas.width-paddleWidth);//paddleXの値変更
+    //Math.min()の()ないの最小のものを返す。paddleX+7がいくら大きくなろうとも次のcanvas.width-paddleWidthが適用される
+    }else if (leftPressed==true){
+        paddleX =Math.max(paddleX-3.5,0);
+    }
+
+    }
+
+    alert("!!START!!");
+
+
+    // setInterval(draw,10);//最初のsetInterval
+    var interval=setInterval(draw,10);//変数、定数に代入するだけでも実行される。
+
+
+</script>
+
+
+    </head>
+</html>

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kayu's Storage / かゆの貯蔵庫</title>
+
+    <link rel="stylesheet" href="common/css/base.css">
+    <link rel="stylesheet" href="home/home.css"><!--ok-->
+
+    <meta name="description" content="ある大学生が独学で作成した個人ウェブサイト.">
+    <meta name="keywords" content="Kayu Prog, KayuProg Storage, かゆ, Kayu,Kayu's Storage ,かゆの貯蔵庫">
+    <!--movebg-->
+    <link rel="stylesheet" href="common/css/movebg.css"><!--ok-->
+    <!--mainSlider-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="home/mainSlider.css"><!--ok-->
+    <!--jQuery読み込み-->
+    <script src="common/js/jquery-3.6.1.min.js"></script>
+    <!--animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!--load-->
+    <div class="loadpa">
+        <!--Loading-->
+        <div id="load-all">
+            <div class="loading-container">
+                <div class="loading"></div>
+                <div id="loading-text">loading</div>
+            </div>
+            <!--ロードゲージ-->
+            <link rel="stylesheet" href="home/load.css">
+            <div class="splash-setting">
+                <div id="splash">
+                    <div id="splash_text"></div>
+                </div>
+                <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+                <script src="home/load.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="screen and (max-width:1100px)" href="common/css/sp_base.css">
+    <link rel="stylesheet" media="screen and (max-width:1100px)" href="home/sp_home.css">
+    <link rel="stylesheet" media="screen and (max-width:1100px)" href="home/sp_load.css">
+
+    <!--自動翻訳禁止-->
+    <meta http-equiv="Content-Language" content="ja">
+    <meta name="google" content="notranslate">
+
+    <!--favicon-->
+    <link rel="icon" href="./common/commonimages/favicon.ico" id="favicon">
+    <link rel="apple-touch-icon" sizes="180x180" href="./common/commonimages/apple-touch-icon-180x180.png">
+
+
+</head>
+
+<body>
+
+<div>
+
+
+    <!--===============================================================
+    load
+    ===============================================================-->
+
+    <script>
+        $(document).ready(function () {
+            $('.loadpa').addClass('loadslide');
+        });
+    </script>
+
+
+    <!--to top button-->
+    <div class="toTopButton"></div>
+    <script>
+        $(document).ready(function () {
+            var toTopBtn = $('.toTopButton');
+            toTopBtn.hide();
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    toTopBtn.fadeIn();
+                    $('.toTopButton').addClass('vvt');
+                } else {
+                    toTopBtn.fadeOut();
+                }
+            });
+            toTopBtn.click(function () {
+                $('body,html').animate(
+                    {scrollTop: 0}, 500
+                );
+                return false;
+            });
+        });
+    </script>
+
+    <!--===============================================================
+        header
+    ===============================================================-->
+    <!--header-->
+    <hr color="black" class="headerborder">
+    <div class="headbg headerSticky">
+        <script>
+            $(document).ready(function () {
+                $('.logobg').addClass('scale-in-ver-center');
+            });
+            $(document).ready(function () {
+                $('.logo').addClass('tracking-in-expand-fwd ');
+            });
+            $(document).ready(function () {
+                $('.mainmenuContents1').addClass('focus-in-expand1');
+            });
+            $(document).ready(function () {
+                $('.mainmenuContents2').addClass('focus-in-expand2');
+            });
+            $(document).ready(function () {
+                $('.mainmenuContents3').addClass('focus-in-expand3');
+            });
+        </script>
+        <!--header mainmenu-->
+        <div class="headerCenter">
+            <a href="index.html" class="alogo">
+                <div class="logobg">
+                    <div class="logo">KayuProg</div>
+                </div>
+            </a>
+            <ul class="mainmenu">
+                <li><a href="term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank">
+                    <div class="mainmenuContents mainmenuContents1 fb">Terms</div>
+                </a></li>
+                <li><a href="index.html" class="amainmenu">
+                    <div class="mainmenuContents mainmenuContents1">HOME</div>
+                </a></li>
+                <li><a href="activity/activity.html" class="amainmenu">
+                    <div class="mainmenuContents mainmenuContents2">ACTIVITY</div>
+                </a></li>
+                <li><a href="contact/contact.html" class="amainmenu">
+                    <div class="mainmenuContents mainmenuContents3">CONTACT</div>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!--movebg-->
+    <div id="particles-js"></div>
+    <div id="wrapper"></div>
+
+
+    <!--bodycontents-->
+    <!-- sliderposition -->
+
+    <!--===============================================================
+        slider
+    ===============================================================-->
+    <!--mainSlider-->
+    <!--frameSlider-->
+    <script>
+        $(document).ready(function () {
+            $('.frameSliderRightParent').addClass('frameSliderRight');
+        });
+        $(document).ready(function () {
+            $('.frameSliderLeftParent').addClass('frameSliderLeft');
+        });
+        $(document).ready(function () {
+            $('.sliderFadeInParent').addClass('sliderFadeIn');
+        });
+        $(document).ready(function () {
+            $('.sliderParent').addClass('sliderAnimationbg');
+        });
+        $(document).ready(function () {
+            $('.frametopright,.framebottomright,.framebottomleft,.frametopright2,.frametopleft,.framebottomleft2').addClass('sliderEdgeTurn');
+        });
+        $(document).ready(function () {
+            $('.vh').addClass('vv');
+        });
+    </script>
+
+    <div class="sliderParent">
+        <!--frameSliderRight-->
+        <div class="frameSliderRightParent">
+            <div class="frameRight"></div>
+            <div class="frametopright"></div>
+            <div class="framebottomright"></div>
+            <div class="framebottom"></div>
+            <div class="framebottomleft"></div>
+        </div>
+        <!--frameSliderLeft-->
+        <div class="frameSliderLeftParent">
+            <div class="frametop"></div>
+            <div class="frameLeft"></div>
+            <div class="frametopright2"></div>
+            <div class="frametopleft"></div>
+            <div class="framebottomleft2"></div>
+        </div>
+
+        <div class="sliderFadeInParent">
+            <ul class="mainSlider">
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/1.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/2.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/3.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/4.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/5.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/6.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/7.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/8.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/9.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/10.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/11.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/12.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/13.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/14.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/15.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/16.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/17.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/18.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/19.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/20.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/21.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/22.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/23.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/24.png" class="sliderimg"></li>
+                <li class="mainSliderImg vh"><img src="home/HOMEimages/sliderImages/25.png" class="sliderimg"></li>
+
+            </ul>
+        </div>
+
+    </div>
+
+    <!--instead of slider for sp-->
+    <video src="home/HOMEimages/homevideo.mp4" class="homevideo" autoplay muted playsinline></video>
+    <!--===============================================================
+        maincontents
+    ===============================================================-->
+
+    <!--fadeInAnimation/jQuery-->
+    <script>
+        // ScrollAnimationFunction
+        const SAF = function (targetClass, addClass, targetClass2, addClass2, time1, targetClass3, addClass3, time2) {
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    const wHeight = $(window).height();
+                    const scrollAmount = $(window).scrollTop();
+                    $(targetClass).each(function () {
+                        const targetPosition = $(this).offset().top;
+                        if (scrollAmount > targetPosition - wHeight + 100) {
+                            $(this).addClass(addClass);
+                            setTimeout(function () {
+                                $(targetClass2).addClass(addClass2);
+                            }, time1);
+                            setTimeout(function () {
+                                $(targetClass3).addClass(addClass3);
+                            }, time2);
+                        }
+                    });
+                });
+            });
+        }
+        // contents1
+        SAF(".homeHelloParent", "scale-in-hor-left", ".homeHello", "scale-in-hor-left", 350);
+        SAF(".contents1bg", "scale-in-hor-left", ".contents1", "scale-in-hor-left", 200, ".contents1bold", "jello-horizontal ", 800);
+        SAF(".newspa", "fade-in", ".news", "fade-in", 0);
+        SAF(".gnhigh", "fade-in");
+        SAF(".siteevacontainer", "fade-in");
+        //contents2
+        const SAFC2 = function (targetClass, addClass, targetClass2, addClass2, time2,
+                                targetClass3, addClass3, time3, targetClass4, addClass4, time4, targetClass5, addClass5, time5
+            , targetClass6, addClass6, time6, targetClass7, addClass7, time7, targetClass8, addClass8, time8
+            , targetClass9, addClass9, time9, targetClass10, addClass10, time10) {
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    const wHeight = $(window).height();
+                    const scrollAmount = $(window).scrollTop();
+                    $(targetClass).each(function () {
+                        const targetPosition = $(this).offset().top;
+                        if (scrollAmount > targetPosition - wHeight + 150) {
+                            $(this).addClass(addClass);
+                            setTimeout(function () {
+                                $(targetClass2).addClass(addClass2);
+                            }, time2);
+                            setTimeout(function () {
+                                $(targetClass3).addClass(addClass3);
+                            }, time3);
+                            setTimeout(function () {
+                                $(targetClass4).addClass(addClass4);
+                            }, time4);
+                            setTimeout(function () {
+                                $(targetClass5).addClass(addClass5);
+                            }, time5);
+                            setTimeout(function () {
+                                $(targetClass6).addClass(addClass6);
+                            }, time6);
+                            setTimeout(function () {
+                                $(targetClass7).addClass(addClass7);
+                            }, time7);
+                            setTimeout(function () {
+                                $(targetClass8).addClass(addClass8);
+                            }, time8);
+                            setTimeout(function () {
+                                $(targetClass9).addClass(addClass9);
+                            }, time9);
+                            setTimeout(function () {
+                                $(targetClass10).addClass(addClass10);
+                            }, time10);
+                        }
+                    });
+                });
+            });
+        }
+        SAFC2(".contents2Include", "scale-in-hor-center", ".contents2Include", "shadow-drop-center", 700
+            , ".introParent", "scale-up-hor-right", 300, ".intro", "slide-in-right", 300, ".intro", "text-shadow-pop-right", 300
+            , ".front", "fade-in", 800, ".contents2", "fade-in ", 700, ".contents2_2", "fade-in", 800);
+
+        const SAFC3 = function (targetClass, addClass, targetClass2, addClass2, time1, targetClass3, addClass3, time2) {
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    const wHeight = $(window).height();
+                    const scrollAmount = $(window).scrollTop();
+                    $(targetClass).each(function () {
+                        const targetPosition = $(this).offset().top;
+                        if (scrollAmount > targetPosition - wHeight + 150) {
+                            $(this).addClass(addClass);
+                            setTimeout(function () {
+                                $(targetClass2).addClass(addClass2);
+                            }, time1);
+                            setTimeout(function () {
+                                $(targetClass3).addClass(addClass3);
+                            }, time2);
+                        }
+                    });
+                });
+            });
+        }
+        SAFC3(".contents3Parent", "fade-in", ".planbg", "scale-in-hor-left", 100);
+        SAFC3(".c3paplan", "fade-in");
+        SAFC3(".c3padoing", "fade-in");
+        SAFC3(".c3padone", "fade-in");
+    </script>
+    <!--contents1-->
+    <div class="contents">
+        <div class="homeHelloParent">
+            <div class="homeHello">!!WELCOME!!</div>
+        </div>
+        <div class="contents1bg">
+            <div class="contents1">ここは、ある大学生
+                <div class="contents1bold fba">--KayuProg--</div>
+                による個人運営サイトです.<br>
+                大学１年時, 独学でHTML,CSS,JSなどから製作しました.<br>
+            </div>
+        </div>
+
+        <!--NEWS-->
+        <h1>
+            <div class="news fb fen">NEWS</div>
+        </h1>
+        <div class="newspa">
+            <ul class="news-list">
+
+                <li class="item fba"><!--Web Scraping-->
+                    <div class="newscon">
+                        <p class="date fba">2023/8/19</p>
+                        <p class="category fba"><span>お知らせ</span></p>
+                        <p class="title fba">activityページに記事「&nbsp;
+                            <!--Title-->
+                            <a href="./activity/activityContents/webscraping/webscraping.html">
+                                PythonでGoogle画像検索での画像を一括ダウンロード
+                            </a>&nbsp;」を追加</p>
+                    </div>
+                </li>
+
+                <li class="item fba"><!--JSブロック崩し-->
+                    <div class="newscon">
+                        <p class="date fba">2023/3/17</p>
+                        <p class="category fba"><span>お知らせ</span></p>
+                        <p class="title fba">activityページに記事「&nbsp;
+                            <!--Title-->
+                            <a href="./activity/activityContents/js_block_breaking/js_block_breaking.html">
+                                Javascriptでブロック崩し
+                            </a>&nbsp;」を追加</p>
+                    </div>
+                </li>
+
+
+                <li class="item fba"><!--「 PG UC Gundam CG version 」-->
+                    <div class="newscon">
+                        <p class="date fba">2023/3/16</p>
+                        <p class="category fba"><span>お知らせ</span></p>
+                        <p class="title fba">activityページに記事「&nbsp;
+                            <a href="./activity/activityContents/plamo_PG_UC/plamo_PG_UC.html">
+                                Plastic Works No.1
+                                「 PG UC Gundam CG version 」
+                            </a>&nbsp; &nbsp;」を追加</p>
+                    </div>
+                </li>
+
+
+                <li class="item fba"><!-- Sorceress  ソーサレス 」-->
+                    <div class="newscon">
+                        <p class="date fba">2023/3/14</p>
+                        <p class="category fba"><span>お知らせ</span></p>
+                        <p class="title fba">activityページに記事「&nbsp;
+                            <a href="./activity/activityContents/blender_sorceress/blender_sorceress.html">
+                                Blenderer Works No.2
+                                「 Sorceress ソーサレス 」
+                            </a>&nbsp;」を追加</p>
+                    </div>
+                </li>
+
+
+                <li class="item fba"><!--「犬 ～スザンヌを添えて～ 」<-->
+                    <div class="newscon">
+                        <p class="date fba">2023/3/12</p>
+                        <p class="category fba"><span>お知らせ</span></p>
+                        <p class="title fba">activityページに記事「&nbsp;<a
+                                href="./activity/activityContents/blender_dog/blender_dog.html">Blenderer Works No.1
+                            <br>
+                            「犬 ～スザンヌを添えて～」</a>&nbsp; 」を追加</p>
+                    </div>
+                </li>
+
+
+                <li class="item fba"><!--サイト制作の始まり-->
+                    <div class="newscon">
+                        <p class="date fba">2023/3/12</p>
+                        <p class="category fba"><span>お知らせ</span></p>
+                        <p class="title fba">activityページに記事「&nbsp;<a
+                                href="./activity/activityContents/websample/websample.html">サイト制作の始まり</a>&nbsp;」を追加
+                        </p>
+                    </div>
+                </li>
+
+
+                <li class="item fba"><!--homeにスマホ閲覧の際の動画を設置-->
+                    <div class="newscon">
+                        <p class="date fba">2023/3/10</p>
+                        <p class="category fba"><span>お知らせ</span></p>
+                        <p class="title fba">homeにスマホで閲覧した際の動画を設置</p>
+                    </div>
+                </li>
+
+                <li class="item fba"><!--KayuProg個人サイト始動開始(個人サイトを公開しました)-->
+                    <div class="newscon">
+                        <p class="date fba">2023/2/21</p>
+                        <p class="category fba"><span>お知らせ</span></p>
+                        <p class="title fba">KayuProg個人サイト始動開始(個人サイトを公開しました)</p>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <!--===============================================================
+            サイト更新通知欄
+        ===============================================================-->
+        <div class="gnhigh">
+            <P class="gnintropa fen fb">GET NOTIFICATION</P>
+            <div class="gnpa">
+                <div>
+                    <p class="fb  lineNotice"><span class="fen">LINE&nbsp;BOT</span>でサイトの更新をお知らせします</p>
+                    <p class="gnpacon2">
+                        mailで希望される方は<a href="contact/contact.html" class="fb">&nbsp;contact&nbsp;</a>からその旨を<br>
+                        ご自身のmail adressとともに送信してください<br>
+                        また,LINE QRコードは<a href="home/HOMEimages/line.png" class="fb">こちら</a><br>
+                        私が管理しているLINE BOTですのでサイト更新以外の通知は行きません．<br>
+                        ぜひLINE追加よろしくお願いします．
+                    </p>
+                </div>
+                <a href="https://lin.ee/0OYwV6o" class="addline">
+                    LINEを追加する
+                </a>
+            </div>
+        </div>
+
+
+        <!--contents2-->
+        <div class="contents2pa">
+            <div class="contents2Include">
+                <div class="introParent">
+                    <div class="intro fen"><h1>INTRODUCTION</h1></div>
+                </div>
+                <div class="contents2flexbox">
+                    <div class="logobox">
+                        <div class="front"></div>
+                    </div>
+                    <div class="contents2">
+                        <p>
+                        <div class="contents2bg">
+                            <div>
+                                <div class="fmin ib fb">
+                                    私は
+                                </div>
+                                <div class="fen ib fb">
+                                    KayuProg
+                                </div>
+                                <div class="fmin ib fb">
+                                    というものです.
+                                </div>
+                            </div>
+                            <div class="fmin ib fb">
+                                現在プログラミングを勉強している大学生です.<br>
+                                &ensp;プログラミングの入り口として,友人からの勧めで趣味としてサイト制作を始めました.<br>
+                                &ensp; これからフォルダに埋もれていくであろう制作物たちを掲載する場です.
+                            </div>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+                <div class="contents2_2 fmin fb">
+                    <p>
+                        これからプログラミング関連の作品を制作していく予定ですが,それらは何もしないと
+                        各個人のフォルダ内で朽ちていくだけとなってしまいます.<br>
+                        そのようなほっておくと忘れ去られてしまいそうな作品を掲載しています.<br>
+                        時々訪れていただければ幸いです.
+                    </p>
+                </div>
+
+                <!--PLAN,DOING&DONE-->
+                <div class="contents3Parent">
+                    <div class="planbg"></div>
+                    <div class="plan fb fen">PLAN,DOING&DONE</div>
+                </div>
+
+                <div class="c3PDDPa c3paplan">
+                    <div class="c3PDD c3plan">
+                        PLAN
+                    </div>
+                    <div class="c3PDDcon c3conplan">
+                        <ul>
+                            <li>iOS/Androidアプリ開発と公開</li>
+                            <li>GASによるbot制作</li>
+                            <li>GASを隣にITのサイトで学習</li>
+                            <li>dartを用いたfullterでのアプリ開発<br>一回のコーディングで多数のOSでの開発が可能</li>
+                            <li>Unityによる簡易ゲーム開発</li>
+                            <li>blenderと掛け合わせたUnity game World開発</li>
+                            <Li>GitHubの利用</Li>
+                            <li>Javascriptによる演算システム構築（特に行列）</li>
+                            <li>Pythonによる機械学習（内容は未定・unityとのかけ合わせの可能性）</li>
+                            <li>Pythonの学習</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="c3PDDPa c3padoing">
+                    <div class="c3PDD c3doing">
+                        DOING
+                    </div>
+                    <div class="c3PDDcon c3condoing">
+                        <ul>
+                            <li>基本情報技術者の取得</li>
+                            <li>飛ロボットコンテスト</li>
+                            <li>Unityを使えるようになるためのチュートリアル</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="c3PDDPa c3padone">
+                    <div class="c3PDD c3done">
+                        DONE
+                    </div>
+                    <div class="c3PDDcon c3condone">
+                        <ul class="doneli">
+                            <li>
+                                <div class="donedate">2022/8/10&ensp;&nbsp;(大学１年２学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">HTML学習</div>
+                                <br></li>
+                            <Li>
+                                <div class="donedate">2022/8/10&ensp;&nbsp;(大学１年２学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">CSS学習</div>
+                                <br></Li>
+                            <li>
+                                <div class="donedate">2022/8/20&ensp;&nbsp;(大学１年２学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">HTML/CSSによるWebsample株式会社サイト制作</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2022/9/1&ensp;&ensp;&nbsp;(大学１年２学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">Javascript学習</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2022/10/11(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">jQuery学習/個人サイトに適用</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2022/12/11(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">Javascriptを用いたブロック崩しの制作</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2022/12/27(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">Blenderによるモデリング練習</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2022/12/28(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">Blenderで機体sorceress制作</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2022/12/29(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">bootstrapを学びサイトに取り入れようとしたが不必要であった</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2022/12/29(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">個人経営サイト用サーバ・ドメイン契約</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2022/12/29(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">Git学習終了(使いこなすにはまだ時間必要)</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2023/2/19&ensp;&nbsp;(大学１年４学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">ITパスポート受験し，合格点確認</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2023/2/21&ensp;&ensp;(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">個人経営サイトの開発と公開（検索に出てくるようにする）</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2023/3/4&ensp;&ensp;&nbsp;(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">LINE BOTを作成し,サイト更新の通知を行う機能を追加する.</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2023/3/6&ensp;&ensp;&ensp;(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">Blenderによるモデリング練習(sci-fi robotを制作)</div>
+                                <br></li>
+                            <li>
+                                <div class="donedate">2023/3/10&ensp;&ensp;(大学１年３学期）&ensp;&ensp;&ensp;</div>
+                                <div class="donecon">個人経営サイトのコーディング(随時修正)</div>
+                                <br></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div><!--contents2 end-->
+
+        <!--===============================================================
+            evaluation form
+        ===============================================================-->
+        <div class="siteevacontainer">
+            <div class="siteevaintro fen fb">Site Evaluation</div>
+            <div class="svicon">
+                <div class="svicon1">
+                    よろしければ下のフォームからこのサイトの評価,コメント,改善点などよろしくお願いします.
+                    <span class="svicon2">なお,問い合わせに関しては<a href="contact/contact.html" class="fen fb">&ensp;Contact&ensp;</a>へ</span>
+                </div>
+            </div>
+
+
+            <div class="formpa">
+                <div class="form">
+                    <section class="get-in-touch">
+                        <h1 class="etitle">Please rate this site</h1>
+                        <form class="contact-form row"
+                              action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSee2Rr09HyDT4c2-DowJeONNui1YWp6VN_gn9xVd5A38FFFOw/formResponse">
+
+                            <div class="form-field col x-50">
+                                <input id="name" class="input-text js-input" type="text" name="entry.1251749569"
+                                       required>
+                                <label class="label full_name" for="name">Full Name <span class="evarequired">&ensp;(Required)</span></label>
+                            </div>
+
+                            <div class="form-field col x-50">
+                                <input type="text" placeholder="入力または選択" list="profession" autocomplete="off""
+                                id="evaluation" class="input-text js-input" name="entry.1731119512" required >
+                                <datalist id="profession">
+                                    <option value="会社員">
+                                    <option value="公務員">
+                                    <option value="教員職">
+                                    <option value="医療関係者">
+                                    <option value="自営業・自由業">
+                                    <option value="大学生・大学院生">
+                                    <option value="専門学生・短大生">
+                                    <option value="高校生">
+                                    <option value="中学生以下">
+                                    <option value="無職">
+                                    <option value="定年退職">
+                                    <option value="その他（入力してください）">
+                                </datalist>
+                                <label class="label profession" for="email">Profession <span class="evarequired">&ensp;(Required)</span></label>
+                            </div>
+
+
+                            <div class="form-field col x-50">
+                                <select placeholder="Only Number" autocomplete="off"" id="evaluation" class="input-text
+                                js-input" name="entry.1938022855" required >
+                                <option value="evaluation">Evaluation</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                </select>
+                                <label class="label evaluation" for="email">Evaluation <span class="evarequired">&ensp;(Required)</span></label>
+                            </div>
+                            <div class="evasidecon fmin fb">五段階評価です<br>最大が５,最小が１となっています.</div>
+
+                            <div class="form-field col x-100">
+                                <!-- <input id="emessage" class="input-text js-input" type="text"   name="entry.493004709"> -->
+                                <textarea id="emessage" class="input-text js-input input-textmes" type="text"
+                                          name="entry.493004709" cols="85" rows="5" wrap="hard"></textarea>
+                                <label class="label not-empty emessage labelmes" for="message">Message <span
+                                        class="evaoptional">&ensp;(Optional)</span></label>
+                            </div>
+
+                            <div class="form-field col x-100 align-center">
+                                <input class="submit-btn" type="submit" value="Submit">
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>  <!--siteevacontainer end-->
+
+
+    </div><!--contents-->
+
+
+    <div class="bottomBlank"></div>
+
+
+    <!--===============================================================
+        footer
+    ===============================================================-->
+    <div class="footer">
+        <!--Waves Container-->
+        <div>
+            <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+                 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave"
+                          d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)"/>
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)"/>
+                </g>
+            </svg>
+        </div>
+        <!--Waves end-->
+        <div id="footerContents">
+            <small>Copyright(c) // KayuProg // All right Reserved.</small>
+        </div>
+
+
+    </div>
+
+    <!--fadeIn--></div>
+
+
+<!--movebg-->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="common/js/movebg.js"></script><!--ok-->
+<!--mainSlider/slick.jsの読み込み-->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--mainslider.js-->
+<script src="home/mainSlider.js"></script>
+</body>
+
+
+<noscript>
+    <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
+        <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。 制作者より
+    </p>
+</noscript>
+
+
+</html>

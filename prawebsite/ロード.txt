@@ -1,0 +1,33 @@
+head内ロード画面内のソース
+
+
+<script src="./jquery-3.6.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+    $(".load1").ready(function(){
+    $(".load1").addClass('load2');
+                            });});
+    $(document).ready(function() {$('#pagebody').addClass('fadeIn-load');});
+</script>
+<div class="load1">
+
+    <!--Loading-->
+    <div id="load-all">
+        <div class="loading-container">
+            <div class="loading"></div>
+            <div id="loading-text">loading</div>
+        </div>
+        <!--ロードゲージ-->
+        <link rel="stylesheet" href="./load-%.css">
+        <div class="splash-setting">
+            <div id="splash">
+                <div id="splash_text"></div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+            <script src="./load-%.js"></script>
+        </div>
+    </div>
+
+    
+</div>

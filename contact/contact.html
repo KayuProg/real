@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>KayuProg-website/かゆウェブサイト</title>
+    <link rel="stylesheet" href="../common/css/base.css">
+    <link rel="stylesheet" href="contact.css"><!--ok-->
+    <!--movebg-->
+    <link rel="stylesheet" href="../common/css/movebg.css"><!--ok-->
+    <!--mainSlider-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <!--jQuery読み込み-->
+    <script src="../common/js/jquery-3.6.1.min.js"></script>
+    <!--animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../common/css/sp_base.css">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="./sp_contact.css">
+
+    <!--自動翻訳禁止-->
+<meta http-equiv="Content-Language" content="ja">
+<meta name="google" content="notranslate">
+
+</head>
+
+<body>
+
+
+    <!--to top button-->
+<div class="toTopButton"></div>
+<script>
+$(document).ready(function(){
+    var toTopBtn=$('.toTopButton');
+    toTopBtn.hide();
+    $(window).scroll(function(){
+        if($(this).scrollTop()>100){
+            toTopBtn.fadeIn();
+            $('.toTopButton').addClass('vvt');
+        }else{
+            toTopBtn.fadeOut();
+        }
+    });
+    toTopBtn.click(function(){
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+        return false;
+    });
+});
+</script>
+    <!--===============================================================
+    header
+===============================================================-->
+<!--header-->
+<hr size="15px" color="black">
+<div class="headbg headerSticky">
+    <!--header mainmenu-->
+    <div class="headerCenter">
+        <a href="../index.html" class="alogo"><div class="logobg"> <div class="logo">KayuProg</div> </div></a>
+    <ul class="mainmenu">
+        <li><a href="../term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank"><div class="mainmenuContents mainmenuContents1 fb">Terms</div></a></li>
+        <li><a href="../index.html" class="amainmenu"><div class="mainmenuContents mainmenuContents1">HOME</div></a></li>
+        <li><a href="../activity/activity.html" class="amainmenu"><div class="mainmenuContents mainmenuContents2">ACTIVITY</div></a></li>
+        <li><a href="../contact/contact.html" class="amainmenu"><div class="mainmenuContents mainmenuContents3">CONTACT</div></a></li>
+    </ul>
+    </div>
+</div>
+
+<!--movebg-->
+<div id="particles-js"></div>
+<div id="wrapper"></div>
+
+
+<!--bodycontents-->
+<div id="bodycontents">
+<!-- sliderposition -->
+
+<!--===============================================================
+    maincontents    
+===============================================================-->
+<div class="contactPa">
+
+<h1 class="contacttoppa"><div class="contacttop fen">CONTACT</div></h1>
+<div class="actintropa"><div class="actintro fmin"><p>このページから制作者への問い合わせが可能です．<br>回答はGoogle formに自動入力されます</p></div></div>
+
+<!--===============================================================
+    Form
+===============================================================-->
+
+<div class="formpa">
+<div class="form">
+<section class="get-in-touch">
+  <h1 class="title">Form による問い合わせ</h1>
+  <form class="contact-form row" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScIzWIYe9DhbQ9Nw8zI5RyMapCsgJdQYuN3bmfkRIV2TnWtag/formResponse"  >
+     
+    <div class="form-field col x-50">
+        <input id="name" class="input-text js-input" type="text" name="entry.1899737421" required >
+        <label class="label" for="name">Full Name</label>
+     </div>
+   
+     <div class="form-field col x-50">
+        <input id="email" class="input-text js-input" type="email" name="entry.246932657"  required>
+        <label class="label" for="email">E-mail</label>
+     </div>
+
+     <div class="form-field col x-100">
+        <!-- <input id="message" class="input-text js-input contactcontents" type="text"   name="entry.1284337682" required> -->
+        <textarea id="message" class="input-textmes js-input contactcontents"  name="entry.1284337682" required cols="85" rows="5" wrap="hard" ></textarea>
+        <label class="labelmes label not-empty " for="message">Contents</label>
+     </div>
+     
+     <div class="form-field col x-100 align-center">
+        <input class="submit-btn" type="submit" value="Send">
+     </div> 
+
+</form>
+</section>
+</div>
+</div>
+
+
+<script>
+$( '.js-input' ).keyup(function() {
+  if( $(this).val() ) {
+     $(this).addClass('not-empty');
+  } else {
+     $(this).removeClass('not-empty');
+  }
+});
+</script>
+
+<!--===============================================================
+    mailによる問い合わせ
+===============================================================-->
+<div class="contactGmailcontainer">
+<div class="contactGmail">
+    <div class="gmailFlex">
+        <div>
+            <span class="fen conGmail">G-mail</span>による問い合わせは<br>
+            右のボタンをクリックしてください
+            <p class="conGmailP">(KayuProg@gmail.comに送信します)</p>    
+        </div>
+        <a href="mailto:KayuProg@gmail.com" class="gmailbottonflex">
+            <img src="../contact/contactimages/mail.png" class="gmailimage">
+            <div class="gmailBotton">Gmailで問い合わせる</div>
+        </a>
+    </div>
+</div>
+</div>
+
+
+
+
+
+<script src="https://sdk.form.run/js/v2/embed.js"></script>
+
+</div><!--contactPa end-->
+<!----------------------------------------mainContentsend---------------------------------------->
+</div><!--bodycontents-->
+<div class="bottomBlank"></div>
+
+<!--===============================================================
+    footer
+===============================================================-->
+<div class="footer">
+    <!--Waves Container-->
+    <div>
+    <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)" />
+    </g>
+    </svg>
+    </div>
+    <!--Waves end-->
+    <div id="footerContents"> 
+        <small>Copyright(c) //  KayuProg  // All right Reserved.</small>
+    </div>
+
+
+ </div>
+
+<!--movebg-->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../common/js/movebg.js"></script><!--ok-->
+<!--mainSlider/slick.jsの読み込み-->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--mainslider.js-->
+</body>
+
+
+<noscript>
+    <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
+    <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。  制作者より
+    </p>
+</noscript>
+
+
+</html>

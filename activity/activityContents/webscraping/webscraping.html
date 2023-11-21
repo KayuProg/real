@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>KayuProg-website/かゆウェブサイト</title>
+    <link rel="stylesheet" href="../../../common/css/base.css">
+    <link rel="stylesheet" href="../actConCss/actConBase.css"> <!--activity contentsのbaseとなるcss-->
+    <!--movebg-->
+    <link rel="stylesheet" href="../../../common/css/movebg.css"><!--ok-->
+    <!--mainSlider-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <!--prism.css-->
+    <link rel="stylesheet" href="../../../common/css/prism.css">
+    <script src="../../../common/js/prism.js"></script>
+    <!--jQuery読み込み-->
+    <script src="../../../common/js/jquery-3.6.1.min.js"></script>
+    <!--animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../../../common/css/sp_base.css">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../actConCss/sp_actConBase.css"><!--注意！！-->
+    <!--自動翻訳禁止-->
+    <meta http-equiv="Content-Language" content="ja">
+    <meta name="google" content="notranslate">
+
+</head>
+
+<body>
+
+
+    <!--to top button-->
+<div class="toTopButton"></div>
+<script>
+$(document).ready(function(){
+    var toTopBtn=$('.toTopButton');
+    toTopBtn.hide();
+    $(window).scroll(function(){
+        if($(this).scrollTop()>100){
+            toTopBtn.fadeIn();
+            $('.toTopButton').addClass('vvt');
+        }else{
+            toTopBtn.fadeOut();
+        }
+    });
+    toTopBtn.click(function(){
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+        return false;
+    });
+});
+</script>
+    
+<!--===============================================================
+    header
+===============================================================-->
+<!--header-->
+<hr size="15px" color="black">
+<div class="headbg headerSticky">
+    <!--header mainmenu-->
+    <div class="headerCenter">
+        <a href="../../../index.html" class="alogo"><div class="logobg"> <div class="logo">KayuProg</div> </div></a>
+    <ul class="mainmenu">
+        <li><a href="../../../index.html" class="amainmenu"><div class="mainmenuContents mainmenuContents1">HOME</div></a></li>
+        <li><a href="../../../activity/activity.html" class="amainmenu"><div class="mainmenuContents mainmenuContents2">ACTIVITY</div></a></li>
+        <li><a href="../../../contact/contact.html" class="amainmenu"><div class="mainmenuContents mainmenuContents3">CONTACT</div></a></li>
+    </ul>
+    </div>
+</div>
+
+<!--movebg-->
+<div id="particles-js"></div>
+<div id="wrapper"></div>
+
+
+<!--bodycontents-->
+<div id="bodycontents">
+<!-- sliderposition -->
+
+<!--===============================================================
+    maincontents    
+===============================================================-->
+
+<div class="mainContentsPa"><!--内部コンテンツの位置決め-->
+
+<!--上のタブ選択部分-->
+<input id="tab1" type="radio" name="check" checked>
+<label for="tab1" class="pagetabTop">Page 1</label>
+
+<input id="tab2" type="radio" name="check">
+<label for="tab2" class="pagetabTop">Page 2</label>
+
+<input id="tab3" type="radio" name="check" >
+<label for="tab3" class="pagetabTop">Page 3</label>
+
+
+<!--タブ選択によるコンテンツ部分-->
+<div class="pages"><!--全ページの全体的なスタイルを指定するため-->
+        
+<!--===============================================================
+    fmin:：明朝体　fen：英語のかっこいい字体　fgo：ゴシック　fb：太字　ib：インラインブロック
+    red：赤字　blue：青字　bgred：背景赤　bgyellow：背景黄色
+    big：大きい文字　middle：普通の文字　small：小文字
+    imgfullleft：アイキャッチと同じ大きさで左寄せ imgfullcenter：アイキャッチと同じ大きさで中央
+    imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
+    imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
+    flex：flex横配置
+===============================================================-->
+
+<!--１ページ目-->
+<div id="page1" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2023/08/19</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>01</span>PythonでGoogle画像検索での画像を一括ダウンロード</h2>
+    <img class="aCeyecatch" src="./img/topimage.png" width="%">
+
+    <p style="margin:20px 5px 0px 5px" class="big red fb fen">
+        Google画像検索の画像一括ダウンロードの方法はPage3にあります．
+    </p>
+    <!--actmaincontents-->
+    <p class="headline fen fb" style="margin-top:40px;">web scrapingとは</p>
+    <p style="margin:60px 5px 0px 5px">
+        <span class="fb">ウェブスクレイピング（Web scraping）</span>は、ウェブサイトからデータを自動的に収集するプロセスを指します.
+        具体的には、HTMLや他のウェブページの要素を解析して、テキスト、画像、リンク、表などの情報を抽出する作業です.<br>
+        (ChatGPTさんより)<br><br>
+
+    </p>
+
+    <p style="margin:40px 5px 0px 5px">
+        今回私はこのWebスクレイピングを学習し，Googleの画像検索画面の検索結果画像を自動的にダウンロードする
+        ものを作りました．
+    </p>
+
+    <p class="headline fen fb" style="margin-top:40px;">チュートリアル</p>
+    <p style="margin:60px 5px 0px 5px">
+        今回私はこのWebスクレイピングを学習するにあたって参照したサイトは以下になります．<br><br>
+    </p>
+    <cite><a href="https://brightdata.jp/blog/%E5%90%84%E7%A8%AE%E3%81%94%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95/web-scraping-with-python">Pythonによるウェブスクレイピング-ステップバイステップガイド</a></cite><br><br>
+    
+    <p style="margin:0px 5px 0px 5px">
+        上のサイトから以下のPythonコードをサンプルとして作成しました．
+    </p>
+
+<pre class="line-numbers small">
+<code class="language-javascript small">
+import requests
+from bs4 import BeautifulSoup
+import csv
+import time
+
+
+#User-Agentを示すことでサーバにスクレイピングを認識させづらくする
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                    'AppleWebKit/537.36 (KHTML, like Gecko) '
+                    'Chrome/107.0.0.0 Safari/537.36'
+}
+
+def scrape_page(soup,quotes):
+    #全てのdivタグ要素取得
+    quote_elements=soup.find_all('div',class_='quote')
+
+    #目的dataの抽出と保存の反復処理
+    #ここでquote_elementsではwebページのquoteクラスのリストができている
+
+    count=0
+
+    for quote_element in quote_elements:
+        #quote_elemtにquote_elementsというリストを一つ一つ代入して処理する
+        #textにquoteクラス内のさらにtextクラスのspanタグのテキストをリストとして代入
+        text=quote_element.find('span',class_='text').text
+
+        #同様にauthorクラスというsmallタグにも行う
+        author=quote_element.find('small',class_='author').text
+
+        #HTMLないquoteクラス内の<a>タグについても同様
+        tag_elements=quote_element.find('div',class_='tags').find_all('a',class_='tag')
+        # find_allを使った結果がlistとなっているため.textとして代入はできない
+        # .textは一つの要素に対して適用できる
+
+        #tagリストのテキストをlistとして保存
+        tags=[]
+        for tag_element in tag_elements:
+                tags.append(tag_element.text)
+
+        #quotesというlist内に辞書配列を入れている
+        quotes.append({'text':text,'author':author,'tags':','.join(tags)})
+        #','.join(tags)はtagsリストの要素を全てカンマ,で区切ってい一つの文字とするということ
+
+        time.sleep(1.5)
+        print('count',count)
+        count+=1
+
+############################################################################
+#対象webページのhome となるurl
+base_url='https://quotes.toscrape.com'
+
+#httpリクエストする際のheaderを設定しつつhtml読み込む
+page=requests.get(base_url,headers=headers)
+#dataの取得が成功したかどうか
+if page.status_code==200:
+        print('http request successful')
+
+#encodingの修正
+page.encoding = page.apparent_encoding
+
+
+#soupに解析(parse)したdataの格納
+soup=BeautifulSoup(page.text,'html.parser')
+
+quotes=[]
+
+#上で作った関数でスクレイピングする
+scrape_page(soup,quotes)
+
+############################################################################
+
+#次ページ遷移のhtml要素取得
+next_li_element=soup.find('li',class_='next')
+
+#次ページがあった場合の処理
+while next_li_element is not None:
+    #href属性を持つ<a>タグのみを取得
+    #['href'] を使い，<a> 要素の href 属性にアクセスしその値を取得
+    next_page_relative_url=next_li_element.find('a',href=True)['href']
+
+    #次ページをrequestで取得
+    #homeページurlと次ページurlの相対パスを結合し，完全なパスとする
+    page=requests.get(base_url+next_page_relative_url,headers=headers)
+
+    soup=BeautifulSoup(page.text,'html.parser')
+    scrape_page(soup,quotes)
+
+    #次ページ内の次ページ要素
+    next_li_element=soup.find('li',class_='next')
+
+############################################################################
+
+#csvファイルの読込，作成
+csv_file=open('quotes.csv','w',encoding='utf-8',newline='')
+#newline='' はosによって異なる改行コード(\n)などを統一する
+
+#上で作ったcsv_fileに書き込むためのオブジェクト作成
+writer=csv.writer(csv_file)
+
+writer.writerow(['Text','Author','Tags'])
+
+pagecount=0
+
+for quote in quotes:
+    writer.writerow(quote.values())
+    print(pagecount)
+    pagecount+=1
+
+csv_file.close()
+</code>
+</pre>
+    
+    <p style="margin:30px 5px 0px 5px">
+        このようにスクリプトを作成しました．ここからweb scrapingの基本構造を学びました．<br><br>
+        ここから自分でスクリプトを再度作成し求めるものとしました．<br>
+        ついぎに作成したスクリプトを載せます．
+    </p>
+
+
+
+    
+    <!--topage-->
+    <div class="toPagePaRight1">
+        <div class="topage "><label for="tab2">To Page 2</label></div>
+    </div>
+</div>
+
+<!--２ページ目-->
+<div id="page2" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2023/08/19</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>02</span>Google画像検索の画像一括ダウンロードのコード</h2>
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:20px;">コードを自分で書く</p>
+    <p style="margin:30px 5px 0px 5px">
+        Webs crapingの学習が一通り終わったので自分でコードを書きました．<br>
+        そこで私が作ったのが<span class="fen fb ">「Google画像検索の一覧画像を一括ダウンロードする」</span>コードです．<br><br>
+        以下のサイトを参照しました．
+    </p>
+
+    <cite><a href="https://www.python-codes.net/entry/python-get-image-from-url" target="_blank">Pythonで画像のURLから画像をファイルを保存する方法</a></cite><br><br>
+    <cite><a href="https://kino-code.com/python_os_makedirs/" target="_blank">[毎日Python]Pythonで新しいディレクトリを作成や上書きする方法</a></cite><br><br>
+    <cite><a href="https://www.headboost.jp/python-file-existance/" target="_blank">Pythonでファイルが存在するかどうかを確認する方法</a></cite><br><br>
+    <cite><a href="https://qiita.com/nittyan/items/d3f49a7699296a58605b" target="_blank">Requestsで日本語を扱うときの文字化けを直す</a></cite><br><br>
+
+    <p style="margin:30px 5px 0px 5px">
+        これらのサイトを用いつつ下のコードを作りました．
+    </p>
+
+<pre class="line-numbers small">
+<code class="language-javascript small">
+import requests
+from bs4 import BeautifulSoup
+import os
+import shutil
+
+#User-Agentを示すことでサーバにスクレイピングを認識させづらくする
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                  'AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/107.0.0.0 Safari/537.36'
+}
+
+############################################################################
+
+url=input('Enter google img URL')
+
+page=requests.get(url,headers=headers)
+
+if page.status_code==200:
+     print('http request successful')
+
+page.encoding=page.apparent_encoding
+
+soup=BeautifulSoup(page.text,'html.parser')
+
+def scrape(soup):
+    soup_divelems=soup.find_all('div',class_='bRMDJf')
+    imges=[]
+
+    for divelem in soup_divelems:
+        data=divelem.find('img')
+        imges.append(data)
+    print('extracting img tags successful')
+
+    urls=[]
+    for imgsrc in imges:
+        src=imgsrc.get('src')
+        data_src=imgsrc.get('data-src')
+        urls.append(src)
+        urls.append(data_src)
+    print('extracting url successful')
+
+    #None消去
+    urls=filter(None,urls)
+    urlsf=list(urls)
+    print('removing None finished')
+
+
+    #画像保存
+    #ディレクトリ作成と同ディレクトリ名の回避
+    i=0
+    a=0
+    while i==0:
+        check=os.path.exists(f'./scrapedimages{a}')
+        if check:
+            print(f'file name scapedimages{a} exists')
+            a+=1
+            continue
+        os.makedirs(f'./scrapedimages{a}',exist_ok=True)
+        dir_name=f'scrapedimages{a}'
+        print('deciding file name finished')
+        a=0
+        i=1
+
+    for i in range(len(urlsf)):
+        # dataURI識別
+        first_string=urlsf[i][0]
+        if first_string=='d':
+            continue
+        response=requests.get(urlsf[i])
+        image=response.content
+        file_name=f"scraped_image{i}.png"
+        with open(os.path.join(f"./{dir_name}",file_name),"wb")as f:
+            f.write(image)
+        print(file_name,'downloaded')
+
+    shutil.make_archive(dir_name,format='zip',root_dir=dir_name)
+
+    print('scrape finish')
+    i=0
+
+scrape(soup)
+</code>
+</pre>
+
+    <p style="margin:30px 5px 0px 5px">
+        このスクリプトでは<br>
+        まずGoogleの画像検索のURLから各画像のURLを抽出しています．<br>
+        次にそのURLから画像を保存し，フォルダを作成します．<br>
+        最後にそのフォルダをzipに圧縮し保存を可能にしました．<br>
+        製作時間は半日ほどです．<br><br>
+        このコードの欠点は画像のURLが<span class="fb fen">DataURIでは取得できない</span>という点です．<br>
+        DataURIでは一度画像に変換した後にダウンロードする必要があります．<br>
+        その変換には他のWebサイトを経由する必要があり，今回はhttpsプロトコルの画像のみをダウンロードすることにしました．<br><br>
+        要は，このコードでは<span class="fb bgyellow">全ての画像がダウンロードできるわけではない</span>という事です．<br><br>
+        コードの以下の部分でDataURIとHTTPを区別しています．<br>
+<pre class="line-numbers">
+<code class="language-javascript">
+# dataURI識別
+first_string=urlsf[i][0]
+if first_string=='d':
+    continue
+</code>
+</pre><br><br>
+        次にこのコードをどのように使うのか解説します．
+    </p>
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab1">To Page 1</label></div>
+        </div>
+    
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab3">To Page 3</label></div>
+        </div>    
+    </div>
+</div>
+
+<!--３ページ目-->
+<div id="page3" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2023/08/19</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>03</span>コードの使い方</h2>
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:20px;">Google Colaboratoryを使ってコードを実行</p>
+    <p style="margin:60px 5px 0px 5px">
+        このサービスを利用する場合は本社の利用規約に同意したものとします．
+        <cite><a href="../../../term/Kayuprog利用規約.pdf" target="_blank">利用規約</a></cite><br>
+    </p>
+    <p style="margin:40px 5px 0px 5px">
+        コードを実行するにはGoogle Colaboratoryを使います．<br>
+        下のURLに飛んでください．<br><br>
+        <cite><a href="https://colab.research.google.com/drive/1dtiE0dP3bigEErF6QZ9jPwN-JK2_HZif?usp=sharing" target="_blank">https://colab.research.google.com/drive/1dtiE0dP3bigEErF6QZ9jPwN-JK2_HZif?usp=sharing</a></cite><br><br><br>
+    </p>
+    <p style="margin:40px 5px 0px 5px">
+        上のURLをクリックすると次の画面になります．<br><br><br>
+        <img src="./img/first.png" class="imgfullcenter" style="margin:2px;"><br><br>
+        この画面の赤丸で囲んである矢印を押してください．<br>
+        このボタンを押すことによってプログラムコード自体が実行されます．<br><br><br>
+    </p>
+    <p style="margin:60px 5px 0px 5px">
+        押すとログインしていない場合は以下のポップアップが表示されます．<br><br>
+        <img src="./img/second.png" class="imgfullcenter" style="margin:2px;"><br><br>
+        上の赤丸からログインしてください．<br>
+        特に登録していなくても，ご自身のGmailのメールアドレスでログインできます．<br>
+    </p>
+    <p style="margin:60px 5px 0px 5px">
+        <img src="./img/third.png" class="imgfullcenter" style="margin:2px;"><br>
+        ログイン後，再度赤丸の矢印ボタンを押してください．
+    </p>
+    <p style="margin:60px 5px 0px 5px">
+        すると以下のような警告ポップアップが表示されます．<br>
+        <img src="./img/fourth.png" class="imgfullcenter" style="margin:2px;"><br>
+        赤丸の「このまま実行」を押してください．
+    </p>
+    <p style="margin:60px 5px 0px 5px">
+        すると，しばらくしたのちにページの下の部分に次の写真のようなURLを入力する欄が出てきます．
+        <img src="./img/fifth.png" class="imgfullcenter" style="margin:2px;"><br>
+        ここにGoogleの画像検索のURLを入力してください．
+    </p>
+    <p style="margin:60px 5px 0px 5px">
+        Googleの画像検索のURLは以下の写真の赤線部分を指しています．<br>
+        <img src="./img/sixth.png" class="imgfullcenter" style="margin:2px;"><br>
+        このURLをコピーしてください．<br>
+        注意点として，URLを　https://~　から全てコピーしてください．
+    </p>
+    <p style="margin:60px 5px 0px 5px">
+        そのURLを先ほどのURLを入力する欄にペーストします．<br>
+        次にEnterキーを押すことによってスクレイピング(Webの解析)が開始します．<br><br>
+        <img src="" class="imgfullcenter" style="margin:2px;">
+    </p>
+    <p style="margin:60px 5px 0px 5px">
+        しばらくすると左(PCによる)のフォルダタブにzipファイルが現れます．<br>
+        <img src="./img/seventh.png" class="imgfullcenter" style="margin:2px;"><br>
+        図の青丸が作成されたzipファイルにあたります．<br>
+        ファイル名はこの図とは異なると思います．<br>
+        <span class="small">＊具体的には番号が違います．</span><br><br><br>
+        図の赤丸を押すとzipファイルをダウンロードできます．<br>
+        フォルダ内にはGoogle画像検索の結果として表示されたものが保存されています．<br>
+        ご活用ください．
+    </p>
+    <p style="margin:100px 5px 0px 5px">
+        今回の記事は以上です．ありがとうございました．
+    </p>
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab2">To Page 2</label></div>
+        </div>
+
+        
+    </div>
+</div>
+
+
+
+<!--CSSのほう確認！！！-->
+
+
+
+</div><!--pages end-->
+
+</div><!--mainContentsPa end-->
+
+
+
+
+<!----------------------------------------mainContentsend---------------------------------------->
+</div><!--bodycontents-->
+<div class="bottomBlank"></div>
+
+<!--===============================================================
+    footer
+===============================================================-->
+<div class="footer">
+    <!--Waves Container-->
+    <div>
+    <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)" />
+    </g>
+    </svg>
+    </div>
+    <!--Waves end-->
+    <div id="footerContents"> 
+        <small>Copyright(c) //  KayuProg  // All right Reserved.</small>
+    </div>
+
+
+ </div>
+
+<!--movebg-->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../../../common/js/movebg.js"></script><!--ok-->
+<!--mainSlider/slick.jsの読み込み-->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--mainslider.js-->
+</body>
+
+
+<noscript>
+    <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
+    <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。  制作者より
+    </p>
+</noscript>
+
+
+</html>

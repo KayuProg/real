@@ -1,0 +1,257 @@
+@charset "utf-8";
+
+/*===============================================================
+    general 
+===============================================================*/
+.mainblank{
+  height:2000px;
+}
+
+*{
+  margin:0; padding:0;
+  border:0;
+}
+
+hr{
+  margin:0px 0px 0px 0px;
+  border:none;
+}
+
+.fmin{
+  font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','Yu Mincho Light','YuMincho','Yu Mincho','游明朝体',sans-serif;
+}
+.fen{
+  font-family: 'Georgia','Athelas','Cochin',sans-serif;
+}
+.fb{
+  font-weight:bold;
+}
+
+.ib{
+  display:inline-block;
+}
+
+.fba{/*fontbasec windowsでは日本語明朝体・macスマホではゴシック*/
+  font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','Cambria','Courier New','ヒラギノ明朝 ProN','Hiragino Mincho ProN',sans-serif;
+}
+
+/*to top button*/
+.toTopButton{
+  display:block;
+  width:100px;
+  height:100px;
+  bottom:5%;
+  right:8%;
+  position:fixed;
+  z-index:99;
+  background-image:url(../commonimages/toTop.png);
+  background-repeat: no-repeat;
+  opacity:0.7;
+  visibility:hidden;
+}
+.vvt{visibility:visible;}
+
+
+/*===============================================================
+  header
+===============================================================*/
+.headerborder{
+  height:15px;
+}
+
+.headbg{
+  display:block;
+  width:100%;
+  background-color:rgb(237, 235, 235);
+  border-bottom:solid 3px rgb(131, 131, 131);
+  padding:0px 0px 11px 0px;
+  z-index:9999999;
+
+}
+
+.headerCenter{
+  display:flex;
+  flex-direction:row;
+  position:relative;
+  }
+  
+.headerSticky{
+  position: sticky;
+  z-index:10;
+  top: 0;
+  width: 100%;
+  margin: 0;
+}
+
+/*mainmenu*/
+.logobg{
+display:block;
+width:236px;
+height:50px;
+margin-right:50px;
+margin-top:10px;
+background:url(../commonimages/logobg.jpg);
+transition:filter 0.5s, transform 0.5s, box-shadow 0.5s;
+}
+
+.logobg:hover{
+filter:brightness(105%);
+transform: translateZ(50px);
+box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+}
+
+.logo{
+font-family: 'Mongolian Baiti','Georgia',sans-serif;
+letter-spacing:5px;
+position:relative;
+display:block;
+width:236px;
+height:50px;
+line-height:50px;
+text-align: center;
+font-weight:bold;
+font-size:25px;
+color:black;
+}
+
+.alogo{
+  margin:0px 0px 0px 50px;
+  text-decoration:none;}
+
+.mainmenu{
+  position:absolute;
+  right:0%;
+  display:flex;
+  flex-direction:row;
+  height:50px;
+  margin:10px 50px 13px 0px;
+  }
+
+.mainmenu li{
+position:relative;
+font-size:18px;
+font-weight:bold;
+list-style-type:none;
+display:block;
+width:240px;
+text-align: center;
+}
+
+.mainmenuContents{
+  letter-spacing:3px;
+  display:block;
+  height:50px;
+  line-height:50px;
+  transition:border 1s, border-radius 1.2s, color 0.4s, text-shadow 0.4s;
+  margin:0px 10px;
+  background-color:rgb(203, 202, 202);
+  border-radius:10px;
+}
+
+.amainmenu{
+text-decoration: none;
+color:black;
+}
+
+.mainmenuContents:hover{
+color:white;
+background-color: #c6c4c4;
+border:solid black 3px;
+border-radius:40px;
+text-shadow:1px 1px 0 rgb(0, 0, 0), -1px -1px 0 rgb(0, 0, 0),
+-1px 1px 0 rgb(0, 0, 0), 1px -1px 0 rgb(0, 0, 0),
+0px 1px 0 rgb(0, 0, 0),  0 -1px 0 rgb(0, 0, 0),
+-1px 0 0 rgb(0, 0, 0), 1px 0 0 rgb(0, 0, 0);
+}
+
+
+/*MainFadeInAnimation*/
+.MFIAnimation{
+opacity:0;
+}.mainFadeIn{
+   animation-name:mainFadeIn;
+   animation-duration:3s;
+   animation-delay:0s;
+   animation-fill-mode:forwards;
+ }
+@keyframes mainFadeIn{
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+.FIDown{transform:translateY(200px);}
+.FIToLeft{transform:translateX(200px);}
+.FIToRight{transform:translateY(-200px);}
+/*===============================================================
+    footer
+===============================================================*/
+.footer{
+  display:block;
+  position:relative;
+  bottom:0;
+  text-align:center;
+  height:10px;
+} 
+
+div#footerContents{
+  display:block;
+  position:relative;
+  background-color:rgb(215, 215, 215);
+  padding-bottom:13px;
+  padding-top:10px;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:60px;
+  margin-bottom:-8px; /*Fix for safari gap*/
+}
+/*footerWaves*/
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height:40px;
+    min-height:40px;
+  }
+  .content {
+    height:30vh;
+  }
+  h1 {
+    font-size:24px;
+  }
+}
+

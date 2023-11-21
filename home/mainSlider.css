@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+.mainSlider{
+    display:block;
+    margin:0 auto;
+    position:relative;
+    width:940px;
+    height:380px;
+}
+
+
+.mainSliderImg{
+    width:940px;
+    height:380px;
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+
+/*矢印の設定（slick）*/
+.slick-prev,.slick-next{
+    position:absolute;
+    z-index:3;
+    top:48%;
+    cursor:pointer;
+    border-top:2px solid rgb(255, 255, 255);
+    border-right:2px solid rgb(255, 255, 255);
+    height:17px;
+    width:17px;    
+}
+
+.slick-prev{
+    left:2.5%;
+    transform:rotate(-135deg);
+}
+
+.slick-next{
+    right:2.5%;
+    transform:rotate(45deg);
+}

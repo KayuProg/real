@@ -1,0 +1,270 @@
+@charset "utf-8";
+
+/*=========================================================
+　全般スタイル
+=========================================================*/
+
+*{
+    margin:0; padding:0;
+    border:0;
+}
+
+body{
+    margin:0px 0px 100px 0px;
+    background-color:white;
+    background-image:url(images/wallpaper.png);
+    font-family: YuGothic,'Yu Gothic',YuGothic,'Yu Gothic','ヒラギノ角ゴシック','Hiragino Sans','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',sans-serif;
+}
+
+div#pagebody{
+    width:1000px;
+    margin:0 auto;
+    background-color: white;
+    background-image:url("images/bg_pagebody.png"); /*コンテンツ全体の背景画像*/
+    background-repeat:repeat-y;  /*背景画像を縦方向に繰り返す*/
+}
+
+hr{
+    margin:0px 50px 0px 35px !important;
+    border:none;
+    border-top:3px solid #ababab;
+}
+/*=========================================================
+ fadeIN
+=========================================================*/
+.fadeIn {
+    animation-name: fadeInAnime;
+    animation-duration:2s;
+    animation-fill-mode:forwards;
+    opacity: 0;
+}
+@keyframes fadeInAnime{
+    0% {
+    opacity: 0;
+}
+
+    100% {
+    opacity: 1;
+}
+                        }
+/*=========================================================
+　ロード画面
+=========================================================*/
+.load1{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    position:fixed;
+    background-color: rgb(220, 219, 219);
+    z-index:99999;
+}
+
+.load2{
+    animation-name: slider;
+    animation-duration: 1.2s;
+    animation-timing-function:ease-in;
+    animation-fill-mode:forwards;/*終了時の状態を維持する*/
+    animation-iteration-count:1;
+    animation-delay:1.5s;
+}
+
+@keyframes slider{
+    from {
+        transform: translateY(0);
+    }
+    to {
+        position:fixed;
+        transform: translateY(-200%);
+    }
+}
+.fadeIn-load {
+    animation-name: fadeInAnime-load;
+    animation-duration:2.5s;
+    animation-fill-mode:forwards;
+    opacity: 0;
+    animation-delay: 1.7s;
+}
+@keyframes fadeInAnime-load{
+    0% {
+    opacity: 0;
+    }
+
+    100% {
+    opacity: 1;
+    }
+}
+/*=========================================================
+　ヘッダー
+=========================================================*/
+div#header-image{
+    width:250px;
+    height:59px;
+    margin:10px 248px 8px 0px;
+    position:relative;
+    top:10px;
+    left:20px;
+}
+                 
+div#header-noko, #header-kokuken, #header-insta{
+    margin:20px 4px 7px 4px;
+    display : inline-block;
+    width: 200px;
+    line-height: 59px;
+    border-radius: 10px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+                                                
+
+div#header-noko:hover, #header-kokuken:hover, #header-insta:hover{
+    margin-top: 17px;
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px);/*上にすこし移動させます*/
+}
+
+div#header-container{
+    display:flex;
+    flex-direction:row;
+}
+div#header-noko{
+    width:200px;
+    height:59px;
+}
+div#header-kokuken{
+    width:200px;
+    height:59px;
+}
+div#header-insta{
+    width:59px;
+    height:59px;
+}
+
+/*=========================================================
+ メインメニュー
+=========================================================*/
+ul#menu{
+    margin:5px 20px 8px 20px;
+    height:50px;
+}
+#menu li {
+    font-weight:bold;
+    color:white;
+    list-style-type: none;
+    float:left;
+    display: block;
+    margin:0px 2px;
+    width:236px;
+    height:50px;
+    background-image: url(images/mainmenu-image.jpg);
+}
+.menu-contents{
+    font-size:120%;
+    margin:10px;
+}
+#menu li a {
+    color:black;
+    text-decoration:none;   /*リンク部分を下線なしにする*/
+    display:block;
+    text-align: center;
+    height:40px;
+    position:relative;
+    cursor:pointer;
+}
+#menu li:hover{
+    background-image: url(images/mainmenu-imageafter.png);
+}
+#menu li a:hover{
+    color: #000;
+}
+
+/*=========================================================
+ ヘッダー画像
+=========================================================*/
+#headimage{
+    display:block;
+    width:940px;
+    height:380px; 
+    margin:7px 20px 20px 20px;
+    position:relative;
+    padding: 0px 0px 10px 0px;
+    border: 5px solid black;
+}
+
+#header-p{
+    -webkit-text-stroke: 8px rgb(0, 0, 0);
+    position:relative;
+    margin:auto;
+    padding:10%;
+}
+
+/*=========================================================
+ インフォメーション
+=========================================================*/
+.infomation-menu{  /*infomation見出し*/
+    position:relative;
+    top:0;
+    left:0;
+    display:block;
+    width:150px;
+    height:40px;
+    text-align: center;
+    padding:10px 0px 0px 0px;
+    margin:0px 20px;
+}
+.infomation-menu::before{
+    position: absolute;
+    bottom: 7px;  /*underline縦位置*/
+    left:15px;  /*underline横位置*/
+    content: '';
+    width: 122px;
+    border-bottom: 3px solid #000000;
+}
+
+#intro{
+    margin:10px 0px 10px 40px;
+}
+#intro-firstcontents{
+    display:flex;
+}
+#hello{
+    font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','ヒラギノ明朝 ProN','Hiragino Mincho ProN',sans-serif!important;
+    font-weight:bold;
+    font-size: 220%;
+}
+#intro-intro{
+    font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','ヒラギノ明朝 ProN','Hiragino Mincho ProN',sans-serif!important;
+    font-size: 140%;
+    margin:14px 0px 0px 80px;
+}
+#intro-secondcontents{
+    display:flex;
+}
+#intro-list{
+    position:relative;
+    top:20px;
+    left:80px;
+    font-size: 150%;;
+}
+#intro-image1{
+    border-radius: 100%;
+    border: 5px dotted black;
+    margin:10px 0px 10px 10px;
+}
+#intro-p{
+    position:absolute;
+    font-size: 200%;
+}
+
+
+
+/*=========================================================
+ フッター
+=========================================================*/
+div#hutter{
+    margin:10px 10px 0px 10px;
+    padding:15px 0px 15px 0px;
+    text-align:center;
+    background-color:rgb(224, 224, 227);
+}

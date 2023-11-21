@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="base.css">
+    <title>kayu-website</title>
+
+
+    <!--ヘッダー画像-->
+    <div id="head-image">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('.slider').bxSlider({
+                auto: true,
+                pause: 7000,
+            });
+        });
+    </script>
+    </div>
+</head>
+
+<body>
+<div id="pagebody">
+
+<!--ヘッダー-->
+<div id="header-container">
+
+    <div id="header-image">
+        <h1><a href="index.html"><img src="images/logo.jpg"></a></h1>
+    </div>
+
+    <div id="header-noko">
+        <h2><a href="https://www.tuat.ac.jp"><img src="images/header-image-noko.jpg"></a></h2>
+    </div>
+
+    <div id="header-kokuken">
+        <h2><a href="http://web.tuat.ac.jp/~birdman/"><img src="images/header-image-kokuken.jpg"></a></h2>
+    </div>
+
+    <div id="header-insta">
+        <h2><a href="https://www.instagram.com/_k_a_t_a_y_a_m_a_/"><img src="images/header-image-insta.jpg"></a></h2>
+    </div>
+
+</div>
+
+    <!--メインメニュー-->
+<ul id="menu">
+    <li><a href="index.html"><div class="menu-contents">ホーム</div></a></li>
+    <li><a href="profile.html"><div class="menu-contents">プロフィール</div></a></li>
+    <li><a href="activity.html"><div class="menu-contents">活動履歴</div></a></li>
+    <li><a href="contact.html"><div class="menu-contents">問い合わせ</div></a></li>
+</ul>
+
+<!--ヘッダー画像-->
+<div id="headimage">
+
+    <div class="slider">
+        <img src="./images/head_image/1.png" width="940" height="380" alt=""> 
+        <img src="./images/head_image/2.png" width="940" height="380" alt="">
+        <img src="./images/head_image/3.png" width="940" height="380" alt="">
+        <img src="./images/head_image/4.png" width="940" height="380" alt="">
+        </div>
+
+</div>
+
+<!--インフォメーション-->
+<div id="infomation">
+    <h2 class="infomation-menu">自己紹介</h2>
+    <script defer src="./sample.js" charset="UTF-8"></script>
+
+    <noscript>
+        <p>このサイトではJavaScriptを使用しています。この分が表示される場合には設定でオンにしてください。</p>
+    </noscript>
+    <hr>
+    <h2 class="infomation-menu" >近況活動</h2>
+    <hr>
+    <h2 class="infomation-menu">更新情報</h2>
+    <hr>
+</div>
+
+<!--フッター-->
+<div id="hutter">
+    <small>
+        Copyright(c) //katayama yuuki// All right Reserved.
+    </small>
+</div>
+</div>
+</body>
+</html>

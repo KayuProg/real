@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+<head>
+<meta charset="UTF-8">
+<title>KayuProg-website/かゆウェブサイト</title>
+<!--css-->
+<link rel="stylesheet" href="../common/css/base.css">
+<link rel="stylesheet" href="activity.css">
+<!--movebg-->
+<link rel="stylesheet" href="../common/css/movebg.css">
+<!--jQuery読み込み-->
+<script src="../common/js/jquery-3.6.1.min.js"></script>
+<!--animate.css-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<!--viewport-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" media="screen and (max-width:1000px)" href="../common/css/sp_base.css">
+<link rel="stylesheet" media="screen and (max-width:1000px)" href="./sp_activity.css">
+<!--自動翻訳禁止-->
+<meta http-equiv="Content-Language" content="ja">
+<meta name="google" content="notranslate">
+
+</head>
+
+<body>
+
+<div>
+
+    <!--to top button-->
+  <div class="toTopButton"></div>
+  <script>
+  $(document).ready(function(){
+      var toTopBtn=$('.toTopButton');
+      toTopBtn.hide();
+      $(window).scroll(function(){
+          if($(this).scrollTop()>100){
+              toTopBtn.fadeIn();
+              $('.toTopButton').addClass('vvt');
+          }else{
+              toTopBtn.fadeOut();
+          }
+      });
+      toTopBtn.click(function(){
+          $('body,html').animate(
+              {scrollTop:0},500
+          );
+          return false;
+      });
+  });
+  </script>
+    
+<!--===============================================================
+    header
+===============================================================-->
+<!--header-->
+<hr size="15px" color="black">
+<div class="headbg headerSticky">
+    <!--header mainmenu-->
+    <div class="headerCenter">
+        <a href="../index.html" class="alogo"><div class="logobg"> <div class="logo ">KayuProg</div> </div></a>
+    <ul class="mainmenu">
+        <li><a href="../term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank"><div class="mainmenuContents mainmenuContents1 fb">Terms</div></a></li>
+        <li><a href="../index.html" class="amainmenu"><div class="mainmenuContents mainmenuContents1">HOME</div></a></li>
+        <li><a href="../activity/activity.html" class="amainmenu"><div class="mainmenuContents mainmenuContents2">ACTIVITY</div></a></li>
+        <li><a href="../contact/contact.html" class="amainmenu"><div class="mainmenuContents mainmenuContents3">CONTACT</div></a></li>
+    </ul>
+    </div>
+</div>
+
+<!--movebg-->
+<div id="particles-js"></div>
+<div id="wrapper"></div>
+
+
+<!--bodycontents-->
+<div id="bodycontents">
+<!-- sliderposition -->
+
+<!--===============================================================
+    maincontents    
+===============================================================-->
+<div class="activityhigh">
+  <h1 class="activityintropa"><div class="activity fen">ACTIVITY</div></h1>
+  <div class="actintropa"><div class="actintro fmin"><p>ここは活動記録保管庫です．今までに活動・作成した数々がまとめられて残っています.</p></div></div>
+
+<div class="actcontainer">
+<ul class="cards7">
+
+  <li class="card7"><!--Web Scraping-->
+    <div class="card__image-holder"><a href="./activityContents/webscraping/webscraping.html">
+      <img  src="./activityContents/webscraping/img/topimage.png" alt="アイキャッチ画像" > </a>
+    </div>
+    <a href="./activityContents/webscraping/webscraping.html" class="aDecoNone">
+    <div class="card-title"><span class="left"></span><span class="right"></span> 
+      <p class="card_timecategory"><time class="pubdate entry-time dfont" itemprop="datePublished" datetime="2021-10-16">2023年8月19日</time></p>
+      <p class="card_htitle">
+        PythonでGoogle画像検索での画像を一括ダウンロード
+      </p>
+    </div>
+    </a>
+  </li>
+
+  <li class="card7"><!--Sce-fi Robot in blender-->
+    <div class="card__image-holder"><a href="./activityContents/blender_Sci-fi_Robot/blender_Sci-fi_Robot.html">
+      <img  src="./activityContents/blender_Sci-fi_Robot/img/1.png" alt="アイキャッチ画像" > </a>
+    </div>
+    <a href="./activityContents/blender_Sci-fi_Robot/blender_Sci-fi_Robot.html" class="aDecoNone">
+    <div class="card-title"><span class="left"></span><span class="right"></span> 
+      <p class="card_timecategory"><time class="pubdate entry-time dfont" itemprop="datePublished" datetime="2021-10-16">2022年10月16日</time></p>
+      <p class="card_htitle">Blenderer Works No.3<br>
+        「 Sci-fi Robot 」
+      </p>
+    </div>
+    </a>
+  </li>
+
+  <li class="card7"><!--「 PG UC Gundam CG version 」-->
+    <div class="card__image-holder"><a href="./activityContents/plamo_PG_UC/plamo_PG_UC.html">
+      <img  src="./activityContents/plamo_PG_UC/img/head.png" alt="アイキャッチ画像" > </a>
+    </div>
+    <a href="./activityContents/plamo_PG_UC/plamo_PG_UC.html" class="aDecoNone">
+    <div class="card-title"><span class="left"></span><span class="right"></span> 
+      <p class="card_timecategory"><time class="pubdate entry-time dfont" itemprop="datePublished" datetime="2021-10-16">2023年3月16日</time></p>
+      <p class="card_htitle">Plastic Works No.1<br>
+        「 PG UC Gundam CG version 」
+      </p>
+    </div>
+    </a>
+  </li>
+
+  <li class="card7"><!-- Sorceress  ソーサレス 」-->
+    <div class="card__image-holder"><a href="./activityContents/blender_sorceress/blender_sorceress.html">
+      <img src="./activityContents/blender_sorceress/img/head.png" alt="アイキャッチ画像"> </a>
+    </div>
+    <a href="./activityContents/blender_sorceress/blender_sorceress.html" class="aDecoNone">
+    <div class="card-title"><span class="left"></span><span class="right"></span> 
+      <p class="card_timecategory"><time class="pubdate entry-time dfont" itemprop="datePublished" datetime="2021-10-16">2023年3月14日</time></p>
+      <p class="card_htitle">Blenderer Works No.2 <br>
+          「 Sorceress  ソーサレス 」
+      </p>
+    </div>
+    </a>
+  </li>
+
+  <li class="card7"><!--「犬 ～スザンヌを添えて～ 」<-->
+    <div class="card__image-holder"><a href="./activityContents/blender_dog/blender_dog.html">
+      <img src="./activityContents/blender_dog/img/head.png" alt="アイキャッチ画像"> </a>
+    </div>
+    <a href="./activityContents/blender_dog/blender_dog.html" class="aDecoNone">
+    <div class="card-title"><span class="left"></span><span class="right"></span> 
+      <p class="card_timecategory"><time class="pubdate entry-time dfont" itemprop="datePublished" datetime="2021-10-16">2023年3月12日</time></p>
+      <p class="card_htitle">Blenderer Works No.1 <br>
+        「犬 ～スザンヌを添えて～ 」
+      </p>
+    </div>
+    </a>
+  </li>
+
+  <li class="card7"><!--JSブロック崩し-->
+    <div class="card__image-holder"><a href="./activityContents/js_block_breaking/js_block_breaking.html">
+      <img src="./activityContents/js_block_breaking/img/head.png" alt="アイキャッチ画像"> </a>
+    </div>
+    <a href="./activityContents/js_block_breaking/js_block_breaking.html" class="aDecoNone">
+    <div class="card-title"><span class="left"></span><span class="right"></span> 
+      <p class="card_timecategory"><time class="pubdate entry-time dfont" itemprop="datePublished" datetime="2021-10-16">2023年3月17日</time></p>
+      <p class="card_htitle">javascriptでのブロック崩し</p>
+    </div>
+    </a>
+  </li>
+
+  <li class="card7"><!--サイト制作の始まり-->
+    <div class="card__image-holder"><a href="./activityContents/websample/websample.html">
+      <img src="./activityContents/websample/websampleImages/websamplehead.png" alt="アイキャッチ画像"> </a>
+    </div>
+    <a href="./activityContents/websample/websample.html" class="aDecoNone">
+    <div class="card-title"><span class="left"></span><span class="right"></span> 
+      <p class="card_timecategory"><time class="pubdate entry-time dfont" itemprop="datePublished" datetime="2021-10-16">2023年3月12日</time></p>
+      <p class="card_htitle">サイト制作の始まり<br>～webサンプル株式会社～</p>
+    </div>
+    </a>
+  </li>
+
+</ul>
+</div>
+
+</div><!--activity end-->
+
+
+
+<!----------------------------------------mainContentsend---------------------------------------->
+</div><!--bodycontents-->
+<div class="bottomBlank"></div>
+<!--===============================================================
+    footer
+===============================================================-->
+<div class="footer">
+    <!--Waves Container-->
+    <div>
+    <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)" />
+    </g>
+    </svg>
+    </div>
+    <!--Waves end-->
+    <div id="footerContents"> 
+        <small>Copyright(c) //  KayuProg  // All right Reserved.</small>
+    </div>
+
+
+ </div>
+
+<!--fadeIn--></div>
+
+
+<!--movebg-->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../common/js/movebg.js"></script><!--ok-->
+<!--mainSlider/slick.jsの読み込み-->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</body>
+
+
+<noscript>
+    <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
+    <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。  制作者より
+    </p>
+</noscript>
+
+
+</html>

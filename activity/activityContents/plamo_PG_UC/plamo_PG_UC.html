@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>KayuProg-website/かゆウェブサイト</title>
+    <link rel="stylesheet" href="../../../common/css/base.css">
+    <link rel="stylesheet" href="../actConCss/actConBase.css"> <!--activity contentsのbaseとなるcss-->
+    <!--movebg-->
+    <link rel="stylesheet" href="../../../common/css/movebg.css"><!--ok-->
+    <!--mainSlider-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <!--jQuery読み込み-->
+    <script src="../../../common/js/jquery-3.6.1.min.js"></script>
+    <!--animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../../../common/css/sp_base.css">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../actConCss/sp_actConBase.css"><!--注意！！-->
+    <!--自動翻訳禁止-->
+    <meta http-equiv="Content-Language" content="ja">
+    <meta name="google" content="notranslate">
+
+</head>
+
+<body>
+
+
+    <!--to top button-->
+<div class="toTopButton"></div>
+<script>
+$(document).ready(function(){
+    var toTopBtn=$('.toTopButton');
+    toTopBtn.hide();
+    $(window).scroll(function(){
+        if($(this).scrollTop()>100){
+            toTopBtn.fadeIn();
+            $('.toTopButton').addClass('vvt');
+        }else{
+            toTopBtn.fadeOut();
+        }
+    });
+    toTopBtn.click(function(){
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+        return false;
+    });
+});
+</script>
+    
+<!--===============================================================
+    header
+===============================================================-->
+<!--header-->
+<hr size="15px" color="black">
+<div class="headbg headerSticky">
+    <!--header mainmenu-->
+    <div class="headerCenter">
+        <a href="../../../index.html" class="alogo"><div class="logobg"> <div class="logo">KayuProg</div> </div></a>
+    <ul class="mainmenu">
+        <li><a href="../../../index.html" class="amainmenu"><div class="mainmenuContents mainmenuContents1">HOME</div></a></li>
+        <li><a href="../../../activity/activity.html" class="amainmenu"><div class="mainmenuContents mainmenuContents2">ACTIVITY</div></a></li>
+        <li><a href="../../../contact/contact.html" class="amainmenu"><div class="mainmenuContents mainmenuContents3">CONTACT</div></a></li>
+    </ul>
+    </div>
+</div>
+
+<!--movebg-->
+<div id="particles-js"></div>
+<div id="wrapper"></div>
+
+
+<!--bodycontents-->
+<div id="bodycontents">
+<!-- sliderposition -->
+
+<!--===============================================================
+    maincontents    
+===============================================================-->
+
+<div class="mainContentsPa"><!--内部コンテンツの位置決め-->
+
+<!--上のタブ選択部分-->
+<input id="tab1" type="radio" name="check" checked>
+<label for="tab1" class="pagetabTop">Page 1</label>
+
+<input id="tab2" type="radio" name="check">
+<label for="tab2" class="pagetabTop">Page 2</label>
+
+<input id="tab3" type="radio" name="check" >
+<label for="tab3" class="pagetabTop">Page 3</label>
+
+<input id="tab4" type="radio" name="check" >
+<label for="tab4" class="pagetabTop">Page 4</label>
+
+
+<!--タブ選択によるコンテンツ部分-->
+<div class="pages"><!--全ページの全体的なスタイルを指定するため-->
+        
+<!--===============================================================
+    fmin:：明朝体　fen：英語のかっこいい字体　fgo：ゴシック　fb：太字　ib：インラインブロック
+    red：赤字　blue：青字　bgred：背景赤　bgyellow：背景黄色
+    big：大きい文字　middle：普通の文字　small：小文字
+    imgfullleft：アイキャッチと同じ大きさで左寄せ imgfullcenter：アイキャッチと同じ大きさで中央
+    imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
+    imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
+    flex：flex横配置 under：下線
+===============================================================-->
+
+<!--１ページ目-->
+<div id="page1" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2023/03/16</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>01</span>PG UC Gundam</h2>
+    <img class="aCeyecatch" src="./img/head.png" width="%">
+
+    <!--actmaincontents-->
+    <p class="headline"style="margin-top:40px;">人生二つ目のPG(パーフェクトグレード)</p>
+
+    <p style="margin:60px 5px 0px 5px">
+        こんにちは．今回は上画像にもあるようなプラモデルを作成する.<br>
+        私は趣味で小学生の頃からプラモデルを作っていた.<br>
+        小学生高学年には<span class="fb">>プラモデルのコンテストにも出場</span>するようになった
+        最終的には某プラモデル会社の開催しているコンテストで<span class="bgyellow red fb">本選に出場する（東京で展示される）</span>までになった.<br><br>
+    
+        そんな私は人生で一度だけパーフェクトグレードを作ったことがある.それは以下の画像に示すような<br><br><br>
+    
+        <span class="red fb fmin big">PG ストライクフリーダム</span><br><br>
+        <a src="./img/ストフリ.png" > <img src="./img/ストフリ.png" class="imgfullcenter" style="margin-top:0px;"></a>
+        <br><br>
+        である.
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        このプラモデルは当時士最高峰とも呼べるものだ.<br>
+        制作をしたのはいいものの,最終的にはいたるところのパーツの<span class="blue">破損</span>によって箱に戻ることになった.<br>
+        しかし,今制作しているプラモデルがお終わり次第,このプラモデルの<span class="red">修復・再組立て</span>を行う予定である.
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        さて,そんなことがありながら私は再びPGを作ることにした.<br>
+        その過程も例のように一部となるが掲載したいと思う.<br>
+    </p>
+    
+    <!--topage-->
+    <div class="toPagePaRight1">
+        <div class="topage "><label for="tab2">To Page 2</label></div>
+    </div>
+</div>
+
+<!--２ページ目-->
+<div id="page2" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2023/03/16</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>02</span>Building</h2>
+    <a src="../actConImages/deer2.jpg"><img class="aCeyecatch" src="./img/head.png" ></a> 
+ 
+    <!--actmaincontents-->
+    <p class="headline"style="margin-top:40px;">組み立て（素組）</p>
+
+    <p style="margin:60px 5px 0px 5px">
+        <span class="fb">部品のパーツカット,研磨,墨入れ</span>をした状態で組み立てたものが次の写真だ.<br>
+        <a src="" > <img src="./img/normal.jpg" class="imgfullcenter" style="margin-top:20px; margin-bottom:20px;"></a>
+        墨入れだけなので白色の光沢が強く,<span class="fb">安っぽい</span>感じがする.<br>
+        トップコート（艶消し）でつやを消してはいるが<span class="fb">プラスチックぽさ</span>は拭えない.<br><br><br>
+        そこで,次は塗装に入る.
+
+        とても短いが,理由としては組み立てに時間がかかりすぎて組み立て<u>途中の写真や憶が残っていない</u>からである.
+    </p>
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab1">To Page 1</label></div>
+        </div>
+    
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab3">To Page 3</label></div>
+        </div>    
+    </div>
+</div>
+
+<!--３ページ目-->
+<div id="page3" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2023/03/16</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>03</span>Painting</h2>
+    <img class="aCeyecatch" src="./img/booth.jpg" >
+
+    <p class="headline"style="margin-top:40px;">塗装</p>
+    <p style="margin:60px 5px 0px 5px">
+        ただ塗装をする.<br>
+        それだけである.<br><br>
+        一度先ほど組み立てた機体のすべての白い部分をはがした.<br>
+        <a src="./img/no.png" > <img src="./img/no.png" class="imgfullcenter" style="margin-top:20px;"></a>
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        はがしました.<br><br><br>
+        この写真にある赤いパーツは<span class="bgyellow big">ABS樹脂</span>というものでできており,今回の塗装を行うとパーツが割れてしまうので行わない.<br>
+        塗装する手段はあるが,一旦なしで進る.<br>
+        <a src="./img/booth2.png" > <img src="./img/booth2.png" class="imgfullcenter" style="margin-top:20px;"></a>
+    </p>
+    <p style="margin:60px 5px 0px 5px">
+        上写真のように一旦すべての白いパーツを<span class="red">メカサフ</span>というグレーのサーフェイサーで塗装する.<br><br><br>
+        これによってパーツの細かい傷が埋められ,さらには次に行う白のグラデーション<span class="fbyellow">塗装の下地</span>の役割をする.<br>
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        これも全くと言っていいほど写真が残っていないので最後の組み立て後の乾燥中の写真を掲載する.<br>
+        <a src="./img/booth.jpg" > <img src="./img/booth.jpg" class="imgfullcenter" style="margin-top:20px;"></a>
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        ちなみにこの塗装だけで<span class="fb">2週間</span>ほどかかっている.<br>
+        十分乾燥させ,先ほどの赤と黒になってしまった骨組みに取り付ける.<br><br>
+        最後にトップコートでコーティングしたものが以下である.<br>
+    </p>
+
+    <div class="flex">
+       <img src="./img/UC head.jpg" class="imghalf" style="margin:2px;">
+       <img src="./img/body.jpg" class="imghalf" style="margin:2px;">
+    </div>
+
+    <div class="flex">
+        <img src="./img/arms.jpg" class="imghalf" style="margin:2px;">
+        <img src="./img/skirt.jpg" class="imghalf" style="margin:2px;">
+    </div>
+
+    <div class="flex">
+        <img src="./img/legs.jpg" class="imghalf" style="margin:2px;">
+        <img src="./img/weapons.jpg" class="imghalf" style="margin:2px;">
+    </div>
+
+    <p style="margin:60px 5px 0px 5px">
+        塗装した結果このようになった.<br><br>
+        自分的にはかなり出来がいいと思っている.<br>
+        メカサフと白のグラデーションがよく,CG調となっている<br>
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        組み立てる.<br>
+    </p>
+
+    <a src="./img/nothing.png" > <img src="./img/nothing.png" class="imgfullcenter" style="margin-top:20px;"></a>
+
+    <p style="margin:60px 5px 0px 5px">
+        今回初めてのグラデーション塗装にしてはかなりうまくいき大変満足している.<br>
+        塗装前と比較する.
+    </p>
+
+    <flex>
+        <img src="./img/nothing.png" class="imghalf" style="margin:2px;">
+        <img src="./img/normal.jpg" class="imghalf" style="margin:2px;">
+    </flex>
+    <p>
+        塗装前と後では全く違うことがわかる.
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        なんと,わたしはこれを今回はある<span class="bgyellow big fb">コンテストに出場</span>させようと考えている．
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        次のページではコンテストの詳細と写真をいくつか掲載する.
+    </p>
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab2">To Page 2</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+    </div>
+</div>
+
+<!--4ページ目-->
+<div id="page4" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2023/03/16</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>04</span>Remarks</h2>
+    <img class="aCeyecatch" src="./img/fun to build.png" >
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">コンテスト出場！</p>
+    <p style="margin:60px 5px 0px 5px">
+        今回の制作したプラモデルを<span class="fb bgyellow">コンテストに出場</span>する<br>
+        最近ではコロナウイルスの影響もあってか,<span class="under">展示されるようなコンテスト</span>を余り見なくなってしまった．<br>
+        その流れでこのコンテストも<span class="red">SNS上でのコンテスト</span>になっている.<br><br>
+        そうなると,プラモデルの出来だけではなく写真撮影の技術も求められるようになる.<br><br>
+        無論わたしにその技術はないのでスマホで撮影したものを投稿する.<br>
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        出場するコンテストは上写真にある<span class="fb big fen">FUN TO BUILD CONTEST 2023</span>である．
+        リンクは以下である.<br>
+        <a href="https://bandai-hobby.net/site/ftbc2023/">https://bandai-hobby.net/site/ftbc2023/</a>
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        出場させる写真は以下のものだ.
+        <a src="./img/real.jpg" > <img src="./img/real.jpg" class="imgfullcenter" style="margin-top:20px;"></a>
+    </p>
+    <p style="margin:60px 5px 0px 5px">
+        意外と今回行った塗装が分厚くなってしまい,<span class="red">パーツが干渉する</span>とすぐに剥げてしまう.<br>
+        そのため,本当はポーズも一切つけず,棒立ちにしたいのですがそれも味気ないので気持ち程度にポーズをつけた.<br><br>
+        やはり<span class="fb fmin">実際に見たほうがこのプラモデルの出来</span>をさらに伝えることができるが,悔しくも写真となってしまった.
+    </p>
+
+    <p style="margin:60px 5px 0px 5px">
+        今回は以上になるが,前頁でも示したように複数写真を列挙して終わりたいと思う.
+    </p>
+
+    <div class="flex">
+        <img src="./img/com_on.jpg" class="imghalf" style="margin:2px;">
+        <img src="./img/com_nothing.jpg" class="imghalf" style="margin:2px;">
+    </div>
+    <div class="flex">
+        <img src="./img/good.jpg" class="imghalf" style="margin:2px;">
+        <img src="./img/normal.jpg" class="imghalf" style="margin:2px;">
+    </div>
+    <p style="margin:60px 5px 0px 5px">
+        Thank You!
+    </p>
+</div>
+
+
+</div><!--pages end-->
+
+</div><!--mainContentsPa end-->
+
+
+
+
+<!----------------------------------------mainContentsend---------------------------------------->
+</div><!--bodycontents-->
+<div class="bottomBlank"></div>
+
+<!--===============================================================
+    footer
+===============================================================-->
+<div class="footer">
+    <!--Waves Container-->
+    <div>
+    <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)" />
+    </g>
+    </svg>
+    </div>
+    <!--Waves end-->
+    <div id="footerContents"> 
+        <small>Copyright(c) //  KayuProg  // All right Reserved.</small>
+    </div>
+
+
+ </div>
+
+<!--movebg-->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../../../common/js/movebg.js"></script><!--ok-->
+<!--mainSlider/slick.jsの読み込み-->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--mainslider.js-->
+</body>
+
+
+<noscript>
+    <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
+    <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。  制作者より
+    </p>
+</noscript>
+
+
+</html>
