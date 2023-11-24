@@ -28,29 +28,29 @@
 <body>
 
 
-    <!--to top button-->
+<!--to top button-->
 <div class="toTopButton"></div>
 <script>
-$(document).ready(function(){
-    var toTopBtn=$('.toTopButton');
-    toTopBtn.hide();
-    $(window).scroll(function(){
-        if($(this).scrollTop()>100){
-            toTopBtn.fadeIn();
-            $('.toTopButton').addClass('vvt');
-        }else{
-            toTopBtn.fadeOut();
-        }
+    $(document).ready(function () {
+        var toTopBtn = $('.toTopButton');
+        toTopBtn.hide();
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                toTopBtn.fadeIn();
+                $('.toTopButton').addClass('vvt');
+            } else {
+                toTopBtn.fadeOut();
+            }
+        });
+        toTopBtn.click(function () {
+            $('body,html').animate(
+                {scrollTop: 0}, 500
+            );
+            return false;
+        });
     });
-    toTopBtn.click(function(){
-        $('body,html').animate(
-            {scrollTop:0},500
-        );
-        return false;
-    });
-});
 </script>
-    
+
 <!--===============================================================
     header
 ===============================================================-->
@@ -59,15 +59,25 @@ $(document).ready(function(){
 <div class="headbg headerSticky">
     <!--header mainmenu-->
     <div class="headerCenter">
-        <a href="../../../index.html" class="alogo"><div class="logobg"> <div class="logo">KayuProg</div> </div></a>
-    <ul class="mainmenu">
-        <li><a href="../../../term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank">
-            <div class="mainmenuContents mainmenuContents1 fb">Terms</div>
-        </a></li>
-        <li><a href="../../../index.html" class="amainmenu"><div class="mainmenuContents mainmenuContents1">HOME</div></a></li>
-        <li><a href="../../../activity/activity.html" class="amainmenu"><div class="mainmenuContents mainmenuContents2">ACTIVITY</div></a></li>
-        <li><a href="../../../contact/contact.html" class="amainmenu"><div class="mainmenuContents mainmenuContents3">CONTACT</div></a></li>
-    </ul>
+        <a href="../../../index.html" class="alogo">
+            <div class="logobg">
+                <div class="logo">KayuProg</div>
+            </div>
+        </a>
+        <ul class="mainmenu">
+            <li><a href="../../../term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank">
+                <div class="mainmenuContents mainmenuContents1 fb">Terms</div>
+            </a></li>
+            <li><a href="../../../index.html" class="amainmenu">
+                <div class="mainmenuContents mainmenuContents1">HOME</div>
+            </a></li>
+            <li><a href="../../../activity/activity.html" class="amainmenu">
+                <div class="mainmenuContents mainmenuContents2">ACTIVITY</div>
+            </a></li>
+            <li><a href="../../../contact/contact.html" class="amainmenu">
+                <div class="mainmenuContents mainmenuContents3">CONTACT</div>
+            </a></li>
+        </ul>
     </div>
 </div>
 
@@ -78,171 +88,157 @@ $(document).ready(function(){
 
 <!--bodycontents-->
 <div id="bodycontents">
-<!-- sliderposition -->
+    <!-- sliderposition -->
 
-<!--===============================================================
-    maincontents    
-===============================================================-->
+    <!--===============================================================
+        maincontents
+    ===============================================================-->
 
-<div class="mainContentsPa"><!--内部コンテンツの位置決め-->
+    <div class="mainContentsPa"><!--内部コンテンツの位置決め-->
 
-<!--上のタブ選択部分-->
-<input id="tab1" type="radio" name="check" checked>
-<label for="tab1" class="pagetabTop">Page 1</label>
+        <!--上のタブ選択部分-->
+        <input id="tab1" type="radio" name="check" checked>
+        <label for="tab1" class="pagetabTop">Page 1</label>
 
-<input id="tab2" type="radio" name="check">
-<label for="tab2" class="pagetabTop">Page 2</label>
+        <input id="tab2" type="radio" name="check">
+        <label for="tab2" class="pagetabTop">Page 2</label>
 
-<input id="tab3" type="radio" name="check" >
-<label for="tab3" class="pagetabTop">Page 3</label>
+        <!--タブ選択によるコンテンツ部分-->
+        <div class="pages"><!--全ページの全体的なスタイルを指定するため-->
 
-<input id="tab4" type="radio" name="check" >
-<label for="tab4" class="pagetabTop">Page 4</label>
+            <!--===============================================================
+                fmin:：明朝体　fen：英語のかっこいい字体　fgo：ゴシック　fb：太字　ib：インラインブロック
+                red：赤字　blue：青字　bgred：背景赤　bgyellow：背景黄色
+                big：大きい文字　middle：普通の文字　small：小文字
+                imgfullleft：アイキャッチと同じ大きさで左寄せ imgfullcenter：アイキャッチと同じ大きさで中央
+                imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
+                imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
+                flex：flex横配置
+            ===============================================================-->
 
-<input id="tab5" type="radio" name="check" >
-<label for="tab5" class="pagetabTop">Page 5</label>
+            <!--１ページ目-->
+            <div id="page1" class="panel">
+                <span class="aCUpDate">Posted:&nbsp;2023/11/24</span>&nbsp;&nbsp;
+                <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+                <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
+                <hr class="cp_hr06"/>
+                <h2 class="aCtitle"><span>01</span>第19回飛行ロボットコンテスト</h2>
+                <img class="aCeyecatch" src="img/4.png" style="object-fit: scale-down">
 
-<!--タブ選択によるコンテンツ部分-->
-<div class="pages"><!--全ページの全体的なスタイルを指定するため-->
-        
-<!--===============================================================
-    fmin:：明朝体　fen：英語のかっこいい字体　fgo：ゴシック　fb：太字　ib：インラインブロック
-    red：赤字　blue：青字　bgred：背景赤　bgyellow：背景黄色
-    big：大きい文字　middle：普通の文字　small：小文字
-    imgfullleft：アイキャッチと同じ大きさで左寄せ imgfullcenter：アイキャッチと同じ大きさで中央
-    imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
-    imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
-    flex：flex横配置
-===============================================================-->
+                <!--actmaincontents-->
+                <p class="headline" style="margin-top:40px;">飛行ロボットコンテスト</p>
+                <p style="margin:3vw 5px 0px 5px">
+                    今回私は，第19回飛行ロボットコンテスト　一般部門に出場しました．<br><br>
 
-<!--１ページ目-->
-<div id="page1" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>01</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" width="%">
+                    大会の詳細については<cite><a href="http://indoor-flight.com"
+                                           target="_blank">飛行ロボットコンテストホームページ</a></cite>をご確認ください！<br><br><br><br>
+                    この大会でなんと私は<span class="big red fb">　一般部門　3位　</span>になりました！！<br><br><br><br>
+                    わたしは東京農工大学　航空研究会 - NoKo LAT -　に所属しています．本部活では毎年この飛行ロボットコンテストに出場しています．<br><br>
+                    ぜひ　<cite><a href="https://web.tuat.ac.jp/~birdman/" target="_blank">航空研究会　ホームページ</a></cite>　もご確認ください！<br>
+                    実はこちらのサイトも私が作成し，（現在）運営しています．．．．<br><br>
+                    このサイトの作成に当たっては<cite><a href="" target="_blank">　こちらの記事　</a></cite>をご確認ください．<br>
+                </p>
+                <p class="headline" style="margin-top:40px;">出場にあたって</p>
+                <p style="margin:3vw 5px 0px 5px">
+                    昨年の第18回飛行ロボットコンテストでは一般部門でNoKo LATは2チーム出場しました．しかし，優勝を逃してしまいました．<br><br>
+                    そこで，今回の第19回飛行ロボットコンテストでは優勝をめざし，<u><span class="big ">3チーム</span></u>での出場を私たちは決意しました．（2022年12月段階）<br>
+                    その1チームが私の所属した <span class="big red">Norceress</span> です．<br><br>
+                    機体の見た目にすべてをつぎ込みました．デザイン超重視です！<br>
+                    出場するならかっこいい機体がいいと，私は考えていたからです．<br><br>
+                    機体の形状は次の写真に決定しました．<br><br>
+                    <img src="img/2.jpg" class="imgfullcenter" style="margin:2px;"><br><br>
+                    本番用に塗装を施したものはこちらです！<br><br>
+                    <img src="img/7.JPG" class="imgfullcenter" style="margin:2px;"><br><br>
+                    機首に着けているプロペラスピナは3D CADで作成し，3Dプリンターで出力したものです．<br><br>
+                    さらに表面を溶きパテで埋め，研磨後に塗装しています．<br><br>
+                    機体の各所に私のプラモデルの技術を用いたお気に入りの機体です！<br><br><br><br>
+                    機体審査用に提出したポスター，審査用紙は次のものです．<br><br>
+                    <cite><a href="img/Norceress_.pdf" target="_blank">第19回飛行ロボットコンテスト　Norceress
+                        機体審査用紙</a></cite><br><br>
+                    <cite><a href="img/Norceress%20poster.pdf" target="_blank">第19回飛行ロボットコンテスト　Norceress
+                        ポスター</a></cite><br><br>
 
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
+                </p>
 
-
-
-    
-    <!--topage-->
-    <div class="toPagePaRight1">
-        <div class="topage "><label for="tab2">To Page 2</label></div>
-    </div>
-</div>
-
-<!--２ページ目-->
-<div id="page2" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>02</span>TITLE</h2>
-    <a src="../actConImages/deer2.jpg"><img class="aCeyecatch" src="../actConImages/deer2.jpg" ></a> 
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab1">To Page 1</label></div>
-        </div>
-    
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab3">To Page 3</label></div>
-        </div>    
-    </div>
-</div>
-
-<!--３ページ目-->
-<div id="page3" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>03</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
+                <p class="headline" style="margin-top:40px;">予選</p>
+                <p style="margin:3vw 5px 0px 5px">
+                    飛行ロボットコンテストの予選は9月23日でした．<br>
+                    Nrceressは無事予選を突破できました．<br><br>
+                    しかし，予選ではパイロットである私が非常に緊張してしまいました．<br>
+                    そのためスロットを入れ過ぎて機体を破壊しそうになりました．．．．．．．<br><br>
+                    このサイトには恥ずかしいので，載せません．<br><br><br>
+                    見たい方は次のリンクから見てください．<br><br>
+                    <cite><a href="https://www.youtube.com/watch?v=tn7y345FtuY"
+                             target="_blank">第19回飛行ロボットコンテスト　予選</a></cite><br><br>
+                    1:11:24からNorceressの予選が始まります．<br><br>
+                    緊張しすぎてかなり危ない飛行をしているのが確認できます．一度警告ももらってます．．．．．．<br><br><br>
+                    <!--        <video src="img/yosen.MP4" class="movie" controls preload="auto" poster="img/1.jpg" playsinline>-->
+                    次のページでは<span class="big"> 決勝 </span>について書いています．<br>
+                    ぜひ見てください！
+                </p>
 
 
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab2">To Page 2</label></div>
-        </div>
+                <!--topage-->
+                <div class="toPagePaRight1">
+                    <div class="topage "><label for="tab2">To Page 2</label></div>
+                </div>
+            </div>
 
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-    </div>
-</div>
+            <!--２ページ目-->
+            <div id="page2" class="panel">
+                <span class="aCUpDate">Posted:&nbsp;2023/11/24</span>&nbsp;&nbsp;
+                <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+                <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
+                <hr class="cp_hr06"/>
+                <h2 class="aCtitle"><span>02</span>決勝</h2>
+                <img class="aCeyecatch" src="img/1.jpg" style="object-fit: scale-down">
 
-<!--４ページ目-->
-<div id="page4" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>04</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+                <!--actmaincontents-->
+                <p class="headline" style="margin-top:40px;">決勝</p>
+                <p style="margin:3vw 5px 0px 5px">
+                    何とか予選を突破できた Norceress は翌日決勝に臨みました．<br><br>
+                    その様子はこちらです．<br><br>
+                    <video src="img/final.MP4" class="movie" controls preload="auto" poster="img/9.png" playsinline></video><br><br>
+                    上の動画のように無事決勝を終えました！<br><br>
+                    予選よりは緊張せずに飛ばせています！<br><br>
+                    最後には<span class="big" style="background-color: yellow;"> 今大会初の物資回収 </span>を成功させ，大きな歓声をいただくことができました！<br><br>
+                    物資回収後，滑走路内着陸を試みていますが私の操縦技術的に難しくあと一歩のところで達成できませんでした．．．<br><br><br><br>
+                    結果，表彰で Norceress は一般部門で3位を獲得しました！<br><br>
+                    <img src="img/record.png" class="imghalfcenter"><br><br><br>
+                    実はこの第19回飛行ロボットコンテストで NoKo LAT は一般部門で上位3位すべてを独占しています！！<br><br>
+                    <img src="img/10.jpg" class="imgfullcenter"><br><br><br>
+                    本部活としては快挙ですね！<br>
+                    本当にうれしかったです．<br><br>
+                    しかし，上位を独占してしまったために来年は出場制限がつくとの話もあったりなかったり．．．．<br><br><br>
+                    これは東京農工大学のホームページでも取り上げられました！！<br><br>
+                    <cite><a href="https://www.tuat.ac.jp/NEWS/activity/20231017_01.html"
+                             target="_blank">航空研究会が「全日本学生室内飛行ロボットコンテスト」の複数部門で入賞</a></cite><br><br>
+                    こんな感じで私の第19回飛行ロボットコンテストは終わりました．<br><br>
+                    今振り返れば非常に忙しかったですが，充実していたと思います．<br><br>
+                    以上で本記事は終わりです．<br><br>
+                    ありがとうございました！<br><br>
+                    <img src="img/11.jpg" class="imgfullcenter"><br><br>
+                </p>
 
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab3">To Page 3</label></div>
-        </div>
-
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab5">To Page 5</label></div>
-        </div>
-    </div>
-</div>
-
-<!--５ページ目-->
-<div id="page5" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>05</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-    </div>
-</div>
-
-<!--CSSのほう確認！！！-->
+                    <!--topages-->
+                    <div class="toPageFlex">
+                        <div class="toPagePaLeft">
+                            <div class="topage "><label for="tab1">To Page 1</label></div>
+                        </div>
+                    </div>
+            </div>
 
 
 
-</div><!--pages end-->
-
-</div><!--mainContentsPa end-->
+            <!--CSSのほう確認！！！-->
 
 
+        </div><!--pages end-->
+
+    </div><!--mainContentsPa end-->
 
 
-<!----------------------------------------mainContentsend---------------------------------------->
+    <!----------------------------------------mainContentsend---------------------------------------->
 </div><!--bodycontents-->
 <div class="bottomBlank"></div>
 
@@ -252,26 +248,26 @@ $(document).ready(function(){
 <div class="footer">
     <!--Waves Container-->
     <div>
-    <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
-    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-    <defs>
-    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-    </defs>
-    <g class="parallax">
-    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)" />
-    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)" />
-    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)" />
-    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)" />
-    </g>
-    </svg>
+        <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)"/>
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)"/>
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)"/>
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)"/>
+            </g>
+        </svg>
     </div>
     <!--Waves end-->
-    <div id="footerContents"> 
-        <small>Copyright(c) //  KayuProg  // All right Reserved.</small>
+    <div id="footerContents">
+        <small>Copyright(c) // KayuProg // All right Reserved.</small>
     </div>
 
 
- </div>
+</div>
 
 <!--movebg-->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -284,7 +280,7 @@ $(document).ready(function(){
 
 <noscript>
     <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
-    <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。  制作者より
+        <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。 制作者より
     </p>
 </noscript>
 
