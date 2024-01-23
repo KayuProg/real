@@ -28,29 +28,29 @@
 <body>
 
 
-    <!--to top button-->
+<!--to top button-->
 <div class="toTopButton"></div>
 <script>
-$(document).ready(function(){
-    var toTopBtn=$('.toTopButton');
-    toTopBtn.hide();
-    $(window).scroll(function(){
-        if($(this).scrollTop()>100){
-            toTopBtn.fadeIn();
-            $('.toTopButton').addClass('vvt');
-        }else{
-            toTopBtn.fadeOut();
-        }
+    $(document).ready(function () {
+        var toTopBtn = $('.toTopButton');
+        toTopBtn.hide();
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                toTopBtn.fadeIn();
+                $('.toTopButton').addClass('vvt');
+            } else {
+                toTopBtn.fadeOut();
+            }
+        });
+        toTopBtn.click(function () {
+            $('body,html').animate(
+                {scrollTop: 0}, 500
+            );
+            return false;
+        });
     });
-    toTopBtn.click(function(){
-        $('body,html').animate(
-            {scrollTop:0},500
-        );
-        return false;
-    });
-});
 </script>
-    
+
 <!--===============================================================
     header
 ===============================================================-->
@@ -59,15 +59,25 @@ $(document).ready(function(){
 <div class="headbg headerSticky">
     <!--header mainmenu-->
     <div class="headerCenter">
-        <a href="../../../index.html" class="alogo"><div class="logobg"> <div class="logo">KayuProg</div> </div></a>
-    <ul class="mainmenu">
-        <li><a href="../../../term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank">
-            <div class="mainmenuContents mainmenuContents1 fb">Terms</div>
-        </a></li>
-        <li><a href="../../../index.html" class="amainmenu"><div class="mainmenuContents mainmenuContents1">HOME</div></a></li>
-        <li><a href="../../../activity/activity.html" class="amainmenu"><div class="mainmenuContents mainmenuContents2">ACTIVITY</div></a></li>
-        <li><a href="../../../contact/contact.html" class="amainmenu"><div class="mainmenuContents mainmenuContents3">CONTACT</div></a></li>
-    </ul>
+        <a href="../../../index.html" class="alogo">
+            <div class="logobg">
+                <div class="logo">KayuProg</div>
+            </div>
+        </a>
+        <ul class="mainmenu">
+            <li><a href="../../../term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank">
+                <div class="mainmenuContents mainmenuContents1 fb">Terms</div>
+            </a></li>
+            <li><a href="../../../index.html" class="amainmenu">
+                <div class="mainmenuContents mainmenuContents1">HOME</div>
+            </a></li>
+            <li><a href="../../../activity/activity.html" class="amainmenu">
+                <div class="mainmenuContents mainmenuContents2">ACTIVITY</div>
+            </a></li>
+            <li><a href="../../../contact/contact.html" class="amainmenu">
+                <div class="mainmenuContents mainmenuContents3">CONTACT</div>
+            </a></li>
+        </ul>
     </div>
 </div>
 
@@ -78,171 +88,212 @@ $(document).ready(function(){
 
 <!--bodycontents-->
 <div id="bodycontents">
-<!-- sliderposition -->
+    <!-- sliderposition -->
 
-<!--===============================================================
-    maincontents    
-===============================================================-->
+    <!--===============================================================
+        maincontents
+    ===============================================================-->
 
-<div class="mainContentsPa"><!--内部コンテンツの位置決め-->
+    <div class="mainContentsPa"><!--内部コンテンツの位置決め-->
 
-<!--上のタブ選択部分-->
-<input id="tab1" type="radio" name="check" checked>
-<label for="tab1" class="pagetabTop">Page 1</label>
+        <!--上のタブ選択部分-->
+        <input id="tab1" type="radio" name="check" checked>
+        <label for="tab1" class="pagetabTop">Page 1</label>
 
-<input id="tab2" type="radio" name="check">
-<label for="tab2" class="pagetabTop">Page 2</label>
+        <input id="tab2" type="radio" name="check">
+        <label for="tab2" class="pagetabTop">Page 2</label>
 
-<input id="tab3" type="radio" name="check" >
-<label for="tab3" class="pagetabTop">Page 3</label>
+        <input id="tab3" type="radio" name="check">
+        <label for="tab3" class="pagetabTop">Page 3</label>
 
-<input id="tab4" type="radio" name="check" >
-<label for="tab4" class="pagetabTop">Page 4</label>
+        <input id="tab4" type="radio" name="check">
+        <label for="tab4" class="pagetabTop">Page 4</label>
 
-<input id="tab5" type="radio" name="check" >
-<label for="tab5" class="pagetabTop">Page 5</label>
+        <input id="tab5" type="radio" name="check">
+        <label for="tab5" class="pagetabTop">Page 5</label>
 
-<!--タブ選択によるコンテンツ部分-->
-<div class="pages"><!--全ページの全体的なスタイルを指定するため-->
-        
-<!--===============================================================
-    fmin:：明朝体　fen：英語のかっこいい字体　fgo：ゴシック　fb：太字　ib：インラインブロック
-    red：赤字　blue：青字　bgred：背景赤　bgyellow：背景黄色
-    big：大きい文字　middle：普通の文字　small：小文字
-    imgfullleft：アイキャッチと同じ大きさで左寄せ imgfullcenter：アイキャッチと同じ大きさで中央
-    imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
-    imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
-    flex：flex横配置
-===============================================================-->
+        <!--タブ選択によるコンテンツ部分-->
+        <div class="pages"><!--全ページの全体的なスタイルを指定するため-->
 
-<!--１ページ目-->
-<div id="page1" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>01</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" width="%">
+            <!--===============================================================
+                fmin:：明朝体　fen：英語のかっこいい字体　fgo：ゴシック　fb：太字　ib：インラインブロック
+                red：赤字　blue：青字　bgred：背景赤　bgyellow：背景黄色
+                big：大きい文字　middle：普通の文字　small：小文字
+                imgfullleft：アイキャッチと同じ大きさで左寄せ imgfullcenter：アイキャッチと同じ大きさで中央
+                imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
+                imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
+                flex：flex横配置
+            ===============================================================-->
 
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
+            <!--１ページ目-->
+            <div id="page1" class="panel">
+                <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+                <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+                <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
+                <hr class="cp_hr06"/>
+                <h2 class="aCtitle"><span>01</span>NoKo LAT 新ホームページ 作成</h2>
+                <a href="https://web.tuat.ac.jp/~birdman/" target="_blank"><img class="aCeyecatch" src="img/1.png" width="%"></a>
 
+                <!--actmaincontents-->
+                <p class="headline" style="margin-top:40px;">サイトを一新した理由</p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    <span class="big fb"> １．　10年間同じサイトを使用し続けている</span><br><br>
+                    私がサイトを引き継いだ時， NoKo LAT のサイトは10年間同じものが使われて続けていました．<br>
+                    デザインも非常にシンプルなものでした．<br><br>
+                    過去のサイトは <cite><a href="https://web.tuat.ac.jp/~birdman/old/index.html" target="_blank"><u class="big"> こちら </u></a></cite>
+                    から確認できます．<br><br>
+                    Homeはこんな感じでした．<br><br>
+                    <img src="img/3.png" class="imgfullcenter"><br><br>
+                    ディスプレイの大きさによって文字が見にくかったり，Twitterを表示している部分が細すぎるなどユーザビリティ（使いやすさ）で気になる点がかなりありました．<br><br>
+                    10年前だとパソコンが主流？だったのかもしれません．そのせいでview portが設定されていませんでした．
+                </p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    <span class="big fb"> ２．　サイトの引継ぎがうまくいっていない</span><br><br>
+                    本部活では NoKo LAT 広報に任命された人がWebサイトの運営をしています．<br>
+                    次の代にサイトの運営を引き継ぐ際に問題があると感じました．<br><br>
+                    一応のサイトの更新方法の引継ぎはされていたのかと思います．<br>
+                    しかし，引継ぎ資料などを確認すると，ほとんどが<u>コピペ箇所を指示</u>したものとなっていました．<br><br>
+                    結果としてサイトに関する知識が不足したまま運営することになっていました．<br><br>
+                    その引継ぎ方法を一新することも一つの目的にサイトを新しくしました．
+                </p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    <span class="big fb"> ３．　コードの管理が不十分</span><br><br>
+                    この点が，サイトを一新する一番の理由です．<br>
+                    先ほどのサイトの引継ぎが不十分であったことから，数々の問題が放置されたままサイトが公開されていました．<br><br>
+                    主な問題点を挙げます．<br><br>
+                    <span class="fb">
+                    ・タグが閉じられていない箇所が数多くある<br>
+                    ・HTMLと宣言しているのにHTML5の記述が多々ある<br>
+                    ・エンコードが適当になっている（Shift-JISと宣言しているのにUTF-8であったり)<br>
+                    ・プロトコルがほとんどHTTPであり，HTTPSに修正されていない<br>
+                    ・ファイルの管理がめちゃくちゃ<br>
+                    ・存在しないタグが使われている<br><br>
+                    </span>
 
+                    大きな問題点としては以上です．<br>
+                    これらを全て解説していては大変ですのでしません．<br><br>
+                    これらはすべて改善されなくてはいけない問題です．(少なくとも私はそう認識しています）<br><br>
 
-    
-    <!--topage-->
-    <div class="toPagePaRight1">
-        <div class="topage "><label for="tab2">To Page 2</label></div>
-    </div>
-</div>
+                    NoKo LATは活動歴が長いために非常に多くのファイルがあり，すべてのコードを修正していくことは現実的ではありませんでした．<br><br>
+                    以上の点により私はサイトを新しく作成しました．<br><br><br><br><br>
+                    次のページは更新したサイトについてのお話です．
+                </p>
 
-<!--２ページ目-->
-<div id="page2" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>02</span>TITLE</h2>
-    <a src="../actConImages/deer2.jpg"><img class="aCeyecatch" src="../actConImages/deer2.jpg" ></a> 
+                <!--topage-->
+                <div class="toPagePaRight1">
+                    <div class="topage "><label for="tab2">To Page 2</label></div>
+                </div>
+            </div>
 
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
+            <!--２ページ目-->
+            <div id="page2" class="panel">
+                <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+                <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+                <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
+                <hr class="cp_hr06"/>
+                <h2 class="aCtitle"><span>02</span>新しいサイトについて</h2>
+                <a src="../actConImages/deer2.jpg"><img class="aCeyecatch" src="./img/page2_new.png"></a>
 
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab1">To Page 1</label></div>
-        </div>
-    
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab3">To Page 3</label></div>
-        </div>    
-    </div>
-</div>
-
-<!--３ページ目-->
-<div id="page3" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>03</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab2">To Page 2</label></div>
-        </div>
-
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-    </div>
-</div>
-
-<!--４ページ目-->
-<div id="page4" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>04</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
+                <!--actmaincontents-->
+                <p class="headline" style="margin-top:40px;"></p>
 
 
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab3">To Page 3</label></div>
-        </div>
+                <!--topages-->
+                <div class="toPageFlex">
+                    <div class="toPagePaLeft">
+                        <div class="topage "><label for="tab1">To Page 1</label></div>
+                    </div>
 
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab5">To Page 5</label></div>
-        </div>
-    </div>
-</div>
+                    <div class="toPagePaRight">
+                        <div class="topage "><label for="tab3">To Page 3</label></div>
+                    </div>
+                </div>
+            </div>
 
-<!--５ページ目-->
-<div id="page5" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>05</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+            <!--３ページ目-->
+            <div id="page3" class="panel">
+                <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+                <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+                <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
+                <hr class="cp_hr06"/>
+                <h2 class="aCtitle"><span>03</span>次のサイト運営者へ</h2>
+                <img class="aCeyecatch" src="../actConImages/deer2.jpg">
 
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-    </div>
-</div>
-
-<!--CSSのほう確認！！！-->
+                <!--actmaincontents-->
+                <p class="headline" style="margin-top:40px;">head</p>
 
 
+                <!--topages-->
+                <div class="toPageFlex">
+                    <div class="toPagePaLeft">
+                        <div class="topage "><label for="tab2">To Page 2</label></div>
+                    </div>
 
-</div><!--pages end-->
+                    <div class="toPagePaRight">
+                        <div class="topage "><label for="tab4">To Page 4</label></div>
+                    </div>
+                </div>
+            </div>
 
-</div><!--mainContentsPa end-->
+            <!--４ページ目-->
+            <div id="page4" class="panel">
+                <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+                <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+                <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
+                <hr class="cp_hr06"/>
+                <h2 class="aCtitle"><span>04</span>TITLE</h2>
+                <img class="aCeyecatch" src="../actConImages/deer2.jpg">
+
+                <!--actmaincontents-->
+                <p class="headline" style="margin-top:40px;">head</p>
 
 
+                <!--topages-->
+                <div class="toPageFlex">
+                    <div class="toPagePaLeft">
+                        <div class="topage "><label for="tab3">To Page 3</label></div>
+                    </div>
+
+                    <div class="toPagePaRight">
+                        <div class="topage "><label for="tab5">To Page 5</label></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--５ページ目-->
+            <div id="page5" class="panel">
+                <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+                <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+                <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
+                <hr class="cp_hr06"/>
+                <h2 class="aCtitle"><span>05</span>TITLE</h2>
+                <img class="aCeyecatch" src="../actConImages/deer2.jpg">
+
+                <!--actmaincontents-->
+                <p class="headline" style="margin-top:40px;">head</p>
 
 
-<!----------------------------------------mainContentsend---------------------------------------->
+                <!--topages-->
+                <div class="toPageFlex">
+                    <div class="toPagePaLeft">
+                        <div class="topage "><label for="tab4">To Page 4</label></div>
+                    </div>
+
+                    <div class="toPagePaRight">
+                        <div class="topage "><label for="tab4">To Page 4</label></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--CSSのほう確認！！！-->
+
+
+        </div><!--pages end-->
+
+    </div><!--mainContentsPa end-->
+
+
+    <!----------------------------------------mainContentsend---------------------------------------->
 </div><!--bodycontents-->
 <div class="bottomBlank"></div>
 
@@ -252,26 +303,26 @@ $(document).ready(function(){
 <div class="footer">
     <!--Waves Container-->
     <div>
-    <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
-    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-    <defs>
-    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-    </defs>
-    <g class="parallax">
-    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)" />
-    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)" />
-    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)" />
-    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)" />
-    </g>
-    </svg>
+        <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+             viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)"/>
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)"/>
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)"/>
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)"/>
+            </g>
+        </svg>
     </div>
     <!--Waves end-->
-    <div id="footerContents"> 
-        <small>Copyright(c) //  KayuProg  // All right Reserved.</small>
+    <div id="footerContents">
+        <small>Copyright(c) // KayuProg // All right Reserved.</small>
     </div>
 
 
- </div>
+</div>
 
 <!--movebg-->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -284,7 +335,7 @@ $(document).ready(function(){
 
 <noscript>
     <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
-    <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。  制作者より
+        <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。 制作者より
     </p>
 </noscript>
 
