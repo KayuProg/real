@@ -153,7 +153,7 @@ import csv
 import time
 
 
-#User-Agentを示すことでサーバにスクレイピングを認識させづらくする
+<!--#User-Agentを示すことでサーバにスクレイピングを認識させづらくする-->
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                     'AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -177,7 +177,7 @@ def scrape_page(soup,quotes):
         #同様にauthorクラスというsmallタグにも行う
         author=quote_element.find('small',class_='author').text
 
-        #HTMLないquoteクラス内の<a>タグについても同様
+        #HTMLないquoteクラス内のaタグについても同様
         tag_elements=quote_element.find('div',class_='tags').find_all('a',class_='tag')
         # find_allを使った結果がlistとなっているため.textとして代入はできない
         # .textは一つの要素に対して適用できる
@@ -224,8 +224,8 @@ next_li_element=soup.find('li',class_='next')
 
 #次ページがあった場合の処理
 while next_li_element is not None:
-    #href属性を持つ<a>タグのみを取得
-    #['href'] を使い，<a> 要素の href 属性にアクセスしその値を取得
+    #href属性を持つaタグのみを取得
+    #['href'] を使い，a要素の href 属性にアクセスしその値を取得
     next_page_relative_url=next_li_element.find('a',href=True)['href']
 
     #次ページをrequestで取得
@@ -306,7 +306,7 @@ from bs4 import BeautifulSoup
 import os
 import shutil
 
-#User-Agentを示すことでサーバにスクレイピングを認識させづらくする
+<!--#User-Agentを示すことでサーバにスクレイピングを認識させづらくする-->
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                   'AppleWebKit/537.36 (KHTML, like Gecko) '

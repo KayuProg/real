@@ -13,6 +13,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <!--jQuery読み込み-->
     <script src="../../../common/js/jquery-3.6.1.min.js"></script>
+    <!--prism.css ソースコード表示させるやつ-->
+    <link rel="stylesheet" href="../../../common/css/prism.css">
+    <script src="../../../common/js/prism.js"></script>
     <!--animate.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!--viewport-->
@@ -145,7 +148,7 @@
                     Homeはこんな感じでした．<br><br>
                     <img src="img/3.png" class="imgfullcenter"><br><br>
                     ディスプレイの大きさによって文字が見にくかったり，Twitterを表示している部分が細すぎるなどユーザビリティ（使いやすさ）で気になる点がかなりありました．<br><br>
-                    10年前だとパソコンが主流？だったのかもしれません．そのせいでview portが設定されていませんでした．
+                    10年前だと携帯があまり普及しておらずパソコンが主流？だったのかもしれません．そのせいでview portが設定されていませんでした．
                 </p>
                 <p style="margin:3vw 2vw 0px 2vw">
                     <span class="big fb"> ２．　サイトの引継ぎがうまくいっていない</span><br><br>
@@ -162,12 +165,12 @@
                     先ほどのサイトの引継ぎが不十分であったことから，数々の問題が放置されたままサイトが公開されていました．<br><br>
                     主な問題点を挙げます．<br><br>
                     <span class="fb">
-                    ・タグが閉じられていない箇所が数多くある<br>
-                    ・HTMLと宣言しているのにHTML5の記述が多々ある<br>
-                    ・エンコードが適当になっている（Shift-JISと宣言しているのにUTF-8であったり)<br>
-                    ・プロトコルがほとんどHTTPであり，HTTPSに修正されていない<br>
-                    ・ファイルの管理がめちゃくちゃ<br>
-                    ・存在しないタグが使われている<br><br>
+                    ・タグが閉じられていない箇所が数多くある→なぜ動いてる？<br>
+                    ・HTML4と宣言しているのにHTML5の記述が多々ある<br>
+                    ・エンコードが適当になっている（Shift-JISと宣言しているのにUTF-8であったり)→文字化けの原因<br>
+                    ・プロトコルがほとんどHTTPであり，HTTPSに修正されていない→セキュリティ上の問題<br>
+                    ・ファイルの管理がめちゃくちゃ→汚かったです<br>
+                    ・存在しないタグが使われている→驚きました<br><br>
                     </span>
 
                     大きな問題点としては以上です．<br>
@@ -195,8 +198,203 @@
                 <a src="../actConImages/deer2.jpg"><img class="aCeyecatch" src="./img/page2_new.png"></a>
 
                 <!--actmaincontents-->
-                <p class="headline" style="margin-top:40px;"></p>
+                <p class="headline" style="margin-top:40px;">Homeについて</p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    Home画面はやはり一番こだわったところでもある．<br>
+                    航空研ということで背景を空にし，動きのあるものを採用した．<br>
+                    さらに，背景が動いているだけではさみしいので航空研で実際に作られ，飛んだ機体をHomeに表示することにした．<br><br>
+                    Webサイトのサーバからのレスポンスとともに航空機の透過pngファイルを持ってきて表示している．（つまりは普通の画像と同じ）<br>
+                    実際に飛んでいるように見せるために，持ってきた画像を左右にスライドさせている．<br>
+                    これ自体のプログラムは<span class="fb">Javascript</span>で書いて制御している．<br><br>
+                    具体的なコードは次に示しておく．<br><br>
+                </p>
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+/*===============================================================
+画像の数変更時には総画像数に変更
+===============================================================*/
 
+/*画像の数*/
+let to_left_num = 7
+let to_right_num = 7
+
+/*===============================================================
+===============================================================*/
+
+
+/*left right終わった時に処理を飛ばす*/
+let left_cnt = [];
+let right_cnt = [];
+
+
+/*関数を終了するためのチェック*/
+let left_check = 0;
+let right_check = 0;
+let set_cont = null;
+
+/*ランダム数生成*/
+function random(min, max) {
+let cnt = Math.floor(Math.random() * (max + 1 - min) + min);
+return cnt;
+};
+;
+
+function to_left_fun(num) {
+let to_left = document.getElementById(`home_left_img${num}`);
+// if (to_left.classList.contains("to_left")){
+//     to_left.classList.remove('to_left');
+// };
+to_left.style.display = 'block';
+to_left.classList.add('to_left');
+};
+
+function to_right_fun(num) {
+let to_right = document.getElementById(`home_right_img${num}`);
+// if (to_right.classList.contains("to_right")){
+//     to_right.classList.remove('to_right');
+// };
+to_right.style.display = 'block';
+to_right.classList.add('to_right');
+};
+
+
+function home_slide() {
+/*右か左を決める*/
+let either = random(0, 1);
+/*実行*/
+if (either == 0) {
+let num = random(1, to_left_num);
+let len = left_cnt.length;
+while (1) {
+if (len >= to_left_num) {
+// console.log('left become full');
+left_check = 1;
+// console.log('left_check is 1');
+set_inter_finish();
+break
+}
+;
+if (left_cnt.includes(num)) {
+num = random(1, to_left_num);
+} else {
+break
+}
+}
+// console.log(`TO LEFT ${num}.png pushed`);
+left_cnt.push(num);
+to_left_fun(num);
+}
+;
+if (either == 1) {
+let num = random(1, 7);
+let len = right_cnt.length;
+while (1) {
+if (len >= to_right_num) {
+// console.log('right become full');
+right_check = 1;
+// console.log('right_check is 1');
+set_inter_finish();
+break
+}
+;
+if (right_cnt.includes(num)) {
+num = random(1, to_right_num);
+} else {
+break
+}
+}
+// console.log(`TO RIGHT ${num}.png pushed`);
+right_cnt.push(num);
+to_right_fun(num);
+}
+;
+
+};
+
+function set_inter_finish() {
+if (left_check == 1 && right_check == 1) {
+clearInterval(set_cont);
+// console.log('airplane slide finished')
+}
+;
+}
+
+function set_inter_controll() {
+// console.log('airplane slide started')
+set_cont = setInterval(home_slide, 5000);
+// console.log(set_cont);
+};
+
+set_inter_controll();
+</code>
+</pre>
+</span>
+
+                <p style="margin:3vw 2vw 0px 2vw">
+                    見てわかる通り？あまりきれいなコードではないと思います．<br>
+                    コードを解説するのは冗長的ですし，めんどくさいのでしません．ごめんなさい．<br><br>
+                    触らなければ問題ありません．<br>
+                    触るときは，Javascriptを扱えるようになってからお願いします．（私もそこまで使いこなせていませんが）<br><br>
+                    少なくとも，<span class="fb">Home画面に飛んでいる航空機をどうやったら変更・追加できるのか</span>くらいは書いておこうと思います．<br>
+                    別に毎年変える必要とかは全くありません．むしろ，HtmlやJavascriptがわからない内は触らないほうが賢明です．<br><br><br>
+                    飛行機がランダムで右か左から飛んでくるというプログラムになっています．<br><br><br>
+                </p>
+
+                <p class="headline" style="margin-top:20px;">Home画面に飛んでる航空機の変更・追加</p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    まず，飛ばしたい飛行機の透過pngファイルを作ってください．<br>
+                    作り方は何でもいいです．<br>
+                    わたしはiphoneの写真の自動切り取り機能を使いました．<br><br>
+                </p>
+                <img src="img/explain1.jpg" class="imghalfcenter"><br><br>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    こんな感じ．<br>
+                    iphoneの自動切り取りからコピーしてメモ帳に貼り付けました．<br>
+                    これをどうにかパソコンに送ります．<br><br>
+                    画像を長押しして出てくる「共有」ボタンから何とかします．<br><br>
+                </p>
+                <img src="img/explain2.jpg" class="imghalfcenter"><br><br>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    どうにかパソコンにこの透過pngを取り込んだ後，画像を<br><br>
+                    <span class="fb">\www\home\img\aircrafts\toleft\</span><br>
+                    <span class="fb">\www\home\img\aircrafts\toright\</span><br><br>
+                    上のパスのどっちかに配置してください．<br>
+                    <span class="small">正直サイトにwebのパスを書くのはよくないのですが，説明のため，，，，</span><br><br>
+                    上の画像だと，飛行機(Norceress)は右を向いているのでtorightに配置してください．<br>
+                    今回の写真だとtoleftに配置すると飛行機が後ろ向きに飛んでしまいます．<br><br><br>
+                </p>
+                <img src="img/explain3.png" class="imgfullcenter"><br><br>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    こんな感じです．<br>
+                    ここで，追加した透過pngファイルの名前を変更します．<br><br>
+                    ・<span class="fb">Home画面に飛んでいる飛行機を変更したいとき</span>は，フォルダ内の変更したい飛行機の写真を消去します．<br>
+                    新しく追加した飛行機の名前をその消去した飛行機についてた名前と同じにします．<br>
+                    以上で飛んでる飛行機を変更したいときの作業は終わりになります．<br><br>
+
+                    ・<span class="fb">Home画面に飛んでいる飛行機を追加したいとき</span>は，すでにフォルダ内にある航空機の写真の次の番号にします．<br>
+                    今回だと6の次の7.pngになってます．<br>
+                    飛行機を追加するときはもういっこやる作業があります．<br><br>
+                    <span class="fb">\www\home\js\home_slide.js</span><br><br>
+                    を開きます．<br>
+                    つまりは上に示したJavascriptのコードです．<br><br><br>
+                    その頭にあるこの部分を変更します．<br><br>
+                </p>
+                <img src="img/explain4.png" class="imgfullcenter"><br><br>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    このHomeに飛行機を飛ばすJavascriptのコードでは飛行機をランダムで飛ばすのに，random()を使っています．<br>
+                    このランダムな値の最大値を決めるのにこの部分に変数を設定しています．<br><br>
+                    もちろんこの変数を入力しなくても済むようにしたかったのですが，それにはwebからサーバに再度アクセスして，フォルダ内の画像数をどうにか取得して，，，，<br><br><br>
+                    などなどいろいろやることがあった上に，サーバのアクセスはJavascriptではできないようなのでこのように自分で設定する形になりました．<br>
+                    <span class="small">逆にこの最大値を設定するだけで済むようにしたあの頃の自分を褒めて，，，，，，，</span><br><br>
+                    つまりはこの変数を設定することがやることです<br>
+                    この数字はフォルダ内にある透過pngの数です．<br><br>
+                    今回だと，右に進む飛行機の透過pngの写真の数は7ですので<span class="fb">7</span>を<span class="fb">to_right_num</span>に代入しています．<br><br><br><br>
+                    以上がHome画面に飛んでいる飛行機を変更・追加する方法です．<br><br>
+                    大丈夫だとは思いますが，うまくいかなかったときは変更を全て戻して触らないようにするか，いろいろ自分で勉強して頑張ってください．<br><br>
+                    私が航空研にいるときはどうにか対応しますけど，おそらくあなたがこれをしようとしているときには既にいないと思います．．．．<br><br><br><br>
+                    次のページには<span class="fb red">サイトの引継ぎ</span>について書いています．
+                </p>
 
                 <!--topages-->
                 <div class="toPageFlex">
@@ -216,11 +414,98 @@
                 <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
                 <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
                 <hr class="cp_hr06"/>
-                <h2 class="aCtitle"><span>03</span>次のサイト運営者へ</h2>
-                <img class="aCeyecatch" src="../actConImages/deer2.jpg">
+                <h2 class="aCtitle"><span>03</span>サイトの引継ぎ</h2>
+                <img class="aCeyecatch" src="./img/hikitugi.png">
 
                 <!--actmaincontents-->
-                <p class="headline" style="margin-top:40px;">head</p>
+                <p class="headline" style="margin-top:40px;">~次のサイト運営者へ~</p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    ここでは次のこのサイトの運営者へにやってほしいことなどを書きます．<br>
+                    今までの引継ぎ方法はコピペの方法や，サイトのアップロード方法のみの引継ぎでした．<br><br>
+                    そのため，<span class="red big">ミスをしていても気づかず</span>次に引き継がれていました．
+                    そのミスすらも修正されず次の代に引き継がれ．．．．．．<br>
+                    <span class="small">あぁぁぁぁぁぁぁぁ．．．．．．．．．</span><br><br>
+                    それを防ぐためにも引継ぎ方法を今回より変えていきたいと思います．<br><br>
+
+                    <span class="red big fb dgo">必ずサイトのソースコードのバックアップは取るように！！！！</span><br><br>
+
+                    ソースコードのエディターは何でも構いませんが，JetbrainsのWebstormをお勧めします．<br>
+                    サイトを運営するうえで非常に便利な機能がたくさんあり，Git管理(後述)も簡単だからです．
+                </p>
+                <p class="headline" style="margin-top:40px;">コピペだけでない引継ぎ</p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    上述したようにコピペだけの引継ぎでは今後このサイトも同じようになることが目に見えています．<br><br>
+                    そこで，今回よりサイトの運営者には<span class="fb">最低限の知識</span>をつけてからサイトの運営を行うようにしてもらおうと思います．<br><br>
+                    今後のサイトを引継ぎをさせていく運営者にも，次の代がサイトを運営する方法を教えてから引き継いでほしいと思います．<br><br>
+                    次の代にサイトの運営する力（サイトの管理）をつけてもらうためにどうするのかですが，<br>
+                    次のサイトを使って力をつけてもらいたいと考えています．<br><br>
+                    <cite><a href="https://www.htmq.com/tutorial/" target="_blank" class="fb big">https://www.htmq.com/tutorial/</a></cite><br><br>
+                    サイトを確認してもらうとわかりますが，htmlのチュートリアルとなっています．<br><br>
+                    今のサイトの運営者が一からすべてを次の代に教えるのは非常に手間がかかりますし非効率です<span class="fgo fb">(サイトの特性上）</span>．<br>
+                    なので，上のサイトで<span class="red">チュートリアルを行う</span>ことによってサイトの基本を身に着けてもらいたいと思います．<br><br>
+                    全30章と少し長い気もしますが，一つ一つは短いのでやらせてください．<br>
+                    このサイトのチュートリアルをさせるといっても次の代が最初から一人でやるのは難しいと思います．<br>
+                    なので引継ぎの際にこのサイトのチュートリアルをやらせるときは<span class="bgyellow">隣に現役のサイト運営者がついて</span>行うことが望ましいです．<br><br>
+                    <span class="small">少なくとも，私の代ではそうします．</span>
+                </p>
+                <p class="headline" style="margin-top:40px;">年度ごとの変更箇所</p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    先ほどのサイトで最低限のサイトの知識，力はついたかと思います．なので次はサイトの更新個所について書きます．<br>
+                    この段階で次の段階で次の代には先ほどのサイトで<span class="fb">最低限サイトを動かす力はある</span>という前提で話を進めます．<br><br>
+                    まず一度年度ごと，大会ごとに修正するべき箇所の写真とパスを載せます．<br><br><br><br>
+                    <!--change place img-->
+                        <span class="fb">pass : <cite>./index.html</cite><br></span>
+                        <img src="img/change_place/shugo.png" class="imgfullcenter">
+                        集合写真です．飛行ロボットコンテスト後にみんなで撮る習慣があるのでその写真か，他のものに差し替えてください．<br>
+                        写真自体のpassはソースコードを見てください．<br><br><br>
+
+                        <span class="fb">pass : <cite>./rog/rog.html</cite><br></span>
+                        <img src="img/change_place/rog.png" class="imgfullcenter">
+                        航空研の活動記録を残しているところです．どこをどのようにコピペしたらいいか考えて行ってください．<br><br><br>
+
+                        <span class="fb">pass : <cite>./aboutus/aboutus.html</cite><br></span>
+                        <img src="img/change_place/aboutus_dai.png" class="imgfullcenter">
+                        航空研のメンバー紹介です．次の代の部分を付け加えてください．<br>
+                        もちろん，リンク先のページも作成してください．~ template.htmlのようなものがあるのでそれを複製し，ファイル名を適当なものにした後でそれに記入する形で追加してください．<br><br><br>
+
+                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/hikoki/hikoki.html</cite><br></span>
+                        <img src="img/change_place/hikoki_home.png" class="imgfullcenter">
+                        その年度に制作された飛行機の名前を公開しているページです．適当な部分をコピペして追加してください．<br><br><br>
+
+                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/hikoki/hikoki_box/hikoki_20**.html</cite><br></span>
+                        <img src="img/change_place/hikoki.png" class="imgfullcenter">
+                        その年度の機体を紹介しているページです．~template.htmlがあるのでそれに基づいて書いてください．<br><br><br>
+
+                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/rocket/rocket.html</cite><br></span>
+                        <img src="img/change_place/rocket_home.png" class="imgfullcenter">同様<br><br><br>
+
+                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/rocket/rocket_box/rocket_20**.html</cite><br></span>
+                        <img src="img/change_place/rocket.png" class="imgfullcenter">同様<br><br><br>
+
+                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/cansat/cansat.html</cite><br></span>
+                        <img src="img/change_place/cansat_home.png" class="imgfullcenter">同様<br><br><br>
+
+                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/cansat/cansat_box/cansat_20**.html</cite><br></span>
+                        <img src="img/change_place/cansat.png" class="imgfullcenter">同様<br><br><br>
+
+                    以上が年度ごとに更新してほしい箇所です．他にも修正すべき部分があれば各自修正・追加お願いします．<br><br><br>
+                    もしわからないことや，おかしいことになったときは自分で調べて解決するか，上の先輩のサイト運営者に聞いてください．<br><br>
+                    チュートリアルを一通りやっていれば十分対応可能なはずです．
+                </p>
+                <p class="headline" style="margin-top:40px;">Git管理について</p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    私はサイトのソースコードの管理方法として<span class="red fgo fb">Gitでの管理を強く推奨</span>します．<br>
+                    GitはVCS(Version Control System)といってソースコードの追加や変更を管理できるシステムです．<br>
+                    このシステムがあることで自分がソースコードを間違えて書き換えてしまったり，消去してしまったときに元の状態に管単に戻すことができます．<br><br>
+                    さらに，Githubとの連携によってソースコードが安全に保管されます．<br>
+                    航空研のGithubのアカウントがあるのでそこにプッシュするようにしてください．<br><br>
+                    Git自体を学ばなくても，コードのエディター次第では管単にGitでの管理ができます．<br>
+                    次に載せるのは私の使っている<span class="fb">Webstorm</span>というコードエディターです．<br><br>
+                    Git管理が非常に簡単な上，Webを運営するにあたるコードの編集が非常にやりやすくなる機能がたくさん備わっています．<br>
+                    Jet Brainsという会社のもので，学生ライセンスがあるので利用してみてください．<br><br><br>
+                    最後(次のページ)に私の気づいた新しいサイトの問題点を少し書きます．
+                </p>
+
 
 
                 <!--topages-->
@@ -241,12 +526,27 @@
                 <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
                 <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
                 <hr class="cp_hr06"/>
-                <h2 class="aCtitle"><span>04</span>TITLE</h2>
-                <img class="aCeyecatch" src="../actConImages/deer2.jpg">
+                <h2 class="aCtitle"><span>04</span>新しいサイトの問題点</h2>
 
                 <!--actmaincontents-->
-                <p class="headline" style="margin-top:40px;">head</p>
-
+                <p class="headline" style="margin-top:40px;">ちょっとした問題</p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                    サイトを新しくして発覚した問題を挙げます．<br><br>
+                    それは，キャッシュがない状態でサイトを開くと<span class="fb red">時間がかかってしまう</span>点です．<br><br>
+                    つまり初めて，今の航空研のサイトを開くと少し遅い上に，homeの飛行機が飛ぶ演出が出ないときもあるということです．<br><br>
+                    原因としてはサイトに表示する画像が重いことが挙げられます．<br>
+                    私自身，この新しいサイトを製作するときに製作途中のサイトをパソコンで確認していました．<br>
+                    なので，少しでも画像が荒いと目立ってしまい，気になったので表示する画像を<span class="fb">高画質</span>のものを使用していました．<br><br>
+                    サイトを表示する際に特にスマホで，画像や動画のダウンロードに時間がかかってしまい，サイトの表示が遅くなってしまっています．ごめんなさい．<br>
+                </p>
+                <p class="headline" style="margin-top:40px;">解決策</p>
+                <p style="margin:3vw 2vw 0px 2vw">
+                   一番の解決策としては，やはり<span class="bgyellow">画像や動画の解像度を下げる</span>ことです．<br><br>
+                    既にアップロードした画像や動画の差し替えには大変時間がかかってしまいます．<br>
+                    現状，私自身航空研のweb運営2年目であって，そろそろ引継ぎを考えています．<br><br>
+                    現段階でサイトはうまく動作しており，表示も問題ないようなのですが，次のサイト運営者様もしお時間がございましたらこの問題に取り組んではいただけないでしょうか．<br>
+                    <span class="small fb">私はこの大規模なサイトを新しくすることで力尽きてしまいました．．．．．．．</span>
+                </p>
 
                 <!--topages-->
                 <div class="toPageFlex">
@@ -254,36 +554,11 @@
                         <div class="topage "><label for="tab3">To Page 3</label></div>
                     </div>
 
-                    <div class="toPagePaRight">
-                        <div class="topage "><label for="tab5">To Page 5</label></div>
-                    </div>
+
                 </div>
             </div>
 
-            <!--５ページ目-->
-            <div id="page5" class="panel">
-                <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-                <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-                <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div>
-                <hr class="cp_hr06"/>
-                <h2 class="aCtitle"><span>05</span>TITLE</h2>
-                <img class="aCeyecatch" src="../actConImages/deer2.jpg">
 
-                <!--actmaincontents-->
-                <p class="headline" style="margin-top:40px;">head</p>
-
-
-                <!--topages-->
-                <div class="toPageFlex">
-                    <div class="toPagePaLeft">
-                        <div class="topage "><label for="tab4">To Page 4</label></div>
-                    </div>
-
-                    <div class="toPagePaRight">
-                        <div class="topage "><label for="tab4">To Page 4</label></div>
-                    </div>
-                </div>
-            </div>
 
             <!--CSSのほう確認！！！-->
 
