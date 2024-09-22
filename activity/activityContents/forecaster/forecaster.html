@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KayuProg-website/かゆウェブサイト</title>
+    <link rel="stylesheet" href="../../../common/css/base.css">
+    <link rel="stylesheet" href="../actConCss/actConBase.css"> <!--activity contentsのbaseとなるcss-->
+    <!--movebg-->
+    <link rel="stylesheet" href="../../../common/css/movebg.css"><!--ok-->
+    <!--mainSlider-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <!--jQuery読み込み-->
+    <script src="../../../common/js/jquery-3.6.1.min.js"></script>
+    <!--prism.css ソースコード表示させるやつ-->
+    <link rel="stylesheet" href="../../../common/css/prism.css">
+    <script src="../../../common/js/prism.js"></script>
+    <!--animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../../../common/css/sp_base.css">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../actConCss/sp_actConBase.css"><!--注意！！-->
+    <!--自動翻訳禁止-->
+    <meta http-equiv="Content-Language" content="ja">
+    <meta name="google" content="notranslate">
+
+</head>
+
+<body>
+
+
+    <!--to top button-->
+<div class="toTopButton"></div>
+<script>
+$(document).ready(function(){
+    var toTopBtn=$('.toTopButton');
+    toTopBtn.hide();
+    $(window).scroll(function(){
+        if($(this).scrollTop()>100){
+            toTopBtn.fadeIn();
+            $('.toTopButton').addClass('vvt');
+        }else{
+            toTopBtn.fadeOut();
+        }
+    });
+    toTopBtn.click(function(){
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+        return false;
+    });
+});
+</script>
+    
+<!--===============================================================
+    header
+===============================================================-->
+<!--header-->
+<hr size="15px" color="black">
+<div class="headbg headerSticky">
+    <!--header mainmenu-->
+    <div class="headerCenter">
+        <a href="../../../index.html" class="alogo"><div class="logobg"> <div class="logo">KayuProg</div> </div></a>
+    <ul class="mainmenu">
+        <li><a href="../../../term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank">
+            <div class="mainmenuContents mainmenuContents1 fb">Terms</div>
+        </a></li>
+        <li><a href="../../../index.html" class="amainmenu"><div class="mainmenuContents mainmenuContents1">HOME</div></a></li>
+        <li><a href="../../../activity/activity.html" class="amainmenu"><div class="mainmenuContents mainmenuContents2">ACTIVITY</div></a></li>
+        <li><a href="../../../contact/contact.html" class="amainmenu"><div class="mainmenuContents mainmenuContents3">CONTACT</div></a></li>
+    </ul>
+    </div>
+</div>
+
+<!--movebg-->
+<div id="particles-js"></div>
+<div id="wrapper"></div>
+
+
+<!--bodycontents-->
+<div id="bodycontents">
+<!-- sliderposition -->
+
+<!--===============================================================
+    maincontents    
+===============================================================-->
+
+<div class="mainContentsPa"><!--内部コンテンツの位置決め-->
+
+<!--上のタブ選択部分-->
+<input id="tab1" type="radio" name="check" checked>
+<label for="tab1" class="pagetabTop">Page 1</label>
+
+<input id="tab2" type="radio" name="check">
+<label for="tab2" class="pagetabTop">Page 2</label>
+
+<input id="tab3" type="radio" name="check" >
+<label for="tab3" class="pagetabTop">Page 3</label>
+
+<input id="tab4" type="radio" name="check" >
+<label for="tab4" class="pagetabTop">Page 4</label>
+
+<input id="tab5" type="radio" name="check" >
+<label for="tab5" class="pagetabTop">Page 5</label>
+
+<!--タブ選択によるコンテンツ部分-->
+<div class="pages"><!--全ページの全体的なスタイルを指定するため-->
+        
+<!--===============================================================
+    fmin:：明朝体　fen：英語のかっこいい字体　fgo：ゴシック　fb：太字　ib：インラインブロック
+    red：赤字　blue：青字　bgred：背景赤　bgyellow：背景黄色
+    big：大きい文字　middle：普通の文字　small：小文字
+    imgfullleft：アイキャッチと同じ大きさで左寄せ imgfullcenter：アイキャッチと同じ大きさで中央
+    imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
+    imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
+    flex：flex横配置
+===============================================================-->
+
+<!--１ページ目-->
+<div id="page1" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>01</span>外出時に傘が必要か喋るシステム</h2>
+    <img class="aCeyecatch" src="img/topimg.png" width="%">
+
+    <!-- actmaincontents-->
+    <p class="headline" style="margin-top:40px;">概要</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        普段天気予報を確認することが手間で，傘をもっていかず雨が降って濡れてしまうことが多々ありました．<br>
+        単に天気予報を確認する習慣をつければいいのですが，Webのチェックに手間がかかる上に習慣づけは面倒です．<br><br>
+        <span class="fb">なのでこれらを<span class="bgyellow">解決してくれる</span>ものを作りました．．</span><br><br>
+
+        ボタンを押すと外出時に傘が必要かどうかしゃべるシステムを作りました．<br>
+        上の画像にある黄色いボタンがそれです．<br><br>
+        押すとこんな感じになります．<br><br><br>
+        <video src="./img/3.mp4" class="movie" controls preload="auto" poster="" playsinline></video><br><br>
+
+    </p>
+    <p class="headline" style="margin-top:40px;">Components</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        ・<cite><a href="https://www.raspberrypi.com/products/raspberry-pi-3-model-b-plus/" target="_blank">Raspberry pi 3 B+</a></cite><br>
+        ・<cite><a href="https://raspberry-pi.ksyic.com/main/index/pdp.id/863/pdp.open/863" target="_blank">Raspberry pi pico W</a></cite><br>
+    </p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        主な役割はRaspberry pi pico WがRaspberry pi 3 B+に音声読み上げの指示だし（入力）<br>
+        Raspberry pi 3 B+が天気データの収集，音声の読み上げ（出力）です．<br>
+    </p>
+    <p class="headline" style="margin-top:40px;">システム構成概略</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        最終的にこのシステムは次の図のような構成になります．
+    </p>
+    <img src="./img/structure.png" class="imgfullcenter"><br>
+    <p style="margin:3vw 2vw 0px 2vw">
+        <span class="blue">青色の矢印</span>がRaspberry pi pico W(以降pico W)で入力（ボタンが押された）時の処理．<br>
+        <span class="red">赤色の矢印</span>がRaspberry pi 3 B+(以降ラズパイ)側のみでの処理になります．
+    </p>
+    <p style="margin:8vw 2vw 0px 2vw">
+        次のページからはpico W，ラズパイの処理内容を記載します．
+    </p> 
+
+
+
+
+
+
+
+
+
+
+    
+    <!--topage-->
+    <div class="toPagePaRight1">
+        <div class="topage "><label for="tab2">To Page 2</label></div>
+    </div>
+</div>
+
+<!--２ページ目-->
+<div id="page2" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>02</span>Raspberry pi 3 B+ 側 - 1</h2>
+    <!--actmaincontents-->
+
+
+    <p class="headline" style="margin-top:40px;">実行内容</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        ラズパイでは次の二つの処理を行っています．<br><br>
+        ①　2時間おきに天気予報サイトをスクレイピングして音声データを作成する．<br><br>
+        ②　pico wからの信号を受け取り，音声データを読み上げる．<br>
+    </p>
+    <p class="headline" style="margin-top:40px;">①の処理について</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        ボタンを押した際に最新の天気予報から傘の必要性を伝えるために，２時間おきに天気予報サイトからデータを取得しています．<br><br>
+        天気予報の取得に使用させていただいてるサイトは次のサイトになります.<br><br>
+        <cite><a href="https://tenki.jp" target="_blank" class="fb">tenki.jp</a></cite><br><br>
+        このサイトから私の居住地域の天気予報をスクレイピングしてます．<br><br>
+        コードは次になります．
+    </p><br>
+    <span style="font-size:0.8rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+# distutils: language=c++
+# distutils: extra_compile_args = ["-O3"]
+# cython: language_level=3, boundscheck=False, wraparound=False
+# cython: cdivision=True
+
+import requests
+from bs4 import BeautifulSoup
+import os
+
+############################################################################
+
+cpdef scrape():
+
+url='URL here'
+
+page=requests.get(url)
+
+if page.status_code==200:
+        print('http request successful')
+
+page.encoding=page.apparent_encoding #Requestで日本語を扱えるようにする．
+
+soup=BeautifulSoup(page.text,'lxml') #html構文解析
+
+today_table=soup.find(id='forecast-point-1h-today') #tableのweather取得 
+weather=today_table.find('tr',class_='weather')
+
+data=weather.find_all('p') #dataに今日のデータ格納
+
+# forecasts={"ko":None,"yowa":None,"ame":None,"tuyo":None,"gou":None}
+forecasts={}
+check=[0,0,0,0,0]
+for i in range(len(data)):
+        if check[0]==0 and data[i].contents[0]=="小雨":
+                forecasts["ko"]=i+1
+                check[0]=1
+        elif check[1]==0 and data[i].contents[0]=="弱雨":
+                forecasts["yowa"]=i+1
+                check[1]=1
+        elif check[2]==0 and data[i].contents[0]=="雨":
+                forecasts["ame"]=i+1
+                check[2]=1
+        elif check[3]==0 and data[i].contents[0]=="強雨":
+                forecasts["tuyo"]=i+1
+                check[3]=1
+        elif check[4]==0 and data[i].contents[0]=="豪雨":
+                forecasts["gou"]=i+1
+                check[4]=1
+
+
+if check[0]==0:
+        forecasts["ko"]=None
+        check[0]=1
+if check[1]==0:
+        forecasts["yowa"]=None
+        check[1]=1
+if check[2]==0:
+        forecasts["ame"]=None
+        check[2]=1
+if check[3]==0:
+        forecasts["tuyo"]=None
+        check[3]=1
+if check[4]==0:
+        forecasts["gou"]=None
+        check[4]=1
+
+return forecasts
+    </code>
+    </pre>
+    </span>
+
+    <p style="margin:3vw 2vw 0px 2vw">
+        開発初期段階ではボタンを押したタイミングでスクレイピングを行う予定でした．<br>
+        そこでスクレイピングの高速化を図るためにCythonを使いました．<br>
+        しかしながら，Cythonを用いてもPython Libraryをどうにかしない限りは大した高速化はできませんでした．<br>
+        （CythonとしてビルドしたとしてもPython Libraryを用いている限り，コードの処理時間はPython Libraryに依存していました．
+        つまりCythonで高速化を図るならCythonコード内で処理が完結している必要がありそう．）<br><br>
+        なのでここでCython用に最初の4行を記載していますが，実際はあまり実行時間は変わっていません（悲しい）．<br>
+        今回はCythonはとりあえず使ってみるという感じで取り入れています．．．．
+    </p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        次が上のコードをCython用にビルドして音声データに直しているコードです．
+    </p>
+<span style="font-size:0.8rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+import socket
+import gc
+import time
+from datetime import datetime
+################# 音声ファイル作成 #######################
+import os
+from gtts import gTTS
+
+def make_audio(text):
+    japanese=text
+    tts = gTTS(japanese, lang='ja')
+    tts.save("readaloud.mp3")
+    print("making audio finish")
+
+#########################################################
+# Scraping cython使ってますがあまり早くなってません．
+#########################################################
+import scraping 
+
+def make_text():
+    result=scraping.scrape()
+    print("scraping finish")
+
+    text_time=[]
+    text_umb=None
+
+    if (result['yowa']!=None or result['ame']!=None or result['tuyo']!=None or result['gou']!=None):
+        text_umb="今日は傘を持っていきましょう．"
+    elif result['ko']!=None and (result['yowa']==None and result['ame']==None and result['tuyo']==None and result['gou']==None):
+        text_umb="今日は折り畳み傘を持っていきましょう．"
+    elif not any(result):
+        text_umb="今日は傘を持って行かなくて大丈夫です．"
+
+    keys=list(result.keys())
+
+    now_hour=int(datetime.now().hour)
+    for key in keys:
+        if result[key]!=None:
+            #現在以降の天気を反映させる
+            if key=='ko':
+                if  result['ko']>=now_hour:
+                    time=str(result['ko'])+"時から小雨．"
+            elif key=='yowa':
+                if  result['yowa']>=now_hour:                
+                    time=str(result['yowa'])+"時から弱雨．"
+            elif key=='ame':
+                if  result['ame']>=now_hour:
+                    time=str(result['ame'])+"時から雨．"
+            elif key=='tuyo':
+                if  result['tuyo']>=now_hour:
+                    time=str(result['tuyo'])+"時から強い雨．"
+            elif key=='gou':
+                if  result['gou']>=now_hour:
+                    time=str(result['gou'])+"時から豪雨．"
+
+            text_time.append(time)
+    
+    if text_umb==None:
+        text_full=("今日は傘を持っていく必要はありません．")
+    else:
+        text_full=text_umb+''.join(text_time)+"です．"
+    print("text making finish")
+    return text_full
+
+
+def task1():#audioの作成まで行う．
+        text_full=make_text()
+        make_audio(text_full)
+        gc.collect()#ガベージコレクションの強制実行
+    </code>
+    </pre>
+    </span>
+    <p style="margin:3vw 2vw 0px 2vw">
+        import scraping で先ほどのビルドしたコードを取り込んでいます．scraping.scrape()でscrapingライブラリ内の関数を実行しスクレイピングを行っています．<br><br>
+        scraping.scrape()を実行すると，tenki.jpから取得したデータ（その日の各時間における天気）が返ってきます．<br><br>
+        そこから，当日に雨が降る過を判断し読み上げ用テキストを作成しています．<br><br>
+        音声データファイル(.mp3)の作成にはgTTSを使っています．<br>
+        この音声データの作成には次のサイトを参考にさせていただきました．<br><br>
+        <cite><a href="http://7th-chord.jp/sara_tsukiyono/index.php?cl=rp&rp=200318" target="_blank">Text to Speech テキスト読み上げ</a></cite><br>
+    </p>
+    <p class="headline" style="margin-top:40px;">2時間おきに実行する方法</p>
+    スクレイピングに使用したtenki.jpの際とは2時間おきに更新されるので，新しい音声ファイルも2時間おきに更新することにしました．<br>
+    今回ラズパイ上で2時間おきに実行する方法としてcronを使いました．参照したサイトは次です．<br><br>
+    ・<cite><a href="https://www.raspberrypirulo.net/entry/cron" target="_blank">Cronの使い方</a></cite><br>
+    ・<cite><a href="https://uepon.hatenadiary.com/entry/2021/10/05/005005" target="_blank">超いまさらcron設定を行ってみました</a></cite><br><br>
+    cronは非常に扱いやすくおすすめです．
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab1">To Page 1</label></div>
+        </div>
+    
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab3">To Page 3</label></div>
+        </div>    
+    </div>
+</div>
+
+<!--３ページ目-->
+<div id="page3" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>03</span>Raspberry pi 3 B+ 側 - 2</h2>
+
+    <!--actmaincontents-->
+
+    <p class="headline" style="margin-top:40px;">② の処理について</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        このページではラズパイ側で行う処理の内，pico wから信号を受信して音声ファイルを実行するまでを記載します．<br><br>
+        ラズパイとpico wの間の通信，処理を示したのが次の図になります．
+    </p>
+    <img src="./img/flow.png" class="imgfullcenter"><br>
+    <p align="right" style="font-size: 12px;">(これ↑作るの大変だった．．．．)</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        次がラズパイ側で受信，音声ファイル実行しているスクリプトです．<br>
+    </p>
+    <span style="font-size:0.8rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+#!/usr/bin/env python3
+
+import socket
+import gc
+import os
+
+import logging
+
+# ログ設定
+# logging.basicConfig(
+#     filename='/home/kayu/Desktop/weather/main.log',  # ログを記録するファイル名
+#     level=logging.INFO,  # 記録するログのレベル（DEBUG, INFO, WARNING, ERROR, CRITICAL）
+#     format='%(asctime)s - %(levelname)s - %(message)s',  # ログメッセージのフォーマット
+# )
+
+# logging.info("this is run by bash")
+#########################################################
+# TCP connection
+#########################################################
+
+def pico_connect():
+    HOST = 'IP adress here'  # Raspberry PiのIPアドレス
+    PORT = port num here           # クライアントと同じポート番号
+
+    # ソケットの設定
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    sock.bind((HOST, PORT))
+    # try:
+    #     sock.bind((HOST, PORT))
+    # except Exception as e:
+        # logging.info(f"Error binding socket: {e}")
+    sock.listen(1)
+
+    # logging.info("waitng for aconnection")
+    print('Waiting for a connection...')
+
+
+
+    # 接続の確立
+    conn, addr = sock.accept()
+    print(f'Connected by {addr}')
+    # logging.info(f'Connected by {addr}')
+
+    # ソケットを閉じる（通常は無限ループなので到達しません）
+    sock.close()
+
+
+
+#########################################################
+# Reading aloud cythonで読み上げは遅い
+#########################################################
+
+################# Japanese ###################
+def read_aloud():
+    # logging.info("trying to read aloud")
+    os.system("/usr/bin/mplayer -speed 1.1 -af scaletempo /home/kayu/Desktop/weather/audio/readaloud.mp3")
+    # logging.info("read aloud end")
+# ################# English ###################
+# english='Japan\'s Health Ministry updated its Q&A page. You can find answers to such questions as how you can avoid catching/spreading the virus, what is the "cough etiquette". '
+# tts = gTTS(english, lang='en')
+# tts.save("./audio/english.mp3")
+# os.system("mplayer ./audio/english.mp3")
+
+
+#################################
+# 実行
+#################################
+import schedule
+import time
+from datetime import datetime
+
+
+
+
+def task2():#接続を待って読み上げまで
+    pico_connect()
+    # logging.info("connect successful")
+    read_aloud()
+    gc.collect()#ガベージコレクションの強制実行
+
+
+
+while True:
+    # logging.info("task2 start")
+    task2()
+    # logging.info("task2 end\n")
+    # if datetime.now().hour==3:
+    #     break#毎朝3時でmain.py終了
+        
+
+gc.collect()#ガベージコレクションの強制実行  
+    
+    </span>
+    </pre>
+    </code>
+    <p style="margin:3vw 2vw 0px 2vw">
+        logging.infoで実行時ログファイルが作成されるようにしていますが無視してください．<br>
+    </p>
+    <p class="headline" style="margin-top:40px;">ラズパイ起動時にスクリプトを実行させる方法</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        実はここが私が一番つまずいたところです．<br>
+        製作期間の1/4くらいはこれに時間を取られました．<br><br>
+        ここで，行いたいことは "ラズパイを起動しただけで上のスクリプトを自動実行" です．<br><br>
+        調べると複数出てくるのですが私の環境(raspberry-pi 3 b+)で動いたものを載せときます．<br><br><br>
+    </p>
+
+    <p class="headline" style="margin-top:40px;">方法①Cron</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        はじめ私は一つページ前と同様にCronでの自動実行を試みました．<br><br>
+        ・<cite><a href="https://uepon.hatenadiary.com/entry/2021/10/05/005005" target="_blank">超いまさらcron設定を行ってみました</a></cite><br>
+        ・<cite><a href="https://qiita.com/karaage0703/items/ed18f318a1775b28eab4" target="_blank">Raspberry Piでプログラムを自動起動する5種類の方法を比較・解説</a></cite><br>
+        ここらへんを参照しました．<br><br>
+        Cronのlogファイルを確認するとラズパイ起動時にスクリプト自体は実行されているのですが，音声ファイル読み上げの際にエラーが起きていました．<br>
+        そのエラーは実行権限に関するものであったので，権限付与を行った後に確認しても同様のエラーでした．<br><br>
+        手動でルートから直接このスクリプトを実行した場合，音声ファイルの読み上げはうまくいくのですがCronからの自動実行だと音声出力されないという結果でした．<br><br>
+
+        これ以上進展がなかったので次の手段に移ります．
+    </p>
+
+    <p class="headline" style="margin-top:40px;">方法②Systemd</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+       次に試みたのはsystemdによる自動実行です．<br><br>
+        ・<cite><a href="https://monomonotech.jp/kurage/raspberrypi/systemd_autostart.html" target="_blank">systemdを使ってスクリプト自動起動</a></cite><br>
+        ・<cite><a href="https://qiita.com/tkato/items/6a227e7c2c2bde19521c" target="_blank">systemdを用いたプログラムの自動起動</a></cite><br>
+     同様に参照したものをいくつか挙げときます．<br><br>
+     結果諦めました．<br>
+     この方法ではスクリプトの実行すらかないませんでした．<br><br>
+     原因としてはラズパイ内のsystemdを実行するためのフォルダ構成がおかしくなっていたことです．<br>
+     （具体的にどうおかしくなっていたかは記憶から消えてしまいました．こんな時のためにエラー内容はどっかに保存したほうがよさそうですね．）<br><br>
+    つまり，諦めました．
+    </p>
+
+    <p class="headline" style="margin-top:40px;">方法③~/.profileに書き込む（成功）</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+    最終的に成功したのはrc.localを試していた時に見つけた~/.profileを利用するものです．<br><br>
+        ・<cite><a href="https://zenn.dev/zuzuzu/articles/etc_rc_local" target="_blank">/etc/rc.local が機能しない時の対処法</a></cite><br><br>
+    このページにある通り，~/.profileは "ユーザーがログインする際に一度だけ実行されるスクリプト" です．<br><br>
+    しかしながら直接この~/.profileにpythonファイルの実行を書き込むだけではうまく実行されませんでした．<br><br>
+    そこで，run.shファイルを作成しこの.shファイルにpythonファイルの実行を書き込みました．<br>
+    なので，~/.profile内に書くのはrun.shを実行するスクリプトです．<br><br>
+    これらの書き込みには相対パスではなく，絶対パスを利用することをお勧めします．<br>
+
+    
+    </p>
+
+
+
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab2">To Page 2</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+    </div>
+</div>
+
+<!--４ページ目-->
+<div id="page4" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>04</span>Raspberry pico W 側</h2>
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">回路図</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        pico w 側の回路図を載せます．（すごい単純）<br><br>
+        <img src="./img/cir.png" class="imgfullcenter"><br>
+    </p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        はんだ付けした結果は次．<br><br>
+        <div class="flex">
+            <img src="./img/front.jpg" class="imghalf" style="width:40%; margin:0 4vw"><br>
+            <img src="./img/back.jpg" class="imghalf" style="width:40%; margin:0 4vw"><br>
+        </div>
+    </p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        回路図と写真で使っているGNDの位置が少し違います．<br>
+    </p>
+    <p class="headline" style="margin-top:40px;">プログラム</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        このpico wに必要な機能は次の二つ．<br><br>
+        ・スイッチが押されたことを検知する<br>
+        ・ラズパイとの通信を行う<br><br>
+
+        プログラムを書くにあたって参照したサイトは次です．<br><br>
+        ・<cite><a href="https://cotechworks.ltt.jp/2023/07/24/post-783/" target="_blank">【Raspberry Pi Pico入門 – 4】スイッチのON/OFFを検出</a></cite><br>
+        ・<cite><a href="https://wisteriahill.sakura.ne.jp/CMS/WordPress/2023/04/30/pi-pico-w-unicast-raspberry-pi/" target="_blank">Pi Pico W からラズパイにデータを送信して表示</a></cite><br>
+    </p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        pico w側では躓くことなく開発を進めることができたので特筆することはありません．<br>
+        次にpico w側で動いているコードを載せます．<br><br>
+    </p>
+        <span style="font-size:0.8rem;">
+        <pre class="line-numbers small">
+        <code class="language-javascript small">
+    
+import time
+import network
+import machine 
+import utime
+import socket
+
+HOST='ラズパイip adress'
+PORT=port num
+
+
+# タクトスイッチ(入力)の設定
+sw= machine.Pin(19, machine.Pin.IN, machine.Pin.PULL_UP)
+
+
+led= machine.Pin('LED', machine.Pin.OUT)
+
+
+led.on()#電源がついたことを知らせる．
+time.sleep(1)
+led.off()
+
+
+ssid='wi-fi ssid'
+password='wi-fi password'
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(ssid, password)
+
+max_wait = 10
+while max_wait > 0:
+    if wlan.status() < 0 or wlan.status() >= 3:
+        break
+    max_wait -= 1
+    print('waiting for connection...')
+    time.sleep(1)
+    
+if wlan.status() != 3:
+    raise RuntimeError('network connection failed')
+else:
+    print('WIFI connected')
+    status = wlan.ifconfig()
+    print('ip = ' + status[0])
+
+
+#ユニキャスト
+def com_send():
+    while True: 
+        led.off()
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+        sock.connect((HOST, PORT))
+
+        while True:
+            if sw.value() == 0:
+                led.on()
+                print("sending message")   
+                message="Read aloud"    
+                # メッセージ送信
+                sock.send(message.encode('utf-8'))
+                print("sending message successful")
+                time.sleep(1)
+                break
+            else:
+                print("waiting for pushing button")
+                time.sleep(0.2)
+
+        # 通信の終了
+        sock.close()
+        time.sleep(15)#ラズパイ側が次のソケット開くのを待つ
+        led.off()
+
+
+if __name__ == "__main__":
+    com_send()
+        </code>
+        </pre>
+        </span>
+    <p style="margin:3vw 2vw 0px 2vw">
+        書いてある内容も難しくはないので理解いただけると思います．<br><br>
+        スイッチが押されると"Read aloud"というテキストがラズパイに送信されるといった感じです．<br><br>
+        pico w側はもう書くことがない．．．．．
+    </p>
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab3">To Page 3</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab5">To Page 5</label></div>
+        </div>
+    </div>
+</div>
+
+<!--５ページ目-->
+<div id="page5" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>05</span>改善点・まとめ</h2>
+
+    <!--actmaincontents-->
+
+
+    <p class="headline" style="margin-top:40px;">改善点①　高速化</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        今回処理を高速化するためにCythonを使用してスクレイピングを行うようにしたが，ライブラリの関係で高速化がうまくいかなかった．<br><br>
+        結果として2時間おきにスクレイピングを行う構成にしたため，Cythonを使うメリットがなくなってしまった．<br><br>
+        Cythonを使う際に高速化を図るにはライブラリ自体もc/c++で使えるようにビルドする必要がある．（可能かは不明）
+    </p>
+
+    <p class="headline" style="margin-top:40px;">改善点②　美しくない（気がする）</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        今回のシステムを作る上で，ラズパイとpico wでほとんどの時間ソケット接続をしている．<br><br>
+        初期段階ではpico wのボタンを押すとpico wの電源が入り，wifi接続からラズパイとの通信までを行わせる予定であった．<br><br>
+        しかしながら上記の方法では，ボタンを押してから音声ファイルの読み上げまでに約10秒かかってしまう．<br><br>
+        これは私が求める外出直前に傘の必要性を知りたいという要求に十分に応えられていない．（玄関で10秒も待ちたくない）<br><br>
+        仕方なく，ソケット接続をしたままボタン押下待機という形をとっているがもっとキレイなやり方がある気がする．．．．
+    </p>
+
+    <p class="headline" style="margin-top:40px;">改善点③　消費電力</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        今回pico w側はちょうどリモコンのような感覚で扱えるようにしたかった．<br><br>
+        そのためにpico wの電力供給方法として電池ボックスを取り付けた．<br><br>
+        <img src="./img/back.jpg" class="imghalf" style="width:40%; margin:0 4vw"><br><br>
+        実際に電池ボックスに新しい電池を入れ，システムを稼働させているとpico w側の電池が半日で尽きてしまった．<br><br>
+        もちろん電池自体の質がよくないのもあるだろうが，半日で3.0Vを維持できなくなってしまっていた．<br><br>
+        他の方法としてモバイルバッテリーを用いた．<br><br>
+        私の持ち合わせのモバイルバッテリーでは途中で電力供給が止まってしまうという問題が発生したため断念した．<br>
+        （原因はpico wの消費電力がモバイルバッテリーを使用するにあたる消費電力を下回っていたから？なのか．．）<br><br>
+        最終的に近くのコンセントから電力を引っ張ってくる形となっている．<br><br>
+        <img src="./img/" class="imghalf" style="width:40%; margin:0 4vw"><br><br>
+    </p>
+
+    <p class="headline" style="margin-top:40px;">改善点④　たまに起こるバグ</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        このシステム自体はうまく動作しているのだが，時々バグ？が起こる．<br><br>
+        バグの内容は<br><br>
+        ”ボタンを押した際に音声ファイルの読み上げが一回だけ行われるはずが，2,3度行われてしまう”<br><br>
+        というものだ．<br><br>
+        無限にループ再生してしまうといったバグだとスクリプトのwhileなどに問題があるとわかるのだが，繰り返される回数が毎回ランダムな上にボタンを押した回数も関係ないようなのである．<br><br>
+        原因としてはpico wのはんだ付けがうまくいってないのではないかと考えている．<br>
+    </p>
+
+    <p class="headline" style="margin-top:40px;">まとめ</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        今回は外出時，手軽に傘の必要性を教えてくれるシステムを作った．<br><br>
+        未だ改善点が尽きないが現状求めていた機能はしているのでしばらく様子を見る．<br><br>
+        作っていて嫌になることが多々あったが楽しむことができた．<br><br>
+        質問があれば<u><cite><a href="../../../contact/contact.html" target="_blank">ここ</a></cite></u>より受け付けている．<br>
+    </p>
+
+
+
+
+
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+    </div>
+</div>
+
+<!--CSSのほう確認！！！-->
+
+
+
+</div><!--pages end-->
+
+</div><!--mainContentsPa end-->
+
+
+
+
+<!----------------------------------------mainContentsend---------------------------------------->
+</div><!--bodycontents-->
+<div class="bottomBlank"></div>
+
+<!--===============================================================
+    footer
+===============================================================-->
+<div class="footer">
+    <!--Waves Container-->
+    <div>
+    <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)" />
+    </g>
+    </svg>
+    </div>
+    <!--Waves end-->
+    <div id="footerContents"> 
+        <small>Copyright(c) //  KayuProg  // All right Reserved.</small>
+    </div>
+
+
+ </div>
+
+<!--movebg-->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../../../common/js/movebg.js"></script><!--ok-->
+<!--mainSlider/slick.jsの読み込み-->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--mainslider.js-->
+</body>
+
+
+<noscript>
+    <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
+    <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。  制作者より
+    </p>
+</noscript>
+
+
+</html>
