@@ -119,7 +119,7 @@ $(document).ready(function(){
 
 <!--１ページ目-->
 <div id="page1" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2024/10/01</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
     <h2 class="aCtitle"><span>01</span>外出時に傘が必要か喋るシステム</h2>
@@ -135,7 +135,7 @@ $(document).ready(function(){
         ボタンを押すと外出時に傘が必要かどうかしゃべるシステムを作りました．<br>
         上の画像にある黄色いボタンがそれです．<br><br>
         押すとこんな感じになります．<br><br><br>
-        <video src="./img/3.mp4" class="movie" controls preload="auto" poster="" playsinline></video><br><br>
+        <video src="./img/5.mp4" class="movie" controls preload="auto" poster="" playsinline></video><br><br>
 
     </p>
     <p class="headline" style="margin-top:40px;">Components</p>
@@ -178,7 +178,7 @@ $(document).ready(function(){
 
 <!--２ページ目-->
 <div id="page2" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2024/10/01</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
     <h2 class="aCtitle"><span>02</span>Raspberry pi 3 B+ 側 - 1</h2>
@@ -274,12 +274,14 @@ return forecasts
     </span>
 
     <p style="margin:3vw 2vw 0px 2vw">
-        開発初期段階ではボタンを押したタイミングでスクレイピングを行う予定でした．<br>
-        そこでスクレイピングの高速化を図るためにCythonを使いました．<br>
-        しかしながら，Cythonを用いてもPython Libraryをどうにかしない限りは大した高速化はできませんでした．<br>
+        開発初期段階ではボタンを押したタイミングでスクレイピングを行う予定でした．<br><br>
+        そこでスクレイピングの高速化を図るために<span class="red fb">Cython</span>を使いました．<br>
+        しかしながら，Cythonを用いてもPython Libraryをどうにかしない限りは<span >大した高速化</span>はできませんでした．<br><br>
+
         （CythonとしてビルドしたとしてもPython Libraryを用いている限り，コードの処理時間はPython Libraryに依存していました．
         つまりCythonで高速化を図るならCythonコード内で処理が完結している必要がありそう．）<br><br>
-        なのでここでCython用に最初の4行を記載していますが，実際はあまり実行時間は変わっていません（悲しい）．<br>
+
+        なのでここでCython用に最初の4行を記載していますが，実際は<span class="bgyellow">あまり実行時間は変わっていません</span>（悲しい）．<br>
         今回はCythonはとりあえず使ってみるという感じで取り入れています．．．．
     </p>
     <p style="margin:3vw 2vw 0px 2vw">
@@ -363,14 +365,15 @@ def task1():#audioの作成まで行う．
     <p style="margin:3vw 2vw 0px 2vw">
         import scraping で先ほどのビルドしたコードを取り込んでいます．scraping.scrape()でscrapingライブラリ内の関数を実行しスクレイピングを行っています．<br><br>
         scraping.scrape()を実行すると，tenki.jpから取得したデータ（その日の各時間における天気）が返ってきます．<br><br>
-        そこから，当日に雨が降る過を判断し読み上げ用テキストを作成しています．<br><br>
+        そこから，当日に雨が降るかを判断し読み上げ用テキストを作成しています．<br><br>
         音声データファイル(.mp3)の作成にはgTTSを使っています．<br>
         この音声データの作成には次のサイトを参考にさせていただきました．<br><br>
         <cite><a href="http://7th-chord.jp/sara_tsukiyono/index.php?cl=rp&rp=200318" target="_blank">Text to Speech テキスト読み上げ</a></cite><br>
     </p>
     <p class="headline" style="margin-top:40px;">2時間おきに実行する方法</p>
-    スクレイピングに使用したtenki.jpの際とは2時間おきに更新されるので，新しい音声ファイルも2時間おきに更新することにしました．<br>
-    今回ラズパイ上で2時間おきに実行する方法としてcronを使いました．参照したサイトは次です．<br><br>
+    スクレイピングに使用したtenki.jpの際とは2時間おきに更新されるので，新しい音声ファイルも2時間おきに更新することにしました．<br><br>
+
+    今回ラズパイ上で2時間おきに実行する方法として<span class="red fb">cron</span>を使いました．参照したサイトは次です．<br><br>
     ・<cite><a href="https://www.raspberrypirulo.net/entry/cron" target="_blank">Cronの使い方</a></cite><br>
     ・<cite><a href="https://uepon.hatenadiary.com/entry/2021/10/05/005005" target="_blank">超いまさらcron設定を行ってみました</a></cite><br><br>
     cronは非常に扱いやすくおすすめです．
@@ -390,7 +393,7 @@ def task1():#audioの作成まで行う．
 
 <!--３ページ目-->
 <div id="page3" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2024/10/01</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
     <h2 class="aCtitle"><span>03</span>Raspberry pi 3 B+ 側 - 2</h2>
@@ -503,9 +506,10 @@ while True:
 
 gc.collect()#ガベージコレクションの強制実行  
     
-    </span>
-    </pre>
     </code>
+    </pre>
+    </span>
+
     <p style="margin:3vw 2vw 0px 2vw">
         logging.infoで実行時ログファイルが作成されるようにしていますが無視してください．<br>
     </p>
@@ -519,9 +523,9 @@ gc.collect()#ガベージコレクションの強制実行
 
     <p class="headline" style="margin-top:40px;">方法①Cron</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        はじめ私は一つページ前と同様にCronでの自動実行を試みました．<br><br>
+        はじめ私は一つページ前と同様に<span class="red fb">Cron</span>での自動実行を試みました．<br><br>
         ・<cite><a href="https://uepon.hatenadiary.com/entry/2021/10/05/005005" target="_blank">超いまさらcron設定を行ってみました</a></cite><br>
-        ・<cite><a href="https://qiita.com/karaage0703/items/ed18f318a1775b28eab4" target="_blank">Raspberry Piでプログラムを自動起動する5種類の方法を比較・解説</a></cite><br>
+        ・<cite><a href="https://qiita.com/karaage0703/items/ed18f318a1775b28eab4" target="_blank">Raspberry Piでプログラムを自動起動する5種類の方法を比較・解説</a></cite><br><br>
         ここらへんを参照しました．<br><br>
         Cronのlogファイルを確認するとラズパイ起動時にスクリプト自体は実行されているのですが，音声ファイル読み上げの際にエラーが起きていました．<br>
         そのエラーは実行権限に関するものであったので，権限付与を行った後に確認しても同様のエラーでした．<br><br>
@@ -534,10 +538,10 @@ gc.collect()#ガベージコレクションの強制実行
     <p style="margin:3vw 2vw 0px 2vw">
        次に試みたのはsystemdによる自動実行です．<br><br>
         ・<cite><a href="https://monomonotech.jp/kurage/raspberrypi/systemd_autostart.html" target="_blank">systemdを使ってスクリプト自動起動</a></cite><br>
-        ・<cite><a href="https://qiita.com/tkato/items/6a227e7c2c2bde19521c" target="_blank">systemdを用いたプログラムの自動起動</a></cite><br>
+        ・<cite><a href="https://qiita.com/tkato/items/6a227e7c2c2bde19521c" target="_blank">systemdを用いたプログラムの自動起動</a></cite><br><br>
      同様に参照したものをいくつか挙げときます．<br><br>
      結果諦めました．<br>
-     この方法ではスクリプトの実行すらかないませんでした．<br><br>
+     この方法ではスクリプトの<u>実行すらかないませんでした</u>．<br><br>
      原因としてはラズパイ内のsystemdを実行するためのフォルダ構成がおかしくなっていたことです．<br>
      （具体的にどうおかしくなっていたかは記憶から消えてしまいました．こんな時のためにエラー内容はどっかに保存したほうがよさそうですね．）<br><br>
     つまり，諦めました．
@@ -545,19 +549,14 @@ gc.collect()#ガベージコレクションの強制実行
 
     <p class="headline" style="margin-top:40px;">方法③~/.profileに書き込む（成功）</p>
     <p style="margin:3vw 2vw 0px 2vw">
-    最終的に成功したのはrc.localを試していた時に見つけた~/.profileを利用するものです．<br><br>
+    最終的に成功したのはrc.localを試していた時に見つけた<span class="red fb">~/.profileを利用</span>するものです．<br><br>
         ・<cite><a href="https://zenn.dev/zuzuzu/articles/etc_rc_local" target="_blank">/etc/rc.local が機能しない時の対処法</a></cite><br><br>
     このページにある通り，~/.profileは "ユーザーがログインする際に一度だけ実行されるスクリプト" です．<br><br>
     しかしながら直接この~/.profileにpythonファイルの実行を書き込むだけではうまく実行されませんでした．<br><br>
     そこで，run.shファイルを作成しこの.shファイルにpythonファイルの実行を書き込みました．<br>
-    なので，~/.profile内に書くのはrun.shを実行するスクリプトです．<br><br>
+    なので，<span class="bgyellow"> ~/.profile内に書くのはrun.shを実行するスクリプト</span>です．<br><br>
     これらの書き込みには相対パスではなく，絶対パスを利用することをお勧めします．<br>
-
-    
     </p>
-
-
-
 
 
     <!--topages-->
@@ -574,7 +573,7 @@ gc.collect()#ガベージコレクションの強制実行
 
 <!--４ページ目-->
 <div id="page4" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2024/10/01</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
     <h2 class="aCtitle"><span>04</span>Raspberry pico W 側</h2>
@@ -712,7 +711,7 @@ if __name__ == "__main__":
 
 <!--５ページ目-->
 <div id="page5" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2024/10/01</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
     <h2 class="aCtitle"><span>05</span>改善点・まとめ</h2>
@@ -722,14 +721,14 @@ if __name__ == "__main__":
 
     <p class="headline" style="margin-top:40px;">改善点①　高速化</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        今回処理を高速化するためにCythonを使用してスクレイピングを行うようにしたが，ライブラリの関係で高速化がうまくいかなかった．<br><br>
+        今回処理を高速化するためにCythonを使用してスクレイピングを行うようにしたが，ライブラリの関係で<u>高速化がうまくいかなかった</u>．<br><br>
         結果として2時間おきにスクレイピングを行う構成にしたため，Cythonを使うメリットがなくなってしまった．<br><br>
         Cythonを使う際に高速化を図るにはライブラリ自体もc/c++で使えるようにビルドする必要がある．（可能かは不明）
     </p>
 
     <p class="headline" style="margin-top:40px;">改善点②　美しくない（気がする）</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        今回のシステムを作る上で，ラズパイとpico wでほとんどの時間ソケット接続をしている．<br><br>
+        今回のシステムを作る上で，ラズパイとpico wで<u>ほとんどの時間ソケット接続をしている</u>．<br><br>
         初期段階ではpico wのボタンを押すとpico wの電源が入り，wifi接続からラズパイとの通信までを行わせる予定であった．<br><br>
         しかしながら上記の方法では，ボタンを押してから音声ファイルの読み上げまでに約10秒かかってしまう．<br><br>
         これは私が求める外出直前に傘の必要性を知りたいという要求に十分に応えられていない．（玄関で10秒も待ちたくない）<br><br>
@@ -741,20 +740,20 @@ if __name__ == "__main__":
         今回pico w側はちょうどリモコンのような感覚で扱えるようにしたかった．<br><br>
         そのためにpico wの電力供給方法として電池ボックスを取り付けた．<br><br>
         <img src="./img/back.jpg" class="imghalf" style="width:40%; margin:0 4vw"><br><br>
-        実際に電池ボックスに新しい電池を入れ，システムを稼働させているとpico w側の電池が半日で尽きてしまった．<br><br>
+        実際に電池ボックスに新しい電池を入れ，システムを稼働させているとpico w側の<u>電池が半日で尽きてしまった</u>．<br><br>
         もちろん電池自体の質がよくないのもあるだろうが，半日で3.0Vを維持できなくなってしまっていた．<br><br>
         他の方法としてモバイルバッテリーを用いた．<br><br>
         私の持ち合わせのモバイルバッテリーでは途中で電力供給が止まってしまうという問題が発生したため断念した．<br>
         （原因はpico wの消費電力がモバイルバッテリーを使用するにあたる消費電力を下回っていたから？なのか．．）<br><br>
         最終的に近くのコンセントから電力を引っ張ってくる形となっている．<br><br>
-        <img src="./img/" class="imghalf" style="width:40%; margin:0 4vw"><br><br>
+        <img src="./img/last.jpg" class="imghalf" style="width:40%; margin:0 4vw"><br><br>
     </p>
 
     <p class="headline" style="margin-top:40px;">改善点④　たまに起こるバグ</p>
     <p style="margin:3vw 2vw 0px 2vw">
         このシステム自体はうまく動作しているのだが，時々バグ？が起こる．<br><br>
         バグの内容は<br><br>
-        ”ボタンを押した際に音声ファイルの読み上げが一回だけ行われるはずが，2,3度行われてしまう”<br><br>
+        ”<u>ボタンを押した際に音声ファイルの読み上げが一回だけ行われるはずが，2,3度行われてしまう</u>”<br><br>
         というものだ．<br><br>
         無限にループ再生してしまうといったバグだとスクリプトのwhileなどに問題があるとわかるのだが，繰り返される回数が毎回ランダムな上にボタンを押した回数も関係ないようなのである．<br><br>
         原因としてはpico wのはんだ付けがうまくいってないのではないかと考えている．<br>
@@ -765,7 +764,8 @@ if __name__ == "__main__":
         今回は外出時，手軽に傘の必要性を教えてくれるシステムを作った．<br><br>
         未だ改善点が尽きないが現状求めていた機能はしているのでしばらく様子を見る．<br><br>
         作っていて嫌になることが多々あったが楽しむことができた．<br><br>
-        質問があれば<u><cite><a href="../../../contact/contact.html" target="_blank">ここ</a></cite></u>より受け付けている．<br>
+        質問があれば<u><cite><a href="../../../contact/contact.html" target="_blank">ここ</a></cite></u>より受け付けている．<br><br><br>
+        （やはり記事書くの大変です．．．）
     </p>
 
 
@@ -777,10 +777,6 @@ if __name__ == "__main__":
     <!--topages-->
     <div class="toPageFlex">
         <div class="toPagePaLeft">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-
-        <div class="toPagePaRight">
             <div class="topage "><label for="tab4">To Page 4</label></div>
         </div>
     </div>
