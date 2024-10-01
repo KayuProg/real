@@ -456,8 +456,6 @@ def pico_connect():
     conn, addr = sock.accept()
     print(f'Connected by {addr}')
     # logging.info(f'Connected by {addr}')
-
-    # ソケットを閉じる（通常は無限ループなので到達しません）
     sock.close()
 
 
