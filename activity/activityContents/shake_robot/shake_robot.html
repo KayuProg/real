@@ -25,13 +25,12 @@
     <!--自動翻訳禁止-->
     <meta http-equiv="Content-Language" content="ja">
     <meta name="google" content="notranslate">
-
 </head>
 
 <body>
 
 
-    <!--to top button-->
+<!--to top button-->
 <div class="toTopButton"></div>
 <script>
 $(document).ready(function(){
@@ -93,17 +92,6 @@ $(document).ready(function(){
 <input id="tab1" type="radio" name="check" checked>
 <label for="tab1" class="pagetabTop">Page 1</label>
 
-<input id="tab2" type="radio" name="check">
-<label for="tab2" class="pagetabTop">Page 2</label>
-
-<input id="tab3" type="radio" name="check" >
-<label for="tab3" class="pagetabTop">Page 3</label>
-
-<input id="tab4" type="radio" name="check" >
-<label for="tab4" class="pagetabTop">Page 4</label>
-
-<input id="tab5" type="radio" name="check" >
-<label for="tab5" class="pagetabTop">Page 5</label>
 
 <!--タブ選択によるコンテンツ部分-->
 <div class="pages"><!--全ページの全体的なスタイルを指定するため-->
@@ -120,119 +108,149 @@ $(document).ready(function(){
 
 <!--１ページ目-->
 <div id="page1" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2024/10/22</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>01</span>TITLE</h2>
-    <img class="aCeyecatch" src="img/" width="%">
+    <h2 class="aCtitle"><span>01</span>ドライヤーのモータでShaking Robot作ろうとした</h2>
+    <img class="aCeyecatch" src="img/top.png" width="%">
 
     <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
+    <p class="headline" style="margin-top:40px;">契機</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        ドライヤーのモータで<span class="fb">Shaking Robot</span>を作ろうとしました．<br><br>
+        先日ドライヤーが壊れて使えなくなりました．<br><br>
+        廃棄する際にモータが壊れていないことを確認できたので，モータだけはぎとりました．<br><br>
+        プラモデルの塗料や，料理する際の材料のいくつかは十分振らなくてはいけない場合があります．<br><br>
+        この作業は非常に手間で疲れてしまうので，<span class="fb">物を振ってくれるロボット</span>を作ってしまおうと考えました．<br><br>
+        ドライヤーのモータということでそれなりにトルクが出るので十分実現可能と考えた．<br><br><br><br><br><br>
+        このページは今後モータを制御したりする際に参考になると思われるサイトを残す<u>備忘録</u>のようなものです．
+    </p>
+    <p class="headline" style="margin-top:40px;">Conponents</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        ・Mh-tiny(マイコン)<br>
+        ・L293D(モータdriver)<br>
+        ・NJM2374(DCDC regulator)<br>
+        ・(DCDC regulator)<br>
+        ・モータ(ドライヤーから取得)<br>
+    </p>
+    
+    <p class="headline" style="margin-top:40px;">ドライヤーからはいだモータ</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        Shaking robotを作るにあたって次のモータを処分予定のドライヤーから調達しました．<br><br>
+        <img src="./img/material/mot.jpg" class="imghalfcenter"><br><br>
+        型番を調べるとMABUCHI MOTORのRS-385SV-2460でした．<br><br>
+
+        <cite><a href="https://product.mabuchi-motor.com/result.html?t=1487148886" target="_blank">MABUCHI MOTOR-Brush motors</a></cite><br><br>
+        ここに載っています．
+    </p>
+
+    <p class="headline" style="margin-top:40px;">Mh-tiny</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        マイコンにはMh-tinyという中国製のマイコンを使いました．<br>
+        AT-tinyという小さいマイコンのCPU(Mhtiny88)と似たものを積んだボードです．<br><br>
+        Aliexpressで購入しました．<span class="red">200円</span>くらい．<br><br>
+        Arudinoでプログラムを書き込めます．中国製であることもあって時々書き込めなくことがありました．<br><br>
+        使うために参考にしたサイトは次です<br>
+        <cite><a href="https://tamanegi.digick.jp/computer-embedded/mcuboa/mhtiny/#show" target="_blank">Arudino環境でMh-Tiny88を使う</a></cite><br><br><br>
+    </p>
 
 
+    <p class="headline" style="margin-top:40px;">L293D</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        モータdriverとしてL293Dを使用しました．<br><br>
+        参考にしたサイトは以下です．<br><br>
 
+        ・<cite><a href="https://www.ti.com/jp/lit/ds/symlink/l293d.pdf?ts=1727745087634&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252Fja-jp%252FL293D" target="_blank">L293x Quadruple Half-H Drivers</a></cite><br>
+        L293~モデルのデータシートです．<br><br>
+        ・<cite><a href="https://zenn.dev/arsaga/articles/b2f662b2b53c29" target="_blank">Arduinoとモータードライバ(L293D)でDCモーターを制御する</a></cite><br>
+        ArudinoでL293Dをどう使うのかが書いてあります．<br><br>
+        
+        次にモータを<span class="bgyellow">PWM</span>による制御を行いたかったので，PWM制御の勉強と実装方法を調べたサイトを示しときます．<br><br>
+        ・<cite><a href="https://arduinomakesiteasy.com/dcmotor-control/" target="_blank">https://arduinomakesiteasy.com/dcmotor-control/</a></cite><br>
+        ・<cite><a href="https://www.youtube.com/watch?v=xjLwL8RPbvU" target="_blank">Control Speed of DC Motor with L293D and PWM | Arduino tutorial 20</a></cite><br>
+
+    </p>
+
+
+    <p class="headline" style="margin-top:40px;">DCDCコンバータ</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        DCDCコンバータを勉強するにあたって次のサイトを使いました．（わかりやすかった．）<br><br>
+        ・<cite><a href="https://emb.macnica.co.jp/articles/1754/" target="_blank">昇圧型DC/DCコンバータの原理とデバイス選定時の注意点</a></cite><br><br><br>
+    
+        はじめ，NJM2345を使おうとしていました．<br>
+        データシートは次のものです．<br><br>
+        ・<cite><a href="https://akizukidenshi.com/goodsaffix/njm2345.pdf" target="_blank">スタンバイ機能付き 降圧用 PWM 型 DC/DC コンバータ IC</a></cite><br>
+        そう，このDC/DCコンバータは降圧用．ほしいのは昇圧用．<br><br>
+        なぜ回間違えたのか，，，<br><br>
+        ラベルはちゃんと見なくては．<br><br>
+        さらにこのICは<span class="bgyellow">自分で回路を自作する必要</span>があるらしい（from datasheet）．<br><br>
+        昇圧回路を自作するときは次のサイトたちを使うとよさそう．<br><br>
+        ・<cite><a href="http://jsdiy.starfree.jp/stepup_converter/" target="_blank">NJM2360を利用した昇圧回路</a></cite><br>
+        ・<cite><a href="https://voltechno.com/blog/dcdc-boost/" target="_blank">直流5Vを12Vに昇圧する回路の作り方、DCDCコンバータを自分で作る方法</a></cite><br>
+    </p>
+
+    <p class="headline" style="margin-top:40px;">可変抵抗</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        PWM制御によるモータの動作を確認するために可変抵抗を用いました．可変抵抗の値を変更することでモータの回転数が変化するといった具合です．<br><br>
+        この可変抵抗の学習には次のサイトを使いました．<br><br>
+        ・<cite><a href="https://burariweb.info/electronic-work/arduino-learning/arduino-variable-resistor-analog-input.html#i-3" target="_blank">【Arduino入門編⑥】可変抵抗を使いアナログ値を読み取る</a></cite><br>
+    </p>
+    
+    <p class="headline" style="margin-top:40px;">microB の配線配置</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        マイコンを用いてモータを制御する際に，はじめはmh-tinyではなくRaspberry pi picoを使おうと考えていました．<br>
+        しかしL293Dを動かすための5Vを持ってくることができなかったため，picoに給電しているusbから5Vを持ってこようと考えました．<br><br>
+        そこで，microbをシリアル（特にDIP pin）に変換するたのボードを購入しました．<br><br>
+        <img src="./img/micro.jpg" class="imghalfcenter"><br>
+
+        変換したDIP pinのそれぞれの役割を詳しく確認するために参考にしたサイトを次に示します．<br><br>
+        ・<cite><a href="https://item.rakuten.co.jp/vshopu/219x-1601/" target="_blank">マイクロUSB オス 工作用ミニ基板</a></cite><br>
+    </p>
+
+    <p class="headline" style="margin-top:40px;">収穫</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        今回，使いたかったモータは無負荷状態ではおおよそ30V,0.12Aで回転数が最大になる．<br><br>
+        つまり，30 [V] × 0.12 [A] = 3.6 [W]　必要になることがわかる．<br><br>
+        ここで，micro USBから引っ張れる電力はUSB2.0だと2.5W，USB3.0だと4.5Wである．<br><br>
+        USB3.0を使用したとして，DC/DCコンバータで5Vから30Vに昇圧することを考える．<br>
+        変換効率，安全率を考えると，昇圧後に使える電力は<br>4.5 [W] × 0.7 = 3.15 [W]．<br><br>
+        <span class="red fb">モータを回すのに必要な3.6Wに足りていない</span>．さらに，持っているUSBがUSB2.0のみなので供給できる電力はもっと低くなる．<br><br>
+        以上からわかる通り，USBからの給電でこのモータを回すことは現実的ではない．<br>
+        <span class="small">（これに気づいたことが今回の一番の収穫．．．．）</span><br><br>
+        当初は昇圧さえすればモータを十分回転させられると考えていたが考えが甘すぎた．<br><br>
+    </p>
+
+    <p class="headline" style="margin-top:40px;">モータを回したい</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+       今回のモータを回すにはもっと高い電力を供給する必要がある．<br><br>
+       考えていることは次<br><br>
+       <span class="big">＜市販のACアダプターで供給＞</span><br>
+       方法の一つとして市販のACアダプターを購入しモータを回すのに必要な電力を供給する．<br><br>
+       しかし市販のACアダプターは物理的に大きいため，Shaking robotを作るにあたって装置が大きくなる要因の一つになる．<br>
+       <span class="small">（私は作るならコンパクトなものを作りたい）</span><br><br>
+
+        <spann class="big">＜ACアダプターの自作＞</spann><br>
+        ドライヤーを分解して気づいたのだが，ドライヤー自体には私がよく知るようなACアダプターは入っていなかった．<br><br>
+        代わりに少し複雑な回路が形成されていることを確認した．<br><br>
+        おそらく，整流，降圧などを行っているのだろう．<br>
+        部品として手に入れにくいものは見当たらなかったので自作できるのではないかと考えた．<br><br>
+        しかし，初心者が家庭用交流電源を扱うのはハードルが高く危険である．<br>
+        <span class="small">（シンプルに怖い．．）</span><br><br>
+        なのでもう少し電気回路を扱えるようになってから挑戦したい．<br><br>
+    </p>
+
+    <p class="headline" style="margin-top:40px;">さいごに</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        今回ドライヤーのモータを使ってshaking robotを作ろうとしたが，家庭用電源100V電源扱うことになりそうで断念した．<br><br>
+        もっと電子工作の経験を積んで，知識がついてから再挑戦しよう..．<br><br>
+        
+    </p>
     
     <!--topage-->
     <div class="toPagePaRight1">
-        <div class="topage "><label for="tab2">To Page 2</label></div>
     </div>
 </div>
 
-<!--２ページ目-->
-<div id="page2" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>02</span>TITLE</h2>
-    <img class="aCeyecatch" src="img/" width="%">
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab1">To Page 1</label></div>
-        </div>
-    
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab3">To Page 3</label></div>
-        </div>    
-    </div>
-</div>
-
-<!--３ページ目-->
-<div id="page3" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>03</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab2">To Page 2</label></div>
-        </div>
-
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-    </div>
-</div>
-
-<!--４ページ目-->
-<div id="page4" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>04</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab3">To Page 3</label></div>
-        </div>
-
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab5">To Page 5</label></div>
-        </div>
-    </div>
-</div>
-
-<!--５ページ目-->
-<div id="page5" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>05</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-    </div>
-</div>
 
 <!--CSSのほう確認！！！-->
 
