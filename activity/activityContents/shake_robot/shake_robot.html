@@ -109,7 +109,7 @@ $(document).ready(function(){
 <!--１ページ目-->
 <div id="page1" class="panel">
     <span class="aCUpDate">Posted:&nbsp;2024/10/22</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <span class="aCReUpDate">RePosted:&nbsp;2024/10/23</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
     <h2 class="aCtitle"><span>01</span>ドライヤーのモータでShaking Robot作ろうとした</h2>
     <img class="aCeyecatch" src="img/top.png" width="%">
@@ -169,6 +169,10 @@ $(document).ready(function(){
         ・<cite><a href="https://arduinomakesiteasy.com/dcmotor-control/" target="_blank">https://arduinomakesiteasy.com/dcmotor-control/</a></cite><br>
         ・<cite><a href="https://www.youtube.com/watch?v=xjLwL8RPbvU" target="_blank">Control Speed of DC Motor with L293D and PWM | Arduino tutorial 20</a></cite><br>
 
+        最後にL293Dでモータを制御した動画を載せときます．<br><br>
+        可変抵抗を回すと追従してモータの回転数が変わるようにしています．<br><br>
+        <video src="./img/motor.mp4" class="movie" controls preload="auto" poster="" playsinline></video><br><br>
+
     </p>
 
 
@@ -213,7 +217,7 @@ $(document).ready(function(){
         つまり，30 [V] × 0.12 [A] = 3.6 [W]　必要になることがわかる．<br><br>
         ここで，micro USBから引っ張れる電力はUSB2.0だと2.5W，USB3.0だと4.5Wである．<br><br>
         USB3.0を使用したとして，DC/DCコンバータで5Vから30Vに昇圧することを考える．<br>
-        変換効率，安全率を考えると，昇圧後に使える電力は<br>4.5 [W] × 0.7 = 3.15 [W]．<br><br>
+        変換効率，安全率を考えると，昇圧後に使える電力は<br>4.5 [W] × 0.7 = 3.15 [W] くらいになる．<br><br>
         <span class="red fb">モータを回すのに必要な3.6Wに足りていない</span>．さらに，持っているUSBがUSB2.0のみなので供給できる電力はもっと低くなる．<br><br>
         以上からわかる通り，USBからの給電でこのモータを回すことは現実的ではない．<br>
         <span class="small">（これに気づいたことが今回の一番の収穫．．．．）</span><br><br>
@@ -243,9 +247,10 @@ $(document).ready(function(){
     <p style="margin:3vw 2vw 0px 2vw">
         今回ドライヤーのモータを使ってshaking robotを作ろうとしたが，家庭用電源100V電源扱うことになりそうで断念した．<br><br>
         もっと電子工作の経験を積んで，知識がついてから再挑戦しよう..．<br><br>
-        
+        もうすでに作っている人（会社？）がありました．<br><br>
+        リンク張っておきます．<br>
+        <cite><a href="https://x.com/hiqparts/status/1846019786821849436?s=53" target="_blank">私の作りたかったロボット-こんな感じ</a></cite><br>        
     </p>
-    
     <!--topage-->
     <div class="toPagePaRight1">
     </div>

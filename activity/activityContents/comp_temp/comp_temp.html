@@ -99,11 +99,6 @@ $(document).ready(function(){
 <input id="tab3" type="radio" name="check" >
 <label for="tab3" class="pagetabTop">Page 3</label>
 
-<input id="tab4" type="radio" name="check" >
-<label for="tab4" class="pagetabTop">Page 4</label>
-
-<input id="tab5" type="radio" name="check" >
-<label for="tab5" class="pagetabTop">Page 5</label>
 
 <!--タブ選択によるコンテンツ部分-->
 <div class="pages"><!--全ページの全体的なスタイルを指定するため-->
@@ -120,14 +115,39 @@ $(document).ready(function(){
 
 <!--１ページ目-->
 <div id="page1" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2024/10/28</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>01</span>TITLE</h2>
-    <img class="aCeyecatch" src="img/" width="%">
+    <h2 class="aCtitle"><span>01</span>Air Comp. temp. checker</h2>
+    <img class="aCeyecatch" src="img/title.png" width="%">
 
     <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
+    <p class="headline" style="margin-top:40px;">契機</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        趣味でやっているプラモデルの塗装用にエアーコンプレッサーを購入しました．<br><br>
+        エアーコンプレッサーを使用していると本体の温度がガンガン上昇します．
+        <span class="small">（ほんと触れないくらいになっちゃう）<br><br></span>
+        この温度上昇はエアコンプレッサーに負荷のかかるもので故障の原因になります．<br><br>
+        なので塗装中はエアコンプレッサーを定期的に冷却する必要があります．<br><br>
+        少なくとも私はそうしています．<br><br>
+        でも，塗装中エアコンプレッサーがアチアチになっていることにほとんど気づきません．<br><br>
+        そこで<span class="fb bgyellow">エアコンプレッサーが熱くなったらお知らせしてくれるようなもの</span>を作ろうと思い立ちました．<br><br>
+        ついでに<u>冷却が終了したことも知らせてくれる</u>やつを作ろう！と．．．<br><br>
+    </p>
+
+    <p class="headline" style="margin-top:40px;">できた！</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+       できました．作りました．<br><br>
+       音声が流れます！<br><br>
+       <video src="./img/run.mp4" class="movie" controls preload="auto" poster="" playsinline></video><br><br>
+        <span class="fb">温度が上昇し，指定した上限温度に達するとピタゴラスイッチの音が鳴るようにしました．<br><br></span>
+        冷却モードでは指定した温度以下になるとピタゴラスイッチの音が鳴ります．<br><br>
+        動画は冷却終了検知モードでの様子です．<br><br>
+        エアコンプレッサーの温度が室温と同じくらいなので鳴っています．<br><br>
+        最後に赤いLEDが光ったのは温度上昇検知モードになったことを知らせています．<br>
+        （青は冷却終了検知モード）<br><br>
+        以降のページではこの装置で使った部品であったり，スクリプトについて書いていきます．
+    </p>
 
 
 
@@ -140,14 +160,183 @@ $(document).ready(function(){
 
 <!--２ページ目-->
 <div id="page2" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2024/10/28</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>02</span>TITLE</h2>
-    <img class="aCeyecatch" src="img/" width="%">
+    <h2 class="aCtitle"><span>02</span>部品の使い方</h2>
 
     <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
+
+    <p class="headline" style="margin-top:40px;">Components</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        この装置を作るのに以下の部品たちを使いました．<br><br>
+        ・Raspberry pi pico<br>
+        ・RGB LED<br>
+        ・電池ボックス<br>
+        ・温度センサ<br>
+        ・DC/DCコンバータ（昇圧型）<br>
+        ・スライドスイッチ<br>
+        ・ブザー<br>
+    </p>
+
+    <p class="headline" style="margin-top:40px;">基盤</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        はんだ付けした基盤や部品は次のようになってます．<br><br>
+        <img src="./img/compo.png" class="imgfullcenter" style="margin:0 0 0 1vw"><br>
+
+        青，白，緑の配線の先には温度センサがくっついています．<br><br>
+        温度センサを二つ使用して二か所の温度を測定します<br><br>
+        100V ACから電力を引いているのでAC/DCコンバータを使って5Vに降圧しています．<br><br>
+
+    </p>
+
+    <p class="headline" style="margin-top:40px;">温度センサ</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        温度センサは次のものを使いました．あまり精度は高くありません．<br>
+        （むしろ悪い）<br><br>
+        ・<cite><a href="https://www.digikey.jp/ja/products/detail/microchip-technology/MCP9701-E-TO/1212513
+            " target="_blank">温度センサ概要</a></cite><br>
+        ・<cite><a href="https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP970X-Family-Data-Sheet-DS20001942.pdf
+            " target="_blank">データシート</a></cite><br><br>
+
+        温度センサを使うにあたって次のサイトを参照しました．<br><br>
+        ・<cite><a href="http://jh7ubc.web.fc2.com/Raspberry_Pi/Raspberry_Pi_Pico/Pi_Pico_analog_Input.html
+            " target="_blank">Raspberry Pi Pico MicroPython アナログ入力 テスト</a></cite><br>
+        ・<cite><a href="https://www.kumikomi-kaihatu.com/technical-column/column-026/
+            " target="_blank">Raspberry Pi Pico(MicroPython)で温度センサを使う</a></cite><br>
+        ・<cite><a href="https://qiita.com/relu/items/e458393e1ec282a05a29
+            " target="_blank">Raspberry Pi Pico Wの温度センサー（アナログ値を温度に変換する）</a></cite><br><br>
+        
+        
+        この温度センサの<br><br>
+        <span class="fb">
+            分解能は 19.5mV/dig<br>
+            測定可能温度は 40~125deg<br>
+            出力電圧は 200mV~3V<br><br>
+        </span>
+        でした．<br><br>
+
+        データシートを見るとこの温度センサは最小の出力が200mVなのですが，温度に変換する式を簡単にするために最小電圧を0Vとして計算しました．<br><br>
+
+        
+        関数で表すと次です．valは16進数で取得した温度センサからの値です．<br><br>
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+def cal(val):
+    adc_vol=(val/65535)*3.3
+    #16bitでの出力をvoltageに変換
+
+    temp_vol=adc_vol-0.4
+    #0degにおける出力が0.5v equation4-1 ref
+
+    temp=(temp_vol/19.5)*1000
+    #19.5は温度センサの分解能[mV/dig]
+    return temp
+</code>
+</pre>
+</span>
+        </p>
+
+        <p class="headline" style="margin-top:40px;">温度センサから値を取得する</p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            温度センサから値を取得するにあたってはじめ，次のコードを使用していました．<br><br>
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+from machine import ADC,Pin
+import utime
+
+adc0=machine.ADC(0)
+adc1=machine.ADC(1)
+
+def cal(val):
+    adc_vol=(val/65535)*3.3
+    temp_vol=adc_vol-0.4
+    temp=(temp_vol/19.5)*1000
+    return temp
+
+while True:
+    return0=adc0.read_u16()
+    return1=adc1.read_u16()
+    print("0:",cal(return0)," 1:",cal(return1))
+
+    utime.sleep(1)
+</code>
+</pre>
+</span>
+        今回温度の取得に温度センサーを二つ使用し，別々の箇所の温度測定を考えていました．<br><br>
+        結論として上記のコードでは2つの温度センサの値をうまく取得できません．<br>
+        （詳しく言うと片方のセンサの値は正しいのですが，もう片方はあり得ない値が返ってきます）<br><br>
+         <span class="red fb">原因はPinをINかOUTに設定していないこと</span>にありました．<br><br>
+
+         参考にしたサイトは次です．<br><br>
+         ・<cite><a href="https://blog.goo.ne.jp/jh7ubc/e/b4b4b085db9f8acf579fa8394ffab5ff
+            " target="_blank">Raspberry Pi Pico MicroPython アナログ入力(ADC)テスト</a></cite><br><br>
+
+         修正したコードは次です．
+
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+from machine import ADC,Pin
+import utime
+
+#########################ここが必要！
+Pin(26,Pin.IN)
+Pin(27,Pin.IN)
+#########################
+
+
+adc0=ADC(0)
+adc1=ADC(1)
+
+def cal(val):
+    adc_vol=(val/65535)*3.3
+    temp_vol=adc_vol-0.4
+    temp=(temp_vol/19.5)*1000
+    return temp
+
+while True:
+    return0=adc0.read_u16()
+    return1=adc1.read_u16()
+    print("0:",cal(return0)," 1:",cal(return1))
+
+    utime.sleep(1)
+
+
+
+</code>
+</pre>
+</span>
+        </p>
+
+
+        <p class="headline" style="margin-top:40px;">ブザーを鳴らしたい</p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            温度上昇，冷却を知らせる方法として圧電ブザーを用いました．<br><br>
+            ピタゴラスイッチの音が鳴ります．<br><br>
+            音楽的な知識は皆無なので完全にサイトのをコピーしました．<br><br>
+            参考にしたサイトは次です．<br><br>
+            ・<cite><a href="https://qiita.com/undo0530/items/7ce2ccc806668d911525
+                " target="_blank">PWM信号でスピーカーでメロディー演奏</a></cite><br>
+          
+        </p>
+
+        <p class="headline" style="margin-top:40px;">気づいたこと</p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            Picoへの電力供給方法として単4電池2本で約3Vとしていました．<br><br>
+            Picoには電圧レギュレータがついているので供給電圧が1.8V~であれば3v3Pinには3.3Vが来るはずです．<br>
+            （と思っていた．）<br><br>
+            この3.3Vで温度センサを動かそうとしていました．<br><br>
+            しかし，実際テスターで測定していると供給した電圧をそのまま出力しているようで3.3Vに昇圧されていなかった．<br><br>
+            これは，OfficialなPicoではない中国製のものを使用したからなのか，単にPicoがそういう使用なのかは謎です．<br><br>
+            結局前の記事でも書いたようにまた，<span class="bgyellow fb">供給電力小さすぎ問題</span>です．<br><br>
+            解決方法として，<span class="fb red">100V AC(家庭用電源)に手を出す</span>ことにしました．<br><br>
+            それについて次のページで詳しく書きます．
+
+        </p>
+
 
 
     <!--topages-->
@@ -164,15 +353,305 @@ $(document).ready(function(){
 
 <!--３ページ目-->
 <div id="page3" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2024/10/28</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>03</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+    <h2 class="aCtitle"><span>03</span>AC使ってみた</h2>
 
     <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
 
+    <p class="headline" style="margin-top:40px;">100V AC（交流）</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        <cite><a href="../shake_robot/shake_robot.html" target="_blank">前の記事</a></cite>では怖くて100V ACを使用するのを諦めました．<br><br>
+        原因は供給電力が少ないというものでした．<br><br>
+        そして今回またすぐ出会った．同じ問題．<br><br>
+        電力足りない．．．．<br><br>
+        もう，可能な限り安全に気を付けて<span class="bgyellow">100V ACを使ってみる</span>ことにしました．<br><br>
+        もちろん，ACアダプターを買って供給すればPicoには十分です．<br><br>
+        しかしそれではいけない（したくない）理由が以下です．<br><br>
+        <span class="fb">
+            ・塗装するときにコンセントをコンプレッサーに使って数が足りない．<br>
+            ・長いケーブルが増えるのでごちゃごちゃする．（主にこっち）<br><br>
+        </span>
+        ということで100V ACを使います．<br>
+    </p> 
+
+
+    <p class="headline" style="margin-top:40px;">100V AC使用</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        まず，感電したくないので<span class="fb red">400Vに耐えられる安全手袋</span>買いました．<br>
+        （これでうっかり接触感電はないと思いたい．）
+        <img src="./img/te.jpg" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
+
+        次に，100V ACはどこから引っ張ってくるのか．<br><br>
+        コンプレッサーから引っ張ります．<br><br>
+        このエアコンプレッサーはコンセントに差し込んで使用するので内部で100V ACをどうにかしているはずです．<br><br>
+        なので，コンプレッサーを少し分解．．．<br><br>
+        <img src="./img/inner.png" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
+        ありました．この水色のマルで囲った半透明部分がコンセントから直接来たACの先みたいです．<br><br>
+        確認するとちゃんと100V 50Hz来ていました．<br>（写真取り忘れた．．．）<br><br>
+        で，ここから100V ACを引っ張りたいので半透明の絶縁を剥いでケーブルをはんだ付けします（左）．<br><br>
+        このまま配線むき出しではショートして怖い思いするので絶縁します（右）．<br><br>
+    </p> 
+
+    <div class="flex">
+        <img src="./img/in.png" class="imghalfcenter" style="margin:0 0 0 0vw"><br><br>
+        <img src="./img/ze.jpg" class="imghalfcenter" style="margin:0 0 0 1vw"><br><br>
+    </div>
+
+
+    <p style="margin:3vw 2vw 0px 2vw">
+        素手で触っていますが電流は流れていない状態です．<br><br>
+    </p>
+
+
+    <p class="headline" style="margin-top:40px;">AC/DC コンバータ</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        Picoへの給電は1.8V~5VくらいのDC(直流)です．<br><br>
+        なのでこの100V ACをそのまま接続すると確実に壊れます<br><br>
+        <span class="bgyellow fb">AC/DCコンバータ</span>を使いましょう．<br><br>
+        所謂ACアダプターです．<br><br>
+        しかし100V ACが得られるのは普段使っているようなコンセントプラグではなく2本の銅線からです．<br><br>
+        ということでACアダプターを分解します．<br><br>
+        <img src="./img/ac.jpg" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
+        皆さんご存知のこいつです<br><br>
+        いつもスマホとか充電する時にお世話になってます．<br><br>
+        <img src="./img/acb.jpg" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
+        分解すると中身はこんなのが入っています．<br><br>
+        AC/DCコンバータですね．名前の通りAC（交流）をDC（直流）に直してくれます．<br><br>
+        しかも100Vから5Vに降圧もしてくれる！<br><br>
+        素晴らしいですね！はんだ付けして組み込みましょう．<br><br>
+        ACが入ってくるところはこんな感じにしました．<br><br>
+        <img src="./img/acin.png" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
+        もちろん次は降圧下側をPicoとつなぎます．<br><br>
+        <img src="./img/acout.png" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
+        最後にビニールテープで絶縁（できているか？）して終わり．<br><br>
+        <img src="./img/zetu.jpg" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
+
+    </p> 
+
+
+    <p class="headline" style="margin-top:40px;">装着</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        実際に装着するとこんな感じになりました．<br><br>
+        <img src="./img/so.jpg" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
+        なんか不格好だなぁ<br><br>
+        この記事は終わりです．<br>
+        <span class="small">（もっと早く記事書けるようにならないかな．．．既に2時間以上書いてる）<br><br></span>
+        あ，最後に全体のコードを載せておきます．
+    </p> 
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+
+
+from machine import ADC,Pin,PWM,Timer   
+import utime
+
+#settings
+pin6=Pin(0,Pin.IN,Pin.PULL_UP)#sw hot
+pin7=Pin(2,Pin.IN,Pin.PULL_UP)#sw cool
+
+Pin(26,Pin.IN)#thermomater0
+Pin(27,Pin.IN)#thermomater1
+adc0=ADC(0)
+adc1=ADC(1)
+
+ther_v0=Pin(4,Pin.OUT)#thermomater電源，3v3を給電
+ther_v1=Pin(5,Pin.OUT)
+ther_v0.value(1)
+ther_v1.value(1)
+
+#RGBLED
+pin1=12
+pin2=11
+pin3=10
+
+Pin(pin1,Pin.OUT)
+Pin(pin2,Pin.OUT)
+Pin(pin3,Pin.OUT)
+
+pwms=[PWM(Pin(pin1)),PWM(Pin(pin2)),PWM(Pin(pin3))]
+
+for pwm in pwms:
+    pwm.freq(1000)
+
+
+
+def map_color(color):
+    return int(color*65535/255)
+
+def set_color(red,green,blue):
+    pwms[0].duty_u16(map_color(red))
+    pwms[1].duty_u16(map_color(green))
+    pwms[2].duty_u16(map_color(blue))
+
+#電源が入ったことを知らせる
+set_color(0,255,0)
+utime.sleep(0.5)
+set_color(0,0,0)
+utime.sleep(0.5)
+
+
+#ブザー
+speaker=PWM(Pin(15,Pin.OUT))
+#ピタゴラ音
+A4 = 440
+B4 = 493.883
+C5 = 523.251
+C5s= 554.365
+D5 = 587.330
+E5 = 659.255
+F5 = 698.456
+F5s= 739.989
+G5 = 783.991
+A5 = 880
+B5 = 987.767
+C6 = 1046.502
+
+mspb = 156 # 6.4bpsの逆数 = 0.156ms　これが8分3連符ひとつ分の音の長さ、音の間隔となる
+# ピタゴラスイッチのメロディーを配列で作成。1要素が8分3連符ひとつ分の音の長さになる。0は無音（休符）
+melody = [D5,E5,0,D5,E5,0,G5,F5s,0,D5,E5,0,D5,E5,0,D5,E5,0,C6,B5,0,G5,A5,0,D5,E5,0,D5,E5,0,G5,F5s,0,D5,E5,0,B4,A4,0,B4,C5,0,C5s,D5,0,0,D5,0,D5,E5,0,D5,E5,0,G5,F5s,0,D5,E5,0,D5,E5,0,D5,E5,0,C6,B5,0,G5,A5,0,D5,E5,0,D5,E5,0,G5,F5s,0,D5,E5,0,B4,A4,A4,A4,A4,A4,A4,A4,A4,A4,0,0,F5,E5,0,E5,F5s,E5,F5s,G5,G5,G5,D5,0,B4,C5,0,C5,D5,C5s,D5,B4,B4,B4,0,0,D5,E5,0,D5,E5,0,G5,F5s,0,D5,E5,0,D5,E5,0,D5,E5,0,G5,F5s,0,D5,E5,0,D5,E5,0,D5,E5,0,C6,B5,0,0,G5,0,0,0,0,0,0,0,0,0,0,0,0,0,D5,E5,0,D5,E5,0,C6,B5,0,0,G5]
+
+i=0#メロディーを進めるための変数
+
+
+def beat(timer):
+    global i
+    global melody
+    global speaker
+    if i >= len(melody): # メロディーを最後まで演奏し終えたら
+        speaker.deinit() # スピーカーのPWMを破棄して
+        timer.deinit() # タイマーを破棄して終了
+
+    elif int(melody[i]) == 0: # メロディー音が0、つまり無音（休符）の場合
+        speaker.duty_u16(0) # PWMのDutyを0とすることで波形は出力されずLOWとなり、音は出ない
+
+    else:
+        speaker.freq(int(melody[i] + 0.5)) # PWMの周波数を次のメロディー音の周波数に変更する。整数で渡す必要があるので、+0.5してから小数点以下切り捨て（thanks @naohiro2g）
+        speaker.duty_u16(0x8000) # PWMのDutyを50％に戻し、音を出す。Dutyは0～0xFFFFつまり65535までの間の値で設定
+    i += 1 # メロディーを次に進めて終わり
+
+
+
+
+def sw():#スイッチがどっちに入っているか取得
+    if pin6.value()==0:
+        return "hot"
+    elif pin7.value()==0:
+        return "cool"
+
+def cal(val):
+    adc_vol=(val/65535)*3.3#16bitでの出力をvoltageに変換
+    temp_vol=adc_vol-0.4#0degにおける出力が0.5v equation4-1 ref
+    temp=(temp_vol/19.5)*1000
+    return temp
+
+def get_temp():#平均温度取得
+    temp_list=[]
+
+    for i in range(11):
+        return0=adc0.read_u16()
+        return1=adc1.read_u16()
+        temp0=cal(return0)
+        temp1=cal(return1)
+        temp_list.append(temp0)
+        temp_list.append(temp1)
+        utime.sleep(0.1)
+        # print(temp_list)
+
+    temp_list.sort()#昇順にソート
+
+    median_temp=temp_list[5]#中央値を取得する
+
+    # print(median_temp)
+    # ave_temp=(cal(return0)+cal(return1))/2  #平均が欲しいとき
+    
+    return median_temp
+
+# while True :
+#     get_temp()
+#     utime.sleep(1)
+
+
+max_temp=50
+min_temp=40
+
+def hot_checker():
+    while True:
+        temp=get_temp()
+        print("now",temp)
+        global i
+        if temp>max_temp:
+            print(0)
+            tim = Timer()
+            tim.init(period=mspb, mode=Timer.PERIODIC, callback=beat)
+            utime.sleep(30)#メロディーが終わるまで待機
+            i=0#進んだメロディーをはじめに戻す
+            break
+        else:
+            sw_check=sw()
+            if sw_check=="cool":
+                print("switched")
+                break
+            utime.sleep(30)
+
+
+def cool_checker():
+    while True:
+        temp=get_temp()
+        print("now",temp)
+        # for j in range(temp):
+        #     set_color(0,255,255)
+        #     utime.sleep(0.15)
+        #     set_color(0,0,0)
+        #     utime.sleep(0.15)
+        global i
+        if temp＜min_temp:
+            tim = Timer()
+            tim.init(period=mspb, mode=Timer.PERIODIC, callback=beat)
+            utime.sleep(30)
+            i=0#進んだメロディーをはじめに戻す
+            break
+        else:
+            sw_check=sw()
+            if sw_check=="hot":
+                print("switched")
+                break
+            # set_color(0,255,255)
+            # utime.sleep(0.15)
+            # set_color(0,0,0)
+            # utime.sleep(0.15)
+            utime.sleep(30)
+
+
+
+
+while True:
+    sw_value=sw()
+
+    if sw_value=="hot":
+        set_color(255,0,0)
+        utime.sleep(1)
+        set_color(0,0,0)
+        # print("hot mode")
+        # temp=get_temp()
+        # print("Current temp is",temp)
+        hot_checker()
+
+    elif sw_value=="cool":
+        set_color(0,0,255)
+        utime.sleep(1)
+        set_color(0,0,0)
+        # print("cool mode")
+        # temp=get_temp()
+        # print("Current temp is",temp)
+        cool_checker()
+
+    utime.sleep(1)
+</code>
+</pre>
+</span>
 
     <!--topages-->
     <div class="toPageFlex">
@@ -180,57 +659,7 @@ $(document).ready(function(){
             <div class="topage "><label for="tab2">To Page 2</label></div>
         </div>
 
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-    </div>
-</div>
-
-<!--４ページ目-->
-<div id="page4" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>04</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab3">To Page 3</label></div>
-        </div>
-
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab5">To Page 5</label></div>
-        </div>
-    </div>
-</div>
-
-<!--５ページ目-->
-<div id="page5" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>05</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
-
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
+        
     </div>
 </div>
 

@@ -1,0 +1,92 @@
+温度センサ概要
+https://www.digikey.jp/ja/products/detail/microchip-technology/MCP9701-E-TO/1212513
+データシート
+https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP970X-Family-Data-Sheet-DS20001942.pdf
+
+アナログ入力　
+http://jh7ubc.web.fc2.com/Raspberry_Pi/Raspberry_Pi_Pico/Pi_Pico_analog_Input.html
+
+温度センサ使い方
+https://www.kumikomi-kaihatu.com/technical-column/column-026/
+
+200mV~3Vの出力
+分解能19.5mV/dig
+-40~125deg
+
+温度変換
+https://qiita.com/relu/items/e458393e1ec282a05a29
+
+200mVをおおよそ0vとと考えた．
+
+
+from machine import ADC,Pin
+import utime
+
+adc0=machine.ADC(0)
+adc1=machine.ADC(1)
+
+def cal(val):
+    adc_vol=(val/65535)*3.3#16bitでの出力をvoltageに変換
+    temp_vol=adc_vol-0.4#0degにおける出力が0.5v equation4-1 ref
+    temp=(temp_vol/19.5)*1000
+    return temp
+
+while True:
+    return0=adc0.read_u16()
+    return1=adc1.read_u16()
+    print("0:",cal(return0)," 1:",cal(return1))
+
+    utime.sleep(1)
+
+だと値がバグってたが（100degとか-degが出てきた．温度センサ一個の時はちゃんと動作した．）
+
+from machine import ADC,Pin
+import utime
+
+Pin(26,Pin.IN)
+Pin(27,Pin.IN)
+
+
+adc0=ADC(0)
+adc1=ADC(1)
+
+def cal(val):
+    adc_vol=(val/65535)*3.3#16bitでの出力をvoltageに変換
+    temp_vol=adc_vol-0.4#0degにおける出力が0.5v equation4-1 ref
+    temp=(temp_vol/19.5)*1000
+    return temp
+
+while True:
+    return0=adc0.read_u16()
+    return1=adc1.read_u16()
+    print("0:",cal(return0)," 1:",cal(return1))
+
+    utime.sleep(1)
+
+だと大丈夫だった．
+Pinがoutかinかちゃんと示す必要がありそう．
+https://blog.goo.ne.jp/jh7ubc/e/b4b4b085db9f8acf579fa8394ffab5ff
+この書き方が乗っていたサイト
+
+
+ブザー　慣らし方
+https://qiita.com/undo0530/items/7ce2ccc806668d911525
+ピタゴラ
+https://qiita.com/undo0530/items/7ce2ccc806668d911525
+
+
+
+3v3pinはpicoの入力電圧をそのまま出してるっぽい
+
+
+
+
+
+
+
+
+
+
+
+
+

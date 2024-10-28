@@ -155,6 +155,7 @@
                     私は 次の代にサイトの運営を引き継ぐ際に問題があると感じました．<br><br>
                     引継ぎ資料から一応のサイトの更新方法の引継ぎはされていたのかと思います．<br>
                     しかし，引継ぎ資料を確認すると，ほとんどが<u>コピペ箇所を指示</u>したもので，htmlとcssの関係などといったサイトの基本的な説明がないものでした．<br><br>
+                    （コピペという点では私も同じようにコピペ指示になるかも．．．）<br><br>
                     結果として次の代がサイトに関する知識が不足したまま運営することになっていました．<br><br>
                     この引継ぎ方法自体，効率的で良いものとは感じたのですが，結果としてサイトのコードが荒れてしまう結果となっていました．<br>
                     その引継ぎ方法を一新することも一つの目的にサイトを新しくしました．
@@ -165,12 +166,12 @@
                     主な問題点を挙げます．<br><br>
                     <span class="fb">
                     ・タグが閉じられていない箇所が数多くある→なぜ動いてる？<br>
-                    ・HTML4と宣言しているのにHTML5の記述が多々ある→仕方がない気がします<br>
+                    ・HTML4と宣言しているのにHTML5の記述が多々ある→良くないです<br>
                     ・エンコードが適当になっている（Shift-JISと宣言しているのにUTF-8であったり)→文字化けの原因<br>
                     ・プロトコルがほとんどHTTPであり，HTTPSに修正されていない→セキュリティ上の問題<br>
-                    ・ファイルの管理がめちゃくちゃ→汚かったです<br>
-                    ・パスが通っていない部分がある→配線がつながってないのと同じ
-                    ・存在しないタグが使われている→驚きました<br><br>
+                    ・ファイルの管理がめちゃくちゃ→いたるところに散らばっていました<br>
+                    ・パスが通っていない部分がある→ロボットの配線がつながってないのと同じ<br>
+                    ・存在しないタグが使われている→知りません<br><br>
                     </span>
 
                     大きな問題点としては以上です．<br>
@@ -426,15 +427,15 @@ set_inter_controll();
                     そのミスすらも修正されず次の代に引き継がれ．．．．．．<br>
                     <span class="small">あぁぁぁぁぁぁぁぁ．．．．．．．．．</span><br><br>
                     それを防ぐためにも引継ぎ方法を今回より変えていきたいと思います．<br><br>
-                    もちろん，同じようなファイルを複製しなくてはいけないものは，~template.htmlとしてテンプレートを用意しています．<br>
-                    それを複製，名前変更をしてご使用ください．
+                    もちろん，同じようなファイルを複製しなくてはいけないものは，~template.htmlとしてテンプレートを用意しています．（作りました）<br>
+                    それを複製，名前変更をしてご使用ください．<br><br>
 
                     <span class="red big fb dgo">必ずサイトのソースコードのバックアップは取るように！！！！</span><br><br>
 
-                    ソースコードのエディターは何でも構いませんが，Jet BrainsのWeb Stormをお勧めします．<br>
+                    ソースコードのエディターは何でも構いませんが，Jet BrainsのWeb Stormをお勧めします．（今ではVS codeでもいい気がしている）<br>
                     サイトを運営するうえで非常に便利な機能がたくさんあり，Git管理(後述)も簡単だからです．
                 </p>
-                <p class="headline" style="margin-top:40px;">コピペだけでない引継ぎ</p>
+                <p class="headline" style="margin-top:40px;">コピペ指示だけでない引継ぎ</p>
                 <p style="margin:3vw 2vw 0px 2vw">
                     上述したようにコピペだけの引継ぎでは今後このサイトも同じようになることが予想されます．<br><br>
                     そこで，今回よりサイトの運営者には<span class="fb">最低限の知識</span>をつけてからサイトの運営を行うようにしてもらおうと思います．<br><br>
@@ -443,51 +444,53 @@ set_inter_controll();
                     次のサイトを使って力をつけてもらいたいと考えています．<br><br>
                     <cite><a href="https://www.htmq.com/tutorial/" target="_blank" class="fb big">https://www.htmq.com/tutorial/</a></cite><br><br>
                     サイトを確認してもらうとわかりますが，htmlのチュートリアルとなっています．<br><br>
-                    今のサイトの運営者が一からサイトの制作を次の代に教えるのは非常に手間がかかりますし非効率です<span class="fgo fb">(サイトの特性上）</span>．<br>
+                    今のサイトの運営者が一からサイトの制作を次の代に教えるのは非常に手間がかかりますし非効率です<span class="fgo fb">（サイトの特性上）</span>．<br>
                     なので，上のサイトで<span class="red">チュートリアルを行う</span>ことによってサイトの基本を身に着けてもらいたいと思います．<br><br>
                     全30章と少し長い気もしますが，一つ一つは短いのでやってほしいです．<br>
                     このサイトのチュートリアルをさせるといっても次の代が最初から一人でやるのは難しいと思います．<br>
                     なので引継ぎの際にこのサイトのチュートリアルをやらせるときは<span class="bgyellow">隣に現役のサイト運営者がついて</span>行うことが望ましいです．<br><br>
-                    <span class="small">少なくとも，私の代ではそうします．それに一人だとやる気が出ない気がします</span>
+                    <span class="small">少なくとも，私の代ではそうします．それに一人だとやる気が出ない気がします</span><br>
+                    <span class="small">私の次の代の運営者は自分でチュートリアルすべてやってしまっていました．ありがとう！</span>
                 </p>
                 <p class="headline" style="margin-top:40px;">年度ごとの変更箇所</p>
                 <p style="margin:3vw 2vw 0px 2vw">
                     先ほどのサイトで最低限のサイトの知識，力はついたかと思います．なので次はサイトの更新個所について書きます．<br>
-                    この段階で次の段階で次の代には先ほどのサイトで<span class="fb">最低限サイトを動かす力はある</span>という前提で話を進めます．<br><br>
+                    この段階で次の段階で次の代には先ほどのチュートリアルサイトで<span class="fb">最低限サイトを動かす力はある</span>という前提で話を進めます．<br><br>
+                    わからないことがあればその代のサイト運営者に聞いてください．<br><br>
                     まず一度年度ごと，大会ごとに修正するべき箇所の写真とパスを載せます．<br><br><br><br>
                     <!--change place img-->
-                        <span class="fb">pass : <cite>./index.html</cite><br></span>
+                        <span class="fb small">pass : <cite>./index.html</cite><br></span>
                         <img src="img/change_place/shugo.png" class="imgfullcenter">
                         集合写真です．飛行ロボットコンテスト後にみんなで撮る習慣があるのでその写真か，他のものに差し替えてください．<br>
                         写真自体のpassはソースコードを見てください．<br><br><br>
 
-                        <span class="fb">pass : <cite>./rog/rog.html</cite><br></span>
+                        <span class="fb small">pass : <cite>./rog/rog.html</cite><br></span>
                         <img src="img/change_place/rog.png" class="imgfullcenter">
                         航空研の活動記録を残しているところです．どこをどのようにコピペしたらいいか考えて行ってください．<br><br><br>
 
-                        <span class="fb">pass : <cite>./aboutus/aboutus.html</cite><br></span>
+                        <span class="fb small">pass : <cite>./aboutus/aboutus.html</cite><br></span>
                         <img src="img/change_place/aboutus_dai.png" class="imgfullcenter">
                         航空研のメンバー紹介です．次の代の部分を付け加えてください．<br>
                         もちろん，リンク先のページも作成してください．~ template.htmlのようなものがあるのでそれを複製し，ファイル名を適当なものにした後でそれに記入する形で追加してください．<br><br><br>
 
-                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/hikoki/hikoki.html</cite><br></span>
+                        <span class="fb small">pass : <cite>./aircrafts/kitai_intro/hikoki/hikoki.html</cite><br></span>
                         <img src="img/change_place/hikoki_home.png" class="imgfullcenter">
                         その年度に制作された飛行機の名前を公開しているページです．適当な部分をコピペして追加してください．<br><br><br>
 
-                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/hikoki/hikoki_box/hikoki_20**.html</cite><br></span>
+                        <span class="fb small">pass : <cite>./aircrafts/kitai_intro/hikoki/hikoki_box/hikoki_20**.html</cite><br></span>
                         <img src="img/change_place/hikoki.png" class="imgfullcenter">
                         その年度の機体を紹介しているページです．~template.htmlがあるのでそれに基づいて書いてください．<br><br><br>
 
-                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/rocket/rocket.html</cite><br></span>
+                        <span class="fb small">pass : <cite>./aircrafts/kitai_intro/rocket/rocket.html</cite><br></span>
                         <img src="img/change_place/rocket_home.png" class="imgfullcenter">同様<br><br><br>
 
-                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/rocket/rocket_box/rocket_20**.html</cite><br></span>
+                        <span class="fb small">pass : <cite>./aircrafts/kitai_intro/rocket/rocket_box/rocket_20**.html</cite><br></span>
                         <img src="img/change_place/rocket.png" class="imgfullcenter">同様<br><br><br>
 
-                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/cansat/cansat.html</cite><br></span>
+                        <span class="fb small">pass : <cite>./aircrafts/kitai_intro/cansat/cansat.html</cite><br></span>
                         <img src="img/change_place/cansat_home.png" class="imgfullcenter">同様<br><br><br>
 
-                        <span class="fb">pass : <cite>./aircrafts/kitai_intro/cansat/cansat_box/cansat_20**.html</cite><br></span>
+                        <span class="fb small">pass : <cite>./aircrafts/kitai_intro/cansat/cansat_box/cansat_20**.html</cite><br></span>
                         <img src="img/change_place/cansat.png" class="imgfullcenter">同様<br><br><br>
 
                     以上が年度ごとに更新してほしい箇所です．他にも修正すべき部分があれば各自修正・追加お願いします．<br><br><br>
@@ -535,7 +538,7 @@ set_inter_controll();
                 <p style="margin:3vw 2vw 0px 2vw">
                     サイトを新しくして発覚した問題を挙げます．<br><br>
                     それは，キャッシュがない状態でサイトを開くと<span class="fb red">時間がかかってしまう</span>点です．<br><br>
-                    つまり初めて，今の航空研のサイトを開くと少し遅い上に，homeの飛行機が飛ぶ演出が出ないときもあるということです．<br><br>
+                    つまり初めて今の航空研のサイトを開くと，少し重い上にhomeの飛行機が飛ぶ演出が出ないときがあるということです．<br><br>
                     原因としてはサイトに表示する画像が重いことが挙げられます．<br>
                     私自身，この新しいサイトを製作するときに製作途中のサイトをパソコンで確認していました．<br>
                     なので，少しでも画像が荒いと目立ってしまい，気になったので表示する画像を<span class="fb">高画質</span>のものを使用していました．<br><br>
@@ -547,7 +550,8 @@ set_inter_controll();
                     既にアップロードした画像や動画の差し替えには大変時間がかかってしまいます．<br>
                     現状，私自身航空研のweb運営2年目であって，そろそろ引継ぎを考えています．<br><br>
                     現段階でサイトはうまく動作しており，表示も問題ないようなのですが，次のサイト運営者様もしお時間がございましたらこの問題に取り組んではいただけないでしょうか．<br>
-                    <span class="small fb">私はこの大規模なサイトを新しくすることで力尽きてしまいました．．．．．．．</span>
+                    <span class="small fb">私はこの大規模なサイトを新しくすることで力尽きてしまいました．．．．．．．</span><br><br>
+                    運営頑張ってください<br><br>
                 </p>
 
                 <!--topages-->
