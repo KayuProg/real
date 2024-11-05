@@ -31,7 +31,7 @@
 <body>
 
 
-    <!--to top button-->
+<!--to top button-->
 <div class="toTopButton"></div>
 <script>
 $(document).ready(function(){
@@ -40,7 +40,7 @@ $(document).ready(function(){
     $(window).scroll(function(){
         if($(this).scrollTop()>100){
             toTopBtn.fadeIn();
-            $('.toTopButton').addClass('vvt');
+            $('.toTopButton').addClass('vvt');//base.cssにある
         }else{
             toTopBtn.fadeOut();
         }
@@ -53,7 +53,50 @@ $(document).ready(function(){
     });
 });
 </script>
+
+
+<!--topage=のpage上部遷移-->
+<script>
+$(document).ready(function(){
+    const CheckBtn1 = document.getElementById('tab1');
+        CheckBtn1.addEventListener('change', function () {
+            $('body,html').animate(
+               {scrollTop:0},500
+         );
+        });
+
+    const CheckBtn2 = document.getElementById('tab2');
+    CheckBtn2.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+
+    const CheckBtn3 = document.getElementById('tab3');
+    CheckBtn3.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
     
+    const CheckBtn4 = document.getElementById('tab4');
+    CheckBtn4.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+
+    const CheckBtn5 = document.getElementById('tab5');
+    CheckBtn5.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+    }
+);
+</script>
+
+
 <!--===============================================================
     header
 ===============================================================-->
@@ -90,7 +133,7 @@ $(document).ready(function(){
 <div class="mainContentsPa"><!--内部コンテンツの位置決め-->
 
 <!--上のタブ選択部分-->
-<input id="tab1" type="radio" name="check" checked>
+<input id="tab1" type="radio" name="check" checked class="a">
 <label for="tab1" class="pagetabTop">Page 1</label>
 
 <input id="tab2" type="radio" name="check">
@@ -128,6 +171,16 @@ $(document).ready(function(){
 
     <!--actmaincontents-->
     <p class="headline" style="margin-top:40px;">head</p>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    a
+    aa
+    abc
+    abc
 
 
 
@@ -148,6 +201,16 @@ $(document).ready(function(){
 
     <!--actmaincontents-->
     <p class="headline" style="margin-top:40px;">head</p>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    a
+    aa
+    abc
+    abc
 
 
     <!--topages-->
@@ -172,6 +235,16 @@ $(document).ready(function(){
 
     <!--actmaincontents-->
     <p class="headline" style="margin-top:40px;">head</p>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    a
+    aa
+    abc
+    abc
 
 
     <!--topages-->
@@ -196,7 +269,6 @@ $(document).ready(function(){
 
     <!--actmaincontents-->
     <p class="headline" style="margin-top:40px;">head</p>
-
 
     <!--topages-->
     <div class="toPageFlex">
