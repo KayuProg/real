@@ -322,8 +322,44 @@ os.chdir('/home/kayu/Desktop/plan/')#パスは実行したいスクリプトの�
     <p class="headline" style="margin-top:40px;">Fletでデスクトップアプリを作る</p>
     <p style="margin:3vw 2vw 0px 2vw">
     
+        flet runで以下のエラーが出た．<br><br>
+        error while loading shared libraries: libmpv.so.1: cannot open shared object file: No such file or directory
+        共有ライブラリが見つからないらしい
+        https://qiita.com/kawamo55/items/4d973ede723f2987ef7a
+        結局このサイトで行けそう．
+        またエラー出た．（いつも通り）
+        Unable to init server: Could not connect: Connection refused
+        これは単に自分の場合はラズパイのデスクトップを開いてないことによるものだった．
+        ずっとvscodeでssh接続で捜査していた．
+        flet runをしたい場合はvnc viewerなどでラズパイのデスクトップを直接表示させて実行する必要があった．
+        しかし，またエラー
+        atk_socket_embed: assertion 'plug_id != NULL' failed
+        うーん．しらべてもよくわからん．
+        そこで一度ラズパイを再起動した．
+        <img src="./img/ututta.png" class="imghalfcenter" style="margin:0 0 0 1vw"><br><br>
+        え？<br><br>
+        急にちゃんと表示された．
+        terminalには似たようなエラー．
+        何が起こっている．．．<br><br>
+        わからない．<br><br>
+        まあ，動いたしいっか（後で苦労しそう）<br><br>
+        bashファイルから
+# 実行権限を付与。これでダブルクリックした際に「端末で実行」が出てくる
+cd /home/kayu/Desktop/plan/
+chmod +x ./test/a.py
 
+. .venv/bin/activate
 
+cd test/test_flet
+flet run
+
+# cd test
+#python test/a.py
+        と記述して実行してもちゃんと開きました．
+        うーんできてる．<br><br>
+        やっぱreboot大事だな．
+        うん．
+        沼ったらとりあえずrebootしよう（学び）
     </p>
 
     <!--topage-->
