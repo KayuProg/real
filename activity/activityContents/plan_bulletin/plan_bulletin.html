@@ -346,8 +346,6 @@ os.chdir('/home/kayu/Desktop/plan/')#パスは実行したいスクリプトの�
         bashファイルから
 # 実行権限を付与。これでダブルクリックした際に「端末で実行」が出てくる
 cd /home/kayu/Desktop/plan/
-chmod +x ./test/a.py
-
 . .venv/bin/activate
 
 cd test/test_flet
@@ -360,6 +358,91 @@ flet run
         やっぱreboot大事だな．
         うん．
         沼ったらとりあえずrebootしよう（学び）
+    </p>
+
+    <p class="headline" style="margin-top:40px;">Flet作っていく</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        すごい．文法がすごく簡単．わかりやすい．直感的．感動．
+        初めて使うためあまり勝手がわからないので試しにドキュメントにあるチュートリアルのto-do appを作ってみる．
+
+        https://gallery.flet.dev/todo/
+        これだけでもかなりクオリティの高いものが作れる．ほんとすごいな．なんだったんだTkinterは
+
+        ある程度容量はつかんだので実際に作る．
+        チュートリアル英語だし，プログラムの写経疲れた．．．
+
+        とりあえず一度アプリとして出力してみたいと思う．<br><br>
+        どうなるかな．．<br><br>
+        え，，アプリとしてビルドするには普通にfulutterのコンパイルツール入れなきゃいけないの．．．<br><br>
+        なにそれ，知らない．．．<br><br>
+        <img src="./img/required.png" class="imghalfcenter" style="margin:0 0 0 1vw"><br><br>
+        求められるハードウェアの性能がこんな感じ．<br><br>
+        うーん．ラズパイ上で開発するべきじゃないなこれ．<br><br>
+        Free disk space が60くらいほしいのか．（残り30GB）<br><br>
+        厳しくないか．．．<br><br>
+        え．．．<br><br>
+        どうしよう<br><br>
+        もう他のパソコンでビルドするしかないよな<br><br>
+        そうすると他のパソコンがwindows OSしかないからビルドしてラズパイにアプリ移すならwebアプリしかない．．<br><br>
+        <img src="./img/matrix.png" class="imghalfcenter" style="margin:0 0 0 1vw"><br><br>
+        これが各環境（OS）におけるビルドできるアプリの種類の画像．
+        https://flet.dev/docs/publish
+        ここに乗ってる一番左のapk/aabはアンドロイド関係のやつ見たい．
+        WSL使ってLinux環境様にビルドできるみたいだけどLinux系のアプリとかビルドってすごいversionにうるさいイメージがある．<br><br>
+        以前にLinux使っててversion関係で沼った上に諦めなくてはいけなかった記憶がある．<br><br>
+        やっぱりwebアプリとしてビルドするしかなさそう．<br><br>
+        そうすると，どうなるのだろう．<br><br>
+        flutterでwebアプリを作る原理？みたいなのを調べてみるとDart（プログラミング言語）をJavascriptに変換しているらしい．<br><br>
+        今回使っているfletで使用しているのはPython．
+        その上にGoogle APIを使うためにライブラリを何個もインストールしている．
+        これビルドできるのか？
+        もうとりあえずやるしかなさそう．
+        ラズパイ上でのビルドはできないことはほぼ確定しているからまず，Windows上にfletを扱うための環境構築をする．<br><br>
+        頑張ろう．．．．<br><br>
+        頑張った．webアプリとして動的なものとしてする．<br><br>
+        https://flet.dev/docs/publish/web/dynamic-website/hosting
+        ドキュメントに書いてある説明をいろいろ読んでFly.ioを使うことにした．
+        Replitに関してはweb IDEで少しやりたいことと違う．
+        Self HostingはUbuntuとかLinux環境じゃないと厳しそう．
+        ということで聞いたこともないFly.ioを使います．
+        無理そうだったらReplit使おうかな．
+        https://fly.io/docs/flyctl/install/
+        ここ見てwindowにインストール．
+        powershellで実行．cmdじゃないよ
+        fly.ioのサイトに従ってアプリをデプロイしようとしたが，次の文章が表示された．<br><br>
+        Error: We need your payment information to continue! Add a credit card or buy credit: https://fly.io/dashboard/USER_NAME/billing
+        fly.ioを使うには料金が発生した時のためにクレジットカードを追加しなくてはいけないらしい．<br><br>
+        う～ん．<br><br>
+        Replitにしようかな．
+        少し面倒すぎる．
+        ということで一度fly.ioは諦めてReplitでデプロイをしてみようと思います．<br><br>
+        できました．
+        <img src="./img/repl.png" class="imghalfcenter" style="margin:0 0 0 1vw"><br><br>
+        問題としては，スクリプトを実行した際に新しくWindowが表示されるがそこでは何らかの原因でAppが表示されない．
+        表示するためには直接Replのウィンドウから開く必要がある．<br><br>
+        これは開けても開発用デバッグ用らしく，Replのセッションを切断するとウィンドウも使えなくなってしまう．<br><br>
+        有料のものを使えばセッション切断後も使えるらしいが有料は嫌です．<br><br>
+        デプロイ方法はこの開発用ウィンドウにしようかな．<br><br>
+        
+
+        
+
+   </p>
+
+    <p class="headline" style="margin-top:40px;">知らんかった</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        製作中のスクリプトファイルをgit hubにpushしようとしたらGoogle Aouthの気密ファイル含んでいるってことではじかれた．
+        びっくり．機密ファイルをpush使用とした私も馬鹿だが，そんな馬鹿でも大丈夫なような仕組みがあるらしい．
+        すごい．
+        機密ファイルはちゃんとpushしないように設定した．
+
+        画面の構成を考えていた．表示画面からtaks終了でチェックできたら楽だろうな．<br><br>
+        ということでいろいろ調べた．
+        https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#update
+        に
+        "status": "A String", # Status of the task. This is either "needsAction" or "completed".
+        という記述があった．できそう．よし．<br><br>
+        
     </p>
 
     <!--topage-->
