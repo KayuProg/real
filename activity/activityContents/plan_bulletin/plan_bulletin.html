@@ -362,6 +362,193 @@ flet run
         沼ったらとりあえずrebootしよう（学び）
     </p>
 
+
+
+    <p style="margin:3vw 2vw 0px 2vw">
+        日付をICT標準？から日本時刻に直し，isoフォーマットに変換する方法．
+        #ISOformatでの日付
+        now_time=datetime.datetime.utcnow()+datetime.timedelta(hours=9)
+        now = now_time.replace(hour=0, minute=0, second=0, microsecond=0).isoformat() + "Z"  # 'Z' indicates UTC time
+        next_day= (now_time + datetime.timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0).isoformat()+"Z"
+
+
+    </p>
+
+
+
+
+    <p style="margin:3vw 2vw 0px 2vw">
+        カレンダー内の予定の色を取得したいとき,
+        colors = service.colors().get().execute()#予定のカラーの辞書配列
+        でカレンダーのカラー情報を取得．
+
+        events = events_result.get("items", [])
+        で予定の情報を取得する．
+        color=event.get("colorId","1")
+        でenents内の各予定のcolorIdを取得する．"1"は色が指定されていない場合に1を入れるということ．
+        別に
+        color=event["colorId"]
+        でもよさそう．
+
+        event_time=datetime.fromisoformat(event["date"]).strftime("%H:%M")
+        でisoフォーマットから時間のみを撮った．
+
+    </p>
+
+
+
+
+
+    <p style="margin:3vw 2vw 0px 2vw">
+        再描画する方法．
+
+        textに関しては.valueで変更ができそうだが，contentのdescriptionなどの消去をどうしようって感じ．
+
+        さんざんいろいろ試してできたのが，
+        self.plans.controls.clear()
+        を使ってself.plansのcontrolを一度すべて消す．
+        self.plans=ft.Column(controls=[],expand=True)
+        という風にもう一回初期化して行けるかと思ったけどこれはダメだった．
+        今使っているself.plansのメソッドを使って変更するしか方法はなさそう．
+        で，
+        self.plans.controls.append()
+        を使ってもう一回self.plansにcontrolsを登録しなおす．
+        これでできた！嬉しいいいいいいいいいいいいいい！！！！！
+        
+
+
+
+    </p>
+
+
+
+
+
+
+
+
+    <p style="margin:3vw 2vw 0px 2vw">
+        TASKSの方を作っていく．
+
+        #google.auth.exceptions.RefreshError: ('invalid_scope: Bad Request', {'error': 'invalid_scope', 'error_description': 'Bad Request'})
+        というエラーが出て実行できないとき
+        SCOPES = ["https://www.googleapis.com/auth/tasks"]
+        のスコープを
+        SCOPES = ["https://www.googleapis.com/auth/tasks.readonly"]
+        という風に変更すると行けた．なぜかは不明．怖い．
+        最終的にはトークンを再度発行して解決した．
+
+
+
+    </p>
+
+
+
+
+    <p style="margin:3vw 2vw 0px 2vw">
+     displayの切り替え
+
+     self.display_flag=1#1の時にはremainが表示されている．0のときにはcompletedが表示されている．
+    というふうにインスタンス作成時にdisplayの状態を記録する変数を初期化しておく．
+
+    関数内では
+    def change_display(self,e):
+    self.tasks_list.controls.clear()
+    if self.display_flag==1:
+        self.tasks_list.controls.append(self.completed)
+        self.display_flag=0
+    elif self.display_flag==0:
+        self.tasks_list.controls.append(self.remain)
+        self.display_flag=1
+
+    self.page.update()
+
+    というふうにself.display_flagの値によってappendするcontrolsを変更している．
+    ただし，self.pageはインスタンス作成時に引数としてmain()の解き作成したft.pageを持ってきている．
+
+    </p>
+
+
+
+
+    <p style="margin:3vw 2vw 0px 2vw">
+       for文回していて関数に引数を保持しておいてほしいとき．
+       デフォルト引数を使うといい．
+       例
+       on_change=lambda e, tsid=tasklist_id, tid=task_id, ts=status:tasks.change_status(tsid, tid, ts,e.control.value)
+       </p>
+   
+   
+
+    <p style="margin:3vw 2vw 0px 2vw">
+        service.tasks().update(
+            tasklist=tasklistid,
+            task=task_id,
+            body={"status": "completed"}  # ステータスを "completed" に設定
+            ).execute()
+
+        という感じでAPIから変更をしようとしたときに
+        <HttpError 400 when requesting "Something URL" returned "Missing task ID". Details: "[{'message': 'Missing task ID', 'domain': 'global', 'reason': 'invalid'}]">
+        というエラーが返されるとき．
+        updateではなくpatchを使うとしっかりと反映される．なぜかは不明.HTTP通信の何かがupdateだとおかしいらしい．
+        なのでコードは
+        service.tasks().patch(
+            tasklist=tasklistid,
+            task=task_id,
+            body={"status": "completed"}  # ステータスを "completed" に設定
+            ).execute()
+        こっちを使用する．
+
+        https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#get
+
+        詳しい使い方はこっちを参照して！
+
+
+    </p>
+
+
+
+    <p style="margin:3vw 2vw 0px 2vw">
+        スライドスイッチでstatus変化させた後の画面変化について
+        self.tasks_list_create()を再利用した．
+        関数の最初に
+        self.remain.controls.clear()
+        self.completed.controls.clear()
+        を追加してcontrolの中身を全て空にしてからlistを再度作成させることにした．
+        ここで問題になるのがスライドスイッチを変化させてすぐにGoogle APIに問い合わせてもまだ，Google TaskにはStatusの変化が反映されないことだ．
+        ここで，再度controlsの中身を作成しなおすまでに少し，時間をおくことで対応する．
+        今のところ2秒くらいかな．
+
+        スライドスイッチを変化させたときの関数は次の感じ
+        def task_complete(self,tid,ts,val):
+        tasks.change_status(tid, ts,val)
+        #ここにtasksの表示をupdateする関数の実行を書く．
+        time.sleep(2)
+        self.tasks_list_create()
+        self.page.update()
+        
+        return 0
+
+        気が向いたらそのページのStatusが同じになるまでループし続けるやつ書くのもあり．多分そうする．
+
+    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!--topage-->
     <div class="toPagePaRight1">
         <div class="topage "><label for="tab2">To Page 2</label></div>
