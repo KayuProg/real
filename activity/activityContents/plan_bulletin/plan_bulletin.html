@@ -606,18 +606,52 @@ flet run
         def task_complete(self,tid,ts,val):
         tasks.change_status(tid, ts,val)
         #ここにtasksの表示をupdateする関数の実行を書く．
-        time.sleep(2)
+        time.sleep(1)
         self.tasks_list_create()
         self.page.update()
         
         return 0
 
-        気が向いたらそのページのStatusが同じになるまでループし続けるやつ書くのもあり．多分そうする．
+        ここら辺の関係で同時に処理が終わる前にスライドスイッチを押しちゃうとバグる．
+        だから，一つ一つ処理が終わるまで待つ必要があります．
+
+        非同期処理を使うといい感じになるかも
+        
 
     </p>
 
 
+    
+    <p style="margin:3vw 2vw 0px 2vw">
+        btn= ft.Switch(value=True,on_change=lambda e,tid=task_id, ts=status:self.task_complete(tid, ts,e.control.value))
+        という関数でon_changeの関数が非同期だと実行されない問題．
+        on_change自体は同期的なコールバック関数らしい．
+        
+        非同期処理を書いてたらbtnのon_changeが反応しなくなってしまった．詳しくいろいろ調べてたけどわからず，
+        結論としてGPTにきいたところ，fletでのスライドスイッチのイベントループと競合しているのではないかとのこと．
 
+        諦めます．他の並列処理？も試そうと思えばできるけど疲れました．．．
+        さらに，非同期処理をしたからといって余り処理速度が今回は向上しなかったためこのまま行きます．
+
+        https://qiita.com/Toyo_m/items/992b0dcf765ad3082d0b#%E5%AE%9F%E8%A3%85%E4%BE%8B
+        https://tech.asahi.co.jp/posts/20240328-7eb3
+        ここら辺使いながら非同期処理の勉強した．
+
+    </p>
+
+    <p style="margin:3vw 2vw 0px 2vw">
+        [SSL: DECRYPTION_FAILED_OR_BAD_RECORD_MAC] decryption failed or bad record mac (_ssl.c:2580)
+        というエラーがスライドスイッチをポチポチしていると現れた．
+        つまり，Google APIを通じて変更を加えようとしたときにエラーが出たということ．
+
+        https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10685 参考になりそう．デモpythonのバージョン違うんだよな．
+
+        結局うまくいく方法見つからなかった．だから，Google APIにアクセスしてエラーが出たらリトライする仕組みにしようかな．
+
+        原因としては画面の自動updateとスライドスイッチの処理が競合したときにこのエラーになるっぽい．
+        だから，calenderの方だけ自動的にupdateされるようにしてtasksは手動にすることにする．
+
+    </p>
 
 
 

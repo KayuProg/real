@@ -141,12 +141,12 @@ $(document).ready(function(){
 
 <input id="tab3" type="radio" name="check" >
 <label for="tab3" class="pagetabTop">Page 3</label>
-
+<!-- 
 <input id="tab4" type="radio" name="check" >
 <label for="tab4" class="pagetabTop">Page 4</label>
 
 <input id="tab5" type="radio" name="check" >
-<label for="tab5" class="pagetabTop">Page 5</label>
+<label for="tab5" class="pagetabTop">Page 5</label> -->
 
 <!--タブ選択によるコンテンツ部分-->
 <div class="pages"><!--全ページの全体的なスタイルを指定するため-->
@@ -163,97 +163,137 @@ $(document).ready(function(){
 
 <!--１ページ目-->
 <div id="page1" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2025/03/08</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>01</span>TITLE</h2>
-    <img class="aCeyecatch" src="img/" width="%">
+    <h2 class="aCtitle"><span>01</span>Advanced Humidifier</h2>
+    <img class="aCeyecatch" src="img/head.png" width="%">
 
     <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
+    <p class="headline" style="margin-top:40px;">発端</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        加湿器が壊れていて修理のために分解したらかなり単純な構造で改造することにした．
-        モードが3種類あり，その中の何も指定されていない部分を湿度がある一定以下になったら自動的に加湿器をオンにするように改造する．
-        湿度は，温度を取得しそこから計算するようにした．
-        pro-miniを使うのはできるだけコンパクトにしたかった．
-        消費電力を抑えたかった．
-        使ってみたかった．がある．
-        この基盤に書き込むためにはシリアル変換器が必要．
+        加湿器が壊れていて修理のために分解したらかなり単純な構造であったので改造することにした．<br><br>
+        また，大学の授業でマイコンを使って何かを作る課題も出たためちょうどよくこれを提出することにした．<br><br>
+
+    </p>
+
+    <p class="headline" style="margin-top:40px;">目標</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+      改造前の加湿器には次の三つの機能がある．<br><br>
+     1.常に加湿<br>
+     2.3秒ごとに加湿<br>
+     3.OFF<br><br>
+
+     この機能のOFFの部分に新しく機能を付け加える．<br><br>
+
+    付け加える機能としては，<span class="fb big">周囲の湿度を測定しそれに合わせて加湿をする</span>という機能である．<br><br>
+
+    </p>
+
+    <p class="headline" style="margin-top:40px;">使用部品</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+     ・<span class="fb">Arudino Pro Mini　のパチモン</span><br><br>
+        改造前の加湿器が非常にコンパクトなものであったので中に組み込むマイコンボードも小さくしたかった．<br><br>
+        また，ATmega328p搭載の省電力モードを試してみたいというのもある．<br><br>
+
+     ・<span class="fb">USBシリアル変換器 (FT232RL)</span><br><br>
+        Arudino Pro Miniに書き込むために必要．<br><br>
+        マイコンへの接続方法は<br><br>
+        <cite><a href="https://blog.goo.ne.jp/toko0131/e/cadb666766e595f8910c5a92c1651489" target="_blank">Arduino Pro mini 5V 16MHzクローンとAE-UM232R </a></cite><br><br><br>
+        に書いてある．<br><br>
+
+        マニュアルはこっち<br><br>
+        <cite><a href=" https://akizukidenshi.com/goodsaffix/L023_FT232RL%20USB%E3%82%B7%E3%83%AA%E3%82%A2%E3%83%AB.pdf" target="_blank">24ピンDIP-ICサイズ　FT232RLUSB-シリアル変換モジュール  </a></cite><br><br><br>
+        
+        ショートピンをどのように設定すればいいかは次のサイトを参考にした．<br><br>
+        <cite><a href=" https://kurobekoblog.com/arduino_promini" target="_blank">【Arduino Pro Mini】書き込み方法～Lチカ</a></cite><br><br><br>
 
 
-        シリアル変換器のつなぎ方の参照は次のサイトに
-        https://blog.goo.ne.jp/toko0131/e/cadb666766e595f8910c5a92c1651489
+        さらに，<span class="fb">usbーシリアル変換モジュールを使うためにはドライバのインストールが必要</span>．<br><br>
 
-        ft232rl usbーシリアル変換モジュールを使うためにはドライバのインストールが必要．
+        書き込みに際してarudinoをブートローダで書き込む方法ではなく直接arudino IDEから書き込む方法を模索した．<br><br>
 
-        マイコン自体はAtmega328Pが積んであるマイコンです．Arudino uno やnanoと同じマイコン．．．
-
-        arudinoをブートローダで書き込む方法ではなく直接arudino ideから書き込む方法を模索した．
-        シリアル変換器自体のマニュアルはここにあった
-        https://akizukidenshi.com/goodsaffix/L023_FT232RL%20USB%E3%82%B7%E3%83%AA%E3%82%A2%E3%83%AB.pdf
-        そこからショートピンをどのように設定すればいいかを読んだ．
-        https://kurobekoblog.com/arduino_promini
-        具体的な書き込みにはArudino pro miniと同様の書き込み方法であった．しかし，prosessorを使っているマイコンの使用に変更しないといけない．
+        結果として具体的な書き込みはArudino pro miniと同様の書き込み方法であった．しかし，<span class="fb red">prosessorを使っているマイコンの使用に変更しないといけない．</span>
         今回だと，3V38MHzを指定することになる．
 
-
     </p>
+              
+       
+
     <p class="headline" style="margin-top:40px;">温湿度センサ</p>
     <p style="margin:3vw 2vw 0px 2vw">
-      周囲の温度と湿度の取得には温湿度センサを用いる．
-      ＤＨＴ－１１を使うことをはじめは考えたが次のサイトから
-      https://zenn.dev/suzuky/articles/25dab74334e6ff
-      個体差があり，10%-15%もの誤差があること，湿度100%まで計測できないことから，DHT-22という上位モデル？を使用することにした．
-      GND/DATA/VDDの三本からなる．データはシングル・バス・データフォーマットという形式である．
-      これはライブラリで解決できる．
-    　DATAピンはプルアップして使用する．抵抗はデータシートで推奨されている5kΩを使用した．
+        周囲の温度と湿度の取得には温湿度センサを用いる．<br><br>
 
-https://iot.keicode.com/arduino/temperature-dht11.php
-    　も参照とした．
+        ＤＨＴ－１１を使うことをはじめは考えたが次のサイトから<br><br>
+        <cite><a href=" https://zenn.dev/suzuky/articles/25dab74334e6ff" target="_blank">電子工作 その18（温湿度センサー：DHT11/DHT22の使い方）</a></cite><br><br>
+        センサに大きめの個体差があり，10%-15%もの誤差があることがわかった，<br><br>
+        さらに，湿度を100%まで計測できないことから，DHT-22という上位モデル？を使用することにした．<br><br>
 
-    Sketch uses 5058 bytes (16%) of program storage space. Maximum is 30720 bytes.
-Global variables use 257 bytes (12%) of dynamic memory, leaving 1791 bytes for local variables. Maximum is 2048 bytes.
+        センサから出ている線はGND/DATA/VDDの三本からなる．データはシングル・バス・データフォーマットという形式で送られてくる．
+        これはライブラリで解決できる．<br><br>
+
+        <span class="fb red">DATAピンはプルアップして使用する</span>．<br>
+        抵抗はデータシートで推奨されている5kΩを使用した．<br><br>
+
+    <cite><a href="https://iot.keicode.com/arduino/temperature-dht11.php" target="_blank">DHT11 を用いた温度と湿度の計測</a></cite><br><br>
+        ここら辺も参照した．
+    </p>     
+
+
+
+    <p class="headline" style="margin-top:40px;">Arudinoで発生した書き込み時のエラー</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        Arudinoでマイコンに書き込むとき，次のようなエラーが時折発生した．<br><br>
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+Sketch uses 5058 bytes (16%) of program storage space. 
+Maximum is 30720 bytes.
+Global variables use 257 bytes (12%) of dynamic memory, leaving 1791 bytes for local variables. 
+Maximum is 2048 bytes.
 avrdude: ser_open(): can't open device "\\.\COM20": Access is denied. 
-        というエラーについて．
-        このエラーは原因がよくわからない場合シリアルモニタによるものだと考えられる．
-        Arudinoを使っていて書き込もうとした際に以前書き込んでいたプログラムがシリアルモニタに通信するものであると，
-        そのプログラムが動作している限りそのUSBポートは以前のプログラムに占用されていることになる．
-        したがって，書き込みをする際にはシリアルポートを閉じることでマイコンからのUSBシリアル通信をなくしポートを開放することができる．
-        以上によりこのエラーは解消される．
+</code>
+</pre>
+</span><br><br>
 
-        温度と湿度の関係について室温が25-28度の時湿度は50%-60%
-        室温が18-25度の時は湿度は40-50%くらいが快適とされている．
-        https://myhome.nifty.com/column/kaji/230626360888/
-        これに従ってプログラムを組んでいく．
+        このエラーで大事な部分はここ<br><br>
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+avrdude: ser_open(): can't open device "\\.\COM20": Access is denied. 
+</code>
+</pre>
+</span><br><br>
+        このエラー時々発生するものであまり原因がわかっていないのだが，おそらく<span class="fb">原因はシリアルモニタによるもの</span>だと考えられる．<br><br>
 
-    </p>     
-
-    <p class="headline" style="margin-top:40px;">プログラム</p>
-    <p style="margin:3vw 2vw 0px 2vw">
-        プログラムを組んでいく．今回，計測した室温から適切な湿度になるようなフィードバック制御を行う．
-        まず，今回使用する加湿器の仕組みは圧電セラミックスを用いた超音波ミスト生成であった．
-        圧電振動子が超音波を発生させることで振動し，小さな穴から水蒸気が噴出されるという仕組みである．
-        https://www.tdk.com/ja/tech-mag/hatena/044
-        ここで，この加湿器についている圧電セラミックス（素子）について調べる．
-        おそらく同じものを発見した．
-        https://www.amazon.co.jp/gp/product/B099NSXTND?ie=UTF8&psc=1&linkCode=sl1&tag=motochi1206-22&linkId=c2a96756a47287df0081a6f5d3e37e38&language=ja_JP&ref_=as_li_ss_tl
-        ミストメーカ
-
-        この加湿器でミストを発生させている際の電圧を測定すると3Vくらいであった．
-        なので，ミストを発生させたいときは振動子に3V加えればよい．
-        ある一定の湿度を保つために，累積誤差を考えてプログラムを組んだ．
-        制御するのは振動子に加える電圧で発生するミストの量と関係している．（おおよそ比例関係）
-
-        スライドスイッチを使ってミスト発生モジュールの制御をもとのやつか，このマイコンかを切り替えるようにする．
-        
-    </p>     
-
-    
-    <p class="headline" style="margin-top:40px;">プログラムを組みたい</p>
-    <p style="margin:3vw 2vw 0px 2vw">
-        温湿度センサのpinの方向を変える壁に沿えるような形にする．
-        10秒おきに測定して計測するようにしている．　
+        <br><br>どういうことかというと...<br><br><br><br>
+        Arudinoを使って書き込もうとした際に以前書き込んでいたプログラムがシリアルモニタなどと通信するものであるとする．<br><br>
+        すると，書き込みの際にシリアルポートを表示したままだとマイコンとの通信が行われている状態になる．<br><br>
+        したがって，<span class="fb red">事前に書き込んでいたプログラムでのマイコンとの通信のためにUSBポートが使われてしまい</span>，プログラムが書き込めなくなってしまう．<br><br>
+        解決策としては，単純に書き込む際には<span class="fb">Arudino IDE上のシリアルポート関連を閉じ</span>，ポートを開放してやればよい．<br><br>
+        実際にこの方法でエラーは出なくなった．<br>
+        以上はあくまで推察されるものです．<br><br>
     </p>
+
+    <p class="headline" style="margin-top:40px;">ミスト発生モジュール</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        今回改造する加湿器の水蒸気を発生はミスト発生モジュールを使っていた．<br><br>
+
+        これは圧電セラミックスを用いた超音波ミスト生成で，<span class="fb">圧電振動子が振動し超音波を発生させる</span>．<br>
+        すると，小さな穴から水蒸気が噴出されるという仕組みである．<br><br>
+        圧電振動子が振動するためには，<span class="fb red">圧電振動子に入力する電圧が周波数的に変化している必要がある</span>．らしい．．<br><br>
+        なので，圧電振動子への入力は専用の制御基盤を介する．<br><br>
+        <cite><a href="https://www.tdk.com/ja/tech-mag/hatena/044" target="_blank">超音波で霧をつくり出す加湿器のしくみ</a></cite><br><br>
+        ここで，この加湿器についている圧電セラミックス（素子）について調べる．<br>
+        おそらく同じものを発見した．<br><br>
+        <cite><a href="https://www.amazon.co.jp/gp/product/B099NSXTND?ie=UTF8&psc=1&linkCode=sl1&tag=motochi1206-22&linkId=c2a96756a47287df0081a6f5d3e37e38&language=ja_JP&ref_=as_li_ss_tl" target="_blank">Ren He 超音波式 加湿器・噴霧器 モジュール PCBA 回路基板 噴霧プレート USB電源 霧発生装置 ミストメーカー 5V 加湿器アクセサリー・部品 DIYキット</a></cite><br><br>
+        
+        加湿器の既存のミスト発生モジュールが劣化しているため，これと交換しておこう．<br><br>
+
+    </p>     
+
+
+
     <!--topage-->
     <div class="toPagePaRight1">
         <div class="topage "><label for="tab2">To Page 2</label></div>
@@ -262,24 +302,107 @@ avrdude: ser_open(): can't open device "\\.\COM20": Access is denied.
 
 <!--２ページ目-->
 <div id="page2" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2025/03/08</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>02</span>TITLE</h2>
-    <img class="aCeyecatch" src="img/" width="%">
+    <h2 class="aCtitle"><span>02</span>製作</h2>
+    <!-- <img class="aCeyecatch" src="img/" width="%"> -->
 
     <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
 
-    a
-    aa
-    abc
-    abc
+    <p class="headline" style="margin-top:40px;">回路</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        もともとの加湿器についているミスト発生モジュール（以降モジュール）を制御するための基盤は流用する．<br><br>
+        この加湿器はもともとリポバッテリーを搭載しており外部電力供給ができなくても動作できる．<br><br>
+        この基盤がリポバッテリーの充電を制御する役割のあること，元の加湿器の機能を残したまま新しく機能を付加するという目標からこのまま基盤を用いる．<br><br>
+        そこで，最終的な回路概要は以下になった．<br><br>
+
+        <img src="./img/circute.png" class="imgfullcenter"><br><br>
+
+        本来はオリジナル基盤にあれこれして機能を追加する予定であったが，追加するマイコンとの共存を考えると難しく，このような形になった．<br><br>
+
+    </p>
+
+    <p class="headline" style="margin-top:40px;">プログラム</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        DHT22を用いて温度と湿度を計測する．<br>
+        加湿する基準として以下を設けた．<br><br>
+        
+        室温が25-28度の時湿度は50%-60%<br>
+        室温が18-25度の時湿度は40%-50%<br><br>
+
+        これは次のサイトに沿って決定した．<br><br>
+
+        <cite><a href="https://myhome.nifty.com/column/kaji/230626360888/" target="_blank">適正な湿度は何パーセント？簡単にできる湿度を上げる・下げる方法を解説</a></cite><br><br>
+        
+        これに従ってプログラムを組んでいく．シンプルに温度と湿度から出力を決定するようにしている．<br><br>
+
+        最終的なプログラムコードは次．<br><br>
+
+
+        
+    </p>     
+
+
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-css small">
+
+#include <DHT.h>            
+
+#define DHT_MODEL DHT22       // model num for sensor (DHT11 or DHT22)
+#define DHT_PIN 10            // getting data pin from DHT11
+#define vol_out 6           //mist output voltage 
+#define sw_check 4
+
+DHT dht(DHT_PIN, DHT_MODEL);  //init sensor
+
+void setup() {
+    pinMode(vol_out,OUTPUT);
+    pinMode(sw_check,INPUT);
+    Serial.begin(9600);       
+    dht.begin();                //start runing sensor
+}
+
+void loop(){
+    int sw_state=digitalRead(sw_check);
+
+    if (sw_state){
+    float humidity= dht.readHumidity();          // reading humidity
+    float temperature = dht.readTemperature();    // reading temperature [℃]
+
+    if (temperature>=25 && humidity<=55 || temperature<25 && humidity<=45){
+        analogWrite(vol_out,255); //emit mist
+    }else{analogWrite(vol_out,0);}
+
+    //console output
+    Serial.print("Temperature: ");
+    Serial.print(temperature, 1); 
+    Serial.print("[℃]");
+    Serial.print("  Humidity: "); 
+    Serial.print(humidity, 1); 
+    Serial.println("[%]");  
+
+    int t=0;
+    int waiting_time=600;//[s]
+    while (t<=waiting_time){
+        int check_pin=digitalRead(sw_check);
+        if (check_pin==0){break;}
+        delay(1000);
+        t++;
+    }
+
+    }
+    else{
+    analogWrite(vol_out,0);
+    Serial.println("state is 0");}
+    delay(500);
+}
+
+</code>
+</pre>
+</span>
+
 
 
     <!--topages-->
@@ -296,24 +419,65 @@ avrdude: ser_open(): can't open device "\\.\COM20": Access is denied.
 
 <!--３ページ目-->
 <div id="page3" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2025/03/08</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>03</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+    <h2 class="aCtitle"><span>03</span>組み立て，完成</h2>
+    <!-- <img class="aCeyecatch" src="../actConImages/deer2.jpg" > -->
 
     <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
+   
 
-    a
-    aa
-    abc
-    abc
+    <p class="headline" style="margin-top:40px;">組み立て</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        組み立てる際にもともとついている上部パーツでは小さかったので，<span class="fb">再度CADでモデリングして作成</span>した．<br><br>
+
+        左がCAD画像，右が印刷したものです．<br><br>
+        <div class="flex">
+            <img src="./img/cad.png" class="imghalf" style="margin:2px;">
+            <img src="./img/print.png" class="imghalf" style="margin:2px;">
+        </div><br><br>
+
+        中の回路は次の画像みたいにかなり汚くなってしまった．<br><br>
+        自分に基盤を自作する技術があればいいのだが，まぁ今はこれでいいでしょ．<br><br>
+        <img src="./img/in.jpg" class="imgfullcenter"><br><br>
+    </p>
+
+
+
+    <p class="headline" style="margin-top:40px;">完成</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        組み立てた．<br><br>
+        <div class="flex">
+            <img src="./img/fi.jpg" class="imghalf" style="margin:2px;">
+            <img src="./img/fi2.jpg" class="imghalf" style="margin:2px;">
+        </div><br><br>
+        しっかり動作もしている．<br><br>
+        <span class="fb">スイッチがあからさまにスイッチなことと，センサがむき出しなこと</span>が気になる．<br><br>
+
+    </p>
+
+
+    <p class="headline" style="margin-top:40px;">まとめ</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        <span class="fb">＜成果＞</span><br><br>
+        ・既存の機能に加えて新しい機能を搭載できた．<br><br>
+        ・温湿度センサが使えるようになった．<br><br>
+        ・USBシリアル変換器が使えた．<br><br>        
+
+        <span class="fb">＜課題＞</span><br><br>
+        ・湿度の計測が加湿器周りのみしか行えていない．<br><br>
+        ・スライドスイッチを3つ用いているためスイッチ部分が巨大化している<br><br>
+        ・ATmega328pの省電力モードを使えていない<br><br><br><br>
+
+        <span class="bgyellow fb">総じて加湿器の改造は成功</span>した．<br><br>
+        気になる点は少しあるが問題がない限り今後このまま使っていきたい．<br><br><br>
+
+        <span class="small">大学の授業にこれを持って行って発表したが，まぁ大丈夫だと信じたい．</span>
+
+
+
+    </p>
 
 
     <!--topages-->
@@ -322,9 +486,9 @@ avrdude: ser_open(): can't open device "\\.\COM20": Access is denied.
             <div class="topage "><label for="tab2">To Page 2</label></div>
         </div>
 
-        <div class="toPagePaRight">
+        <!-- <div class="toPagePaRight">
             <div class="topage "><label for="tab4">To Page 4</label></div>
-        </div>
+        </div> -->
     </div>
 </div>
 
