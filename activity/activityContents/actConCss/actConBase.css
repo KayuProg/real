@@ -75,6 +75,10 @@
 .under{
   border-bottom:1px solid black;
 }
+
+.w_break{
+  word-break: break-all;
+}
   /*===============================================================
   activity main contents
 ===============================================================*/

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>KayuProg-website/かゆウェブサイト</title>
+    <link rel="stylesheet" href="../../../common/css/base.css">
+    <link rel="stylesheet" href="../actConCss/actConBase.css"> <!--activity contentsのbaseとなるcss-->
+    <!--movebg-->
+    <link rel="stylesheet" href="../../../common/css/movebg.css"><!--ok-->
+    <!--mainSlider-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <!--jQuery読み込み-->
+    <script src="../../../common/js/jquery-3.6.1.min.js"></script>
+    <!--prism.css ソースコード表示させるやつ-->
+    <link rel="stylesheet" href="../../../common/css/prism.css">
+    <script src="../../../common/js/prism.js"></script>
+    <!--animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../../../common/css/sp_base.css">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../actConCss/sp_actConBase.css"><!--注意！！-->
+    <!--自動翻訳禁止-->
+    <meta http-equiv="Content-Language" content="ja">
+    <meta name="google" content="notranslate">
+
+</head>
+
+<body>
+
+
+<!--to top button-->
+<div class="toTopButton"></div>
+<script>
+$(document).ready(function(){
+    var toTopBtn=$('.toTopButton');
+    toTopBtn.hide();
+    $(window).scroll(function(){
+        if($(this).scrollTop()>100){
+            toTopBtn.fadeIn();
+            $('.toTopButton').addClass('vvt');//base.cssにある
+        }else{
+            toTopBtn.fadeOut();
+        }
+    });
+    toTopBtn.click(function(){
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+        return false;
+    });
+});
+</script>
+
+
+<!--topage=のpage上部遷移-->
+<script>
+$(document).ready(function(){
+    const CheckBtn1 = document.getElementById('tab1');
+        CheckBtn1.addEventListener('change', function () {
+            $('body,html').animate(
+               {scrollTop:0},500
+         );
+        });
+
+    const CheckBtn2 = document.getElementById('tab2');
+    CheckBtn2.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+
+    const CheckBtn3 = document.getElementById('tab3');
+    CheckBtn3.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+    
+    const CheckBtn4 = document.getElementById('tab4');
+    CheckBtn4.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+
+    const CheckBtn5 = document.getElementById('tab5');
+    CheckBtn5.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+    }
+);
+</script>
+
+
+<!--===============================================================
+    header
+===============================================================-->
+<!--header-->
+<hr size="15px" color="black">
+<div class="headbg headerSticky">
+    <!--header mainmenu-->
+    <div class="headerCenter">
+        <a href="../../../index.html" class="alogo"><div class="logobg"> <div class="logo">KayuProg</div> </div></a>
+    <ul class="mainmenu">
+        <li><a href="../../../term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank">
+            <div class="mainmenuContents mainmenuContents1 fb">Terms</div>
+        </a></li>
+        <li><a href="../../../index.html" class="amainmenu"><div class="mainmenuContents mainmenuContents1">HOME</div></a></li>
+        <li><a href="../../../activity/activity.html" class="amainmenu"><div class="mainmenuContents mainmenuContents2">ACTIVITY</div></a></li>
+        <li><a href="../../../contact/contact.html" class="amainmenu"><div class="mainmenuContents mainmenuContents3">CONTACT</div></a></li>
+    </ul>
+    </div>
+</div>
+
+<!--movebg-->
+<div id="particles-js"></div>
+<div id="wrapper"></div>
+
+
+<!--bodycontents-->
+<div id="bodycontents">
+<!-- sliderposition -->
+
+<!--===============================================================
+    maincontents    
+===============================================================-->
+
+<div class="mainContentsPa"><!--内部コンテンツの位置決め-->
+
+<!--上のタブ選択部分-->
+<input id="tab1" type="radio" name="check" checked class="a">
+<label for="tab1" class="pagetabTop">Page 1</label>
+
+<input id="tab2" type="radio" name="check">
+<label for="tab2" class="pagetabTop">Page 2</label>
+
+<input id="tab3" type="radio" name="check" >
+<label for="tab3" class="pagetabTop">Page 3</label>
+
+<input id="tab4" type="radio" name="check" >
+<label for="tab4" class="pagetabTop">Page 4</label>
+
+<input id="tab5" type="radio" name="check" >
+<label for="tab5" class="pagetabTop">Page 5</label>
+
+<!--タブ選択によるコンテンツ部分-->
+<div class="pages"><!--全ページの全体的なスタイルを指定するため-->
+        
+<!--===============================================================
+    fmin:：明朝体　fen：英語のかっこいい字体　fgo：ゴシック　fb：太字　ib：インラインブロック
+    red：赤字　blue：青字　bgred：背景赤　bgyellow：背景黄色
+    big：大きい文字　middle：普通の文字　small：小文字
+    imgfullleft：アイキャッチと同じ大きさで左寄せ imgfullcenter：アイキャッチと同じ大きさで中央
+    imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
+    imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
+    flex：flex横配置
+
+    ctrl+Eでタグで囲める．
+===============================================================-->
+
+<!--１ページ目-->
+<div id="page1" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>01</span>TITLE</h2>
+    <img class="aCeyecatch" src="img/" width="%">
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+        アラームの音が好きじゃない．起きたときにストレスになってしまう．
+        だから，アラームの代わりに音楽を流したい．
+        既にスマホで好きなアラーム音にできる方法があるが，いちいちダウンのロードや曲の長さを調整しなくてはいけない．
+        そこで，youtubeのアラーム専用再生リストを作成し，その中の音楽を自動的に流すシステムを作る．
+
+
+
+        https://note.com/misuzu_neccos/n/nb44905f4f7e8
+        よりyoutube data APIで再生リストの情報を取得できるらしい．
+        これを使おう．
+
+        いつもどおりGoogle outh2.0に言ってプロジェクト作って，クライアントIDなどを作って，jsonファイルをダウンロードする．
+        https://developers.google.com/youtube/v3/getting-started?hl=ja#%E4%BE%8B-1
+        このサイトに従えば何とかなる．
+
+        https://developers.google.com/youtube/v3/code_samples/code_snippets?hl=ja&apix_params=%7B%22part%22%3A%5B%22snippet%2CcontentDetails%22%5D%2C%22maxResults%22%3A25%2C%22mine%22%3Atrue%7D
+        ここにあるサンプルプログラムを参考にして作成する．
+
+
+        サンプルプログランむ実行すると次のエラーが出ます．
+  File "c:\Users\katayama\Desktop\Programming\Python\projects\youtube_alarm_clock\main.py", line 41, in <module>
+    main()
+  File "c:\Users\katayama\Desktop\Programming\Python\projects\youtube_alarm_clock\main.py", line 27, in main
+    credentials = flow.run_console()
+                  ^^^^^^^^^^^^^^^^
+AttributeError: 'InstalledAppFlow' object has no attribute 'run_console'
+Google API の google-auth-oauthlib の InstalledAppFlow では、通常 run_local_server() 
+または run_console() を使用しますが、run_console() は古いバージョンのメソッドであり、現在のバージョンでは run_local_server() を使用するのが推奨されています。
+        らしいです．
+
+
+
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            プログラムを実行してアカウントの認証していたら
+            <img src="./img/client_error.png" class="imgfullcenter"><br><br>
+            アクセスをブロック: youtube_alarm_clock は Google の審査プロセスを完了していません
+
+katayama0910yuuki@gmail.com
+youtube_alarm_clock は Google の審査プロセスを完了していません。このアプリは現在テスト中で、デベロッパーに承認されたテスターのみがアクセスできます。アクセス権があると思われる場合は、デベロッパーにお問い合わせください。
+youtube_alarm_clock のデベロッパーの場合は、エラーの詳細をご確認ください。
+エラー 403: access_denied
+            というエラーに遭遇した．
+            https://zenn.dev/larva06/articles/google-oauth-access-blocked-error
+            やっと見つけた．このサイトに書いてある．
+            <img src="./img/solution1.png" class="imgfullcenter"><br><br>
+            <img src="./img/solution2.png" class="imgfullcenter"><br><br>
+            ここのテスト中というのがよくない．本番環境にpushするという物をしなくてはいけないらしい．
+            そもそもここにどうやって行くのかというと，
+            Google Cloud Console→任意のプロジェクトに切り替える→APIとサービス→OAuth認証画面→対象
+            <img src="./img/solution3.png" class="imgfullcenter"><br><br>
+            <img src="./img/solution4.png" class="imgfullcenter"><br><br>
+            <img src="./img/solution5.png" class="imgfullcenter"><br><br>
+            <img src="./img/solution6.png" class="imgfullcenter"><br><br>
+            するとこんな風に認証できる．ここに気づくのにすごく時間がかかってしまった．．．
+            ほんと良く解決したと思う．
+        </p>
+
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            まず，こんな感じのライブラリのインストールが必要です．
+            pip install --upgrade google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
+
+            現状こんな感じのプログラム．まだ，request.execute()でエラーが出る．
+            # -*- coding: utf-8 -*-
+
+# Sample Python code for youtube.playlists.list
+# See instructions for running these code samples locally:
+# https://developers.google.com/explorer-help/code-samples#python
+
+import os
+
+import google_auth_oauthlib.flow
+import googleapiclient.discovery
+import googleapiclient.errors
+
+scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
+
+def main():
+    # Disable OAuthlib's HTTPS verification when running locally.
+    # *DO NOT* leave this option enabled in production.
+    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+    api_service_name = "youtube"
+    api_version = "v3"
+    client_secrets_file = "./jsons/client.json"
+
+    # Get credentials and create an API client
+    flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
+        client_secrets_file, scopes)
+    credentials = flow.run_local_server()
+    youtube = googleapiclient.discovery.build(
+        api_service_name, api_version, credentials=credentials)
+
+    request = youtube.playlists().list(
+        part="snippet,contentDetails",
+        maxResults=25,
+        mine=True
+    )
+    # response = request.execute()
+
+    # print(response)
+
+if __name__ == "__main__":
+    main()
+
+            プログラム内での認証方法について．このままのプログラムでは毎回手動で認証する必要がある．
+            めんどくさいので，前回のplan_bulletinで使用したプログラムを参考に自動的に認証する方法を使用する．
+            最終的な認証までのプログラムは次
+
+
+import os
+from google.auth.transport.requests import Request
+import google_auth_oauthlib.flow
+import googleapiclient.discovery
+import googleapiclient.errors
+from google.oauth2.credentials import Credentials
+from googleapiclient.errors import HttpError
+
+
+SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
+
+json_pass="./jsons/token.json"
+client_secrets_file = "./jsons/client.json"
+
+
+def main():
+    # Disable OAuthlib's HTTPS verification when running locally.
+    # *DO NOT* leave this option enabled in production.
+    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+    # Get credentials and create an API client
+    
+    creds = None#認証情報を格納する変数
+
+    if os.path.exists(json_pass):
+        creds = Credentials.from_authorized_user_file(json_pass, SCOPES)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            # flow = InstalledAppFlow.from_client_secrets_file("./jsons/client.json", SCOPES)
+            # creds = flow.run_local_server(port=0)
+            flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(client_secrets_file, SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        print("\n",creds,"\n")
+        with open(json_pass, "w") as token:
+            token.write(creds.to_json())
+    
+    youtube = googleapiclient.discovery.build("youtube","v3", credentials=creds)
+
+    request = youtube.playlists().list(
+        part="snippet,contentDetails",
+        maxResults=25,
+        mine=True
+    )
+    
+    response = request.execute()
+
+    print(response)
+
+if __name__ == "__main__":
+    main()
+
+    
+    youtube = googleapiclient.discovery.build("youtube","v3", credentials=creds)
+            こうすることでいちいち手動でアカウントの認証をしなくてよくなる．とりあえずここまでのコードで認可されたアカウントの再生リストまでは取得できているはず．
+        </p>
+
+
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            https://zenn.dev/yorifuji/articles/youtube-data-api
+            このサイトやdocumentを参考に情報を取得していく
+            request = youtube.playlists().list(
+                part="snippet,contentDetails",
+                # maxResults=25,
+                mine=True  # 認証されたアカウントのプレイリストを取得
+            )
+            response = request.execute()
+    
+            # 結果を表示
+            for playlist in response.get("items", []):
+                print(f"🎵 {playlist['snippet']['title']} (ID: {playlist['id']})")
+            でまず，プレイリストのidをしゅとくする．
+            try:
+            # 指定されたプレイリストの動画を取得
+            request = youtube.playlistItems().list(
+                part="snippet,contentDetails",
+                maxResults=25,  # 取得する最大件数（最大50）
+                playlistId="PL8G4Ylahsmrrf6_uMWaQGNUBOf8COtlK5"  # 取得したいプレイリストのID
+            )
+            response = request.execute()
+    
+            # 結果を表示
+            # print(f"🎵 プレイリスト内の動画一覧（ID: PL8G4Ylahsmrrf6_uMWaQGNUBOf8COtlK5）:")
+            for item in response.get("items", []):
+                # print(item)
+                # video_title = item["snippet"]["title"]
+                video_id = item["contentDetails"]["videoId"]
+                # print(f"URL is (https://www.youtube.com/watch?v={video_id})")
+                urls.append(f"https://www.youtube.com/watch?v={video_id}")
+
+            このコードでlist内の動画のurlのみを抽出する．
+        </p>
+
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            pythonで定期実行とかさせたいときスリープが邪魔になるかも
+            （windows10）
+            https://gogocatslife.com/20230506_python_auto_record/
+            
+            （windows11）
+            https://gogocatslife.com/20231223_windows11_auto_record/
+
+
+            ここ参照すれば解決するかも
+
+
+            どうやらタスクスケジューラだけでやるには少し難しそう
+            https://qiita.com/yoinhu/items/8a1d49f17207d40a68dc
+            ここに解決策が書いてある．
+        </p>
+
+        <p class="headline" style="margin-top:40px;">   おもいついた</p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            ここで計画変更．上のサイトではwindowsで設定できるタスクスケジューラの実行時にスリープを解除する方法であった．
+            なので，今回作りたいアラームでは起床時刻にスリープを解除する必要がある．起床時刻を設定するタイミング，起床時刻の二つでスリープを解除する必要がある上に
+            スリープ解除の時間設定が複雑になってしまう．なので，以下の方法にすることにした．
+
+            天気を教えてくれるラズパイにこの機能をつける
+            時間の入力，アラームを止めるのはtemuでかったアイパッドから．
+            翌日の起床時間を入力するためのポップアップを画面に表示させる．
+            入力する場所とかの構想とかは作ってもいいかもね．
+
+
+            いまするべきは，動画をアラームとして使う方法の部分．
+            東京戻ったらラズパイへの実装と入力システムを作る．
+
+            ラズパイはweatherを知らせるシステムで常に動作しているのでそこにかさねる形でこの機能を追加する．
+            つまり，ラズパイ上でもう一個このアラームのプログラムを走らせるということ．
+            もしかしたら，メモリが足りなくなってしまう可能性がある．そん時はどうしよう．raspi zero wでも使おうかな．
+        </p>
+
+
+        <p class="headline" style="margin-top:40px;">youtubeから音声のみを取得する．</p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            起床時のアラームには音声のみで言い．
+            urlからwindowを開いて再生する方法もあるが，広告が再生されてしまう可能性がある．
+            まぁこれもbrave使えば大丈夫なんだけど．．
+            一応それ用のスクリプト張っときます．
+
+            #動画を再生するための関数．windowで開く．
+import time
+import webbrowser
+
+def player(movie_url):
+    # time.sleep(5)
+    #&t=0は初めから再生するため
+    url = movie_url+"&t=0"  # 完全なURLを指定
+    browser_path = r"C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+    webbrowser.register('brave', None, webbrowser.BackgroundBrowser(browser_path))  # Braveを登録
+    browser = webbrowser.get('brave')  # Braveを取得
+    browser.open(url)  # URLを開く
+    print(1)
+    return 0
+
+
+player("https://www.youtube.com/watch?v=TdeYkT7DEJQ")
+
+
+if __name__ == "__main__":
+    main()
+    
+            youtubeから音声を取ることができれば自作でmusic FMようなものが作れる．
+            これを次の製作物にしようと考え，その前段階として今回，youtubeの音声のみを取り出すことにした．
+            https://developers.google.com/youtube/terms/developer-policies?hl=ja
+            一応このサイトで規約を読んでおこう．
+
+            ＜映像と音声のコンテンツ＞
+
+            お客様およびお客様の API クライアントは、以下の行為を実行したり、他のユーザーに推奨、許可、要求したりしてはなりません。
+
+            ・YouTube から事前に書面による承認を得ない限り、YouTube の映像と音声のコンテンツのコピーをダウンロード、インポート、バックアップ、キャッシュに保存、保存する
+            ・コンテンツをオフライン再生できるようにする．
+            ・YouTube API サービスのいずれかの要素を使用して、著作権侵害または著作権侵害コンテンツの不正使用を助長または促進する。
+            
+            うん．ちゃんとやっちゃダメって書いてある．
+
+
+            https://jitantech.com/how-to-fix-pytube-bad-request/
+            このサイト見たらそのままできた．ただ注意しなきゃいけないのが
+            from moviepy.editor import *
+            の部分．これだとエラーが出る．
+            from moviepy import *
+            だと大丈夫
+            これはmoviepyのアップデートでライブラリ内の構造が変化したことによる．
+
+
+            https://jp.videoproc.com/edit-convert/how-to-download-and-install-ffmpeg.htm
+            ここにffmpegをどのように使うか．これが一番わかりやすい気がする．windows,linuxどれのやり方も書いてある．
+
+
+
+            
+import yt_dlp
+import time
+import random
+
+def download_youtube_audio_as_mp3(url, output_path):
+    # カスタムUser-Agentを設定（YouTubeに自動スクリプトとバレにくくする）
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+
+    # yt-dlp のオプションを設定
+    ydl_opts = {
+        'format': 'bestaudio/best',  # 最高品質の音声を選択
+        'outtmpl': output_path + ".mp3",  # 保存ファイル名
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',  # ビットレート設定
+        }],
+        'nocheckcertificate': True,  # 証明書エラーを無視
+        'noplaylist': True,  # プレイリスト全体のダウンロードを防ぐ
+        'quiet': True,  # 不要なログを抑える
+        'user_agent': user_agent, # カスタムUser-Agentを設定
+         'ffmpeg_location': r'C:\Program Files\ffmpeg-master-latest-win64-gpl-shared\ffmpeg-master-latest-win64-gpl-shared\bin',
+    }
+
+    # ランダムな遅延を入れてアクセスを分散（Bot対策）
+    delay = random.uniform(1.5, 3.0)
+    print(f"Waiting for {delay:.2f} seconds before download...")
+    time.sleep(delay)
+
+    # YouTubeの音声をダウンロード
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+
+# YouTube動画のURLと保存先のファイル名（拡張子なし）を指定
+download_youtube_audio_as_mp3('https://www.youtube.com/watch?v=ekr2nIex040', 'apt')
+
+
+            最終的にこのスクリプトで音声データのダウンロードを行うことにした．
+            特に大事なのが，
+            https://jp.videoproc.com/edit-convert/how-to-download-and-install-ffmpeg.htm
+            を参考にffmpegをダウンロードして環境変数を通す．そして
+            'ffmpeg_location': r'C:\Program Files\ffmpeg-master-latest-win64-gpl-shared\ffmpeg-master-latest-win64-gpl-shared\bin',
+            とプログラムにffmpegのbinの位置を明示的に示す事．
+
+        </p>
+
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            時刻の入力にguiを用いることを考えている．
+            そこでpysimple guiを使おうと考えた．
+            しかし，有料化されてしまっており，使いたくなくなってしまった．
+            新しい大体ライブラリを発見．
+            https://note.com/kohaku935/n/n8479f5ddd577
+            2024.4に生まれたばかりのやつ！
+            このサイトに書いてある．tkeasy guiである．
+            構文は結構pysimple guiに似ており簡単に実装できそう．
+            これを使って時刻を入力するシステムを作っていこう．
+            installもこのライブラリonlyで簡単！
+            https://note.com/sirodon_256/n/na73d3fdac68d
+            ここにサンプルコードの解説が乗っていてこれを参照しながら作っていこう．
+
+            tkeasyguiで中央配置に困ったら，layoutを作成するときに，
+            [sg.Push(),sg.Input(justify="center",expand_x=1,size=[5,5]),sg.Push()], 
+            のように左右にsg.Push()を追加すると中央配置になる．
+
+            [sg.Push(),sg.Column([
+            [sg.Text("何時に起きますか？", text_align="center",expand_y=True),],
+        ], expand_y=True)
+         ,sg.Push()]N
+         y方向に垂直配置したい時も同様にexpand_y=1を指定して上下をsg.Pushで囲めば良い．
+         やっぱうまくいかないからpaddingで調整するわ．
+
+
+        </p>
+
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:3vw 2vw 0px 2vw">
+            起きる時間は何かしらテキストファイルから読み取ることにする．
+            起きる時間を書き換えたいときは書き換える専用のボタンを作ろう．
+        </p>
+
+
+        
+
+    <!--topage-->
+    <div class="toPagePaRight1">
+        <div class="topage "><label for="tab2">To Page 2</label></div>
+    </div>
+</div>
+
+<!--２ページ目-->
+<div id="page2" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>02</span>TITLE</h2>
+    <img class="aCeyecatch" src="img/" width="%">
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    a
+    aa
+    abc
+    abc
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab1">To Page 1</label></div>
+        </div>
+    
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab3">To Page 3</label></div>
+        </div>    
+    </div>
+</div>
+
+<!--３ページ目-->
+<div id="page3" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>03</span>TITLE</h2>
+    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    a
+    aa
+    abc
+    abc
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab2">To Page 2</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+    </div>
+</div>
+
+<!--４ページ目-->
+<div id="page4" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>04</span>TITLE</h2>
+    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab3">To Page 3</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab5">To Page 5</label></div>
+        </div>
+    </div>
+</div>
+
+<!--５ページ目-->
+<div id="page5" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>05</span>TITLE</h2>
+    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+    </div>
+</div>
+
+<!--CSSのほう確認！！！-->
+
+
+
+</div><!--pages end-->
+
+</div><!--mainContentsPa end-->
+
+
+
+
+<!----------------------------------------mainContentsend---------------------------------------->
+</div><!--bodycontents-->
+<div class="bottomBlank"></div>
+
+<!--===============================================================
+    footer
+===============================================================-->
+<div class="footer">
+    <!--Waves Container-->
+    <div>
+    <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)" />
+    </g>
+    </svg>
+    </div>
+    <!--Waves end-->
+    <div id="footerContents"> 
+        <small>Copyright(c) //  KayuProg  // All right Reserved.</small>
+    </div>
+
+
+ </div>
+
+<!--movebg-->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../../../common/js/movebg.js"></script><!--ok-->
+<!--mainSlider/slick.jsの読み込み-->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--mainslider.js-->
+</body>
+
+
+<noscript>
+    <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
+    <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。  制作者より
+    </p>
+</noscript>
+
+
+</html>

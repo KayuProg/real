@@ -163,26 +163,39 @@ $(document).ready(function(){
     <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>01</span>TITLE</h2>
-    <img class="aCeyecatch" src="img/" width="%">
+    <h2 class="aCtitle"><span>01</span>Plan Bulletin</h2>
+    <img class="aCeyecatch" src="img/head.png" width="%">
 
     <!--actmaincontents-->
     <p class="headline" style="margin-top:40px;">契機</p>
     <p style="margin:3vw 2vw 0px 2vw">
         普段自分のタスク管理は，Google CalenderとiOSのリマインダーを使っています．<br><br>
-        その日の大きなイベント（テストだったり，レポート提出だったり）はGoogle Calender，
+        その日の大きなイベント（テストだったり，レポート提出だったり）はGoogle Calender，<br>
         細かいタスク（その日の課題だったり，買い出し）はリマインダーという使い分けです．<br><br>
         二つアプリを使っているため，予定確認の際にアプリを行き来しなくてはいけないことがあり面倒です．<br><br>
-        なので当日の予定を一画面に表示してくれるものを作ります．<br><br>
+        さらにはいちいちアプリを開いて今日の予定を確認するのも面倒に感じました．<br><br>
+        なので当日の予定・タスクを一画面に表示してくれるものを作ります．<br><br>
         Raspberry pi3 model B+を使います．<br><br>
     </p>
+
     <p class="headline" style="margin-top:40px;">iOSリマインダー</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        まず，iOSのリマインダーからデータを取得しようとした．<br><br>
-        方法としてpythonのreminder moduleを見つけた．<br><br>
-        pip installしたら次のエラーが出た．<br><br>
-        ERROR: Could not find a version that satisfies the requirement reminders<br><br>
-        これはhttps://qiita.com/noppe78/items/cc5327ecdf33103b377bによるとPythonバージョンとの非互換性によるエラーらしい<br><br>
+        まず，普段から使い続けているiOSのリマインダーからデータを取得しようとしました．<br><br>
+        方法としてpythonのreminder moduleを見つけました．<br><br>
+        ラズパイ上でpip installしたら次のエラーが出た．<br><br>
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-javascrip small">
+ERROR: Could not find a version that satisfies the requirement reminders<br><br>
+</code>
+</pre>
+</span>
+
+
+
+        これは<br><br>
+        <cite><a href="https://qiita.com/noppe78/items/cc5327ecdf33103b377b" target="_blank">【解決済み】pipによるパッケージのインストールに失敗する(Could not find a version that satisfies the requirement)</a></cite><br><br>
+        によるとPythonバージョンとの非互換性によるエラーらしい<br><br>
         解決方法としてPyenvによるPython version切り替えがあるそうです．<br><br>
         方法としては，iPhone上でPython プログラムを定期的に実行してクラウドにリマインダーのデータをアップロードすることでラズパイに取得させる方法を考えました．<br><br>
         面倒ですね．<br><br>
@@ -193,20 +206,22 @@ $(document).ready(function(){
         さすが天下のGoogle様．<br><br>
         以降に手間はかかりますが，ラズパイからデータが取得できるようになりました．<br><br>
     </p>
-
+ 
     <p class="headline" style="margin-top:40px;">Python 3.12 install</p>
     <p style="margin:3vw 2vw 0px 2vw">
         Google TasksのAPIを使うためにはPython 3.10.7以上が必要みたいです．<br><br>
         せっかくだしもう少し新しいやつをinstallします．<br><br>
-        https://blog.goo.ne.jp/espiya/e/6b7f4d66b7253b4eb31cce32e0609a30にしたがってやります．<br><br>
+        <cite><a href="https://blog.goo.ne.jp/espiya/e/6b7f4d66b7253b4eb31cce32e0609a30" target="_blank">Raspberry Pi に最新の Python3 をインストールする</a></cite><br><br>
+        にしたがってやります．<br><br>
         ただし，インストールした場所は/usr/bin/pythonです．（注意！）
         さっきのできなかったからこっちのサイト
-        https://qiita.com/guijiu/questions/7a3fae535edef4ea2e49<br><br>
+        <cite><a href="https://qiita.com/guijiu/questions/7a3fae535edef4ea2e49" target="_blank">UbuntuのOSシステムのでpythonの使われ方を教えてください。</a></cite><br><br>
+        <br><br>
         たまにPython-3.12.3.tar.xz: Permission denied
 
         Cannot write to ‘Python-3.12.3.tar.xz’ (Permission denied).
         というエラーが出るので実行するコマンドにsudoつけるのがキモ．<br><br>
-        https://qiita.com/hoshi621/items/c8b82ab42564256df884
+        <cite><a href="https://qiita.com/hoshi621/items/c8b82ab42564256df884" target="_blank">Raspberry PiにpyenvをインストールしてPythonをバージョン管理</a></cite><br><br>
         ここでpyenvはinstall下．
         installできないときはメモリが足りない場合があるので，
         sudo fallocate -l 2G /swapfile
@@ -242,9 +257,9 @@ kayu@raspberrypi:~/Desktop/test/plan $ pyenv versions　#python versionが3.12.3
 
     </p>
     <p style="margin:3vw 2vw 0px 2vw">
-        https://developers.google.com/workspace/guides/create-project?hl=ja
+        
         ここでGoogle Cloudでprojectを作成する．
-        https://www.tdk.com/ja/tech-mag/knowledge/147
+        <cite><a href="https://developers.google.com/workspace/guides/create-project?hl=ja" target="_blank">Google Cloud プロジェクトを作成する </a></cite><br><br>
         OAuthとは
 
         plan_show_test は Google の審査プロセスを完了していません。このアプリは現在テスト中で、デベロッパーに承認されたテスターのみがアクセスできます。アクセス権があると思われる場合は、デベロッパーにお問い合わせください。
@@ -252,20 +267,22 @@ kayu@raspberrypi:~/Desktop/test/plan $ pyenv versions　#python versionが3.12.3
         Google Cloudの確認ステータスで「検証は不要です」となるようにスコープ？権限を調整（全てオフにした）したら行けた．
         やった！取得できた！
 
-        https://messefor.hatenablog.com/entry/2020/10/08/080414
+        <cite><a href="https://messefor.hatenablog.com/entry/2020/10/08/080414" target="_blank">APIキー、OAuthクライアントID、サービスアカウントキーの違い:Google APIs</a></cite><br><br>
+        
         ここがわかりやすかった．APIキー，クライアントIDなどの解説
     </p>
 
     <p style="margin:3vw 2vw 0px 2vw">
         取得した内容はこんな感じで返ってくる．
-        [{'kind': 'tasks#task', 'id': 'ZlBHdmtHbUM4R2l0X29sSA', 'etag': '"LTU5MDgzMzAzNQ"', 'title': 'タスク1', 'updated': '2024-10-30T09:36:27.000Z', 'selfLink': 'https://www.googleapis.com/tasks/v1/lists/MTQzMjUyMTY0MTk3NDc0NDg1ODU6MDow/tasks/ZlBHdmtHbUM4R2l0X29sSA', 'position': '00000000000000000000', 'status': 'needsAction', 'due': '2024-10-31T00:00:00.000Z', 'links': [], 'webViewLink': 'https://tasks.google.com/task/fPGvkGmC8Git_olH?sa=6'}]
+        <span class="w_break">[{'kind': 'tasks#task', 'id': 'ZlBHdmtHbUM4R2l0X29sSA', 'etag': '"LTU5MDgzMzAzNQ"', 'title': 'タスク1', 'updated': '2024-10-30T09:36:27.000Z', 'selfLink': 'https://www.googleapis.com/tasks/v1/lists/MTQzMjUyMTY0MTk3NDc0NDg1ODU6MDow/tasks/ZlBHdmtHbUM4R2l0X29sSA', 'position': '00000000000000000000', 'status': 'needsAction', 'due': '2024-10-31T00:00:00.000Z', 'links': [], 'webViewLink': 'https://tasks.google.com/task/fPGvkGmC8Git_olH?sa=6'}]</span>
         dueがこのタスクの期日になるのだ，RFC3339 timestampというのが使われていた．
-        https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#list
+        <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#list" target="_blank">Tasks API . tasks Instance Methods</a></cite><br><br>
         に書いてあった．<br><br>
         それに日付だけしかAPIで引っ張れないらしい．う～ん．
         " "due": "A String", # Due date of the task (as a RFC 3339 timestamp). Optional. The due date only records date information; the time portion of the timestamp is discarded when setting the due date. It isn't possible to read or write the time that a task is due via the API."
         'due': '2024-10-31T00:00:00.000Z', こんな感じで時刻（taskの期限）がかえってきます．
-        https://www.jisakeisan.com/?y=2024&m=10&d=30&hh=18&mm=47&t1=jst&t2=utc
+        <cite><a href="https://www.jisakeisan.com/?y=2024&m=10&d=30&hh=18&mm=47&t1=jst&t2=utc" target="_blank">時差計算</a></cite><br><br>
+        
         このサイトを見ながらUTC 協定世界時とJST 日本標準時の変換を行おうとしたのですが，taskの日にちだけ記録されているようです．<br><br>
         つまり，taskの期日を1/2 7:00にしたとしてUTCだと1/1 22:00だから1/1と記録されるとかになるとかではない．ということでした．
         なので，このまま日付だけ使っていきます．<br><br>
@@ -303,15 +320,19 @@ os.chdir('/home/kayu/Desktop/plan/')#パスは実行したいスクリプトの�
      iPadに文字を表示するにあたってデスクトップアプリを作成することにした．<br><br>
      そこで，以前使ったことのあるTkinterを使おうとしたが，UIの作成にかなり苦労したことを思い出した．<br><br>
      そこでpythonで作るデスクトップアプリについて調べていたら次のようなものを見つけた．
-     https://qiita.com/ForestMountain1234/items/bc709c3599ee86e2a0dd
+     <cite><a href="https://qiita.com/ForestMountain1234/items/bc709c3599ee86e2a0dd" target="_blank">Pythonを使ったGUIアプリを「お手軽に」作りたかった件</a></cite><br><br>
+     
      Fletです！
-     https://qiita.com/NasuPanda/items/48849d7f925784d6b6a0
+     <cite><a href="https://qiita.com/NasuPanda/items/48849d7f925784d6b6a0" target="_blank">Pythonだけでクロスプラットフォームなアプリを作れるFletについて</a></cite><br><br>
+     
      軽く記事呼んだだけでもこれはやばい．すごいやつだ．<br><br>
      すごい簡単にデスクトップアプリへのビルド，Webアプリとしてデプロイもできるらしい．<br><br>
      ほんとすごい．
      Webと同じ感覚でflexbox的に配置できるのも素晴らしい．
      これを使おう．
-     ドキュメントはこちらhttps://flet.dev/docs/getting-started/
+     ドキュメントはこちら
+     <cite><a href="https://flet.dev/docs/getting-started/" target="_blank">Flet Getting started</a></cite><br><br>
+     
      ドキュメントでは仮想環境でのapp製作を進められているのでpyenvの仮想環境で進めていきます．
      注意！WSL or Linux環境でのinstallはいろいろinstall必要みたいだからドキュメントちゃんと読む！
      で，Audio使ったflet appのbuildには--include-packages flet_audioというコマンドが必要らしい．<br><br>
@@ -325,7 +346,8 @@ os.chdir('/home/kayu/Desktop/plan/')#パスは実行したいスクリプトの�
         flet runで以下のエラーが出た．<br><br>
         error while loading shared libraries: libmpv.so.1: cannot open shared object file: No such file or directory
         共有ライブラリが見つからないらしい
-        https://qiita.com/kawamo55/items/4d973ede723f2987ef7a
+        <cite><a href="https://qiita.com/kawamo55/items/4d973ede723f2987ef7a" target="_blank">Ubuntu22.04にFletをインストールした話</a></cite><br><br>
+        
         結局このサイトで行けそう．
         またエラー出た．（いつも通り）
         Unable to init server: Could not connect: Connection refused
@@ -364,8 +386,8 @@ flet run
     <p style="margin:3vw 2vw 0px 2vw">
         すごい．文法がすごく簡単．わかりやすい．直感的．感動．
         初めて使うためあまり勝手がわからないので試しにドキュメントにあるチュートリアルのto-do appを作ってみる．
-
-        https://gallery.flet.dev/todo/
+        <cite><a href="https://gallery.flet.dev/todo/" target="_blank">Tutorial Todos</a></cite><br><br>
+        
         これだけでもかなりクオリティの高いものが作れる．ほんとすごいな．なんだったんだTkinterは
 
         ある程度容量はつかんだので実際に作る．
@@ -384,9 +406,17 @@ flet run
         どうしよう<br><br>
         もう他のパソコンでビルドするしかないよな<br><br>
         そうすると他のパソコンがwindows OSしかないからビルドしてラズパイにアプリ移すならwebアプリしかない．．<br><br>
-        <img src="./img/matrix.png" class="imghalfcenter" style="margin:0 0 0 1vw"><br><br>
+        <img src="./img/matrix.png" class="imghalfcenter" style="margin:0 0 0 1vw">Publishing Flet app to multiple platforms<br><br>
         これが各環境（OS）におけるビルドできるアプリの種類の画像．
-        https://flet.dev/docs/publish
+        
+
+        https://developers.google.com/calendar/api/quickstart/python?hl=ja
+        google apiはここのサイトを最初参照した．
+        pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+        これがインストールすべきライブラリたち
+
+
+        <cite><a href="https://flet.dev/docs/publish" target="_blank"></a></cite><br><br>
         ここに乗ってる一番左のapk/aabはアンドロイド関係のやつ見たい．
         WSL使ってLinux環境様にビルドできるみたいだけどLinux系のアプリとかビルドってすごいversionにうるさいイメージがある．<br><br>
         以前にLinux使っててversion関係で沼った上に諦めなくてはいけなかった記憶がある．<br><br>
@@ -400,13 +430,15 @@ flet run
         ラズパイ上でのビルドはできないことはほぼ確定しているからまず，Windows上にfletを扱うための環境構築をする．<br><br>
         頑張ろう．．．．<br><br>
         頑張った．webアプリとして動的なものとしてする．<br><br>
-        https://flet.dev/docs/publish/web/dynamic-website/hosting
+        <cite><a href="https://flet.dev/docs/publish/web/dynamic-website/hosting" target="_blank">Flet Hosting Flet web apps</a></cite><br><br>
+        
         ドキュメントに書いてある説明をいろいろ読んでFly.ioを使うことにした．
         Replitに関してはweb IDEで少しやりたいことと違う．
         Self HostingはUbuntuとかLinux環境じゃないと厳しそう．
         ということで聞いたこともないFly.ioを使います．
         無理そうだったらReplit使おうかな．
-        https://fly.io/docs/flyctl/install/
+        <cite><a href="https://fly.io/docs/flyctl/install/" target="_blank">Docs Installl fly ctl</a></cite><br><br>
+        
         ここ見てwindowにインストール．
         powershellで実行．cmdじゃないよ
         fly.ioのサイトに従ってアプリをデプロイしようとしたが，次の文章が表示された．<br><br>
@@ -438,7 +470,8 @@ flet run
 
         画面の構成を考えていた．表示画面からtaks終了でチェックできたら楽だろうな．<br><br>
         ということでいろいろ調べた．
-        https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#update
+        <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#update" target="_blank">Tasks API . tasks Instance Method</a></cite><br><br>
+        
         に
         "status": "A String", # Status of the task. This is either "needsAction" or "completed".
         という記述があった．できそう．よし．<br><br>
@@ -581,8 +614,8 @@ flet run
             body={"status": "completed"}  # ステータスを "completed" に設定
             ).execute()
         こっちを使用する．
-
-        https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#get
+        <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#get" target="_blank">Tasks API . tasks Instance Method</a></cite><br><br>
+        
 
         詳しい使い方はこっちを参照して！
 
@@ -632,9 +665,9 @@ flet run
 
         諦めます．他の並列処理？も試そうと思えばできるけど疲れました．．．
         さらに，非同期処理をしたからといって余り処理速度が今回は向上しなかったためこのまま行きます．
-
-        https://qiita.com/Toyo_m/items/992b0dcf765ad3082d0b#%E5%AE%9F%E8%A3%85%E4%BE%8B
-        https://tech.asahi.co.jp/posts/20240328-7eb3
+        <cite><a href="https://qiita.com/Toyo_m/items/992b0dcf765ad3082d0b#%E5%AE%9F%E8%A3%85%E4%BE%8B" target="_blank">その並列処理待った！　「Python 並列処理」でググったあなたに捧ぐasync, threading, multiprocessingのざっくりとした説明</a></cite><br><br>
+        <cite><a href="https://tech.asahi.co.jp/posts/20240328-7eb3" target="_blank">Pythonで非同期処理をするときのasyncioの使い方</a></cite><br><br>
+        
         ここら辺使いながら非同期処理の勉強した．
 
     </p>
@@ -643,8 +676,9 @@ flet run
         [SSL: DECRYPTION_FAILED_OR_BAD_RECORD_MAC] decryption failed or bad record mac (_ssl.c:2580)
         というエラーがスライドスイッチをポチポチしていると現れた．
         つまり，Google APIを通じて変更を加えようとしたときにエラーが出たということ．
-
-        https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10685 参考になりそう．デモpythonのバージョン違うんだよな．
+        <cite><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10685" target="_blank">ssl.SSLError: [SSL: DECRYPTION_FAILED_OR_BAD_RECORD_MAC] decryption failed or bad record mac (_ssl.c:2548)</a></cite><br><br>
+         
+        参考になりそう．デモpythonのバージョン違うんだよな．
 
         結局うまくいく方法見つからなかった．だから，Google APIにアクセスしてエラーが出たらリトライする仕組みにしようかな．
 
@@ -655,16 +689,149 @@ flet run
 
 
 
+<a src=""  target="_blank"> <img src="" class="imgfullcenter" style="margin-top:20px;"></a>   <p class="headline" style="margin-top:40px;"></p>
+<p style="margin:3vw 2vw 0px 2vw">
+    らずぱいに実装したら次の画像みたいに文字化けしてしまった．
+    特にエンコード，デコードには問題ないみたい．
+    おそらく，ラズパイに日本語対応したフォントがないためにこうなっている．
+    そこで
+    https://raspi.ryo.sc/raspi_ipa_font/
+    このサイトにある
+    $ sudo apt install fonts-ipaexfontを実行して日本語のフォントを入れた
+    ダメでした．
+    次はflet自体のassetに日本語対応フォントを入れて使ってみる．
+    フォントは
+    https://seed.line.me/index_jp.html
+    からダウンロードした．この中にある．LINESeedJP_TTF_Bdを使う．ちなみにDesktop用のやつ
+    これをmain.pyのあるassets/LINESeedJP_TTF_Bd.ttfとなるように配置する．
+    で，fletのpageを作成するところに以下を追記
+    page.fonts={"Go_bd:"./assets/LINESeedJP_TTF_Bd.ttf}
+    page.theme=ft.Theme(font_family="Go_bd")
+    これでpageに日本語フォントが適用されたことになる．！
+    解決！
+    この指定方法は
+    https://flet.dev/docs/cookbook/fonts/
+    を参照した．
+</p>
 
 
 
+<p class="headline" style="margin-top:40px;"></p>
+<p style="margin:3vw 2vw 0px 2vw">
+    .shファイルを作成した後は
+    chmod 755 testscript.sh
+    として実行権限を付与しないと意味がない
+
+    そしてシェルスクリプト内で
+    . .venv/bin/activateを永遠に実行していたが仮想環境に入れないという問題があった
+    サイトにはbash <file name>としろだとかいろいろあったけど
+    そもそも.venv/bin/activateに実行権限が付与されていなかった．
+    chmod +x .venv/bin/activate
+    source .venv/bin/activate
+    
+    sourceを使うと同じシェルスクリプト上で実行させることができる．
+    これが必要だった．sourceを使わないから毎回新しくpython実行したときにシェルスクリプトが作成される．
+    これは，venvをactivateしていても，別のシェルスクリプトには反映されないからmain.pyを実行したときに
+    flet not foundになっていた，なるほどね．
+
+    最終的なシェルスクリプト
+    #!/bin/bash#ちなみにここが1行目出ないと実行しない．
+    cd /home/kayu/Desktop/plan/
+    chmod +x ./main.py
+    
+    source .venv/bin/activate
+    
+    sleep 1
+    
+    python ./main.py
+
+   
+</p>
+<p class="headline" style="margin-top:40px;"></p>
+<p style="margin:3vw 2vw 0px 2vw">
+    以下が~/.profileに追記したものでraspiが起動した際に自動的に実行される．
+    #source /home/kayu/Desktop/plan_bulletin.sh
+    ここまでは良かった．
+    今度は自動的に実行されない問題．ほんと実装までが長いよーーーーーーー
+
+    とりあえずcron使ってみる
+    https://www.raspberrypirulo.net/entry/cron
+    を参照した
+</p>
+
+<p class="headline" style="margin-top:40px;"></p>
+<p style="margin:3vw 2vw 0px 2vw">
+    前回実装はtasksのほうは処理が被ると動作が停止してしまうことから自動更新を行わなかった．
+    しかし，行いたいのである方法を考えた．
+    それは，tasksを更新しているときはswicthcを使えないようにして，更新が終わったときにswitchを使えるようにすればいいという事である．
+    tasks.remain.controls[0].content.controls[-1]
+    でスイッチのインスタンスまでアクセスする．
+    tasks.remain.controls[0].content.controls[-1].disabled= True or falseで
+    スイッチの使用を制限できる．
+    これでrefrshスイッチが必要亡くなった．
+    def switch_disabled():
+        tasks_num=len(tasks.remain.controls)
+        for i in range(tasks_num):
+            tasks.remain.controls[i].content.controls[-1].disabled=True
+        tasks_num=len(tasks.completed.controls)
+        for i in range(tasks_num):
+            tasks.completed.controls[i].content.controls[-1].disabled=True
+
+    def switch_abled():
+        tasks_num=len(tasks.remain.controls)
+        for i in range(tasks_num):
+            tasks.remain.controls[i].content.controls[-1].disabled=False
+        tasks_num=len(tasks.completed.controls)
+        for i in range(tasks_num):
+            tasks.completed.controls[i].content.controls[-1].disabled=False
+
+    こんな感じでスイッチのable,disableを切り替える関数を作った．
+    if timer>300:
+        #tasksのスイッチをdisabledにする．
+        switch_disabled()
+        page.update()
+        #ここからがTaskの方を自動更新するプログラム．
+        tasks.tasks_list_create()#これを実行するとtasksがupdateされる．
+        #tasksのスイッチをabledにする．
+        switch_abled()
+        timer=0
+    という風に300秒おきにtasksの予定を更新することにした．
 
 
+    contentsの方もボタンを押したときに他のボタンを使用できないように次の関数を作って変更した．
+    def switch_diabled(self):
+    tasks_num=len(self.remain.controls)
+    for i in range(tasks_num):
+        self.remain.controls[i].content.controls[-1].disabled=True
+        tasks_num=len(self.completed.controls)
+    for i in range(tasks_num):
+        self.completed.controls[i].content.controls[-1].disabled=True
+    #change buttonも使えないようにする．
+    self.change_button.content.disabled=True
+        
+def switch_abled(self):
+    tasks_num=len(self.remain.controls)
+    for i in range(tasks_num):
+        self.remain.controls[i].content.controls[-1].disabled=False
+        tasks_num=len(self.completed.controls)
+    for i in range(tasks_num):
+        self.completed.controls[i].content.controls[-1].disabled=False
+    self.change_button.content.disabled=False
 
 
+    なぜかpulan bulletin.shを実行しfletを起動するにはわざわざラズパイを一度ディスプレイに接続しなくてはいけないという
+    めんどくささがあるがまぁこれでいいか．
 
+</p>
 
-
+<p class="headline" style="margin-top:40px;"></p>
+<p style="margin:3vw 2vw 0px 2vw">
+    vnc viewerのidletimeをいじってタイムアウトしないようにする　．
+    ラズパイ側のvncvieewrを右クリック，options,
+    wxpert,
+    idletimeoutの値を0にするｌ．
+    
+</p>
 
     <!--topage-->
     <div class="toPagePaRight1">
