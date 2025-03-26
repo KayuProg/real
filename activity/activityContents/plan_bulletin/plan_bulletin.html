@@ -142,8 +142,7 @@ $(document).ready(function(){
 <input id="tab4" type="radio" name="check" >
 <label for="tab4" class="pagetabTop">Page 4</label>
 
-<input id="tab5" type="radio" name="check" >
-<label for="tab5" class="pagetabTop">Page 5</label>
+
 
 <!--タブ選択によるコンテンツ部分-->
 <div class="pages"><!--全ページの全体的なスタイルを指定するため-->
@@ -161,21 +160,21 @@ $(document).ready(function(){
 
 <!--１ページ目-->
 <div id="page1" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCUpDate">Posted:&nbsp;2025/03/26</span>&nbsp;&nbsp;
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
     <h2 class="aCtitle"><span>01</span>Plan Bulletin</h2>
-    <!-- <img class="aCeyecatch" src="img/head.png" width="%"> -->
+    <img class="aCeyecatch" src="img/head.png" width="%">
 
     <!--actmaincontents-->
-    <!-- <p class="headline" style="margin-top:40px;">契機</p>
+    <p class="headline" style="margin-top:40px;">契機</p>
     <p style="margin:3vw 2vw 0px 2vw">
         普段自分のタスク管理は，Google CalenderとiOSのリマインダーを使っています．<br><br>
         その日の大きなイベント（テストだったり，レポート提出だったり）はGoogle Calender，<br>
         細かいタスク（その日の課題だったり，買い出し）はリマインダーという使い分けです．<br><br>
         二つアプリを使っているため，予定確認の際にアプリを行き来しなくてはいけないことがあり面倒です．<br><br>
         さらにはいちいちアプリを開いて今日の予定を確認するのも面倒に感じました．<br><br>
-        なので当日の予定・タスクを一画面に表示してくれるものを作ります．<br><br>
+        なので<span class="fb bgyellow">当日の予定・タスクを一画面に表示してくれるもの</span>を作ります．<br><br>
         Raspberry pi3 model B+を使います．<br><br>
     </p>
 
@@ -196,27 +195,27 @@ ERROR: Could not find a version that satisfies the requirement reminders<br><br>
         これは<br><br>
         <cite><a href="https://qiita.com/noppe78/items/cc5327ecdf33103b377b" target="_blank">【解決済み】pipによるパッケージのインストールに失敗する(Could not find a version that satisfies the requirement)</a></cite><br><br>
         によるとPythonバージョンとの非互換性によるエラーらしい<br><br>
-        解決方法としてPyenv（Pythonで作成した仮想環境）によるPython version切り替えの必要があるそうです．<br><br>
-        これを使うとしたら方法として，まずiPhone上でPythonプログラムを定期的に実行してクラウドにリマインダーのデータをアップロードします．<br><br>
+        解決方法としてPyenv（Pythonで作成した仮想環境）によるPython version切り替えの必要があるそうです．まぁこれは大丈夫．<br><br>
+        この方法で行くとしたら方法として，まずiPhone上でPythonプログラムを定期的に実行してクラウドにリマインダーのデータをアップロードします．<br><br>
         そのクラウドデータをラズパイに取得させるものです．<br><br>
         面倒ですね．<br><br>
         この方法はなしで．<br><br>
         ではどうするのか．<br><br>
-        結局，iOSのリマインダーからGoogle Tasksというリマインダーアプリに移行することにしました．<br>
+        結局，iOSのリマインダーから<span class="fb">Google Tasksというリマインダーアプリに移行</span>することにしました．<br>
         なぜなら，Google TasksにはAPIがあるからです．<br><br>
-        APIを使って直接ラズパイにデータを持ってこさせるということです．<br><br>
+        <span class="bgyellow fb">APIを使って直接ラズパイにデータを持ってこさせる</span>ということです．<br><br>
         また，Google Calender使っているので同じGoogleのアプリならコード書きやすいのではないかとも考えていました．<br><br>
         さすが天下のGoogle様．<br><br>
         以降にラズパイでデータを取得できるようになった過程，バグ解決を書いていきます．<br><br>
-    </p> -->
+    </p>
  
-    <!-- <p class="headline" style="margin-top:40px;">Python 3.12 install</p>
+    <p class="headline" style="margin-top:40px;">Python 3.12 install</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        Google TasksのAPIを使うためにはPython 3.10.7以上が必要みたいです．<br><br>
+        <span class="red">Google TasksのAPIを使うためにはPython 3.10.7以上が必要</span>みたいです．<br><br>
         せっかくだしもう少し新しいやつを（良くないことが起こりそうですが）installします．<br><br>
         <cite><a href="https://blog.goo.ne.jp/espiya/e/6b7f4d66b7253b4eb31cce32e0609a30" target="_blank">Raspberry Pi に最新の Python3 をインストールする</a></cite><br><br>
         にしたがって進めていきますます．<br><br>
-        Pythonをインストールした場所は/usr/bin/pythonです．（注意！）<br><br>
+        <span class="red">Pythonをインストールした場所は/usr/bin/python</span>です．（注意！）<br><br>
         さっきのサイトではうまくいかなかったのでこっちのサイトを参照します．<br><br>
         <cite><a href="https://qiita.com/guijiu/questions/7a3fae535edef4ea2e49" target="_blank">UbuntuのOSシステムのでpythonの使われ方を教えてください。</a></cite><br><br>
         たまに
@@ -230,13 +229,13 @@ Cannot write to ‘Python-3.12.3.tar.xz’ (Permission denied).
 </span><br><br>
         
         というエラーが出る．この場合は実行するコマンドにsudoをつけたらOK．<br><br>
-    </p> -->
+    </p>
 
-    <!-- <p class="headline" style="margin-top:40px;">Pyenvによるversion管理</p>
+    <p class="headline" style="margin-top:40px;">Pyenvによるversion管理</p>
     <p style="margin:3vw 2vw 0px 2vw">
         <cite><a href="https://qiita.com/hoshi621/items/c8b82ab42564256df884" target="_blank">Raspberry PiにpyenvをインストールしてPythonをバージョン管理</a></cite><br><br>
         このサイトを参照しながらPyenvによるversion管理を進めていきます．<br><br>
-        Pyenvをinstallしたとき，エラーが出てinstallできないときはラズパイのメモリが足りない場合があります．<br><br>
+        Pyenvをinstallしたとき，エラーが出てinstallできないときは<span class="fb">ラズパイのメモリが足りない</span>場合があります．<br><br>
         そういう時は，<br><br>
 
 <span style="font-size:0.7rem;">
@@ -251,9 +250,8 @@ sudo swapon /swapfile
 </span><br>
 
         
-        というコマンドでスワップを増やしたら解決できます．<br><br>
-        pyenv not commandみたいな感じになったのエラーが出てしまったら
-        <br><br>
+        というコマンドで<span class="fb bgyellow">スワップを増やしたら解決</span>できます．<br><br>
+        pyenv not commandみたいな感じになったのエラーが出てしまったら，<br><br>
 <span style="font-size:0.8rem;">
 <pre class="line-numbers small">
 <code class="language-javascript small">
@@ -262,8 +260,7 @@ $ source ~/.bash_profile
 </pre>
 </span><br>
         を使って読込なおせば行けます．<br><br>
-        
-        次に仮想環境を構築してPythonのversionを変更する方法です．<br><br>
+        次に<span class="big fb">仮想環境を構築してPythonのversionを変更する方法</span>です．<br><br>
         以下のコマンドに従って実行すれば達成できます．<br>
         詳しいことはコメントアウト？してあるところを確認ください．<br><br>
 
@@ -303,10 +300,10 @@ kayu@raspberrypi:~/Desktop/test/plan $ pyenv versions　
 </pre>
 </span><br>
         以上がpyenvの環境構築は終了．<br><br>
-    </p> -->
+    </p>
 
 
-    <!-- <p class="headline" style="margin-top:40px;">Google Work Spaceでの準備</p>
+    <p class="headline" style="margin-top:40px;">Google Work Spaceでの準備</p>
     <p style="margin:3vw 2vw 0px 2vw">
         ここでGoogle Cloudでprojectを作成する．<br><br>
         <cite><a href="https://developers.google.com/workspace/guides/create-project?hl=ja" target="_blank">Google Cloud プロジェクトを作成する </a></cite><br><br>
@@ -324,24 +321,30 @@ Google の審査プロセスを完了していません。このアプリは現�
         というエラーが出た．<br><br>
         なんでや．．．．<br><br>
 
-        ＜解決方法＞<br>
-        Google Cloudの確認ステータスで「検証は不要です」となるようにスコープ？権限を調整（全てオフにした）したら行けた．<br><br>
+        <span class="big fb">＜解決方法＞</span><br>
+        Google Cloudの確認ステータスで<span class="fb bgyellow">「検証は不要です」となるようにスコープ？権限を調整（全てオフにした）</span>したら行けた．<br><br>
 
         やった！取得できた！<br><br>
 
         <cite><a href="https://messefor.hatenablog.com/entry/2020/10/08/080414" target="_blank">APIキー、OAuthクライアントID、サービスアカウントキーの違い:Google APIs</a></cite><br><br>
         
-        ここがわかりやすかった．APIキー，クライアントIDなどの解説がしてある．<br><br>
-        https://developers.google.com/calendar/api/quickstart/python?hl=ja
-        google apiはここのサイトを最初参照した．
-        pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-        これがインストールすべきライブラリたち
-    </p> -->
+        ここがわかりやすかった．APIキー，クライアントIDなどの解説がしてある<br><br>
+        
+        google apiはここのサイトを最初参照した．<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+</code>
+</pre>
+</span><br>
+        <span class="fb">これがインストールすべきライブラリたち</span>
+    </p>
 
 
-    <!-- <p class="headline" style="margin-top:40px;">取得した後</p>
+    <p class="headline" style="margin-top:40px;">取得した後</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        取得した内容はこんな感じで返ってくる．
+        取得した内容はこんな感じで返ってくる．<br><br>
 <span style="font-size:0.7rem;">
 <pre class="line-numbers">
 <code class="language-javascript">
@@ -361,42 +364,59 @@ Google の審査プロセスを完了していません。このアプリは現�
 </span><br>    
 
         dueがこのタスクの期日になる．<br>
-        RFC3339 timestampというのが使われていた．<br><br>
+        <span class="fb">RFC3339 timestamp</span>というのが使われていた．<br><br>
         <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#list" target="_blank">Tasks API . tasks Instance Methods</a></cite><br><br>
         に書いてありました．<br><br>
         <span class="small">
             " "due": "A String", # Due date of the task (as a RFC 3339 timestamp). Optional. The due date only records date information; the time portion of the timestamp is discarded when setting the due date. It isn't possible to read or write the time that a task is due via the API."
             'due': '2024-10-31T00:00:00.000Z'
         </span><br><br>
-        上述にある通り，日付だけしかAPIで引っ張れないらしい．<br><br>
+        上述にある通り，<span class="fb red">日付だけしかAPIで引っ張れない</span>らしい．<br><br>
         う～ん．<br><br> 
 
         <cite><a href="https://www.jisakeisan.com/?y=2024&m=10&d=30&hh=18&mm=47&t1=jst&t2=utc" target="_blank">時差計算</a></cite><br><br>
 
         同様に似たGoogle calender用のページでGoogle Calenderからも情報をとれるようにしました．<br><br>
-    </p> -->
+        <cite><a href="https://developers.google.com/calendar/api/quickstart/python?hl=ja" target="_blank">Python クイックスタート</a></cite><br><br>
+        ここら辺のサイトを参照した．<br><br>
+    </p>
 
-    <!-- <p class="headline" style="margin-top:40px;">表示方法</p>
+
+    <!--topage-->
+    <div class="toPagePaRight1">
+        <div class="topage "><label for="tab2">To Page 2</label></div>
+    </div>
+</div>
+
+<!--２ページ目-->
+<div id="page2" class="panel">
+
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>02</span>表示方法</h2>
+
+    <!--actmaincontents-->
+  <p class="headline" style="margin-top:40px;">ラズパイかな？・・・・</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        次にどのようにディスプレイに表示させるかを考えた．<br><br>
+        次に<span class="fb">どのようにディスプレイに表示させるか</span>を考えた．<br><br>
         １．ラズパイ上でWebサーバを構築してWeb上で表示させる．<br><br>
         ２．デスクトップアプリを作ってその上に表示させる．<br><br>
         Webサーバ構築のほうは時間がかかる上にWebを定期的に自動更新させる必要が出てくる．<br><br>
         HTMLをpythonで編集していく形になると思うが内容を随時更新されるようにできるだろうか．<br><br>
         うーん．デスクトップアプリ作ったほうが早そうだし，簡単そう．<br><br>
-        ということでpythonでデスクトップアプリ作ります．<br><br>
+        ということで<span class="fb bgyellow">pythonでデスクトップアプリ作ります</span>．<br><br>
         ただ文字列を表示させて定期的に更新するだけだからpythonでデスクトップアプリ作っても問題ないだろう．<br><br>
         リアルタイム性が重要でもないしな．<br><br>
     </p>
+
     <p style="margin:3vw 2vw 0px 2vw">
      最終的にiPadに文字を表示するにあたってデスクトップアプリを作成することにした．<br><br>
      そこで，以前使ったことのあるTkinterを使おうとしたが，UIの作成にかなり苦労したことを思い出した．<br><br>
      そこでpythonで作るデスクトップアプリについて調べていたら次のようなものを見つけた．<br><br>
      <cite><a href="https://qiita.com/ForestMountain1234/items/bc709c3599ee86e2a0dd" target="_blank">Pythonを使ったGUIアプリを「お手軽に」作りたかった件</a></cite><br><br>
-     このサイトで見つけたFletです．<br><br>
+     このサイトで見つけた<span class="fb big bgyellow">Flet</span>です．<br><br>
      <cite><a href="https://qiita.com/NasuPanda/items/48849d7f925784d6b6a0" target="_blank">Pythonだけでクロスプラットフォームなアプリを作れるFletについて</a></cite><br><br>
      ここら辺の記事を軽く読んだだけでもこれはやばい．すごそう．<br><br>
-     すごい簡単にデスクトップアプリへのビルド，Webアプリとしてデプロイもできるらしい．<br><br>
+     すごい簡単に<span class="fb">デスクトップアプリへのビルド，Webアプリとしてデプロイ</span>もできるらしい．<br><br>
      ほんとすごい．<br><br>
      Webと同じ感覚でflexbox的に要素配置できるのも素晴らしい．<br><br>
      いうことありません．これを使おう．<br><br>
@@ -404,19 +424,19 @@ Google の審査プロセスを完了していません。このアプリは現�
      <cite><a href="https://flet.dev/docs/getting-started/" target="_blank">Flet Getting started</a></cite><br><br>
      
      ドキュメントでは仮想環境でのapp製作を進められているのでpyenvの仮想環境で進めていきます．<br><br>
-     注意！WSL or Linux環境でのinstallはいろいろ操作が必要みたいだからドキュメントちゃんと読んだ方がいい！<br><br>
+     注意！<span class="fb red">WSL or Linux環境でのinstallはいろいろ操作が必要</span>みたいだからドキュメントちゃんと読んだ方がいい！<br><br>
      
      <span class="small">
          ちなみにAudio使ったflet appのbuildには--include-packages flet_audioというコマンドが必要らしい．<br><br>
          flet build apk --include-packages flet_audioこんな感じらしい．<br><br>
          videoを使う場合も追加でinstall必要みたい．（ドキュメント自分で読んでね）<br><br>
      </span>
-    </p> -->
+    </p>
     
-    <!-- <p class="headline" style="margin-top:40px;">Fletでデスクトップアプリを作る</p>
+    <p class="headline" style="margin-top:40px;">Fletでデスクトップアプリを作る</p>
     <p style="margin:2vw 2vw 0px 0vw">
         フレットでデスクトップアプリを作る環境構築で次のエラーたちが出た．<br><br>
-        <span class="fb">１．共有ライブラリない問題</span><br>
+        <span class="fb big">１．共有ライブラリない問題</span><br>
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
 <code class="language-javascript small">
@@ -428,7 +448,7 @@ error while loading shared libraries: libmpv.so.1: cannot open shared object fil
         <cite><a href="https://qiita.com/kawamo55/items/4d973ede723f2987ef7a" target="_blank">Ubuntu22.04にFletをインストールした話</a></cite><br><br>
         結局このサイトで行けそう（行けた）．<br><br>
 
-        <span class="fb">２．サーバがうまく動作しない問題</span><br><br>
+        <span class="fb big">２．サーバがうまく動作しない問題</span><br><br>
         またエラー出た．（いつも通り）<br><br>
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
@@ -437,11 +457,11 @@ Unable to init server: Could not connect: Connection refused
 </code>
 </pre>
 </span><br>            
-        これは単に自分の場合はラズパイのデスクトップを表示していないことが問題だった．<br><br>
+        これは単に自分の場合は<span class="fb bgyellow">ラズパイのデスクトップを表示していないことが問題</span>だった．<br><br>
         ラズパイをずっとからvscodeでssh接続で使っていたが，ラズパイをディスプレイに接続すると解消した<br><br>
         flet runをしたい場合はVNC Viewerなどでラズパイのデスクトップを直接表示させて実行する必要ることがわかった．<br><br>
 
-        <span class="fb">３．謎</span><br><br>
+        <span class="fb big">３．謎</span><br><br>
         そろそろ行けるかな？<br><br>
         しかし，またエラー<br><br>
 <span style="font-size:0.7rem;">
@@ -461,7 +481,7 @@ atk_socket_embed: assertion 'plug_id != NULL' failed
         わからない．怖い<br><br>
         まあ，動いたしいっか（後で苦労しそう）<br><br>
 
-        次にbashファイルから呼び出せるか貯めそう．<br><br>
+        次にbashファイルから呼び出せるか試そう．<br><br>
         適当なbashファイルに<br><br>
 
 <span style="font-size:0.7rem;">
@@ -481,12 +501,12 @@ flet run
 </span><br>
         と記述して実行してもちゃんと開きました．<br><br>
         うーんできてる．<br><br>
-        やっぱreboot大事だな．<br><br>
+        やっぱ<span class="fb bgyellow">reboot大事</span>だな．<br><br>
         うん．<br><br>
         沼ったらとりあえずrebootしよう（適当）<br><br>
-    </p> -->
+    </p>
 
-    <!-- <p class="headline" style="margin-top:40px;">作りたいけどデプロイどうする問題</p>
+    <p class="headline" style="margin-top:40px;">作りたいけどデプロイどうする問題</p>
     <p style="margin:2vw 2vw 0px 2vw">
         すごい．文法がすごく簡単．<br><br>
         わかりやすい．直感的で扱いやすい（おまじないが少ないということ）<br><br>
@@ -499,9 +519,9 @@ flet run
         ある程度容量はつかんだので実際に作る．<br><br>
         チュートリアル英語だし，プログラムの写経疲れた．．．<br><br>
 
-        とりあえず一度アプリとして出力してみたいと思う．<br><br>
+        とりあえず<span class="fb">一度アプリとして出力</span>してみたいと思う．<br><br>
         どうなるかな．．<br><br>
-        え，，アプリとしてビルドするには普通にflutterのコンパイルツール入れなきゃいけないの．．．<br><br>
+        え，，アプリとして<span class="fb red">ビルドするには普通にflutterのコンパイルツール</span>入れなきゃいけないの．．．<br><br>
         なにそれ，知らない．．．<br><br>
         <img src="./img/required.png" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
         求められるハードウェアの性能がこんな感じ．<br><br>
@@ -519,7 +539,7 @@ flet run
         ここに乗ってる一番左のapk/aabはアンドロイド関係のやつ見たい．<br><br>
         WSL使ってLinux環境にビルドできるみたいだけどLinux系のアプリとかビルドってすごいversionにうるさいイメージがある．<br><br>
         以前にLinux使っててversion関係で沼った上に諦めなくてはいけなかった記憶がある．<br><br>
-        やっぱりwebアプリとしてビルドするしかなさそう．<br><br>
+        やっぱり<span class="fb">webアプリとしてビルド</span>するしかなさそう．<br><br>
         そうすると，どうなるのだろう．<br><br>
         flutterでwebアプリを作る原理？みたいなのを調べてみるとDart（プログラミング言語）をJavascriptに変換しているらしい．<br><br>
         今回使っているfletで使用しているのはPython．<br><br>
@@ -534,7 +554,7 @@ flet run
       
       
       
-        ドキュメントに書いてある説明を読んでFly.ioを使うことにした．<br><br>
+        ドキュメントに書いてある説明を読んで<span class="fb">Fly.io</span>を使うことにした．<br><br>
         Replitに関してはweb IDEで少しやりたいことと違う．<br>
         Self HostingはUbuntuとかLinux環境じゃないと厳しそう．<br>
         ということで聞いたこともないFly.ioを使います．<br><br>
@@ -542,7 +562,7 @@ flet run
         <cite><a href="https://fly.io/docs/flyctl/install/" target="_blank">Docs Installl fly ctl</a></cite><br><br>
         
         ここ見てwindowにインストール．<br><br>
-        powershellで実行．cmdじゃないよ<br><br>
+        <span class="fb red">powershellで実行</span>．cmdじゃないよ<br><br>
         fly.ioのサイトに従ってアプリをデプロイしようとしたが，次のエラーが表示された．<br><br>
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
@@ -555,34 +575,52 @@ Error: We need your payment information to continue! Add a credit card or buy cr
         嫌だな．う～ん．<br><br>
         Replitにしようかな．<br><br>
         少し面倒すぎる．<br><br>
-        ということで一度fly.ioは諦めてReplitでデプロイをしてみようと思います．<br><br>
+        ということで一度fly.ioは諦めて<span class="fb big">Replitでデプロイ</span>をしてみようと思います．<br><br>
         割とすぐできました．<br><br>
         <img src="./img/repl.png" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
         問題としては，スクリプトを実行した際に新しくWindowが表示されるが，そこでは何らかの原因でAppが表示されない．<br><br>
-        表示するためには直接Replのウィンドウから開く必要がある．<br><br>
+        <span class="fb bgyellow">表示するためには直接Replのウィンドウから開く必要がある</span>．<br><br>
         これは開けても開発用デバッグ用らしく，Replのセッションを切断するとウィンドウも使えなくなってしまう．<br><br>
-        有料のものを使えばセッション切断後も使えるらしいが有料は嫌です．<br><br>
-        デプロイ方法はこの開発用ウィンドウにしようかな．<br><br><br><br><br><br><br><br>
-        考えに考えた結果，buildしないでflet runで表示されるデバック用画面？を直接使うことにしました．<br><br>
+        有料のものを使えばセッション切断後も使えるらしいが<span class="fb">有料は嫌</span>です．<br><br>
+        デプロイ方法はこの開発用ウィンドウにしようかな．<br><br>
+        考えに考えた結果，buildしないで<span class="fb bgyellow">flet runで表示されるデバック用画面？を直接使う</span>ことにしました．<br><br>
         これだと，ラズパイ上でfletが動く環境だけ作って，外部で開発したコードをもってくるだけでいい．<br><br>
         これで行きます．<br><br>
         共有方法はGit hubかな．<br><br>
         変更がある度にGit pullすれば大丈夫でしょう．<br><br>
-   </p> -->
+   </p>
 
-    <!-- <p class="headline" style="margin-top:40px;">Githubへのpushの注意点</p>
+    <p class="headline" style="margin-top:40px;">Githubへのpushの注意点</p>
     <p style="margin:3vw 2vw 0px 2vw">
         製作中のスクリプトファイルをgit hubにpushしようとしたらGoogle Aouthの気密ファイル（トークン情報）含んでいるってことではじかれた．<br><br>
         知らなかった．<br><br>
         機密ファイルをpush使用とした私も馬鹿だが，そんな馬鹿でも大丈夫なような仕組みがあるらしい<br><br>
-        機密ファイルはちゃんとpushしないよう.gitignoreに設定した．<br><br>
-    </p> -->
+        <span class="fb big red">機密ファイルはちゃんとpushしないよう.gitignoreに設定</span>した．<br><br>
+    </p>
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab1">To Page 1</label></div>
+        </div>
+    
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab3">To Page 3</label></div>
+        </div>    
+    </div>
+</div>
+
+<!--３ページ目-->
+<div id="page3" class="panel">
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+
+    <!--actmaincontents-->
 
 
-    <!-- <p class="headline" style="margin-top:40px;">時刻フォーマットについて</p>    
+    <p class="headline" style="margin-top:40px;">時刻フォーマットについて</p>    
     <p style="margin:3vw 2vw 0px 2vw">
-        基本的に時刻についてのやり取りはisoフォーマットで行われている．<br><br>
-        日付をICT標準から日本時刻に直し，isoフォーマットに変換する方法は次のコード<br><br>
+        基本的に時刻についてのやり取りは<span class="fb">isoフォーマット</span>で行われている．<br><br>
+        <span class="fb big">日付をICT標準から日本時刻に直し，isoフォーマットに変換する</span>方法は次のコード<br><br>
 
 
 <span style="font-size:0.7rem;">
@@ -596,7 +634,7 @@ next_day= (now_time + datetime.timedelta(days=1)).replace(hour=0, minute=0, seco
 </code>
 </pre>
 </span><br>
-        isoフォーマットから時刻のみを取得したいときは以下<br><br>
+        <span class="fb">isoフォーマットから時刻のみを取得したいとき</span>は以下<br><br>
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
 <code class="language-javascript small">
@@ -604,9 +642,9 @@ event_time=datetime.fromisoformat(event["date"]).strftime("%H:%M")
 </code>
 </pre>
 </span><br>
-    </p> -->
+    </p>
 
-<!-- 
+
     <p class="headline" style="margin-top:40px;">Calenderの予定の背景色の取得</p>
     <p style="margin:2vw 2vw 0px 2vw">
         カレンダー内の予定の色を取得したいとき<br><br>
@@ -625,15 +663,15 @@ color=event["colorId"]
 </code>
 </pre>
 </span><br>
-    </p> -->
+    </p>
 
 
 
 
-    <!-- <p class="headline" style="margin-top:40px;">画面の更新方法</p>
+    <p class="headline" style="margin-top:40px;">画面の更新方法</p>
     <p style="margin:2vw 2vw 0px 2vw">
         Calenderでの予定変更追加に際して画面を更新する必要がある．<br><br>
-        textに関しては.valueで変更ができそうだが，contentのdescriptionなどが難しそう．<br><br>
+        textに関しては.valueで変更ができそうだが，contentのdescription追加などが難しそう．<br><br>
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
 <code class="language-javascript small">
@@ -651,7 +689,7 @@ self.plans.controls.clear()
 </code>
 </pre>
 </span><br>
-        でself.plansのcontrolを一度すべて消す．<br><br>
+        で<span class="fb">self.plansのcontrolを一度すべて消す</span>．<br><br>
         次にもう一度CalenderとTasksの情報を取得しなおして<br>
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
@@ -660,12 +698,12 @@ self.plans.controls.append()
 </code>
 </pre>
 </span><br>
-        を使ってもう一回self.plansにcontrolsを登録しなおす．<br><br>
+        を使ってもう<span class="fb">一回self.plansにcontrolsを登録しなおす</span>．<br><br>
         これでできた！Happy!!．<br><br>
     
-    </p> -->
+    </p>
 
-    <!-- <p class="headline" style="margin-top:40px;">Tasks画面制作</p>
+    <p class="headline" style="margin-top:40px;">Tasks画面制作</p>
     <p style="margin:3vw 2vw 0px 2vw">
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
@@ -675,13 +713,13 @@ self.plans.controls.append()
 </pre>
 </span><br>
         というエラーが出て実行できないとき<br><br>
-        スコープが正しいか確認しトークンを再発行することで解決した．<br><br>
+        <span class="fb bgyellow">スコープが正しいか確認しトークンを再発行する</span>ことで解決した．<br><br>
 
         例）SCOPES = ["https://www.googleapis.com/auth/tasks"]<br>
         例）SCOPES = ["https://www.googleapis.com/auth/tasks.readonly"]<br><br>
-    </p> -->
+    </p>
 
-    <!-- <p class="headline" style="margin-top:40px;">Tasks側の自動更新について</p>
+    <p class="headline" style="margin-top:40px;">Tasks側の自動更新について</p>
     <p style="margin:3vw 2vw 0px 2vw">
         Calender側と同様に画面の自動更新プログラムを作成したら以下のエラーが出た．<br><br>
 <span style="font-size:0.7rem;">
@@ -697,21 +735,21 @@ self.plans.controls.append()
         参考になりそうなサイトを見つけたがPythonのversionが異なったりしていて微妙．<br><br>
 
         結局うまくいく方法見つからなかった．だから，Google APIにアクセスしてエラーが出たらリトライする仕組みにしようかな．<br><br>
-        画面の自動updateとスライドスイッチの処理が競合したときにこのエラーになるっぽい．<br><br>
+        <span class="fb">画面の自動updateとスライドスイッチの処理が競合したときにこのエラーになる</span>っぽい．<br><br>
         だから，calenderの方だけ自動的にupdateされるようにしてtasksはrefleshボタンを設置して手動にすることに一旦する．<br><br>
         （結局どうしたかは後述．ちなみに自動更新するようにできました．）<br><br>
 
-    </p> -->
+    </p>
 
 
-    <!-- <p class="headline" style="margin-top:40px;">ディスプレイの切り替え</p>
+    <p class="headline" style="margin-top:40px;">ディスプレイの切り替え</p>
     <p style="margin:3vw 2vw 0px 2vw">
-    既に終了したタスク，残っているタスクを表示する画面を別々にしたい．<br><br>
+    <span class="fb">既に終了したタスク，残っているタスクを表示する画面を別々にしたい</span>．<br><br>
     そこで，画面を遷移するためのボタンを作ることにした．<br><br>
     プログラムとしては，<br><br>
     ・self.display_flag==1の時にはremain tasksが表示されている．<br>
     ・self.display_flat==0の時にはcompleted tasksが表示されている．<br><br>
-    というふうにインスタンス作成時にdisplayの状態を記録する変数を初期化しておく．<br><br>
+    というふうに画面のインスタンス作成時にdisplayの状態を記録する変数を初期化しておく．<br><br>
 
     関数内では<br>
    
@@ -733,34 +771,34 @@ def change_display(self,e):
 </pre>
 </span><br>
     
-    というふうにself.display_flagの値によってappendするcontrolsを変更している．<br><br>
-    ただし，self.pageはインスタンス作成時に引数としてmain()で作成したft.pageを持ってきている．<br><br>
+    というふうに<span class="fb">self.display_flagの値によってappendするcontrolsを変更</span>している．<br><br>
+    ただし，<span class="red fb">self.pageはインスタンス作成時に引数としてmain()で作成したft.pageを持ってきている</span>．<br><br>
 
     </p>
- -->
+ 
 
-<!-- <p class="headline" style="margin-top:40px;">Tasks側の機能について</p>
+<p class="headline" style="margin-top:40px;">Tasks側の機能について</p>
     <p style="margin:2vw 2vw 0px 0vw">
         Tasks側の画面の構成を考えていた．<br><br>
-        表示画面からtaks終了でチェックできたら楽だろうなと．．．<br><br>
+        表示画面からtaks完了のstatus変更ができたら楽だろうなと．．．<br><br>
         ということでいろいろ調べた．<br><br>
         <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#update" target="_blank">Tasks API . tasks Instance Method</a></cite><br><br>
         
-        に"status": "A String", # Status of the task. This is either "needsAction" or "completed".<br><br>
+        に"status": "A String", #<span class="fb">Status of the task</span>. This is either "needsAction" or "completed".<br><br>
         という記述があった．できそう．よし．<br>
         ここをいじればいいらしい<br><br>
-    </p> -->
+    </p>
 
 
 
-    <!-- <p class="headline" style="margin-top:40px;">for文を回していて値を保持しておいてほしい</p>
+    <p class="headline" style="margin-top:40px;">for文を回していて値を保持しておいてほしい</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        状況としては，まずTasksをcompletedとするためのスライドボタンの作成はfor文を使って作成している<br><br>
+        状況としては，まずTasksをstatus:completedとするためのスライドボタンの作成はfor文を使って各タスクに対して作成している<br><br>
         そのボタンを作成すると同時に，スライドボタンを押した際に実行する関数を決定する．<br><br>
         この関数の処理にはfor文を回してボタンを作成した際に使ったtask IDなどの情報が必要になる<br><br>
-        しかし，for文が回りきっていると関数が参照するtask IDはfor文の最後の回の値となってしまい，該当するボタンの情報と異なる．<br><br>
+        しかし，for文が回りきっていると関数が参照するtask IDはfor文の最後の処理の値となってしまい，該当するボタンの情報と異なる．<br><br>
         そこで，情報を保持したままfor文を回してやりたい．<br><br>
-        そんな時はデフォルト引数を使うといい．<br><br>
+        そんな時は<span class="fb bgyellow">デフォルト引数を使う</span>といい．<br><br>
 
         ボタン作成の関数実行部分に<br><br>
 <span style="font-size:0.7rem;">
@@ -770,12 +808,11 @@ on_change=lambda e, tsid=tasklist_id, tid=task_id, ts=status:tasks.change_status
 </code>
 </pre>
 </span><br>
-        と記述することでデフォルト関数を使い値（task ID）を保持することができた．<br><br>
+        と記述することでデフォルト関数を使い，値（task ID）を保持することができた．<br><br>
         </p>
-    -->
    
 
-    <!-- <p style="margin:3vw 2vw 0px 2vw">
+    <p style="margin:3vw 2vw 0px 2vw">
         スライドボタンを押してtaskをcompletedに変更するにあたって以下を使った．<br><br>
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
@@ -797,7 +834,7 @@ HttpError 400 when requesting "Something URL" returned "Missing task ID". Detail
 </pre>
 </span><br>
         というエラーが返される．<br><br>
-        解決にはupdateではなくpatchを使う．<br><br>
+        解決には<span class="fb red">updateではなくpatchを使う</span>．<br><br>
         なぜかは不明.HTTP通信の何かがupdateだとおかしいらしい．<br><br>
         なのでコードは<br>
 <span style="font-size:0.7rem;">
@@ -814,14 +851,13 @@ service.tasks().patch(
         に変更した．<br><br>
         <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#get" target="_blank">Tasks API . tasks Instance Method</a></cite><br><br>
         詳しい使い方はこのサイトを参照して！<br><br>
-    </p> -->
+    </p>
 
 
    
-<!-- 
     <p class="headline" style="margin-top:40px;"></p>
     <p style="margin:3vw 2vw 0px 2vw">
-        次に問題が，どのようにしてtasksのstatus変化後に画面を変化させるか．<br><br>
+        次の問題が，どのようにしてtasksのstatus変化後に画面を変化させるか．<br><br>
         単純に画面をpage.update()で更新するだけでは実現できない<br><br>
         ここでCalenderでの画面更新を応用してみた．<br><br>
         まず，self.tasks_list_create()でcontents作成する際に<br><br>
@@ -833,10 +869,10 @@ self.completed.controls.clear()
 </code>
 </pre>
 </span><br>
-        を追加してcontrolの中身を全て空にする．<br>
+        を追加して<span class="fb">controlの中身を全て空にする</span>．<br>
         それからもう一度中身を作成させる．<br><br>
         ここまではCalenderの時と同じ<br><br>
-        問題になるのがスライドスイッチを変化させてすぐにGoogle APIに問い合わせてもまだ，Google TasksにはStatusの変化が反映されないことだ．<br><br>
+        問題になるのがスライドスイッチを変化させてすぐにGoogle APIに問い合わせてもまだ，<span class="fb">Google TasksにはStatusの変化が反映されない</span>ことだ．<br><br>
         これは再度controlsの中身を作成しなおすまでに少し時間をおくことで対応する．<br><br>
         これが原因でTasks側のスライドボタンを押してから変化するまでに時間を要してしまう．<br><br>
         これはAPIを使っている関係上しょうがない．諦めよう<br><br>
@@ -850,7 +886,7 @@ self.completed.controls.clear()
 def task_complete(self,tid,ts,val):
     tasks.change_status(tid, ts,val)
     #ここにtasksの表示をupdateする関数の実行を書く．
-    time.sleep(2)
+    time.sleep(2)#status変化が反映されるまで待つ．
     self.tasks_list_create()
     self.page.update()
     return 0
@@ -858,22 +894,21 @@ def task_complete(self,tid,ts,val):
 </pre>
 </span><br>
         
-        ここら辺の関係で処理が終わる前にスライドスイッチ再度を押しちゃうとバグってfletが落ちてしまう．<br><br>
+        ここら辺の関係でstatus変化の処理が終わる前にスライドスイッチを再度押しちゃうとバグってfletが落ちてしまう．<br><br>
         だから，一つ一つ処理が終わるまで待つ必要がある．<br><br>
 
         非同期処理を使うといい感じになるかも，と考え一度やってみる<br><br>
     </p>
- -->
 
     
-    <!-- <p style="margin:3vw 2vw 0px 2vw">
+    <p style="margin:3vw 2vw 0px 2vw">
         <cite><a href="https://qiita.com/Toyo_m/items/992b0dcf765ad3082d0b#%E5%AE%9F%E8%A3%85%E4%BE%8B" target="_blank">その並列処理待った！　「Python 並列処理」でググったあなたに捧ぐasync, threading, multiprocessingのざっくりとした説明</a></cite><br><br>
         <cite><a href="https://tech.asahi.co.jp/posts/20240328-7eb3" target="_blank">Pythonで非同期処理をするときのasyncioの使い方</a></cite><br><br>
         
         ここら辺使いながら非同期処理の勉強した．<br><br>
         実際に実装したが<br>
         非同期処理のbtnのon_changeが反応しなくなってしまった．<br><br>
-        詳しくいろいろ調べてたけどわからず，結論としてGPTにきいたところfletでのスライドスイッチのイベントループと競合しているのではないかとのこと．
+        詳しくいろいろ調べてたけどわからず，結論としてGPTにきいたところ<span class="fb">fletでのスライドスイッチのイベントループと競合しているのではないか</span>とのこと．
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
 <code class="language-javascript small">
@@ -881,17 +916,17 @@ btn= ft.Switch(value=True,on_change=lambda e,tid=task_id, ts=status:self.task_co
 </code>
 </pre>
 </span><br>
-        という関数でon_changeの関数が非同期だと実行されない問題が発生した．<br><br>
-        on_change自体は同期的なコールバック関数らしく非同期処理をすることがでいない？らしい．<br><br>
+        という関数で<span class="fb big">on_changeの関数が非同期だと実行されない</span>問題が発生した．<br><br>
+        <span class="fb">on_change自体は同期的なコールバック関数らしく非同期処理をすることがでいない？</span>らしい．<br><br>
     
         諦めます．他の並列処理（threading,multiprocessing）も試そうと思えばできるけど疲れました．．．<br><br>
         さらに，非同期処理をしたからといって余り処理速度が今回は向上しなかったためこのまま行きます．<br><br><br><br>
         無念．．．．．<br><br><br><br>
         
-        解決方法として，ボタンを押して処理をしている最中は他のボタンを使えないようにしました．<br><br>
+        解決方法として，ボタンを押して<span class="fb bgyellow">処理をしている最中は他のボタンを使えないようにしました</span>．<br><br>
         こうすれば処理が終わる前にボタンが押される心配はありませんからね！<br>
-        さらにこの解決作でTasksを自動的に更新するプログラムも正常に動作させることができました．<br><br>
-        tasksを更新しているときはswicthを使えないようにして，更新が終わったときにswitchを使えるようにすればいいという事です．
+        さらにこの解決策でTasksを自動的に更新するプログラムも正常に動作させることができました．<br><br>
+        <span class="fb">tasksを更新しているときはswicthを使えないようにして，更新が終わったときにswitchを使えるようにすればいいという事</span>です．
 <span style="font-size:0.7rem;">
 <pre class="line-numbers small">
 <code class="language-javascript small">
@@ -966,232 +1001,8 @@ def switch_abled(self):
 </code>
 </pre>
 </span><br>
-    </p> -->
-
-
-
-
-<!-- 
-<p class="headline" style="margin-top:40px;">ラズパイに実装</p>
-<p class="headline" style="margin-top:40px;">文字化けしとるやん</p>
-<p style="margin:3vw 2vw 0px 2vw">
-    いままではwindowsでfletアプリを作成した．<br>
-    なのでラズパイに実装してみる<br><br>
-    ラズパイに実装したら次の画像みたいに文字化けしてしまった．<br><br>
-    <img src="./img/mojubake.jpg" class="imgfullcenter"><br><br>
-    特にエンコード，デコードには問題ないみたい．<br><br>
-    おそらく，ラズパイに日本語対応したフォントがないためにこうなっていそう．<br><br>
-    そこで<br><br>
-    <cite><a href="https://raspi.ryo.sc/raspi_ipa_font/" target="_blank">Raspberry Pi : IPA 日本語フォントの導入</a></cite><br><br>
-    このサイトにある<br><br>
-    $ sudo apt install fonts-ipaexfontを実行して日本語のフォントを入れた．<br><br>
-    ダメでした．<br><br>
-    次はflet自体のassetに日本語対応フォントを入れて使ってみる．<br>
-    つまり，自分でfletアプリのフォントを指定するということ<br><br>
-    フォントは<br><br>
-    <cite><a href="https://seed.line.me/index_jp.html" target="_blank">LINE seed</a></cite><br><br>
-    からダウンロードした（このサイトはかなり重いので開かないほうがいいです．）<br><br>
-    Installした中にあるLINESeedJP_TTF_Bdを使う．ちなみにDesktop用のやつです．<br><br>
-    これをmain.pyのある階層でassets/LINESeedJP_TTF_Bd.ttfとなるように配置する．<br><br>
-    最後にfletのpageを作成するところに以下を追記<br><br>
-    <span style="font-size:0.7rem;">
-<pre class="line-numbers small">
-<code class="language-javascript small">
-page.fonts={"Go_bd:"./assets/LINESeedJP_TTF_Bd.ttf}
-page.theme=ft.Theme(font_family="Go_bd")
-</code>
-</pre>
-</span><br>
-    これでpageに日本語フォントが適用されたことになる!!<br><br>
-    解決しました．<br><br>
-    この指定方法は<br>
-    <cite><a href="https://flet.dev/docs/cookbook/fonts/" target="_blank">Flet documents -Fonts-</a></cite><br>
-    を参照した．
-</p> -->
-<!-- 
-<p class="headline" style="margin-top:40px;">ラズパイデスクトップからpythonスクリプト実行</p>
-<p style="margin:3vw 2vw 0px 2vw">
-    ラズパイ起動と同時にこのアプリが立ち上がってほしい．<br><br>
-    なのでデスクトップにシェルスクリプトを作成する．<br><br>
-    内容は次のように編集<br><br>
-<span style="font-size:0.7rem;">
-<pre class="line-numbers small">
-<code class="language-javascript small">
-# 実行権限を付与。これでダブルクリックした際に「端末で実行」が出てくる
-cd /home/kayu/Desktop/plan/#動作させたいフォルダまで移動
-chmod +x ./test/a.py#実行権限の付与
-python test/a.py#pythonを実行．
-</code>
-</pre>
-</span><br>
-
-    注意しなくてはいけないのが実行したいpythonスクリプト内で相対パスなどをしている場合，次の内容をpythonスクリプト内に書く必要がある．<br><br>
-    <span style="font-size:0.7rem;">
-    <pre class="line-numbers small">
-    <code class="language-javascript small">
-    import os.path
-    os.chdir('/home/kayu/Desktop/plan/')#パスは実行したいスクリプトのあるフォルダ
-    </code>
-    </pre>
-    </span><br>
-
-    これめっちゃ大事！このせいで沼りかけました．<br><br>
-
-    .shファイルを作成した後は<br>
-<span style="font-size:0.7rem;">
-<pre class="line-numbers small">
-<code class="language-javascript small">
-chmod 755 testscript.sh
-</code>
-</pre>
-</span><br>
-    として実行権限を付与しないとシェルスクリプトを実行できません．<br><br>
-    これがわからず私は半日使いました．<br><br>
-</p> -->
-
-<!-- <p class="headline" style="margin-top:40px;">仮想環境入れない問題</p>
-<p style="margin:2vw 2vw 0px 0vw">
-    シェルスクリプト内で<br><br>
-    . .venv/bin/activate<br><br>
-    を永遠に実行していたが仮想環境に入れないという問題にあたった．<br><br>
-    サイトには　bash file name　としろだとかいろいろあったけど，<br>
-    そもそも　.venv/bin/activate　に実行権限が付与されていなかった．<br><br>
-<span style="font-size:0.7rem;">
-<pre class="line-numbers small">
-<code class="language-javascript small">
-chmod +x .venv/bin/activate
-source .venv/bin/activate    
-</code>
-</pre>
-</span><br>
-    さっきと同じ実行権限問題．つらい．．．．<br><br>
-    ここら辺を調べていて学んだのが，<br><br>
-    sourceを使うと同じシェルスクリプト上で実行させることができる．<br><br>
-    ということ．<br><br>
-    これが必要だった．<br><br>
-    sourceを使わないとpython実行したときに新しくターミナルが作成される．<br>
-    これは，venvをターミナルでactivateしていても別のターミナルには反映されないからmain.pyを実行したときに<br><br>
-    flet not found<br><br>
-    になっていた，なるほどね．<br>
-    いい勉強になった．<br><br>
-
-    最終的なシェルスクリプト<br><br>
-<span style="font-size:0.7rem;">
-<pre class="line-numbers small">
-<code class="language-javascript small">
-#!/bin/bash#ちなみにここが1行目出ないと実行しない．
-cd /home/kayu/Desktop/plan/
-chmod +x ./main.py
-
-source .venv/bin/activate
-
-sleep 1
-
-python ./main.py
-</code>
-</pre>
-</span><br>
-   
-</p> -->
-
-
-
-<p class="headline" style="margin-top:40px;">ラズパイ起動時に実行</p>
-<p style="margin:3vw 2vw 0px 2vw">
-    まず，<cite><a href="C:\Users\katayama\Desktop\Programming\site\KayuProg-website\real\activity\activityContents\forecaster\forecaster.html" target="_blank">外出前に傘が必要か喋るシステム</a></cite><br>
-    でも使った~/.profileに追記するという方法でやってみた．<br><br>
-<span style="font-size:0.7rem;">
-<pre class="line-numbers small">
-<code class="language-javascript small">
-#source /home/kayu/Desktop/plan_bulletin.sh
-</code>
-</pre>
-</span><br>
-    ログファイルを作成してわかったが，スクリプトが実行されてもfletが立ち上がらなくなっていた．<br><br>
-    なぜ．．．．．．．．．．．<br><br>
-    ほんと実装までが長いよーーーーーーー<br><br>
-
-    とりあえず今度はcron使ってみる<br><br>
-    <cite><a href="https://www.raspberrypirulo.net/entry/cron" target="_blank">Raspberry Piでcronを使ってPythonを定期実行する</a></cite><br><br>
-    を参照した．
-    失敗．．．．．．．．．．<br><br>
-    ~/.profileに追記したときと同じ挙動であった．<br><br>
-    私はこのアプリの自動実行を諦めました．<br><br>
-    結局手動で立ち上げるのですが，なぜかpulan bulletin.shを実行しfletを起動するにはわざわざラズパイを一度ディスプレイに接続しなくてはいけないという，めんどくさいことになりました<br><br>
-    まぁ，これでもいいか．<br><br>
-
-</p>
-
-
-
-<p class="headline" style="margin-top:40px;">VNC viewerのTimeoutする問題</p>
-<p style="margin:3vw 2vw 0px 2vw">
-    このアプリを部屋でずっと表示しておくディスプレイとしてタブレットを使うことにしました．<br><br>
-    VNC viewerを使って接続し，ラズパイのデスクトップを常に表示しておこうということです<br><br>
-    しかし，VNC viewerはある程度時間が経つとTimeoutしてラズパイとの接続を切ってしまいます．<br><br>
-    調べていると仕方がない，という記述を多数見たのですが，そんなことはありませんでした．<br><br>
-    VNCの接続を切らないでいるための方法は次です<br><br>
-    ラズパイ側のvncviewerを右クリック，options,epert,にて<br>
-    idletimeoutの値を0にする．<br><br>
-    こうするとVNC接続を切れないようにできました！！
-    
-</p>
-
-
-<p class="headline" style="margin-top:40px;">まとめ</p>
-    <p style="margin:2vw 2vw 0px 0vw">
-        今回は単純に予定を知りたいときにいちいち携帯を開きたくないという理由から，こんなアプリを作った．<br><br>
-        大学の長期休みでの制作としていいものができたと思う．<br><br>
-        このおかげでアプリを作るにあたってfletというライブライを知れたし，APIをうまく使うともっといいものが作れそうということも感じた．<br><br>
-        次の動画はAPIを経由してGoogle Tasksアプリとの連携確認をしているところです．<br><br>
-        やっぱりプログラミング使って何かを作るのは楽しいですね！！！！！！<br><br>
-        しつこいぐらいのエラーに沼りながら改善して，目的の動作したときの達成感がすごい．<br><br>
-        <video src="./img/test.mp4" class="movie" controls preload="auto" poster="" playsinline></video><br><br>
-        一応参考のためにも最後のページにスクリプトを全部張っておきます．<br><br>
-        見なくていいです．<br><br><br><br><br><br>
-        では．
     </p>
 
-    <!--topage-->
-    <div class="toPagePaRight1">
-        <div class="topage "><label for="tab2">To Page 2</label></div>
-    </div>
-</div>
-
-<!--２ページ目-->
-<div id="page2" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>02</span>TITLE</h2>
-    <img class="aCeyecatch" src="img/" width="%">
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
-
-    <!--topages-->
-    <div class="toPageFlex">
-        <div class="toPagePaLeft">
-            <div class="topage "><label for="tab1">To Page 1</label></div>
-        </div>
-    
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab3">To Page 3</label></div>
-        </div>    
-    </div>
-</div>
-
-<!--３ページ目-->
-<div id="page3" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
-    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>03</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
 
 
     <!--topages-->
@@ -1208,15 +1019,218 @@ python ./main.py
 
 <!--４ページ目-->
 <div id="page4" class="panel">
-    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
-    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+   
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
-    <h2 class="aCtitle"><span>04</span>TITLE</h2>
-    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
-
-    <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">head</p>
-
+    <h2 class="aCtitle"><span>04</span>ラズパイに実装</h2>
+    
+    <p class="headline" style="margin-top:40px;">文字化けしとるやん</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        いままではwindowsでfletアプリを作成した．<br>
+        なのでラズパイに実装してみる<br><br>
+        ラズパイに実装したところ次の画像みたいに文字化けしてしまった．<br><br>
+        <img src="./img/mojubake.jpg" class="imgfullcenter"><br><br>
+        特にエンコード，デコードには問題ないみたい．<br><br>
+        おそらく，ラズパイに日本語対応したフォントがないためにこうなっていそう．<br><br>
+        そこで<br><br>
+        <cite><a href="https://raspi.ryo.sc/raspi_ipa_font/" target="_blank">Raspberry Pi : IPA 日本語フォントの導入</a></cite><br><br>
+        このサイトにある<br><br>
+        $ sudo apt install fonts-ipaexfontを実行して日本語のフォントを入れた．<br><br>
+        ダメでした．<br><br>
+        次はflet自体のassetに日本語対応フォントを入れて使ってみる．<br>
+        つまり，<span class="fb">自分でfletアプリのフォントを指定する</span>ということ<br><br>
+        フォントは<br><br>
+        <cite><a href="https://seed.line.me/index_jp.html" target="_blank">LINE seed</a></cite><br><br>
+        からダウンロードした（このサイトはかなり重いので開かないほうがいいです．）<br><br>
+        Installした中にあるLINESeedJP_TTF_Bdを使う．ちなみにDesktop用のやつです．<br><br>
+        これをmain.pyのある階層で<span class="fb">assets/LINESeedJP_TTF_Bd.ttfとなるように配置</span>する．<br><br>
+        最後にfletのpageを作成するところに以下を追記<br><br>
+        <span style="font-size:0.7rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+    page.fonts={"Go_bd:"./assets/LINESeedJP_TTF_Bd.ttf}
+    page.theme=ft.Theme(font_family="Go_bd")
+    </code>
+    </pre>
+    </span><br>
+        これでpageに日本語フォントが適用されたことになる!!<br><br>
+        解決しました．<br><br>
+        この指定方法は<br>
+        <cite><a href="https://flet.dev/docs/cookbook/fonts/" target="_blank">Flet documents -Fonts-</a></cite><br>
+        を参照した．
+    </p>
+    
+    <p class="headline" style="margin-top:40px;">ラズパイデスクトップからpythonスクリプト実行</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        <span class="fb">ラズパイ起動と同時にこのアプリが立ち上がってほしい</span>．<br><br>
+        なのでデスクトップにシェルスクリプトを作成する．<br><br>
+        内容は次のように編集<br><br>
+    <span style="font-size:0.7rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+    # 実行権限を付与。これでダブルクリックした際に「端末で実行」が出てくる
+    cd /home/kayu/Desktop/plan/#動作させたいフォルダまで移動
+    chmod +x ./test/a.py#実行権限の付与
+    python test/a.py#pythonを実行．
+    </code>
+    </pre>
+    </span><br>
+    
+        <span class="fb bgyellow">注意しなくてはいけないのが実行したいpythonスクリプト内で相対パスなどをしている場合，次の内容をpythonスクリプト内に書く必要がある</span>．<br><br>
+        <span style="font-size:0.7rem;">
+        <pre class="line-numbers small">
+        <code class="language-javascript small">
+        import os.path
+        os.chdir('/home/kayu/Desktop/plan/')#パスは実行したいスクリプトのあるフォルダ
+        </code>
+        </pre>
+        </span><br>
+    
+        これめっちゃ大事！このせいで沼りかけました．<br><br>
+    
+        .shファイルを作成した後は<br>
+    <span style="font-size:0.7rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+    chmod 755 testscript.sh
+    </code>
+    </pre>
+    </span><br>
+        として<span class="fb red">実行権限を付与しないとシェルスクリプトを実行できません</span>．<br><br>
+        これがわからず私は半日使いました．<br><br>
+    </p>
+    
+    <p class="headline" style="margin-top:40px;">仮想環境入れない問題</p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        シェルスクリプト内で<br><br>
+        . .venv/bin/activate<br><br>
+        を永遠に実行していたが仮想環境に入れないという問題にあたった．<br><br>
+        サイトには　bash file name　としろだとかいろいろあったけど，<br>
+        そもそも<span class="fb">　.venv/bin/activate　に実行権限が付与されていなかった</span>．<br><br>
+    <span style="font-size:0.7rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+    chmod +x .venv/bin/activate
+    source .venv/bin/activate    
+    </code>
+    </pre>
+    </span><br>
+        <span class="small">さっきと同じ実行権限問題．つらい．．．．</span><br><br>
+        ここら辺を調べていて学んだのが，<br><br>
+        <span class="fb bgyellow">sourceを使うと同じシェルスクリプト上で実行させることができる．</span><br><br>
+        ということ．<br><br>
+        これが必要だった．<br><br>
+        sourceを使わないとpython実行したときに新しくターミナルが作成される．<br>
+        これは，venvをターミナルでactivateしていても別のターミナルには反映されないからmain.pyを実行したときに<br><br>
+        flet not found<br><br>
+        になっていた，なるほどね．<br>
+        いい勉強になった．<br><br>
+    
+        最終的なシェルスクリプト<br><br>
+    <span style="font-size:0.7rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+    #!/bin/bash#ちなみにここが1行目出ないと実行しない．
+    cd /home/kayu/Desktop/plan/
+    chmod +x ./main.py
+    
+    source .venv/bin/activate
+    
+    sleep 1
+    
+    python ./main.py
+    </code>
+    </pre>
+    </span><br>
+       
+    </p>
+    
+    
+    <p class="headline" style="margin-top:40px;">ラズパイ起動時に実行</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        まず，<cite><a href="C:\Users\katayama\Desktop\Programming\site\KayuProg-website\real\activity\activityContents\forecaster\forecaster.html" target="_blank">外出前に傘が必要か喋るシステム</a></cite><br>
+        でも使った~/.profileに追記するという方法でやってみた．<br><br>
+    <span style="font-size:0.7rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+    #source /home/kayu/Desktop/plan_bulletin.sh
+    </code>
+    </pre>
+    </span><br>
+        ログファイルを作成してわかったが，スクリプトが実行されてもfletが立ち上がらなくなっていた．<br><br>
+        なぜ．．．．．．．．．．．<br><br>
+        ほんと実装までが長いよーーーーーーー<br><br>
+    
+        とりあえず今度はcron使ってみる<br><br>
+        <cite><a href="https://www.raspberrypirulo.net/entry/cron" target="_blank">Raspberry Piでcronを使ってPythonを定期実行する</a></cite><br><br>
+        を参照した．
+        失敗．．．．．．．．．．<br><br>
+        ~/.profileに追記したときと同じ挙動であった．<br><br>
+        私はこのアプリの自動実行を諦めました．<br><br>
+        結局手動で立ち上げるのですが，なぜかpulan bulletin.shを実行しfletを起動するには<span class="fb red">わざわざラズパイを一度ディスプレイに接続しなくてはいけない</span>という，めんどくさいことになりました<br><br>
+        まぁ，これでもいいか．<br><br>
+    
+    </p>
+    
+    
+    
+    <p class="headline" style="margin-top:40px;">VNC viewerのTimeoutする問題</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        このアプリを部屋でずっと表示しておくディスプレイとしてタブレットを使うことにしました．<br><br>
+        VNC viewerを使って接続し，ラズパイのデスクトップを常に表示しておこうということです<br><br>
+        しかし，VNC viewerはある程度時間が経つとTimeoutしてラズパイとの接続を切ってしまいます．<br><br>
+        調べていると仕方がない，という記述を多数見たのですが，そんなことはありませんでした．<br><br>
+        VNCの接続を切らないでいるための方法は次です<br><br>
+        ラズパイ側のvncviewerを右クリック，options,epert,にて<br>
+        <span class="fb red">idletimeoutの値を0</span>にする．<br><br>
+        <img src="./img/vnc.png" class="imgfullcenter"><br><br>
+        こうするとVNC接続を切れないようにできました！！
+        
+    </p>
+    
+    <p class="headline" style="margin-top:40px;">タブレットの設置</p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        タブレットを部屋に設置するにあたって問題があった．<br><br>
+        設置場所はベッドの横に吊り下げる形にする．<br><br>
+        <img src="./img/1.jpg" class="imgfullcenter"><br><br>
+        こんな感じ<br><br>
+        しかし，これだと画面が少し下を向いていて画面を見づらい．<br><br>
+        なので画面の角度をいい感じにするためのホルダーを作成する．<br><br>
+        いつも通りCADで設計．<br><br>
+        <div class="flex">
+            <img src="./img/cad1.png" class="imghalf" style="margin:2px;">
+            <img src="./img/cad2.png" class="imghalf" style="margin:2px;">
+        </div><br><br>
+        で，印刷．<br><br>
+        <div class="flex">
+            <img src="./img/bambu.png" class="imghalf" style="margin:2px;">
+            <img src="./img/printed.jpg" class="imghalf" style="margin:2px;">
+        </div><br><br>
+        設置しました．<br><br>
+        <img src="./img/set.jpg" class="imgfullcenter"><br><br>
+        タブレットの画面の角度変化はこんな感じ．<br><br>
+        <div class="flex">
+            <img src="./img/1.jpg" class="imghalf" style="margin:2px;">
+            <img src="./img/2.jpg" class="imghalf" style="margin:2px;">
+        </div><br><br>
+        ちょうどよい．<br><br>
+    
+    </p>
+    
+    <p class="headline" style="margin-top:40px;">まとめ</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            今回は単純に予定を知りたいときにいちいち携帯を開きたくないという理由から，こんなアプリを作った．<br><br>
+            大学の長期休みでの制作としていいものができたと思う．<br><br>
+            このおかげでアプリを作るにあたってfletというライブライを知れたし，APIをうまく使うともっといいものが作れそうということも感じた．<br><br>
+            次の動画はAPIを経由してGoogle Tasksアプリとの連携確認をしているところです．<br><br>
+            やっぱりプログラミング使って何かを作るのは楽しいですね！！！！！！<br><br>
+            しつこいぐらいのエラーに沼りながら改善して，目的の動作したときの達成感がすごい．<br><br>
+            <video src="./img/test.mp4" class="movie" controls preload="auto" poster="" playsinline></video><br><br>
+            コードはこちらのGit hubに挙げています．<br><br>
+            <cite><a href="https://github.com/KayuProg/plan_bulletin_raspi" target="_blank">https://github.com/KayuProg/plan_bulletin_raspi</a></cite><br><br>
+            
+            上述を参考にしながら進めればこのプログラムで動くと思います<br><br>
+            では．
+        </p>
 
     <!--topages-->
     <div class="toPageFlex">
@@ -1224,9 +1238,7 @@ python ./main.py
             <div class="topage "><label for="tab3">To Page 3</label></div>
         </div>
 
-        <div class="toPagePaRight">
-            <div class="topage "><label for="tab5">To Page 5</label></div>
-        </div>
+       
     </div>
 </div>
 
@@ -1241,6 +1253,7 @@ python ./main.py
     <!--actmaincontents-->
     <p class="headline" style="margin-top:40px;">head</p>
 
+    
 
     <!--topages-->
     <div class="toPageFlex">
