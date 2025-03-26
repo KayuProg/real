@@ -78,6 +78,9 @@
 
 .w_break{
   word-break: break-all;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
   /*===============================================================
   activity main contents
@@ -273,7 +276,7 @@ contents
 .topage{
   background-color: #ffb566;
   padding:5px;
-  font-size:1.5rem;
+  font-size:1.4rem;
   border-radius: 8px;
   transition:all 0.2s;
   font-weight:bold;

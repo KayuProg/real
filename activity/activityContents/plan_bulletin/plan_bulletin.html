@@ -156,6 +156,7 @@ $(document).ready(function(){
     imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
     imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
     flex：flex横配置
+    w_break：英数字が改行されないとき
 ===============================================================-->
 
 <!--１ページ目-->
@@ -164,10 +165,10 @@ $(document).ready(function(){
     <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
     <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
     <h2 class="aCtitle"><span>01</span>Plan Bulletin</h2>
-    <img class="aCeyecatch" src="img/head.png" width="%">
+    <!-- <img class="aCeyecatch" src="img/head.png" width="%"> -->
 
     <!--actmaincontents-->
-    <p class="headline" style="margin-top:40px;">契機</p>
+    <!-- <p class="headline" style="margin-top:40px;">契機</p>
     <p style="margin:3vw 2vw 0px 2vw">
         普段自分のタスク管理は，Google CalenderとiOSのリマインダーを使っています．<br><br>
         その日の大きなイベント（テストだったり，レポート提出だったり）はGoogle Calender，<br>
@@ -183,7 +184,8 @@ $(document).ready(function(){
         まず，普段から使い続けているiOSのリマインダーからデータを取得しようとしました．<br><br>
         方法としてpythonのreminder moduleを見つけました．<br><br>
         ラズパイ上でpip installしたら次のエラーが出た．<br><br>
-<span style="font-size:0.8rem;">
+
+<span style="font-size:0.7rem;">
 <pre class="line-numbers small">
 <code class="language-javascrip small">
 ERROR: Could not find a version that satisfies the requirement reminders<br><br>
@@ -191,181 +193,280 @@ ERROR: Could not find a version that satisfies the requirement reminders<br><br>
 </pre>
 </span>
 
-
-
         これは<br><br>
         <cite><a href="https://qiita.com/noppe78/items/cc5327ecdf33103b377b" target="_blank">【解決済み】pipによるパッケージのインストールに失敗する(Could not find a version that satisfies the requirement)</a></cite><br><br>
         によるとPythonバージョンとの非互換性によるエラーらしい<br><br>
-        解決方法としてPyenvによるPython version切り替えがあるそうです．<br><br>
-        方法としては，iPhone上でPython プログラムを定期的に実行してクラウドにリマインダーのデータをアップロードすることでラズパイに取得させる方法を考えました．<br><br>
+        解決方法としてPyenv（Pythonで作成した仮想環境）によるPython version切り替えの必要があるそうです．<br><br>
+        これを使うとしたら方法として，まずiPhone上でPythonプログラムを定期的に実行してクラウドにリマインダーのデータをアップロードします．<br><br>
+        そのクラウドデータをラズパイに取得させるものです．<br><br>
         面倒ですね．<br><br>
-        この方法はなしで<br><br>
-        結局，Google Tasksというリマインダーアプリに移行することにしました．<br><br>
-        （Google Calender使っているから同じGoogleのアプリならコード書きやすいのではないかという考え）<br><br>
+        この方法はなしで．<br><br>
+        ではどうするのか．<br><br>
+        結局，iOSのリマインダーからGoogle Tasksというリマインダーアプリに移行することにしました．<br>
         なぜなら，Google TasksにはAPIがあるからです．<br><br>
+        APIを使って直接ラズパイにデータを持ってこさせるということです．<br><br>
+        また，Google Calender使っているので同じGoogleのアプリならコード書きやすいのではないかとも考えていました．<br><br>
         さすが天下のGoogle様．<br><br>
-        以降に手間はかかりますが，ラズパイからデータが取得できるようになりました．<br><br>
-    </p>
+        以降にラズパイでデータを取得できるようになった過程，バグ解決を書いていきます．<br><br>
+    </p> -->
  
-    <p class="headline" style="margin-top:40px;">Python 3.12 install</p>
+    <!-- <p class="headline" style="margin-top:40px;">Python 3.12 install</p>
     <p style="margin:3vw 2vw 0px 2vw">
         Google TasksのAPIを使うためにはPython 3.10.7以上が必要みたいです．<br><br>
-        せっかくだしもう少し新しいやつをinstallします．<br><br>
+        せっかくだしもう少し新しいやつを（良くないことが起こりそうですが）installします．<br><br>
         <cite><a href="https://blog.goo.ne.jp/espiya/e/6b7f4d66b7253b4eb31cce32e0609a30" target="_blank">Raspberry Pi に最新の Python3 をインストールする</a></cite><br><br>
-        にしたがってやります．<br><br>
-        ただし，インストールした場所は/usr/bin/pythonです．（注意！）
-        さっきのできなかったからこっちのサイト
+        にしたがって進めていきますます．<br><br>
+        Pythonをインストールした場所は/usr/bin/pythonです．（注意！）<br><br>
+        さっきのサイトではうまくいかなかったのでこっちのサイトを参照します．<br><br>
         <cite><a href="https://qiita.com/guijiu/questions/7a3fae535edef4ea2e49" target="_blank">UbuntuのOSシステムのでpythonの使われ方を教えてください。</a></cite><br><br>
-        <br><br>
-        たまにPython-3.12.3.tar.xz: Permission denied
-
-        Cannot write to ‘Python-3.12.3.tar.xz’ (Permission denied).
-        というエラーが出るので実行するコマンドにsudoつけるのがキモ．<br><br>
-        <cite><a href="https://qiita.com/hoshi621/items/c8b82ab42564256df884" target="_blank">Raspberry PiにpyenvをインストールしてPythonをバージョン管理</a></cite><br><br>
-        ここでpyenvはinstall下．
-        installできないときはメモリが足りない場合があるので，
-        sudo fallocate -l 2G /swapfile
-        sudo chmod 600 /swapfile
-        sudo mkswap /swapfile
-        sudo swapon /swapfile
-        でスワップを増やしたらできます．<br><br>
-        pyenv not commandみたいな感じになったら$ source ~/.bash_profile
-        読込なおせば行ける<br><br>
-        仮想環境を構築してversionを変更する方法．さらに，仮想環境状態でのみpythonのversionを変更する．<br><br>
-
-kayu@raspberrypi:~ $ cd /home/kayu/Desktop/test/plan/　#仮想環境を作りたいフォルダに移動
-kayu@raspberrypi:~/Desktop/test/plan $ python -V
-Python 3.9.2
-kayu@raspberrypi:~/Desktop/test/plan $ pyenv versions　#現在のこのpython version確認
-  system
-* 3.9.2 (set by /home/kayu/Desktop/test/plan/.python-version)
-  3.12.3
-kayu@raspberrypi:~/Desktop/test/plan $ pyenv local 3.12.3　#一度この仮想環境にしたいフォルダを使いたいpython versionに変更
-kayu@raspberrypi:~/Desktop/test/plan $ python -V
-Python 3.12.3
-kayu@raspberrypi:~/Desktop/test/plan $ python -m venv .venv　#このpython versionが3.12.3の状態で仮想環境構築（こうするとpytohn 3.12.3の仮想環境ができる）
-kayu@raspberrypi:~/Desktop/test/plan $ . .venv/bin/activate　　#仮想環境有効化
-(.venv) kayu@raspberrypi:~/Desktop/test/plan $ python -V　#仮想環境状態でpython versionが3.12.3になっているか確認
-Python 3.12.3
-(.venv) kayu@raspberrypi:~/Desktop/test/plan $ deactivate　#仮想環境状態終了
-kayu@raspberrypi:~/Desktop/test/plan $ pyenv local 3.9.2　#仮想環境をオフにした状態でpythonのversionを戻す．
-kayu@raspberrypi:~/Desktop/test/plan $ pyenv versions　#python versionが3.12.3ではなく3.9.2であることを確認．
-  system
-* 3.9.2 (set by /home/kayu/Desktop/test/plan/.python-version)
-  3.12.3
+        たまに
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+Python-3.12.3.tar.xz: Permission denied
+Cannot write to ‘Python-3.12.3.tar.xz’ (Permission denied).
+</code>
+</pre>
+</span><br><br>
         
+        というエラーが出る．この場合は実行するコマンドにsudoをつけたらOK．<br><br>
+    </p> -->
 
-    </p>
+    <!-- <p class="headline" style="margin-top:40px;">Pyenvによるversion管理</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        
-        ここでGoogle Cloudでprojectを作成する．
-        <cite><a href="https://developers.google.com/workspace/guides/create-project?hl=ja" target="_blank">Google Cloud プロジェクトを作成する </a></cite><br><br>
-        OAuthとは
+        <cite><a href="https://qiita.com/hoshi621/items/c8b82ab42564256df884" target="_blank">Raspberry PiにpyenvをインストールしてPythonをバージョン管理</a></cite><br><br>
+        このサイトを参照しながらPyenvによるversion管理を進めていきます．<br><br>
+        Pyenvをinstallしたとき，エラーが出てinstallできないときはラズパイのメモリが足りない場合があります．<br><br>
+        そういう時は，<br><br>
 
-        plan_show_test は Google の審査プロセスを完了していません。このアプリは現在テスト中で、デベロッパーに承認されたテスターのみがアクセスできます。アクセス権があると思われる場合は、デベロッパーにお問い合わせください。
-        というエラーが出た．なんだと．．．
-        Google Cloudの確認ステータスで「検証は不要です」となるようにスコープ？権限を調整（全てオフにした）したら行けた．
-        やった！取得できた！
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+</code>
+</pre>
+</span><br>
+
+        
+        というコマンドでスワップを増やしたら解決できます．<br><br>
+        pyenv not commandみたいな感じになったのエラーが出てしまったら
+        <br><br>
+<span style="font-size:0.8rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+$ source ~/.bash_profile
+</code>
+</pre>
+</span><br>
+        を使って読込なおせば行けます．<br><br>
+        
+        次に仮想環境を構築してPythonのversionを変更する方法です．<br><br>
+        以下のコマンドに従って実行すれば達成できます．<br>
+        詳しいことはコメントアウト？してあるところを確認ください．<br><br>
+
+
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+#仮想環境を作りたいフォルダに移動
+kayu@raspberrypi:~$ cd /home/kayu/Desktop/test/plan/
+#現在のこのpython version確認　
+kayu@raspberrypi:~/Desktop/test/plan $ pyenv versions　
+    system
+　* 3.9.2 (set by /home/kayu/Desktop/test/plan/.python-version)
+    3.12.3
+#一度この仮想環境にしたいフォルダを使いたいpython versionに変更
+kayu@raspberrypi:~/Desktop/test/plan $ pyenv local 3.12.3　
+#一応Versionが変わっているのか確認
+kayu@raspberrypi:~/Desktop/test/plan $ python -V
+Python 3.12.3
+#このpython versionが3.12.3の状態で仮想環境構築する
+kayu@raspberrypi:~/Desktop/test/plan $ python -m venv .venv　
+#仮想環境有効化
+kayu@raspberrypi:~/Desktop/test/plan $ . .venv/bin/activate
+#仮想環境状態でpython versionが3.12.3になっているか確認　　
+(.venv) kayu@raspberrypi:~/Desktop/test/plan $ python -V　
+Python 3.12.3
+#仮想環境状態終了
+(.venv) kayu@raspberrypi:~/Desktop/test/plan $ deactivate
+#仮想環境をオフにした状態でpythonのversionを戻す．　
+kayu@raspberrypi:~/Desktop/test/plan $ pyenv local 3.9.2
+#python versionが3.12.3ではなく3.9.2であることを確認．　
+kayu@raspberrypi:~/Desktop/test/plan $ pyenv versions　
+    system
+　* 3.9.2 (set by /home/kayu/Desktop/test/plan/.python-version)
+    3.12.3
+</code>
+</pre>
+</span><br>
+        以上がpyenvの環境構築は終了．<br><br>
+    </p> -->
+
+
+    <!-- <p class="headline" style="margin-top:40px;">Google Work Spaceでの準備</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        ここでGoogle Cloudでprojectを作成する．<br><br>
+        <cite><a href="https://developers.google.com/workspace/guides/create-project?hl=ja" target="_blank">Google Cloud プロジェクトを作成する </a></cite><br><br>
+        ここを参考に進めていく．まずはTasksの取得から．<br><br>
+        進めていく中で<br><br>
+
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+Google の審査プロセスを完了していません。このアプリは現在テスト中で、デベロッパーに承認されたテスターのみがアクセスできます。アクセス権があると思われる場合は、デベロッパーにお問い合わせください。
+</code>
+</pre>
+</span><br>
+        
+        というエラーが出た．<br><br>
+        なんでや．．．．<br><br>
+
+        ＜解決方法＞<br>
+        Google Cloudの確認ステータスで「検証は不要です」となるようにスコープ？権限を調整（全てオフにした）したら行けた．<br><br>
+
+        やった！取得できた！<br><br>
 
         <cite><a href="https://messefor.hatenablog.com/entry/2020/10/08/080414" target="_blank">APIキー、OAuthクライアントID、サービスアカウントキーの違い:Google APIs</a></cite><br><br>
         
-        ここがわかりやすかった．APIキー，クライアントIDなどの解説
-    </p>
+        ここがわかりやすかった．APIキー，クライアントIDなどの解説がしてある．<br><br>
+        https://developers.google.com/calendar/api/quickstart/python?hl=ja
+        google apiはここのサイトを最初参照した．
+        pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+        これがインストールすべきライブラリたち
+    </p> -->
 
+
+    <!-- <p class="headline" style="margin-top:40px;">取得した後</p>
     <p style="margin:3vw 2vw 0px 2vw">
         取得した内容はこんな感じで返ってくる．
-        <span class="w_break">[{'kind': 'tasks#task', 'id': 'ZlBHdmtHbUM4R2l0X29sSA', 'etag': '"LTU5MDgzMzAzNQ"', 'title': 'タスク1', 'updated': '2024-10-30T09:36:27.000Z', 'selfLink': 'https://www.googleapis.com/tasks/v1/lists/MTQzMjUyMTY0MTk3NDc0NDg1ODU6MDow/tasks/ZlBHdmtHbUM4R2l0X29sSA', 'position': '00000000000000000000', 'status': 'needsAction', 'due': '2024-10-31T00:00:00.000Z', 'links': [], 'webViewLink': 'https://tasks.google.com/task/fPGvkGmC8Git_olH?sa=6'}]</span>
-        dueがこのタスクの期日になるのだ，RFC3339 timestampというのが使われていた．
-        <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#list" target="_blank">Tasks API . tasks Instance Methods</a></cite><br><br>
-        に書いてあった．<br><br>
-        それに日付だけしかAPIで引っ張れないらしい．う～ん．
-        " "due": "A String", # Due date of the task (as a RFC 3339 timestamp). Optional. The due date only records date information; the time portion of the timestamp is discarded when setting the due date. It isn't possible to read or write the time that a task is due via the API."
-        'due': '2024-10-31T00:00:00.000Z', こんな感じで時刻（taskの期限）がかえってきます．
-        <cite><a href="https://www.jisakeisan.com/?y=2024&m=10&d=30&hh=18&mm=47&t1=jst&t2=utc" target="_blank">時差計算</a></cite><br><br>
-        
-        このサイトを見ながらUTC 協定世界時とJST 日本標準時の変換を行おうとしたのですが，taskの日にちだけ記録されているようです．<br><br>
-        つまり，taskの期日を1/2 7:00にしたとしてUTCだと1/1 22:00だから1/1と記録されるとかになるとかではない．ということでした．
-        なので，このまま日付だけ使っていきます．<br><br>
-        同様に似たGoogle calender用のページでGoogle Calenderからも情報をとれるようにしました．<br><br>
-    </p>
-    <p style="margin:3vw 2vw 0px 2vw">
-        ディスプレイに表示させる方法として考えたのは2通り<br><br>
-        ・ラズパイ上でWebサーバを構築してWeb上で表示させる．<br><br>
-        ・デスクトップアプリを作ってその上に表示させる．<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers">
+<code class="language-javascript">
+    [{'kind': 'tasks#task',
+    'id': 'ZlBHdmtHbUM4R2l0X29sSA',
+    'etag': '"LTU5MDgzMzAzNQ"',
+    'title': 'タスク1',
+    'updated': '2024-10-30T09:36:27.000Z',
+    'selfLink': 'https://www.googleapis.com/tasks/v1/lists/MTQzMjUyMTY0MTk3NDc0NDg1ODU6MDow/tasks/ZlBHdmtHbUM4R2l0X29sSA', 
+    'position': '00000000000000000000', 
+    'status': 'needsAction', 
+    'due': '2024-10-31T00:00:00.000Z', 
+    'links': [], 
+    'webViewLink': 'https://tasks.google.com/task/fPGvkGmC8Git_olH?sa=6'}]
+</code>
+</pre>
+</span><br>    
 
+        dueがこのタスクの期日になる．<br>
+        RFC3339 timestampというのが使われていた．<br><br>
+        <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#list" target="_blank">Tasks API . tasks Instance Methods</a></cite><br><br>
+        に書いてありました．<br><br>
+        <span class="small">
+            " "due": "A String", # Due date of the task (as a RFC 3339 timestamp). Optional. The due date only records date information; the time portion of the timestamp is discarded when setting the due date. It isn't possible to read or write the time that a task is due via the API."
+            'due': '2024-10-31T00:00:00.000Z'
+        </span><br><br>
+        上述にある通り，日付だけしかAPIで引っ張れないらしい．<br><br>
+        う～ん．<br><br> 
+
+        <cite><a href="https://www.jisakeisan.com/?y=2024&m=10&d=30&hh=18&mm=47&t1=jst&t2=utc" target="_blank">時差計算</a></cite><br><br>
+
+        同様に似たGoogle calender用のページでGoogle Calenderからも情報をとれるようにしました．<br><br>
+    </p> -->
+
+    <!-- <p class="headline" style="margin-top:40px;">表示方法</p>
+    <p style="margin:3vw 2vw 0px 2vw">
+        次にどのようにディスプレイに表示させるかを考えた．<br><br>
+        １．ラズパイ上でWebサーバを構築してWeb上で表示させる．<br><br>
+        ２．デスクトップアプリを作ってその上に表示させる．<br><br>
         Webサーバ構築のほうは時間がかかる上にWebを定期的に自動更新させる必要が出てくる．<br><br>
-        HTMLをpythonで編集していく形になると思うが内容が随時更新されるようにできるだろうか．<br><br>
+        HTMLをpythonで編集していく形になると思うが内容を随時更新されるようにできるだろうか．<br><br>
         うーん．デスクトップアプリ作ったほうが早そうだし，簡単そう．<br><br>
-        pythonでデスクトップアプリ作ります．<br><br>
+        ということでpythonでデスクトップアプリ作ります．<br><br>
         ただ文字列を表示させて定期的に更新するだけだからpythonでデスクトップアプリ作っても問題ないだろう．<br><br>
         リアルタイム性が重要でもないしな．<br><br>
     </p>
-    <p class="headline" style="margin-top:40px;">ラズパイデスクトップからpythonスクリプト実行</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        デスクトップにシェルスクリプトを作成する．
-        内容は次のように編集
-        # 実行権限を付与。これでダブルクリックした際に「端末で実行」が出てくる
-cd /home/kayu/Desktop/plan/#動作させたいフォルダまで移動
-chmod +x ./test/a.py#実行権限の付与
-python test/a.py#pythonを実行．
-
-注意しなくてはいけないのが，実行したいpythonスクリプト内で相対パスなどをしている場合，次の内容をpythonスクリプト内に書く必要がある．<br><br>
-import os.path
-os.chdir('/home/kayu/Desktop/plan/')#パスは実行したいスクリプトのあるフォルダ
-これめっちゃ大事！このせいで少し沼りかけました．<br><br>
-    </p>
-
-    <p class="headline" style="margin-top:40px;">UIについて</p>
-    <p style="margin:3vw 2vw 0px 2vw">
-     iPadに文字を表示するにあたってデスクトップアプリを作成することにした．<br><br>
+     最終的にiPadに文字を表示するにあたってデスクトップアプリを作成することにした．<br><br>
      そこで，以前使ったことのあるTkinterを使おうとしたが，UIの作成にかなり苦労したことを思い出した．<br><br>
-     そこでpythonで作るデスクトップアプリについて調べていたら次のようなものを見つけた．
+     そこでpythonで作るデスクトップアプリについて調べていたら次のようなものを見つけた．<br><br>
      <cite><a href="https://qiita.com/ForestMountain1234/items/bc709c3599ee86e2a0dd" target="_blank">Pythonを使ったGUIアプリを「お手軽に」作りたかった件</a></cite><br><br>
-     
-     Fletです！
+     このサイトで見つけたFletです．<br><br>
      <cite><a href="https://qiita.com/NasuPanda/items/48849d7f925784d6b6a0" target="_blank">Pythonだけでクロスプラットフォームなアプリを作れるFletについて</a></cite><br><br>
-     
-     軽く記事呼んだだけでもこれはやばい．すごいやつだ．<br><br>
+     ここら辺の記事を軽く読んだだけでもこれはやばい．すごそう．<br><br>
      すごい簡単にデスクトップアプリへのビルド，Webアプリとしてデプロイもできるらしい．<br><br>
-     ほんとすごい．
-     Webと同じ感覚でflexbox的に配置できるのも素晴らしい．
-     これを使おう．
+     ほんとすごい．<br><br>
+     Webと同じ感覚でflexbox的に要素配置できるのも素晴らしい．<br><br>
+     いうことありません．これを使おう．<br><br>
      ドキュメントはこちら
      <cite><a href="https://flet.dev/docs/getting-started/" target="_blank">Flet Getting started</a></cite><br><br>
      
-     ドキュメントでは仮想環境でのapp製作を進められているのでpyenvの仮想環境で進めていきます．
-     注意！WSL or Linux環境でのinstallはいろいろinstall必要みたいだからドキュメントちゃんと読む！
-     で，Audio使ったflet appのbuildには--include-packages flet_audioというコマンドが必要らしい．<br><br>
-     flet build apk --include-packages flet_audioこんな感じらしい．
-     videoを使う場合も追加でinstall必要みたい．（ドキュメント自分でよんでね）
-    </p>
+     ドキュメントでは仮想環境でのapp製作を進められているのでpyenvの仮想環境で進めていきます．<br><br>
+     注意！WSL or Linux環境でのinstallはいろいろ操作が必要みたいだからドキュメントちゃんと読んだ方がいい！<br><br>
+     
+     <span class="small">
+         ちなみにAudio使ったflet appのbuildには--include-packages flet_audioというコマンドが必要らしい．<br><br>
+         flet build apk --include-packages flet_audioこんな感じらしい．<br><br>
+         videoを使う場合も追加でinstall必要みたい．（ドキュメント自分で読んでね）<br><br>
+     </span>
+    </p> -->
     
-    <p class="headline" style="margin-top:40px;">Fletでデスクトップアプリを作る</p>
-    <p style="margin:3vw 2vw 0px 2vw">
-    
-        flet runで以下のエラーが出た．<br><br>
-        error while loading shared libraries: libmpv.so.1: cannot open shared object file: No such file or directory
-        共有ライブラリが見つからないらしい
+    <!-- <p class="headline" style="margin-top:40px;">Fletでデスクトップアプリを作る</p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        フレットでデスクトップアプリを作る環境構築で次のエラーたちが出た．<br><br>
+        <span class="fb">１．共有ライブラリない問題</span><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+error while loading shared libraries: libmpv.so.1: cannot open shared object file: No such file or directory
+</code>
+</pre>
+</span><br>
+        共有ライブラリが見つからないらしい<br><br>
         <cite><a href="https://qiita.com/kawamo55/items/4d973ede723f2987ef7a" target="_blank">Ubuntu22.04にFletをインストールした話</a></cite><br><br>
-        
-        結局このサイトで行けそう．
-        またエラー出た．（いつも通り）
-        Unable to init server: Could not connect: Connection refused
-        これは単に自分の場合はラズパイのデスクトップを開いてないことによるものだった．
-        ずっとvscodeでssh接続で捜査していた．
-        flet runをしたい場合はvnc viewerなどでラズパイのデスクトップを直接表示させて実行する必要があった．
-        しかし，またエラー
-        atk_socket_embed: assertion 'plug_id != NULL' failed
-        うーん．しらべてもよくわからん．
-        そこで一度ラズパイを再起動した．
-        <img src="./img/ututta.png" class="imghalfcenter" style="margin:0 0 0 1vw"><br><br>
+        結局このサイトで行けそう（行けた）．<br><br>
+
+        <span class="fb">２．サーバがうまく動作しない問題</span><br><br>
+        またエラー出た．（いつも通り）<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+Unable to init server: Could not connect: Connection refused
+</code>
+</pre>
+</span><br>            
+        これは単に自分の場合はラズパイのデスクトップを表示していないことが問題だった．<br><br>
+        ラズパイをずっとからvscodeでssh接続で使っていたが，ラズパイをディスプレイに接続すると解消した<br><br>
+        flet runをしたい場合はVNC Viewerなどでラズパイのデスクトップを直接表示させて実行する必要ることがわかった．<br><br>
+
+        <span class="fb">３．謎</span><br><br>
+        そろそろ行けるかな？<br><br>
+        しかし，またエラー<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+atk_socket_embed: assertion 'plug_id != NULL' failed
+</code>
+</pre>
+</span><br>
+        うーん．調べてもよくわからなかった．<br><br>
+        そこでとりあえず一度ラズパイを再起動した．<br><br>
+        <img src="./img/ututta.png" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
         え？<br><br>
-        急にちゃんと表示された．
+        急にちゃんと表示された．<br><br>
         terminalには似たようなエラー．
         何が起こっている．．．<br><br>
-        わからない．<br><br>
+        わからない．怖い<br><br>
         まあ，動いたしいっか（後で苦労しそう）<br><br>
-        bashファイルから
+
+        次にbashファイルから呼び出せるか貯めそう．<br><br>
+        適当なbashファイルに<br><br>
+
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
 # 実行権限を付与。これでダブルクリックした際に「端末で実行」が出てくる
 cd /home/kayu/Desktop/plan/
 . .venv/bin/activate
@@ -375,200 +476,250 @@ flet run
 
 # cd test
 #python test/a.py
-        と記述して実行してもちゃんと開きました．
+</code>
+</pre>
+</span><br>
+        と記述して実行してもちゃんと開きました．<br><br>
         うーんできてる．<br><br>
-        やっぱreboot大事だな．
-        うん．
-        沼ったらとりあえずrebootしよう（学び）
-    </p>
+        やっぱreboot大事だな．<br><br>
+        うん．<br><br>
+        沼ったらとりあえずrebootしよう（適当）<br><br>
+    </p> -->
 
-    <p class="headline" style="margin-top:40px;">Flet作っていく</p>
-    <p style="margin:3vw 2vw 0px 2vw">
-        すごい．文法がすごく簡単．わかりやすい．直感的．感動．
-        初めて使うためあまり勝手がわからないので試しにドキュメントにあるチュートリアルのto-do appを作ってみる．
+    <!-- <p class="headline" style="margin-top:40px;">作りたいけどデプロイどうする問題</p>
+    <p style="margin:2vw 2vw 0px 2vw">
+        すごい．文法がすごく簡単．<br><br>
+        わかりやすい．直感的で扱いやすい（おまじないが少ないということ）<br><br>
+        初めて使うためあまり勝手がわからないので試しにドキュメントにあるチュートリアルのto-do appを作ってみる．<br><br>
         <cite><a href="https://gallery.flet.dev/todo/" target="_blank">Tutorial Todos</a></cite><br><br>
         
-        これだけでもかなりクオリティの高いものが作れる．ほんとすごいな．なんだったんだTkinterは
+        これだけでもかなりクオリティの高いものが作れる．<br><br>
+        ほんとすごいな．なんだったんだTkinterは<br><br>
 
-        ある程度容量はつかんだので実際に作る．
-        チュートリアル英語だし，プログラムの写経疲れた．．．
+        ある程度容量はつかんだので実際に作る．<br><br>
+        チュートリアル英語だし，プログラムの写経疲れた．．．<br><br>
 
         とりあえず一度アプリとして出力してみたいと思う．<br><br>
         どうなるかな．．<br><br>
-        え，，アプリとしてビルドするには普通にfulutterのコンパイルツール入れなきゃいけないの．．．<br><br>
+        え，，アプリとしてビルドするには普通にflutterのコンパイルツール入れなきゃいけないの．．．<br><br>
         なにそれ，知らない．．．<br><br>
-        <img src="./img/required.png" class="imghalfcenter" style="margin:0 0 0 1vw"><br><br>
+        <img src="./img/required.png" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
         求められるハードウェアの性能がこんな感じ．<br><br>
         うーん．ラズパイ上で開発するべきじゃないなこれ．<br><br>
-        Free disk space が60くらいほしいのか．（残り30GB）<br><br>
+        Free disk space が60Gくらいほしいのか．（残り30GB）<br><br>
         厳しくないか．．．<br><br>
         え．．．<br><br>
         どうしよう<br><br>
         もう他のパソコンでビルドするしかないよな<br><br>
-        そうすると他のパソコンがwindows OSしかないからビルドしてラズパイにアプリ移すならwebアプリしかない．．<br><br>
-        <img src="./img/matrix.png" class="imghalfcenter" style="margin:0 0 0 1vw">Publishing Flet app to multiple platforms<br><br>
-        これが各環境（OS）におけるビルドできるアプリの種類の画像．
-        
+        <img src="./img/matrix.png" class="imgfullcenter" style="margin:0 0 0 1vw">Publishing Flet app to multiple platforms<br><br>
+        この画像を見るとわかるが，私の持っているのはwindowsのみでbuildはwindowsデバイスようにしかできない．<br><br>
+        そうすると，buildしてラズパイにアプリ移すならwebアプリしかない．．<br><br>        
 
-        https://developers.google.com/calendar/api/quickstart/python?hl=ja
-        google apiはここのサイトを最初参照した．
-        pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-        これがインストールすべきライブラリたち
-
-
-        <cite><a href="https://flet.dev/docs/publish" target="_blank"></a></cite><br><br>
-        ここに乗ってる一番左のapk/aabはアンドロイド関係のやつ見たい．
-        WSL使ってLinux環境様にビルドできるみたいだけどLinux系のアプリとかビルドってすごいversionにうるさいイメージがある．<br><br>
+        画像は<cite><a href="https://flet.dev/docs/publish" target="_blank">ここ</a></cite>から持ってきました．<br><br>
+        ここに乗ってる一番左のapk/aabはアンドロイド関係のやつ見たい．<br><br>
+        WSL使ってLinux環境にビルドできるみたいだけどLinux系のアプリとかビルドってすごいversionにうるさいイメージがある．<br><br>
         以前にLinux使っててversion関係で沼った上に諦めなくてはいけなかった記憶がある．<br><br>
         やっぱりwebアプリとしてビルドするしかなさそう．<br><br>
         そうすると，どうなるのだろう．<br><br>
         flutterでwebアプリを作る原理？みたいなのを調べてみるとDart（プログラミング言語）をJavascriptに変換しているらしい．<br><br>
-        今回使っているfletで使用しているのはPython．
-        その上にGoogle APIを使うためにライブラリを何個もインストールしている．
-        これビルドできるのか？
-        もうとりあえずやるしかなさそう．
+        今回使っているfletで使用しているのはPython．<br><br>
+        その上にGoogle APIを使うためにライブラリを何個もインストールしている．<br><br>
+        これビルドできるのか？<br><br>
+        もうとりあえずやるしかなさそう．<br><br>
         ラズパイ上でのビルドはできないことはほぼ確定しているからまず，Windows上にfletを扱うための環境構築をする．<br><br>
-        頑張ろう．．．．<br><br>
-        頑張った．webアプリとして動的なものとしてする．<br><br>
+        頑張ろう．．．．<br><br><br><br><br><br>
+        頑張った．webアプリとして動的なものとして扱ってみる．<br><br>
         <cite><a href="https://flet.dev/docs/publish/web/dynamic-website/hosting" target="_blank">Flet Hosting Flet web apps</a></cite><br><br>
         
-        ドキュメントに書いてある説明をいろいろ読んでFly.ioを使うことにした．
-        Replitに関してはweb IDEで少しやりたいことと違う．
-        Self HostingはUbuntuとかLinux環境じゃないと厳しそう．
-        ということで聞いたこともないFly.ioを使います．
-        無理そうだったらReplit使おうかな．
+      
+      
+      
+        ドキュメントに書いてある説明を読んでFly.ioを使うことにした．<br><br>
+        Replitに関してはweb IDEで少しやりたいことと違う．<br>
+        Self HostingはUbuntuとかLinux環境じゃないと厳しそう．<br>
+        ということで聞いたこともないFly.ioを使います．<br><br>
+        無理そうだったらReplit使おうかな．<br><br>
         <cite><a href="https://fly.io/docs/flyctl/install/" target="_blank">Docs Installl fly ctl</a></cite><br><br>
         
-        ここ見てwindowにインストール．
-        powershellで実行．cmdじゃないよ
-        fly.ioのサイトに従ってアプリをデプロイしようとしたが，次の文章が表示された．<br><br>
-        Error: We need your payment information to continue! Add a credit card or buy credit: https://fly.io/dashboard/USER_NAME/billing
+        ここ見てwindowにインストール．<br><br>
+        powershellで実行．cmdじゃないよ<br><br>
+        fly.ioのサイトに従ってアプリをデプロイしようとしたが，次のエラーが表示された．<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+Error: We need your payment information to continue! Add a credit card or buy credit: https://fly.io/dashboard/USER_NAME/billing
+</code>
+</pre>
+</span><br>
         fly.ioを使うには料金が発生した時のためにクレジットカードを追加しなくてはいけないらしい．<br><br>
-        う～ん．<br><br>
-        Replitにしようかな．
-        少し面倒すぎる．
+        嫌だな．う～ん．<br><br>
+        Replitにしようかな．<br><br>
+        少し面倒すぎる．<br><br>
         ということで一度fly.ioは諦めてReplitでデプロイをしてみようと思います．<br><br>
-        できました．
-        <img src="./img/repl.png" class="imghalfcenter" style="margin:0 0 0 1vw"><br><br>
-        問題としては，スクリプトを実行した際に新しくWindowが表示されるがそこでは何らかの原因でAppが表示されない．
+        割とすぐできました．<br><br>
+        <img src="./img/repl.png" class="imgfullcenter" style="margin:0 0 0 1vw"><br><br>
+        問題としては，スクリプトを実行した際に新しくWindowが表示されるが，そこでは何らかの原因でAppが表示されない．<br><br>
         表示するためには直接Replのウィンドウから開く必要がある．<br><br>
         これは開けても開発用デバッグ用らしく，Replのセッションを切断するとウィンドウも使えなくなってしまう．<br><br>
         有料のものを使えばセッション切断後も使えるらしいが有料は嫌です．<br><br>
-        デプロイ方法はこの開発用ウィンドウにしようかな．<br><br>
-        
+        デプロイ方法はこの開発用ウィンドウにしようかな．<br><br><br><br><br><br><br><br>
+        考えに考えた結果，buildしないでflet runで表示されるデバック用画面？を直接使うことにしました．<br><br>
+        これだと，ラズパイ上でfletが動く環境だけ作って，外部で開発したコードをもってくるだけでいい．<br><br>
+        これで行きます．<br><br>
+        共有方法はGit hubかな．<br><br>
+        変更がある度にGit pullすれば大丈夫でしょう．<br><br>
+   </p> -->
 
-        
-
-   </p>
-
-    <p class="headline" style="margin-top:40px;">知らんかった</p>
+    <!-- <p class="headline" style="margin-top:40px;">Githubへのpushの注意点</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        製作中のスクリプトファイルをgit hubにpushしようとしたらGoogle Aouthの気密ファイル含んでいるってことではじかれた．
-        びっくり．機密ファイルをpush使用とした私も馬鹿だが，そんな馬鹿でも大丈夫なような仕組みがあるらしい．
-        すごい．
-        機密ファイルはちゃんとpushしないように設定した．
-
-        画面の構成を考えていた．表示画面からtaks終了でチェックできたら楽だろうな．<br><br>
-        ということでいろいろ調べた．
-        <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#update" target="_blank">Tasks API . tasks Instance Method</a></cite><br><br>
-        
-        に
-        "status": "A String", # Status of the task. This is either "needsAction" or "completed".
-        という記述があった．できそう．よし．<br><br>
-        
-    </p>
+        製作中のスクリプトファイルをgit hubにpushしようとしたらGoogle Aouthの気密ファイル（トークン情報）含んでいるってことではじかれた．<br><br>
+        知らなかった．<br><br>
+        機密ファイルをpush使用とした私も馬鹿だが，そんな馬鹿でも大丈夫なような仕組みがあるらしい<br><br>
+        機密ファイルはちゃんとpushしないよう.gitignoreに設定した．<br><br>
+    </p> -->
 
 
-
+    <!-- <p class="headline" style="margin-top:40px;">時刻フォーマットについて</p>    
     <p style="margin:3vw 2vw 0px 2vw">
-        日付をICT標準？から日本時刻に直し，isoフォーマットに変換する方法．
-        #ISOformatでの日付
-        now_time=datetime.datetime.utcnow()+datetime.timedelta(hours=9)
-        now = now_time.replace(hour=0, minute=0, second=0, microsecond=0).isoformat() + "Z"  # 'Z' indicates UTC time
-        next_day= (now_time + datetime.timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0).isoformat()+"Z"
+        基本的に時刻についてのやり取りはisoフォーマットで行われている．<br><br>
+        日付をICT標準から日本時刻に直し，isoフォーマットに変換する方法は次のコード<br><br>
 
 
-    </p>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+#datetime.datetimeで取得できる時間はICT標準だから日本時間にオフセット
+now_time=datetime.datetime.utcnow()+datetime.timedelta(hours=9)
+#strの後ろに"+09:00"をつけることで日本時刻であることを表す．
+now= (now_time + datetime.timedelta(days=0)).replace(hour=0, minute=0, second=0).isoformat()+"+09:00"
+next_day= (now_time + datetime.timedelta(days=1)).replace(hour=0, minute=0, second=0).isoformat()+"+09:00"
+</code>
+</pre>
+</span><br>
+        isoフォーマットから時刻のみを取得したいときは以下<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+event_time=datetime.fromisoformat(event["date"]).strftime("%H:%M")
+</code>
+</pre>
+</span><br>
+    </p> -->
+
+<!-- 
+    <p class="headline" style="margin-top:40px;">Calenderの予定の背景色の取得</p>
+    <p style="margin:2vw 2vw 0px 2vw">
+        カレンダー内の予定の色を取得したいとき<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+#背景カラーの辞書配列を取得する．
+colors = service.colors().get().execute()
+#イベントの情報取得
+events = events_result.get("items", [])
+#enents内の各予定のcolorIdを取得する．
+#"1"は色が指定されていない場合に1を入れるということ．
+color=event.get("colorId","1")
+#別にこっちでもcoloIdの取得はできる．
+color=event["colorId"]
+</code>
+</pre>
+</span><br>
+    </p> -->
 
 
 
 
+    <!-- <p class="headline" style="margin-top:40px;">画面の更新方法</p>
+    <p style="margin:2vw 2vw 0px 2vw">
+        Calenderでの予定変更追加に際して画面を更新する必要がある．<br><br>
+        textに関しては.valueで変更ができそうだが，contentのdescriptionなどが難しそう．<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+self.plans=ft.Column(controls=[],expand=True)
+</code>
+</pre>
+</span><br>
+        という風にもう一回初期化して行けるかと思ったけどこれはダメだった．<br>
+        さんざんいろいろ試して以下のように処理することにした．<br><br>
+        まず，<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+self.plans.controls.clear()
+</code>
+</pre>
+</span><br>
+        でself.plansのcontrolを一度すべて消す．<br><br>
+        次にもう一度CalenderとTasksの情報を取得しなおして<br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+self.plans.controls.append()
+</code>
+</pre>
+</span><br>
+        を使ってもう一回self.plansにcontrolsを登録しなおす．<br><br>
+        これでできた！Happy!!．<br><br>
+    
+    </p> -->
+
+    <!-- <p class="headline" style="margin-top:40px;">Tasks画面制作</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        カレンダー内の予定の色を取得したいとき,
-        colors = service.colors().get().execute()#予定のカラーの辞書配列
-        でカレンダーのカラー情報を取得．
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+#google.auth.exceptions.RefreshError: ('invalid_scope: Bad Request', {'error': 'invalid_scope', 'error_description': 'Bad Request'})
+</code>
+</pre>
+</span><br>
+        というエラーが出て実行できないとき<br><br>
+        スコープが正しいか確認しトークンを再発行することで解決した．<br><br>
 
-        events = events_result.get("items", [])
-        で予定の情報を取得する．
-        color=event.get("colorId","1")
-        でenents内の各予定のcolorIdを取得する．"1"は色が指定されていない場合に1を入れるということ．
-        別に
-        color=event["colorId"]
-        でもよさそう．
+        例）SCOPES = ["https://www.googleapis.com/auth/tasks"]<br>
+        例）SCOPES = ["https://www.googleapis.com/auth/tasks.readonly"]<br><br>
+    </p> -->
 
-        event_time=datetime.fromisoformat(event["date"]).strftime("%H:%M")
-        でisoフォーマットから時間のみを撮った．
-
-    </p>
-
-
-
-
-
+    <!-- <p class="headline" style="margin-top:40px;">Tasks側の自動更新について</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        再描画する方法．
+        Calender側と同様に画面の自動更新プログラムを作成したら以下のエラーが出た．<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+[SSL: DECRYPTION_FAILED_OR_BAD_RECORD_MAC] decryption failed or bad record mac (_ssl.c:2580)
+</code>
+</pre>
+</span><br>
+        つまり，Google APIを通じて変更を加えようとしたときにエラーが出たということ．<br><br>
+        <cite><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10685" target="_blank">ssl.SSLError: [SSL: DECRYPTION_FAILED_OR_BAD_RECORD_MAC] decryption failed or bad record mac (_ssl.c:2548)</a></cite><br><br>
+         
+        参考になりそうなサイトを見つけたがPythonのversionが異なったりしていて微妙．<br><br>
 
-        textに関しては.valueで変更ができそうだが，contentのdescriptionなどの消去をどうしようって感じ．
+        結局うまくいく方法見つからなかった．だから，Google APIにアクセスしてエラーが出たらリトライする仕組みにしようかな．<br><br>
+        画面の自動updateとスライドスイッチの処理が競合したときにこのエラーになるっぽい．<br><br>
+        だから，calenderの方だけ自動的にupdateされるようにしてtasksはrefleshボタンを設置して手動にすることに一旦する．<br><br>
+        （結局どうしたかは後述．ちなみに自動更新するようにできました．）<br><br>
 
-        さんざんいろいろ試してできたのが，
-        self.plans.controls.clear()
-        を使ってself.plansのcontrolを一度すべて消す．
-        self.plans=ft.Column(controls=[],expand=True)
-        という風にもう一回初期化して行けるかと思ったけどこれはダメだった．
-        今使っているself.plansのメソッドを使って変更するしか方法はなさそう．
-        で，
-        self.plans.controls.append()
-        を使ってもう一回self.plansにcontrolsを登録しなおす．
-        これでできた！嬉しいいいいいいいいいいいいいい！！！！！
-        
-
-
-
-    </p>
-
-
+    </p> -->
 
 
-
-
-
-
+    <!-- <p class="headline" style="margin-top:40px;">ディスプレイの切り替え</p>
     <p style="margin:3vw 2vw 0px 2vw">
-        TASKSの方を作っていく．
+    既に終了したタスク，残っているタスクを表示する画面を別々にしたい．<br><br>
+    そこで，画面を遷移するためのボタンを作ることにした．<br><br>
+    プログラムとしては，<br><br>
+    ・self.display_flag==1の時にはremain tasksが表示されている．<br>
+    ・self.display_flat==0の時にはcompleted tasksが表示されている．<br><br>
+    というふうにインスタンス作成時にdisplayの状態を記録する変数を初期化しておく．<br><br>
 
-        #google.auth.exceptions.RefreshError: ('invalid_scope: Bad Request', {'error': 'invalid_scope', 'error_description': 'Bad Request'})
-        というエラーが出て実行できないとき
-        SCOPES = ["https://www.googleapis.com/auth/tasks"]
-        のスコープを
-        SCOPES = ["https://www.googleapis.com/auth/tasks.readonly"]
-        という風に変更すると行けた．なぜかは不明．怖い．
-        最終的にはトークンを再度発行して解決した．
-
-
-
-    </p>
-
-
-
-
-    <p style="margin:3vw 2vw 0px 2vw">
-     displayの切り替え
-
-     self.display_flag=1#1の時にはremainが表示されている．0のときにはcompletedが表示されている．
-    というふうにインスタンス作成時にdisplayの状態を記録する変数を初期化しておく．
-
-    関数内では
-    def change_display(self,e):
+    関数内では<br>
+   
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+def change_display(self,e):
+    #contentsの消去
     self.tasks_list.controls.clear()
     if self.display_flag==1:
         self.tasks_list.controls.append(self.completed)
@@ -576,230 +727,225 @@ flet run
     elif self.display_flag==0:
         self.tasks_list.controls.append(self.remain)
         self.display_flag=1
-
+    #画面の更新
     self.page.update()
-
-    というふうにself.display_flagの値によってappendするcontrolsを変更している．
-    ただし，self.pageはインスタンス作成時に引数としてmain()の解き作成したft.pageを持ってきている．
+</code>
+</pre>
+</span><br>
+    
+    というふうにself.display_flagの値によってappendするcontrolsを変更している．<br><br>
+    ただし，self.pageはインスタンス作成時に引数としてmain()で作成したft.pageを持ってきている．<br><br>
 
     </p>
+ -->
+
+<!-- <p class="headline" style="margin-top:40px;">Tasks側の機能について</p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        Tasks側の画面の構成を考えていた．<br><br>
+        表示画面からtaks終了でチェックできたら楽だろうなと．．．<br><br>
+        ということでいろいろ調べた．<br><br>
+        <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#update" target="_blank">Tasks API . tasks Instance Method</a></cite><br><br>
+        
+        に"status": "A String", # Status of the task. This is either "needsAction" or "completed".<br><br>
+        という記述があった．できそう．よし．<br>
+        ここをいじればいいらしい<br><br>
+    </p> -->
 
 
 
-
+    <!-- <p class="headline" style="margin-top:40px;">for文を回していて値を保持しておいてほしい</p>
     <p style="margin:3vw 2vw 0px 2vw">
-       for文回していて関数に引数を保持しておいてほしいとき．
-       デフォルト引数を使うといい．
-       例
-       on_change=lambda e, tsid=tasklist_id, tid=task_id, ts=status:tasks.change_status(tsid, tid, ts,e.control.value)
-       </p>
-   
+        状況としては，まずTasksをcompletedとするためのスライドボタンの作成はfor文を使って作成している<br><br>
+        そのボタンを作成すると同時に，スライドボタンを押した際に実行する関数を決定する．<br><br>
+        この関数の処理にはfor文を回してボタンを作成した際に使ったtask IDなどの情報が必要になる<br><br>
+        しかし，for文が回りきっていると関数が参照するtask IDはfor文の最後の回の値となってしまい，該当するボタンの情報と異なる．<br><br>
+        そこで，情報を保持したままfor文を回してやりたい．<br><br>
+        そんな時はデフォルト引数を使うといい．<br><br>
+
+        ボタン作成の関数実行部分に<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+on_change=lambda e, tsid=tasklist_id, tid=task_id, ts=status:tasks.change_status(tsid, tid, ts,e.control.value)
+</code>
+</pre>
+</span><br>
+        と記述することでデフォルト関数を使い値（task ID）を保持することができた．<br><br>
+        </p>
+    -->
    
 
-    <p style="margin:3vw 2vw 0px 2vw">
-        service.tasks().update(
-            tasklist=tasklistid,
-            task=task_id,
-            body={"status": "completed"}  # ステータスを "completed" に設定
-            ).execute()
-
-        という感じでAPIから変更をしようとしたときに
-        <HttpError 400 when requesting "Something URL" returned "Missing task ID". Details: "[{'message': 'Missing task ID', 'domain': 'global', 'reason': 'invalid'}]">
-        というエラーが返されるとき．
-        updateではなくpatchを使うとしっかりと反映される．なぜかは不明.HTTP通信の何かがupdateだとおかしいらしい．
-        なのでコードは
-        service.tasks().patch(
-            tasklist=tasklistid,
-            task=task_id,
-            body={"status": "completed"}  # ステータスを "completed" に設定
-            ).execute()
-        こっちを使用する．
+    <!-- <p style="margin:3vw 2vw 0px 2vw">
+        スライドボタンを押してtaskをcompletedに変更するにあたって以下を使った．<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+service.tasks().update(
+    tasklist=tasklistid,
+    task=task_id,
+    body={"status": "completed"}  # ステータスを "completed" に設定
+    ).execute()
+</code>
+</pre>
+</span><br>
+        しかし，このようにAPIから変更をしようとしたときに<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+HttpError 400 when requesting "Something URL" returned "Missing task ID". Details: "[{'message': 'Missing task ID', 'domain': 'global', 'reason': 'invalid'}]"
+</code>
+</pre>
+</span><br>
+        というエラーが返される．<br><br>
+        解決にはupdateではなくpatchを使う．<br><br>
+        なぜかは不明.HTTP通信の何かがupdateだとおかしいらしい．<br><br>
+        なのでコードは<br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+service.tasks().patch(
+    tasklist=tasklistid,
+    task=task_id,
+    body={"status": "completed"}  # ステータスを "completed" に設定
+    ).execute()
+</code>
+</pre>
+</span><br>
+        に変更した．<br><br>
         <cite><a href="https://developers.google.com/resources/api-libraries/documentation/tasks/v1/python/latest/tasks_v1.tasks.html#get" target="_blank">Tasks API . tasks Instance Method</a></cite><br><br>
-        
-
-        詳しい使い方はこっちを参照して！
-
-
-    </p>
+        詳しい使い方はこのサイトを参照して！<br><br>
+    </p> -->
 
 
-
+   
+<!-- 
+    <p class="headline" style="margin-top:40px;"></p>
     <p style="margin:3vw 2vw 0px 2vw">
-        スライドスイッチでstatus変化させた後の画面変化について
-        self.tasks_list_create()を再利用した．
-        関数の最初に
-        self.remain.controls.clear()
-        self.completed.controls.clear()
-        を追加してcontrolの中身を全て空にしてからlistを再度作成させることにした．
-        ここで問題になるのがスライドスイッチを変化させてすぐにGoogle APIに問い合わせてもまだ，Google TaskにはStatusの変化が反映されないことだ．
-        ここで，再度controlsの中身を作成しなおすまでに少し，時間をおくことで対応する．
-        今のところ2秒くらいかな．
+        次に問題が，どのようにしてtasksのstatus変化後に画面を変化させるか．<br><br>
+        単純に画面をpage.update()で更新するだけでは実現できない<br><br>
+        ここでCalenderでの画面更新を応用してみた．<br><br>
+        まず，self.tasks_list_create()でcontents作成する際に<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+self.remain.controls.clear()
+self.completed.controls.clear()
+</code>
+</pre>
+</span><br>
+        を追加してcontrolの中身を全て空にする．<br>
+        それからもう一度中身を作成させる．<br><br>
+        ここまではCalenderの時と同じ<br><br>
+        問題になるのがスライドスイッチを変化させてすぐにGoogle APIに問い合わせてもまだ，Google TasksにはStatusの変化が反映されないことだ．<br><br>
+        これは再度controlsの中身を作成しなおすまでに少し時間をおくことで対応する．<br><br>
+        これが原因でTasks側のスライドボタンを押してから変化するまでに時間を要してしまう．<br><br>
+        これはAPIを使っている関係上しょうがない．諦めよう<br><br>
+        今のところ2秒くらいかな．<br><br>
 
-        スライドスイッチを変化させたときの関数は次の感じ
-        def task_complete(self,tid,ts,val):
-        tasks.change_status(tid, ts,val)
-        #ここにtasksの表示をupdateする関数の実行を書く．
-        time.sleep(1)
-        self.tasks_list_create()
-        self.page.update()
+        スライドスイッチを変化させたときの関数は次の感じ<br>
+
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+def task_complete(self,tid,ts,val):
+    tasks.change_status(tid, ts,val)
+    #ここにtasksの表示をupdateする関数の実行を書く．
+    time.sleep(2)
+    self.tasks_list_create()
+    self.page.update()
+    return 0
+</code>
+</pre>
+</span><br>
         
-        return 0
+        ここら辺の関係で処理が終わる前にスライドスイッチ再度を押しちゃうとバグってfletが落ちてしまう．<br><br>
+        だから，一つ一つ処理が終わるまで待つ必要がある．<br><br>
 
-        ここら辺の関係で同時に処理が終わる前にスライドスイッチを押しちゃうとバグる．
-        だから，一つ一つ処理が終わるまで待つ必要があります．
-
-        非同期処理を使うといい感じになるかも
-        
-
+        非同期処理を使うといい感じになるかも，と考え一度やってみる<br><br>
     </p>
-
+ -->
 
     
-    <p style="margin:3vw 2vw 0px 2vw">
-        btn= ft.Switch(value=True,on_change=lambda e,tid=task_id, ts=status:self.task_complete(tid, ts,e.control.value))
-        という関数でon_changeの関数が非同期だと実行されない問題．
-        on_change自体は同期的なコールバック関数らしい．
-        
-        非同期処理を書いてたらbtnのon_changeが反応しなくなってしまった．詳しくいろいろ調べてたけどわからず，
-        結論としてGPTにきいたところ，fletでのスライドスイッチのイベントループと競合しているのではないかとのこと．
-
-        諦めます．他の並列処理？も試そうと思えばできるけど疲れました．．．
-        さらに，非同期処理をしたからといって余り処理速度が今回は向上しなかったためこのまま行きます．
+    <!-- <p style="margin:3vw 2vw 0px 2vw">
         <cite><a href="https://qiita.com/Toyo_m/items/992b0dcf765ad3082d0b#%E5%AE%9F%E8%A3%85%E4%BE%8B" target="_blank">その並列処理待った！　「Python 並列処理」でググったあなたに捧ぐasync, threading, multiprocessingのざっくりとした説明</a></cite><br><br>
         <cite><a href="https://tech.asahi.co.jp/posts/20240328-7eb3" target="_blank">Pythonで非同期処理をするときのasyncioの使い方</a></cite><br><br>
         
-        ここら辺使いながら非同期処理の勉強した．
-
-    </p>
-
-    <p style="margin:3vw 2vw 0px 2vw">
-        [SSL: DECRYPTION_FAILED_OR_BAD_RECORD_MAC] decryption failed or bad record mac (_ssl.c:2580)
-        というエラーがスライドスイッチをポチポチしていると現れた．
-        つまり，Google APIを通じて変更を加えようとしたときにエラーが出たということ．
-        <cite><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10685" target="_blank">ssl.SSLError: [SSL: DECRYPTION_FAILED_OR_BAD_RECORD_MAC] decryption failed or bad record mac (_ssl.c:2548)</a></cite><br><br>
-         
-        参考になりそう．デモpythonのバージョン違うんだよな．
-
-        結局うまくいく方法見つからなかった．だから，Google APIにアクセスしてエラーが出たらリトライする仕組みにしようかな．
-
-        原因としては画面の自動updateとスライドスイッチの処理が競合したときにこのエラーになるっぽい．
-        だから，calenderの方だけ自動的にupdateされるようにしてtasksは手動にすることにする．
-
-    </p>
-
-
-
-<a src=""  target="_blank"> <img src="" class="imgfullcenter" style="margin-top:20px;"></a>   <p class="headline" style="margin-top:40px;"></p>
-<p style="margin:3vw 2vw 0px 2vw">
-    らずぱいに実装したら次の画像みたいに文字化けしてしまった．
-    特にエンコード，デコードには問題ないみたい．
-    おそらく，ラズパイに日本語対応したフォントがないためにこうなっている．
-    そこで
-    https://raspi.ryo.sc/raspi_ipa_font/
-    このサイトにある
-    $ sudo apt install fonts-ipaexfontを実行して日本語のフォントを入れた
-    ダメでした．
-    次はflet自体のassetに日本語対応フォントを入れて使ってみる．
-    フォントは
-    https://seed.line.me/index_jp.html
-    からダウンロードした．この中にある．LINESeedJP_TTF_Bdを使う．ちなみにDesktop用のやつ
-    これをmain.pyのあるassets/LINESeedJP_TTF_Bd.ttfとなるように配置する．
-    で，fletのpageを作成するところに以下を追記
-    page.fonts={"Go_bd:"./assets/LINESeedJP_TTF_Bd.ttf}
-    page.theme=ft.Theme(font_family="Go_bd")
-    これでpageに日本語フォントが適用されたことになる．！
-    解決！
-    この指定方法は
-    https://flet.dev/docs/cookbook/fonts/
-    を参照した．
-</p>
-
-
-
-<p class="headline" style="margin-top:40px;"></p>
-<p style="margin:3vw 2vw 0px 2vw">
-    .shファイルを作成した後は
-    chmod 755 testscript.sh
-    として実行権限を付与しないと意味がない
-
-    そしてシェルスクリプト内で
-    . .venv/bin/activateを永遠に実行していたが仮想環境に入れないという問題があった
-    サイトにはbash <file name>としろだとかいろいろあったけど
-    そもそも.venv/bin/activateに実行権限が付与されていなかった．
-    chmod +x .venv/bin/activate
-    source .venv/bin/activate
+        ここら辺使いながら非同期処理の勉強した．<br><br>
+        実際に実装したが<br>
+        非同期処理のbtnのon_changeが反応しなくなってしまった．<br><br>
+        詳しくいろいろ調べてたけどわからず，結論としてGPTにきいたところfletでのスライドスイッチのイベントループと競合しているのではないかとのこと．
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+btn= ft.Switch(value=True,on_change=lambda e,tid=task_id, ts=status:self.task_complete(tid, ts,e.control.value))
+</code>
+</pre>
+</span><br>
+        という関数でon_changeの関数が非同期だと実行されない問題が発生した．<br><br>
+        on_change自体は同期的なコールバック関数らしく非同期処理をすることがでいない？らしい．<br><br>
     
-    sourceを使うと同じシェルスクリプト上で実行させることができる．
-    これが必要だった．sourceを使わないから毎回新しくpython実行したときにシェルスクリプトが作成される．
-    これは，venvをactivateしていても，別のシェルスクリプトには反映されないからmain.pyを実行したときに
-    flet not foundになっていた，なるほどね．
+        諦めます．他の並列処理（threading,multiprocessing）も試そうと思えばできるけど疲れました．．．<br><br>
+        さらに，非同期処理をしたからといって余り処理速度が今回は向上しなかったためこのまま行きます．<br><br><br><br>
+        無念．．．．．<br><br><br><br>
+        
+        解決方法として，ボタンを押して処理をしている最中は他のボタンを使えないようにしました．<br><br>
+        こうすれば処理が終わる前にボタンが押される心配はありませんからね！<br>
+        さらにこの解決作でTasksを自動的に更新するプログラムも正常に動作させることができました．<br><br>
+        tasksを更新しているときはswicthを使えないようにして，更新が終わったときにswitchを使えるようにすればいいという事です．
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+#スイッチのインスタンスまでアクセスする．
+sw=tasks.remain.controls[0].content.controls[-1]
+#.disabledのTrue,Falseを切り替えることでボタンの使用の可否を決定する．
+sw.disabled= True or False
+</code>
+</pre>
+</span><br>
+        これでTasks側のrefrshスイッチが必要なくなった．<br><br>
+        関数は次のように設定した．<br><br>
 
-    最終的なシェルスクリプト
-    #!/bin/bash#ちなみにここが1行目出ないと実行しない．
-    cd /home/kayu/Desktop/plan/
-    chmod +x ./main.py
-    
-    source .venv/bin/activate
-    
-    sleep 1
-    
-    python ./main.py
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+def switch_disabled():
+    tasks_num=len(tasks.remain.controls)
+    for i in range(tasks_num):
+        tasks.remain.controls[i].content.controls[-1].disabled=True
+    tasks_num=len(tasks.completed.controls)
+    for i in range(tasks_num):
+        tasks.completed.controls[i].content.controls[-1].disabled=True
 
-   
-</p>
-<p class="headline" style="margin-top:40px;"></p>
-<p style="margin:3vw 2vw 0px 2vw">
-    以下が~/.profileに追記したものでraspiが起動した際に自動的に実行される．
-    #source /home/kayu/Desktop/plan_bulletin.sh
-    ここまでは良かった．
-    今度は自動的に実行されない問題．ほんと実装までが長いよーーーーーーー
-
-    とりあえずcron使ってみる
-    https://www.raspberrypirulo.net/entry/cron
-    を参照した
-</p>
-
-<p class="headline" style="margin-top:40px;"></p>
-<p style="margin:3vw 2vw 0px 2vw">
-    前回実装はtasksのほうは処理が被ると動作が停止してしまうことから自動更新を行わなかった．
-    しかし，行いたいのである方法を考えた．
-    それは，tasksを更新しているときはswicthcを使えないようにして，更新が終わったときにswitchを使えるようにすればいいという事である．
-    tasks.remain.controls[0].content.controls[-1]
-    でスイッチのインスタンスまでアクセスする．
-    tasks.remain.controls[0].content.controls[-1].disabled= True or falseで
-    スイッチの使用を制限できる．
-    これでrefrshスイッチが必要亡くなった．
-    def switch_disabled():
-        tasks_num=len(tasks.remain.controls)
-        for i in range(tasks_num):
-            tasks.remain.controls[i].content.controls[-1].disabled=True
-        tasks_num=len(tasks.completed.controls)
-        for i in range(tasks_num):
-            tasks.completed.controls[i].content.controls[-1].disabled=True
-
-    def switch_abled():
-        tasks_num=len(tasks.remain.controls)
-        for i in range(tasks_num):
-            tasks.remain.controls[i].content.controls[-1].disabled=False
-        tasks_num=len(tasks.completed.controls)
-        for i in range(tasks_num):
-            tasks.completed.controls[i].content.controls[-1].disabled=False
-
-    こんな感じでスイッチのable,disableを切り替える関数を作った．
-    if timer>300:
-        #tasksのスイッチをdisabledにする．
-        switch_disabled()
-        page.update()
-        #ここからがTaskの方を自動更新するプログラム．
-        tasks.tasks_list_create()#これを実行するとtasksがupdateされる．
-        #tasksのスイッチをabledにする．
-        switch_abled()
-        timer=0
-    という風に300秒おきにtasksの予定を更新することにした．
-
-
-    contentsの方もボタンを押したときに他のボタンを使用できないように次の関数を作って変更した．
-    def switch_diabled(self):
+def switch_abled():
+    tasks_num=len(tasks.remain.controls)
+    for i in range(tasks_num):
+        tasks.remain.controls[i].content.controls[-1].disabled=False
+    tasks_num=len(tasks.completed.controls)
+    for i in range(tasks_num):
+        tasks.completed.controls[i].content.controls[-1].disabled=False
+</code>
+</pre>
+</span><br>
+        また，Tasks側の画面の自動更新は次のように設定した<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+if timer>300:
+    #tasksのスイッチをdisabledにする．
+    switch_disabled()
+    page.update()
+    #ここからがTaskの方を自動更新するプログラム．
+    tasks.tasks_list_create()#これを実行するとtasksがupdateされる．
+    #tasksのスイッチをabledにする．
+    switch_abled()
+</code>
+</pre>
+</span><br>
+        一応スライドスイッチのable,disableを切り替える関数も載せておきます<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+def switch_diabled(self):
     tasks_num=len(self.remain.controls)
     for i in range(tasks_num):
         self.remain.controls[i].content.controls[-1].disabled=True
@@ -817,21 +963,194 @@ def switch_abled(self):
     for i in range(tasks_num):
         self.completed.controls[i].content.controls[-1].disabled=False
     self.change_button.content.disabled=False
+</code>
+</pre>
+</span><br>
+    </p> -->
 
 
-    なぜかpulan bulletin.shを実行しfletを起動するにはわざわざラズパイを一度ディスプレイに接続しなくてはいけないという
-    めんどくささがあるがまぁこれでいいか．
+
+
+<!-- 
+<p class="headline" style="margin-top:40px;">ラズパイに実装</p>
+<p class="headline" style="margin-top:40px;">文字化けしとるやん</p>
+<p style="margin:3vw 2vw 0px 2vw">
+    いままではwindowsでfletアプリを作成した．<br>
+    なのでラズパイに実装してみる<br><br>
+    ラズパイに実装したら次の画像みたいに文字化けしてしまった．<br><br>
+    <img src="./img/mojubake.jpg" class="imgfullcenter"><br><br>
+    特にエンコード，デコードには問題ないみたい．<br><br>
+    おそらく，ラズパイに日本語対応したフォントがないためにこうなっていそう．<br><br>
+    そこで<br><br>
+    <cite><a href="https://raspi.ryo.sc/raspi_ipa_font/" target="_blank">Raspberry Pi : IPA 日本語フォントの導入</a></cite><br><br>
+    このサイトにある<br><br>
+    $ sudo apt install fonts-ipaexfontを実行して日本語のフォントを入れた．<br><br>
+    ダメでした．<br><br>
+    次はflet自体のassetに日本語対応フォントを入れて使ってみる．<br>
+    つまり，自分でfletアプリのフォントを指定するということ<br><br>
+    フォントは<br><br>
+    <cite><a href="https://seed.line.me/index_jp.html" target="_blank">LINE seed</a></cite><br><br>
+    からダウンロードした（このサイトはかなり重いので開かないほうがいいです．）<br><br>
+    Installした中にあるLINESeedJP_TTF_Bdを使う．ちなみにDesktop用のやつです．<br><br>
+    これをmain.pyのある階層でassets/LINESeedJP_TTF_Bd.ttfとなるように配置する．<br><br>
+    最後にfletのpageを作成するところに以下を追記<br><br>
+    <span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+page.fonts={"Go_bd:"./assets/LINESeedJP_TTF_Bd.ttf}
+page.theme=ft.Theme(font_family="Go_bd")
+</code>
+</pre>
+</span><br>
+    これでpageに日本語フォントが適用されたことになる!!<br><br>
+    解決しました．<br><br>
+    この指定方法は<br>
+    <cite><a href="https://flet.dev/docs/cookbook/fonts/" target="_blank">Flet documents -Fonts-</a></cite><br>
+    を参照した．
+</p> -->
+<!-- 
+<p class="headline" style="margin-top:40px;">ラズパイデスクトップからpythonスクリプト実行</p>
+<p style="margin:3vw 2vw 0px 2vw">
+    ラズパイ起動と同時にこのアプリが立ち上がってほしい．<br><br>
+    なのでデスクトップにシェルスクリプトを作成する．<br><br>
+    内容は次のように編集<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+# 実行権限を付与。これでダブルクリックした際に「端末で実行」が出てくる
+cd /home/kayu/Desktop/plan/#動作させたいフォルダまで移動
+chmod +x ./test/a.py#実行権限の付与
+python test/a.py#pythonを実行．
+</code>
+</pre>
+</span><br>
+
+    注意しなくてはいけないのが実行したいpythonスクリプト内で相対パスなどをしている場合，次の内容をpythonスクリプト内に書く必要がある．<br><br>
+    <span style="font-size:0.7rem;">
+    <pre class="line-numbers small">
+    <code class="language-javascript small">
+    import os.path
+    os.chdir('/home/kayu/Desktop/plan/')#パスは実行したいスクリプトのあるフォルダ
+    </code>
+    </pre>
+    </span><br>
+
+    これめっちゃ大事！このせいで沼りかけました．<br><br>
+
+    .shファイルを作成した後は<br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+chmod 755 testscript.sh
+</code>
+</pre>
+</span><br>
+    として実行権限を付与しないとシェルスクリプトを実行できません．<br><br>
+    これがわからず私は半日使いました．<br><br>
+</p> -->
+
+<!-- <p class="headline" style="margin-top:40px;">仮想環境入れない問題</p>
+<p style="margin:2vw 2vw 0px 0vw">
+    シェルスクリプト内で<br><br>
+    . .venv/bin/activate<br><br>
+    を永遠に実行していたが仮想環境に入れないという問題にあたった．<br><br>
+    サイトには　bash file name　としろだとかいろいろあったけど，<br>
+    そもそも　.venv/bin/activate　に実行権限が付与されていなかった．<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+chmod +x .venv/bin/activate
+source .venv/bin/activate    
+</code>
+</pre>
+</span><br>
+    さっきと同じ実行権限問題．つらい．．．．<br><br>
+    ここら辺を調べていて学んだのが，<br><br>
+    sourceを使うと同じシェルスクリプト上で実行させることができる．<br><br>
+    ということ．<br><br>
+    これが必要だった．<br><br>
+    sourceを使わないとpython実行したときに新しくターミナルが作成される．<br>
+    これは，venvをターミナルでactivateしていても別のターミナルには反映されないからmain.pyを実行したときに<br><br>
+    flet not found<br><br>
+    になっていた，なるほどね．<br>
+    いい勉強になった．<br><br>
+
+    最終的なシェルスクリプト<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+#!/bin/bash#ちなみにここが1行目出ないと実行しない．
+cd /home/kayu/Desktop/plan/
+chmod +x ./main.py
+
+source .venv/bin/activate
+
+sleep 1
+
+python ./main.py
+</code>
+</pre>
+</span><br>
+   
+</p> -->
+
+
+
+<p class="headline" style="margin-top:40px;">ラズパイ起動時に実行</p>
+<p style="margin:3vw 2vw 0px 2vw">
+    まず，<cite><a href="C:\Users\katayama\Desktop\Programming\site\KayuProg-website\real\activity\activityContents\forecaster\forecaster.html" target="_blank">外出前に傘が必要か喋るシステム</a></cite><br>
+    でも使った~/.profileに追記するという方法でやってみた．<br><br>
+<span style="font-size:0.7rem;">
+<pre class="line-numbers small">
+<code class="language-javascript small">
+#source /home/kayu/Desktop/plan_bulletin.sh
+</code>
+</pre>
+</span><br>
+    ログファイルを作成してわかったが，スクリプトが実行されてもfletが立ち上がらなくなっていた．<br><br>
+    なぜ．．．．．．．．．．．<br><br>
+    ほんと実装までが長いよーーーーーーー<br><br>
+
+    とりあえず今度はcron使ってみる<br><br>
+    <cite><a href="https://www.raspberrypirulo.net/entry/cron" target="_blank">Raspberry Piでcronを使ってPythonを定期実行する</a></cite><br><br>
+    を参照した．
+    失敗．．．．．．．．．．<br><br>
+    ~/.profileに追記したときと同じ挙動であった．<br><br>
+    私はこのアプリの自動実行を諦めました．<br><br>
+    結局手動で立ち上げるのですが，なぜかpulan bulletin.shを実行しfletを起動するにはわざわざラズパイを一度ディスプレイに接続しなくてはいけないという，めんどくさいことになりました<br><br>
+    まぁ，これでもいいか．<br><br>
 
 </p>
 
-<p class="headline" style="margin-top:40px;"></p>
+
+
+<p class="headline" style="margin-top:40px;">VNC viewerのTimeoutする問題</p>
 <p style="margin:3vw 2vw 0px 2vw">
-    vnc viewerのidletimeをいじってタイムアウトしないようにする　．
-    ラズパイ側のvncvieewrを右クリック，options,
-    wxpert,
-    idletimeoutの値を0にするｌ．
+    このアプリを部屋でずっと表示しておくディスプレイとしてタブレットを使うことにしました．<br><br>
+    VNC viewerを使って接続し，ラズパイのデスクトップを常に表示しておこうということです<br><br>
+    しかし，VNC viewerはある程度時間が経つとTimeoutしてラズパイとの接続を切ってしまいます．<br><br>
+    調べていると仕方がない，という記述を多数見たのですが，そんなことはありませんでした．<br><br>
+    VNCの接続を切らないでいるための方法は次です<br><br>
+    ラズパイ側のvncviewerを右クリック，options,epert,にて<br>
+    idletimeoutの値を0にする．<br><br>
+    こうするとVNC接続を切れないようにできました！！
     
 </p>
+
+
+<p class="headline" style="margin-top:40px;">まとめ</p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        今回は単純に予定を知りたいときにいちいち携帯を開きたくないという理由から，こんなアプリを作った．<br><br>
+        大学の長期休みでの制作としていいものができたと思う．<br><br>
+        このおかげでアプリを作るにあたってfletというライブライを知れたし，APIをうまく使うともっといいものが作れそうということも感じた．<br><br>
+        次の動画はAPIを経由してGoogle Tasksアプリとの連携確認をしているところです．<br><br>
+        やっぱりプログラミング使って何かを作るのは楽しいですね！！！！！！<br><br>
+        しつこいぐらいのエラーに沼りながら改善して，目的の動作したときの達成感がすごい．<br><br>
+        <video src="./img/test.mp4" class="movie" controls preload="auto" poster="" playsinline></video><br><br>
+        一応参考のためにも最後のページにスクリプトを全部張っておきます．<br><br>
+        見なくていいです．<br><br><br><br><br><br>
+        では．
+    </p>
 
     <!--topage-->
     <div class="toPagePaRight1">

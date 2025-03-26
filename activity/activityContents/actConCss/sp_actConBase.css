@@ -74,6 +74,9 @@
 
 .w_break{
   word-break: break-all;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 /*===============================================================
   activity main contents
