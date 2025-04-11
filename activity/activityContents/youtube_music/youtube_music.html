@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>KayuProg-website/かゆウェブサイト</title>
+    <link rel="stylesheet" href="../../../common/css/base.css">
+    <link rel="stylesheet" href="../actConCss/actConBase.css"> <!--activity contentsのbaseとなるcss-->
+    <!--movebg-->
+    <link rel="stylesheet" href="../../../common/css/movebg.css"><!--ok-->
+    <!--mainSlider-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <!--jQuery読み込み-->
+    <script src="../../../common/js/jquery-3.6.1.min.js"></script>
+    <!--prism.css ソースコード表示させるやつ-->
+    <link rel="stylesheet" href="../../../common/css/prism.css">
+    <script src="../../../common/js/prism.js"></script>
+    <!--animate.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!--viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../../../common/css/sp_base.css">
+    <link rel="stylesheet" media="screen and (max-width:1000px)" href="../actConCss/sp_actConBase.css"><!--注意！！-->
+    <!--自動翻訳禁止-->
+    <meta http-equiv="Content-Language" content="ja">
+    <meta name="google" content="notranslate">
+
+</head>
+
+<body>
+
+
+<!--to top button-->
+<div class="toTopButton"></div>
+<script>
+$(document).ready(function(){
+    var toTopBtn=$('.toTopButton');
+    toTopBtn.hide();
+    $(window).scroll(function(){
+        if($(this).scrollTop()>100){
+            toTopBtn.fadeIn();
+            $('.toTopButton').addClass('vvt');//base.cssにある
+        }else{
+            toTopBtn.fadeOut();
+        }
+    });
+    toTopBtn.click(function(){
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+        return false;
+    });
+});
+</script>
+
+
+<!--topage=のpage上部遷移-->
+<script>
+$(document).ready(function(){
+    const CheckBtn1 = document.getElementById('tab1');
+        CheckBtn1.addEventListener('change', function () {
+            $('body,html').animate(
+               {scrollTop:0},500
+         );
+        });
+
+    const CheckBtn2 = document.getElementById('tab2');
+    CheckBtn2.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+
+    const CheckBtn3 = document.getElementById('tab3');
+    CheckBtn3.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+    
+    const CheckBtn4 = document.getElementById('tab4');
+    CheckBtn4.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+
+    const CheckBtn5 = document.getElementById('tab5');
+    CheckBtn5.addEventListener('change', function () {
+        $('body,html').animate(
+            {scrollTop:0},500
+        );
+    });
+    }
+);
+</script>
+
+
+<!--===============================================================
+    header
+===============================================================-->
+<!--header-->
+<hr size="15px" color="black">
+<div class="headbg headerSticky">
+    <!--header mainmenu-->
+    <div class="headerCenter">
+        <a href="../../../index.html" class="alogo"><div class="logobg"> <div class="logo">KayuProg</div> </div></a>
+    <ul class="mainmenu">
+        <li><a href="../../../term/Kayuprog利用規約.pdf" class="amainmenu" target="_blank">
+            <div class="mainmenuContents mainmenuContents1 fb">Terms</div>
+        </a></li>
+        <li><a href="../../../index.html" class="amainmenu"><div class="mainmenuContents mainmenuContents1">HOME</div></a></li>
+        <li><a href="../../../activity/activity.html" class="amainmenu"><div class="mainmenuContents mainmenuContents2">ACTIVITY</div></a></li>
+        <li><a href="../../../contact/contact.html" class="amainmenu"><div class="mainmenuContents mainmenuContents3">CONTACT</div></a></li>
+    </ul>
+    </div>
+</div>
+
+<!--movebg-->
+<div id="particles-js"></div>
+<div id="wrapper"></div>
+
+
+<!--bodycontents-->
+<div id="bodycontents">
+<!-- sliderposition -->
+
+<!--===============================================================
+    maincontents    
+===============================================================-->
+
+<div class="mainContentsPa"><!--内部コンテンツの位置決め-->
+
+<!--上のタブ選択部分-->
+<input id="tab1" type="radio" name="check" checked class="a">
+<label for="tab1" class="pagetabTop">Page 1</label>
+
+<input id="tab2" type="radio" name="check">
+<label for="tab2" class="pagetabTop">Page 2</label>
+
+<input id="tab3" type="radio" name="check" >
+<label for="tab3" class="pagetabTop">Page 3</label>
+
+<input id="tab4" type="radio" name="check" >
+<label for="tab4" class="pagetabTop">Page 4</label>
+
+<input id="tab5" type="radio" name="check" >
+<label for="tab5" class="pagetabTop">Page 5</label>
+
+<!--タブ選択によるコンテンツ部分-->
+<div class="pages"><!--全ページの全体的なスタイルを指定するため-->
+        
+<!--===============================================================
+    fmin:：明朝体　fen：英語のかっこいい字体　fgo：ゴシック　fb：太字　ib：インラインブロック
+    red：赤字　blue：青字　bgred：背景赤　bgyellow：背景黄色
+    big：大きい文字　middle：普通の文字　small：小文字
+    imgfullleft：アイキャッチと同じ大きさで左寄せ imgfullcenter：アイキャッチと同じ大きさで中央
+    imgfullright：アイキャッチと同じ大きさで右寄せ imghalf：半分半分
+    imghalfleft：半分で左寄せ　imghalfcenter：半分で真ん中　imghalfright：半分で右寄せ
+    flex：flex横配置
+    w_break：英数字が改行されないとき
+    ctrl+Eでタグで囲める．
+===============================================================-->
+
+<!--１ページ目-->
+<div id="page1" class="panel">
+    <span class="aCUpDate">Posted:&nbsp;2002/09/10</span>&nbsp;&nbsp;
+    <span class="aCReUpDate">RePosted:&nbsp;0000/00/00</span>
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>01</span>TITLE</h2>
+    <img class="aCeyecatch" src="img/hea" width="%"><!--アスペクト比2988:1689-->
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+   
+    <p class="headline" style="margin-top:40px;">Youtube Music</p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        Youtube Music にYoutube APIからとってきた音声ファイルをuploadして自作のmusic FMをつくる．
+        公式のYoutube APIではYoutube musicに音声ファイルをuploadできない．
+        https://qiita.com/yumayamada1029/items/d556e8d227418bcfb8c0#comment-87462812705de1e3a503
+        しらべていたらこんなAPIまとめサイトを見つけ，その中で
+        https://ytmusicapi.readthedocs.io/en/latest/
+        というyoutube musicに音声ファイルをuploadできるAPIを見つけた．
+        このサイトのsetupの中でも今回は音声ファイルのuploadをするので
+        https://ytmusicapi.readthedocs.io/en/latest/setup/browser.html
+        に従って進めていく．
+        uploadが既に規制されてできないかもしれない
+
+        ということで
+        https://blog.hitsujin.jp/entry/2021/03/03/120000.html
+        というサイトで
+        https://github.com/jamesbrindle/YTMusicUploader/
+        なるものを見つけた
+        https://github.com/jaymoulin/youtube-music-uploader
+        こんなのもあった
+
+        上のサイトから
+        __secure-1psid
+        というcookieが必要なのだが，環境のせいか取得できない．
+        
+    </p>
+    <p class="headline" style="margin-top:40px;">__secure-1psid</p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        https://note.com/masayuki_abe/n/nf22f8a6b023a
+        cookieの値の見方はわかった．
+        webの検査ツールでapplication→cookies→階層構造を開く→該当名をクリック→__secure-1psidをクリック→下に表示される．
+        https://is-ai.jp/?p=566
+        このサイトのやり方見たらわかる
+
+        動画見ながら情報を自分で作る
+        動画のスクショを撮って画像内の文字を起こしてみたすると，
+        
+VISITOR INFO1 LIVE=oTLJk6wCVJQ: _gc_au=1.1.1678571333.1631529519:
+PREF=54-4000000&tz-Europe.London&volume=100&library_tab_browse_id=FEmusic_liked_playlists: HSID=AM4h1y32HgNSKckrK: SSID=A6171YCnbvahBUSOR: APISID=mrA-Y5gxLTrrJvsZ/AYoxVVK_P_ot3JIE:
+_Secure-3PAPISID=UebnMOxOIKCmLoQ/AO5u8_W8UG-YO10KW:
+SAPISID=UebnMOOIKCmLoQ/AO5u8_W8UG-YOIOKW:
+LOGIN_INFO=AFmmF2swRQIgZFSOVdS8WWpXnEuvDKL1nsJkMO708aQLNsKwd3eN28wCIQDT1459X15GMAD2NZ:61 MLL2TojSysDmWbOS R34EPg:QUQ3MjNmelVGoldGTmpneTNRN2VhWTBvZEF2Z21zWGVnLXpqYTEzdWgtaVp4NW1vR3Ezc09rVEVMY1c2YXk1 LV9YNXtYXJBY1LQ11
+KT254d21PUF95d82MTVwc3zNEpJcDEyVilnc19xM3dNY1lyWXY5SIRDZnNLYnZ1qVmR0c0dToMF94cT8qazVTVzZZWW54Mjd5dWQ2Zm1neU
+hR: SID=BwgJEHcWhyBXqC6mLZB7JAmKkFXNDnmbGn18XoSuliGeGrPJYjy2rjLqGzZ8RwS1nQ3Ttw: _Secure- 3PSID=BwgJEHcWhyBXqC6mLZB7JAmKkFXNDnmbGn18XoSuliGeGrPJ-fxpT_tNF-iMikgV2IUGRw: YSC=qdE2tRy8t3s:
+SIDCC-A4QFG Ymwei33koRgcKIhAIP0dx Eleoz5qacailY8pvkdMqeFTISAA3Q2uUyNg_re17c140: Secure-3PSIDCC=AJ4QFEJ De- XoE7k9CXUS0K05MW0BrA2n_sJila9gnWN5UA0ks 1VvqgmASHoMIs7FWvPID: _Secure-1PAPISID=UebnMOOIKCmLoQ/AO5u8_W8UG- YOIOKW: Secure-1PSID=BwgJEHcWhy8XqC6mLZB7JAmKkFXNDnmbGn18XoSuliGeGrP8vSG2gOpufbbkT0tLrqZQ:
+        というのになった．これに合わせて情報を入れていく形にしていこうかしら．   
+
+
+
+        他の方法として実際にDuckDuck go入れて同じことやってみたけどダメだった．
+
+
+
+        これがcookieが2年間使えるというソース．
+        https://www.lodlaw.com/cookie-policy
+
+        動画の概要欄，コメントを見てわかったことだけど，もう認証ができなくなっているっぽい
+        googleがcookieの認証方法を変更したらしく，認証できないってことがコメントにあった．
+        ネットワークのファイル名を見ても，動画のものと若干異なっていて何かしら対策がされたのかもしれない．
+        残念．この方法は諦めよう．
+    </p>
+    <p class="headline" style="margin-top:40px;">アプリの変更</p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        おそらく，youtube側が自動的に動画をuploadできないように対策したようでyoutube musicを使うことを諦めた．
+        代替案として，手動にはなってしまうが他のアプリを使うことにしよう．
+        「Offline」というアプリを使うことにする．
+        このアプリは曲をdownloadすることはできないが，アプリが作るlocal serverにアクセスし直接uploadすることができる．
+        そのためにまずどのように音楽をdownloadするのかなどを考えよう．
+
+        downloadする方法は，youtube alarm clockでも使ったAPIからのdownloadを使う．
+        とりあえず，プレイリストに入れた曲をdownloadするのは変えるつもりはない．で，downloadしたらその曲をplaylistから消去していけば問題はないか．
+
+        ということでこの方針でいこう
+
+    </p>
+    <p class="headline" style="margin-top:40px;"></p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        
+    </p>
+
+
+
+
+    
+    <!--topage-->
+    <div class="toPagePaRight1">
+        <div class="topage "><label for="tab2">To Page 2</label></div>
+    </div>
+</div>
+
+<!--２ページ目-->
+<div id="page2" class="panel">
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>02</span>TITLE</h2>
+    <img class="aCeyecatch" src="img/" width="%">
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    a
+    aa
+    abc
+    abc
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab1">To Page 1</label></div>
+        </div>
+    
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab3">To Page 3</label></div>
+        </div>    
+    </div>
+</div>
+
+<!--３ページ目-->
+<div id="page3" class="panel">
+
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>03</span>TITLE</h2>
+    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+    <br><br><br><br><br><br>
+
+    a
+    aa
+    abc
+    abc
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab2">To Page 2</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+    </div>
+</div>
+
+<!--４ページ目-->
+<div id="page4" class="panel">
+   
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>04</span>TITLE</h2>
+    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab3">To Page 3</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab5">To Page 5</label></div>
+        </div>
+    </div>
+</div>
+
+<!--５ページ目-->
+<div id="page5" class="panel">
+   
+    <div class="aChead">\\&nbsp;KayuProg&nbsp;&nbsp; Storage&nbsp;//</div><hr class="cp_hr06" />
+    <h2 class="aCtitle"><span>05</span>TITLE</h2>
+    <img class="aCeyecatch" src="../actConImages/deer2.jpg" >
+
+    <!--actmaincontents-->
+    <p class="headline" style="margin-top:40px;">head</p>
+
+
+    <!--topages-->
+    <div class="toPageFlex">
+        <div class="toPagePaLeft">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+
+        <div class="toPagePaRight">
+            <div class="topage "><label for="tab4">To Page 4</label></div>
+        </div>
+    </div>
+</div>
+
+<!--CSSのほう確認！！！-->
+
+
+
+</div><!--pages end-->
+
+</div><!--mainContentsPa end-->
+
+
+
+
+<!----------------------------------------mainContentsend---------------------------------------->
+</div><!--bodycontents-->
+<div class="bottomBlank"></div>
+
+<!--===============================================================
+    footer
+===============================================================-->
+<div class="footer">
+    <!--Waves Container-->
+    <div>
+    <svg class="waves" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+    </defs>
+    <g class="parallax">
+    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(215, 215, 215,0.6)" />
+    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(215, 215, 215,0.6)" />
+    </g>
+    </svg>
+    </div>
+    <!--Waves end-->
+    <div id="footerContents"> 
+        <small>Copyright(c) //  KayuProg  // All right Reserved.</small>
+    </div>
+
+
+ </div>
+
+<!--movebg-->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../../../common/js/movebg.js"></script><!--ok-->
+<!--mainSlider/slick.jsの読み込み-->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--mainslider.js-->
+</body>
+
+
+<noscript>
+    <p>このサイトではJavaScriptを使用しています。この文章が表示される場合,設定でjavascriptをオンにしてください。
+    <br>P.S javascriptが反映されていない場合、このサイトの完成度が格段と下がってしまいます。ぜひともよろしくお願いいたします。  制作者より
+    </p>
+</noscript>
+
+
+</html>

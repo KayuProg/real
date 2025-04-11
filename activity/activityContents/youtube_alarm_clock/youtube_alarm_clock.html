@@ -561,8 +561,644 @@ download_youtube_audio_as_mp3('https://www.youtube.com/watch?v=ekr2nIex040', 'ap
             起きる時間を書き換えたいときは書き換える専用のボタンを作ろう．
         </p>
 
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            valueを変更したいとき
+            sg.Input("", key="hour",font=input_font,size=[5,5]), sg.Text("時", font=("Helvetica", 50),expand_y=True),
+            みたいな感じでkeyを設定する．
+            window["hour"].update("9")
+            として変更する．
+        </p>
+        <p class="headline" style="margin-top:40px;">.txtを書き換える</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            ここで，.writeはstrである必要がある．
+            with open("a.txt", "r+", encoding="utf-8") as file:
+                file.seek(0)
+                file.write(str(time))
+                file.truncate()  # 余計な部分を削除
+            
+        
+        </p>
+
+        <p class="headline" style="margin-top:40px;">非同期関数を使う</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            timerとして時間を計測しながら他の処理（ボタンの処理）を行うことができなかった．
+            なので，一度非同期関数を用いて実装してみる．
+            いや，非同期関数だと処理を一度に投げて返ってくるまで待つというのが基本だからやりたいこととは少し違う．
+            やりたいことは，
+                １．timerとして.txtに記された時間になったら音声を流す処理
+                ２．ボタンによる時刻変更があったら.txtの時刻を書き換える処理
+            この二つを走らせたい．
+            だから，threadingを使うことにする．
+            https://zenn.dev/nekoallergy/articles/py-advance-threading-01
+            https://qiita.com/tchnkmr/items/b05f321fa315bbce4f77
+            ここら辺のthreadingに関する記事がわかりやすかった．
+
+
+            threadingについて
+            もしa.pyというスクリプトでflag=0と初期化していたとする．a.py内ではflag=1と再設定するスクリプトが書かれているとする．
+            つまり次のようなスクリプト
+            flag=0
+            def b_ex():                
+                if flag==0:
+                        flag=1
+                        print("hello")
+                
+            といった具合のスクリプト
+            この関するb_exをthreadingで複数走らせるとする．
+            まず一個目のスレッドでb_ex()を実行するとメモリ内の変数flagは1に書き換えられ，helloと表示される．
+            ここで，二個目のスレッドでb_ex()を実行すると再びhelloと表示される．
+            わたしはこれがおかしいと思った，一個目のスレッドでflagを1と再定義したのに次のthreadでは再びflagが0に戻っていたということだからである．
+            なのでthreadが違うとメモリが分割？されて処理されるが，前のスレッドで変更されたflagのような変数の変化は反映されない．
+            なので，flagによるthreadでの処理の違いを作ろうとするには，外部に.txtなどのファイルを作成し，そこに書き込む形で実装する必要がある．
+            なので，今回はtimer_flag.txtというファイルを作成した．
+            そこに記述されている数字が0ならばtimerを実行，1ならば何もしないという処理をthreadで行うことにした．
+        </p>
+
+        <p class="headline" style="margin-top:40px;">スレッド処理をしていてctrl+cで終了しないとき</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            thread = threading.Thread(target=hoge, name='hogehoge')
+            thread.start()
+            と実行していたところに，
+            thread = threading.Thread(target=hoge, name='hogehoge',daemon=True)
+            thread.start()
+            としてdaemon=Trueと指定すば良い．
+        </p>
+
+        <p class="headline" style="margin-top:40px;">非同期処理</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            音声を流している間に次の音声をダウンロードしておく．
+            これを非同期関数で実行する．
+            threadingでない理由は，threadingの特性上，全体で時間の短縮が見込めないためである．
+            https://qiita.com/everylittle/items/57da997d9e0507050085
+            このサイトを参考にした．
+            実装したけどダメでした．おそらく原因は音が鳴っているときはthreadが占有されてしまっていて他の処理ができなくなっている．
+            なのでthreadingでやってみよう．
+            https://zenn.dev/nekoallergy/articles/py-advance-threading-01
+            threadの引数については
+            https://meiei.hatenablog.com/entry/2019/12/17/213639
+            を使いました．
+            非同期処理の時と同様でした．
+
+            うーん
+            multiprocessingに手を出すか？
+            
+        </p>
+
+
+        <p class="headline" style="margin-top:40px;">ラズパイに実装したがpythonのversionが低かった</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            pythonのversionが3.9のままでtkeasayguiを実行する際にエラーが出てしまったのでpythonをupdateする．
+            https://blog.goo.ne.jp/espiya/e/6b7f4d66b7253b4eb31cce32e0609a30
+            ここを参照した．
+            https://www.creativevillage.ne.jp/category/topcreators/web-creator/web-programmer/128983/#%E3%80%90%E6%9C%AA%E5%B0%8E%E5%85%A5%E3%81%AE%E3%82%B1%E3%83%BC%E3%82%B9%E3%80%91Python%E3%81%AE%E5%B0%8E%E5%85%A5%E6%96%B9%E6%B3%95
+            こっちのほうがわかりやすいかも
+            https://docs.kanaries.net/ja/topics/Python/how-to-update-python
+            pythonの更新だからこっちか？
+            結局GPTに頼った．
+            python3 --version
+            sudo apt update
+            sudo apt upgrade -y
+            sudo apt install -y build-essential libffi-dev libssl-dev \
+                zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
+                libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
+                liblzma-dev libgdbm-dev libnss3-dev
+            cd /usr/src
+            sudo wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz
+            sudo tar xzf Python-3.11.9.tgz
+            cd Python-3.11.9
+            sudo ./configure --enable-optimizations
+            sudo make -j$(nproc)
+            sudo make altinstall
+            sudo update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.11 1
+            sudo update-alternatives --config python3
+            python3 --version
+            python3 -m ensurepip --default-pip
+            python3 -m pip install --upgrade pip
+
+            pyenvでpythonを管理しているなら，
+            pyenv global system
+            のコマンドで変更する．
+                                        
+        </p>
+
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            gcc: fatal error: Killed signal terminated program cc1
+            compilation terminated.
+            make[3]: *** [Makefile:2523: Python/Python-ast.o] Error 1
+            make[3]: Leaving directory '/usr/src/Python-3.11.9'
+            make[2]: *** [Makefile:774: build_all_generate_profile] Error 2
+            make[2]: Leaving directory '/usr/src/Python-3.11.9'
+            make[1]: *** [Makefile:750: profile-gen-stamp] Error 2
+            make[1]: Leaving directory '/usr/src/Python-3.11.9'
+            make: *** [Makefile:762: profile-run-stamp] Error 2
+            みたいなエラーが出たとき，raspiのメモリ不足が原因．
+            スワップを増やして対処する．            
+            free -m#スワップの量を確認
+            sudo dphys-swapfile swapoff  # スワップを無効化
+            sudo sed -i 's/CONF_SWAPSIZE=.*/CONF_SWAPSIZE=2048/' /etc/dphys-swapfile  # 2GB に変更
+            sudo dphys-swapfile setup  # 設定を適用
+            sudo dphys-swapfile swapon  # スワップを有効化
+            
+            
+
+        </p>
+
+        <p class="headline" style="margin-top:40px;">moduleが見つからないというエラー</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            export PYTHONPATH=$PYTHONPATH:/home/kayu/.local/lib/python3.12/site-packages
+            python3 ./main.py
+            として実行することで行ける．
+        </p>
+
+        <p class="headline" style="margin-top:40px;">定期実行</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            定期実行の方法はcronを使うことにした．
+            ログの確認方法つぎ
+            tail -f /var/log/syslog
+
+        </p>
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            _tkinter.TclError: no display name and no $DISPLAY environment variable
+            というエラー
+            https://forums.raspberrypi.com/viewtopic.php?t=234038#p1432014
+            によると
+            An application that creates an X-windows client can only usefully be run in an environment where it has access to an X-windows server to render the display in a graphical form.
+
+The cron process does not have such access by default. The autostart mechanism in an individual user's account does.
+            らしい．つまり，cronを使ってのGUI生成はできないことがわかった．
+            別の方法を探そう．
+        </p>
+        
+        <p class="headline" style="margin-top:40px;">Systemd</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            https://monomonotech.jp/kurage/raspberrypi/systemd_timer.html
+            を参考にしてみる．
+            sudo nano /etc/systemd/system/alarm.timer
+            sudo systemctl enable /etc/systemd/system/alarm.timer
+            実装したけど，実行はできる．
+            多分ラズパイの仕組み的に定期実行ではGUIでの画面生成はできないのかもしれない．
+
+            https://qiita.com/kutzoa/items/6f8721bd9c381791912d
+            に定期実行によるラズパイでのgui生成について書かれている．
+            だめでした．
+
+            https://tomosoft.jp/design/?p=11697
+            こんどはこっちを見ながらいじってみるｌ
+
+
+            /etc/systemd/system/alarm.service      
+            うまくいきませんでした．
+            sudo systemctl enable /etc/systemd/system/alarm.timer
+            これで有効化
+            sudo systemctl daemon-reload
+            ファイル編集した場合はこれを実行．
+
+            https://raspberrypi.stackexchange.com/questions/117006/help-launching-tkinter-on-boot-pi-3
+            ついにできた！やっとできた！
+            このサイトを参考にしたらできた．めっちゃ嬉しい！about:blank#blocked
+            [Unit]
+            Description=GUI Start
+            After=graphical.target
+            Wants=graphical.target
+
+            [Service]
+            User=pi
+            Group=pi
+            Environment="DISPLAY=:0.0"
+            Environment="XAUTHORITY=/home/pi/.Xauthority"
+            #ExecStartPre=/usr/bin/printenv
+            ExecStart=/usr/bin/python3 /home/pi/ampolas/ampolas.py
+
+            [Install]
+            WantedBy=graphical.target
+            という風にserviceファイルに書き込めばいい．
+            network関連の設定が終わった後に実行したいときは
+            unitにAfter=network.targetを追記すればよい
+
+
+            注意がuserとGroupをちゃんと確認すること，実際に使ったスクリプトは次．
+[Unit]
+Description = run youtube alarm
+After=graphical.target
+Wants=graphical.target
+
+[Service]
+User=kayu
+Group=kayu
+Environment="DISPLAY=:0.0"
+#ExecStartPre=/usr/bin/printenv
+ExecStart=/home/kayu/Desktop/alarm.sh
+workingDirectory=/home/kayu/Desktop/youtube_alarm_clock
+
+[Install]
+WantedBy=graphical.target
+
+
+
+
+            
+            timer側はこれ
+            [Unit]
+            Description=Run youtube alarm
+            After=network.target
+            
+            [Timer]
+            OnCalendar=*-*-* 09:53:00
+            
+            
+            
+            [Install]
+            WantedBy=timers.target
+            
+            
+            
+            
+            
+
+        </p>
+
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            らずぱい上で
+            ERROR: Postprocessing: ffprobe and ffmpeg not found. Please install or provide the path using --ffmpeg-location
+
+            一応windowsはこれ
+            https://denshigomi.com/%E3%80%90yt-dlp%E3%80%91error-postprocessing-ffprobe-and-ffmpeg-not-found%E3%81%AE%E8%A7%A3%E6%B1%BA%E6%B3%95/
+
+            <!-- https://qiita.com/fujino-fpu/items/e6857e2703c9b7f2add1
+            でラズパイにffmpeg導入
+ -->
+
+           
+        </p>
+
 
         
+        <p class="headline" style="margin-top:40px;">mmal not foundについて</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            https://github.com/cedricve/raspicam/issues/103
+            を見てみると
+            MMAL was removed from the raspberry pi about 4 years agoらしいです．
+            そりゃいくらやっても無理だわ．
+            やっぱGPTに頼り過ぎるのは良くないね．
+            ffmpegのインストールには
+            https://dualbalance.net/2023/06/09/458/
+            を参照したほうがよさそう．
+
+            ffmpegのこｎエラーに関しては
+            ydl_opts = {
+                'format': 'bestaudio/best',  # 最高品質の音声を選択
+                # 'outtmpl': output_name + ".mp3",  # 保存ファイル名
+                'outtmpl': output_name,  # 保存ファイル名
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3',
+                    'preferredquality': '192',  # ビットレート設定
+                }],
+                'nocheckcertificate': True,  # 証明書エラーを無視
+                'noplaylist': True,  # プレイリスト全体のダウンロードを防ぐ
+                'quiet': True,  # 不要なログを抑える
+                'user_agent': user_agent, # カスタムUser-Agentを設定
+                'ffmpeg_location': '/usr/local/bin/ffmpeg',  # 正しいffmpegのパスを指定
+                #'ffmpeg_location': r'C:\Program Files\ffmpeg-master-latest-win64-gpl-shared\ffmpeg-master-latest-win64-gpl-shared\bin',
+            }
+            というようにffmpeg_locationを設定すればよい
+            もしかしたらmp3のエンコーダがラズパイ上にないかもしれない．
+            そういう時は
+            ffmpeg -codecs | grep encoder
+            を実行してエンコーダでlibmp3lameやlibopusがないかを確認．
+            無ければ次でインストール
+            sudo apt install libmp3lame-dev　libopus-dev
+
+            libmp3は上コマンドでは浮かくいかなかった．
+            http://blog.k-tai-douga.com/article/10401376.html
+            に従ってinstallする．versionは最新のもの（現在だと3.100）を入れるのが無難．
+        </p>
+        <p class="headline" style="margin-top:40px;">makeを早く終わらせたい</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            makeを早く終わらせたいときは
+            make -j$(nproc)
+            としてメモリを贅沢に使って終わらせましょう．
+            make -j$(( $(nproc) * 2 ))
+            とすることもできるが，メモリが不足してスワップが発生し，逆に処理が遅くなるかもしれないから注意
+        </p>
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            http://fftest33.blog.fc2.com/blog-entry-39.html
+            によるとffmpegをビルドする際にはlibmp3lameを組み込んでビルドしないとmp3のライブラリが使えないらしい
+            なのでもう一度いちから頑張る．
+            まず，ビルドしたフォルダーまで行って
+
+            ffmpegのフォルダにて
+            sudo make uninstall
+            sudo rm -rf /usr/local/bin/ffmpeg /usr/local/lib/libav* /usr/local/include/libav*
+            cd ~
+            git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
+            cd ffmpeg
+            これでuninstallから再度git clone までが終わった．
+
+            
+            どこか別のフォルダで（今回は/home/kayu/downloads/）
+            # ダウンロードしたファイルを解凍
+            tar -xvzf lame-3.100.tar.gz
+            cd lame-3.100
+
+            # ビルドとインストール
+            ./configure
+            make -j4
+            sudo make install
+            でlame-3.100に移動して一度make
+            cd ~/ffmpeg  # ffmpegのソースコードディレクトリに移動
+
+            # 再ビルドの設定（libmp3lameを有効にする）
+            ./configure --enable-gpl --enable-libmp3lame --enable-libx264 --enable-libopus --enable-shared
+            実行すると
+            ERROR: x264 not found using pkg-config
+            というえらーが出た．
+            sudo apt install -y libx264-dev
+            パッケージ導入．
+            解決
+            # ビルド
+            make -j4  # 並列でビルド
+            これが超時間かかる1時間以上かな．
+            
+            # インストール
+            sudo make install
+            このコマンドでlibmp3lameを有効にしながらmake            
+            ffmpeg -codecs | grep libmp3lame
+            これでちゃんとlibmp3lameが入っているか確認．
+            DEAIL. mp3                  MP3 (MPEG audio layer 3) (decoders: mp3float mp3) (encoders: libmp3lame)
+            と表示されればOK
+            再ビルドしてもダメなときはffmpegを一度消去してから再インストールするといい．
+           
+
+            kayu@raspberrypi:~ $    ffmpeg -codecs | grep libmp3lame
+            ffmpeg: error while loading shared libraries: libavdevice.so.62: cannot open shared object file: No such file or directory
+            と出たとき
+            sudo ldconfig -v | grep libavdevice
+            としてライブラリの位置を確認．
+            sudo ldconfig
+            でキャッシュ更新．これで大丈夫．
+
+            最後に，ffmpeg使うときは，
+
+        </p>
+
+        <p class="headline" style="margin-top:40px;">音デカすぎ問題</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            音がでかすぎて近所迷惑が確定する．
+            なので，どうにかいい感じに音を小さくする方法を模索する．
+            https://pypi.org/project/volume-control/
+            にしたがったらいけた．
+        </p>
+
+
+        <p class="headline" style="margin-top:40px;">完全に物故割れた</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            ラズパイを電源からぶっちしてたらdisplayの表示がされなくなり，積みました．
+            https://dev.classmethod.jp/articles/restore-the-raspberry-pi-4-model-b-os-destroyed-by-a-biginner/
+            microsd内のデータの不整合が原因だそうです．
+            やっちまったぁぁぁぁぁ
+
+
+            alarm.sh
+            cd /home/kayu/Desktop/youtube_alarm_clock/
+            export PYTHONPATH=$PYTHONPATH:/home/kayu/.local/lib/python3.12/site-packages
+            #python3 ./main.py
+            #python3 /home/kayu/Desktop/youtube_alarm_clock/main.py >> "$LOG_FILE" 2>&1
+            python3 /home/kayu/Desktop/youtube_alarm_clock/main.py
+
+            # Python ƒXƒNƒŠƒvƒg‚ÌƒpƒX‚ðŽw’è
+            #PYTHON_SCRIPT="/home/kayu/Desktop/plan/main.py"
+
+            #sleep 3
+
+            # Python ƒCƒ“ƒ^ƒvƒŠƒ^‚ÌƒpƒX‚ðŽw’è
+            #PYTHON_EXEC="/usr/bin/python3"
+
+            # Python ƒXƒNƒŠƒvƒg‚ðŽÀs
+            #$PYTHON_EXEC $PYTHON_SCRIPT
+
+
+            plan_bulletin.sh
+            #chmod +x ./main.py
+
+            source .venv/bin/activate
+
+            #sleep 4
+
+            python ./main.py
+
+            # Python ƒXƒNƒŠƒvƒg‚ÌƒpƒX‚ðŽw’è
+            #PYTHON_SCRIPT="/home/kayu/Desktop/plan/main.py"
+
+            #sleep 3
+
+            # Python ƒCƒ“ƒ^ƒvƒŠƒ^‚ÌƒpƒX‚ðŽw’è
+            #PYTHON_EXEC="/usr/bin/python3"
+
+            # Python ƒXƒNƒŠƒvƒg‚ðŽÀs
+            #$PYTHON_EXEC $PYTHON_SCRIPT
+
+
+
+
+            weather.sh
+            #!/bin/sh
+            
+            # Python ƒXƒNƒŠƒvƒg‚ÌƒpƒX‚ðŽw’è
+            PYTHON_SCRIPT="/home/kayu/Desktop/weather/main.py"
+            
+            # Python ƒCƒ“ƒ^ƒvƒŠƒ^‚ÌƒpƒX‚ðŽw’è
+            PYTHON_EXEC="/usr/bin/python3"
+            
+            # Python ƒXƒNƒŠƒvƒg‚ðŽÀs
+            #$PYTHON_EXEC $PYTHON_SCRIPT
+            
+            
+            # ƒƒOƒtƒ@ƒCƒ‹‚ÌƒpƒX‚ðŽw’è
+            #LOG_FILE="/home/kayu/Desktop/main.log"
+            
+            # Python ƒXƒNƒŠƒvƒg‚ðŽÀs‚µA•W€o—Í‚Æ•W€ƒGƒ‰[‚ðƒƒOƒtƒ@ƒCƒ‹‚ÉƒŠƒ_ƒCƒŒƒNƒg
+            #python3 $PYTHON_SCRIPT >> $LOG_FILE 2>&1
+            python3 $PYTHON_SCRIPT
+            
+
+
+
+
+            
+
+        </p>
+
+
+        <p class="headline" style="margin-top:40px;">ラズパイ設定</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            ということでラズパイの設定をまたいちからしていく．
+            raspi imager？でosインストールして接続する．
+            まずはipの固定から
+            https://qiita.com/mochi_2225/items/15c1e7c1c1ae79f97501
+            ここにしたがってIPの固定を終わらせた．
+
+
+            デフォルトでpython 3.11.2が入っているからpythonに関して特にすることはない．
+
+
+            vncについて
+            https://raspi-school.com/vnc/
+            を元に再度設定していく．
+
+            いろいろinstallする前に
+            sudo apt update
+            sudo apt iupgrade
+            を使って更新しておく．
+        
+            次にgit
+            git --versionで確認したところ一応入っているらしい．
+            ということでデータをgit clone 
+            Please make sure you have the correct access rights
+            and the repository exists.
+            あたりまえだけどアクセスできないね．うん
+            鍵登録とかしようか．
+            ssh-keygen -t ed25519 -C "kayuprog@gmail.com"
+            cat ~/.ssh/id_ed25519.pub
+            をしてキーを作成
+            gituhubに登録する．
+            詳しくは
+            https://note.com/shiny_crocus555/n/n05b00428f1da
+            を参照してね．
+
+
+            いろいろinstallする前に
+            sudo apt update
+            sudo apt iupgrade
+            を使って更新しておく．
+
+
+            日本語がうまく表示されない
+            <!-- https://yagiful.com/blog/raspi-bookworm-japanese/
+            を参考にして
+            sudo apt install fonts-noto-cjk で東アジアフォントをインストール。
+            設定 > 外観の設定 > システム で デフォルトフォントのPibotoLt Regular の代わりに Noto Sans CJK JP Regular を指定。
+            すればOK -->
+
+            <!-- https://raspi.ryo.sc/raspi_ipa_font/
+            ここをためした．
+            だめでした． -->
+
+            これで日本語に対応するようにする．
+            https://raspi.taneyats.com/entry/japanese-localization
+
+            日本語入力について
+            https://www.indoorcorgielec.com/resources/raspberry-pi/raspberry-pi-input-japanese/#fcitx-icon
+            を試してみる．
+            うん．これでおっけ．
+            ただし，fcitxを起動するために
+            左上のraspiマーク→システムツール→fcitxを押す必要がある．
+            自動的に実行させたいときは，（ふつうは勝手に自動実行されるはずだが）
+            <img src="./img/step1.png" class="imgfullcenter"><br><br>
+            <img src="./img/step2.png" class="imgfullcenter"><br><br>
+            <img src="./img/step3.png" class="imgfullcenter"><br><br>
+            <img src="./img/step4.png" class="imgfullcenter"><br><br>
+            <img src="./img/step5.png" class="imgfullcenter"><br><br>
+            でrebootすればOK
+
+
+        </p>
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            kayu@raspberrypi:~/Desktop/youtube_alarm_clock $ sudo pip install TkEasyGUI
+            error: externally-managed-environment
+            
+            Ã— This environment is externally managed
+            â•°â”€> To install Python packages system-wide, try apt install
+                python3-xyz, where xyz is the package you are trying to
+                install.
+                
+                If you wish to install a non-Debian-packaged Python package,
+                create a virtual environment using python3 -m venv path/to/venv.
+                Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
+                sure you have python3-full installed.
+                
+                For more information visit http://rptl.io/venv
+            
+            note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+            hint: See PEP 668 for the detailed specification.
+            
+            というエラーがpip installで出た．
+            https://zenn.dev/eng_ryosan/articles/a635346a3123d3
+            ここにある通り，解決方法は2つ
+            pip install　[パッケージ名] --break-system-packages
+            としてinstallするか，
+            venvを使うか．
+            非常にめんどくさいが，一応環境保護のためにもvenvを使おうと思う．
+
+
+
+            kayu@raspberrypi:~/Desktop $ ./alarm.sh
+            bash: ./alarm.sh: cannot execute: required file not found
+            というエラーが出たときには，
+            alarm.sh の改行コードが CRLF（Windows形式）になっている
+            dos2unix コマンドを使って改行コードを UNIX 形式（LF）に変換してみよう。
+            dos2unix alarm.sh
+            とすれば治る．
+
+
+            以上でとりあえずalarm.shが
+            #!/bin/bash
+            cd /home/kayu/Desktop/youtube_alarm_clock/
+            echo 0>a.txt
+            source .venv/bin/activate
+            export PYTHONPATH=$VIRTUAL_ENV/lib/python3.11/site-packages
+            #export PYTHONPATH=$PYTHONPATH:/home/kayu/.local/lib/python3.12/site-packages
+            #python3 /home/kayu/Desktop/youtube_alarm_clock/main.py >> "$LOG_FILE" 2>&1
+            python3 /home/kayu/Desktop/youtube_alarm_clock/main.py
+            となった．
+
+
+            plan_bulletin.shは
+            #!/bin/bash
+            #chmod +x ./main.py
+            cd /home/kayu/Desktop/plan_bulletin_raspi
+            source .venv/bin/activate
+
+            #sleep 4
+            LIBGL_ALWAYS_SOFTWARE=1 python3 ./main.py
+
+            #python ./main.py
+
+            # Python Æ’XÆ’NÆ’Å Æ’vÆ’gâ€šÃŒÆ’pÆ’Xâ€šÃ°Å½wâ€™Ã¨
+            #PYTHON_SCRIPT="/home/kayu/Desktop/plan/main.py"
+
+            #sleep 3
+
+            # Python Æ’CÆ’â€œÆ’^Æ’vÆ’Å Æ’^â€šÃŒÆ’pÆ’Xâ€šÃ°Å½wâ€™Ã¨
+            #PYTHON_EXEC="/usr/bin/python3"
+
+            # Python Æ’XÆ’NÆ’Å Æ’vÆ’gâ€šÃ°Å½Ã€Âs
+            #$PYTHON_EXEC $PYTHON_SCRIPT
+
+            https://monomonotech.jp/kurage/raspberrypi/systemd_autostart.html
+            でsystemdによるらずぱい起動時自動事項をする．
+        </p>
+
+        <p class="headline" style="margin-top:40px;">空白とかがwindows使用になっているとき</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            dos2unix ファイル名
+            としたらOK
+
+            ラズパイで音量小さいと思ったらそもそものらずぱいの音量を挙げよう
+            
+            音量が勝手に朝下がっていることについて
+            https://www.st.itc.keio.ac.jp/ja/faq_linux_audio_mute_st.html
+            を参照してコマンドで音量をmaxにするように変更した．
+        </p>
+
+
+
 
     <!--topage-->
     <div class="toPagePaRight1">

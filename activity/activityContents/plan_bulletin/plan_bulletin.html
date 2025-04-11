@@ -235,6 +235,7 @@ Cannot write to ‘Python-3.12.3.tar.xz’ (Permission denied).
     <p style="margin:3vw 2vw 0px 2vw">
         <cite><a href="https://qiita.com/hoshi621/items/c8b82ab42564256df884" target="_blank">Raspberry PiにpyenvをインストールしてPythonをバージョン管理</a></cite><br><br>
         このサイトを参照しながらPyenvによるversion管理を進めていきます．<br><br>
+        ただし，raspiの環境に最寄りますが，~/.bash_profileではなく，~/.profileです．
         Pyenvをinstallしたとき，エラーが出てinstallできないときは<span class="fb">ラズパイのメモリが足りない</span>場合があります．<br><br>
         そういう時は，<br><br>
 
@@ -255,7 +256,7 @@ sudo swapon /swapfile
 <span style="font-size:0.8rem;">
 <pre class="line-numbers small">
 <code class="language-javascript small">
-$ source ~/.bash_profile
+$ source ~/.profile
 </code>
 </pre>
 </span><br>
@@ -1003,6 +1004,26 @@ def switch_abled(self):
 </span><br>
     </p>
 
+    
+    <p class="headline" style="margin-top:40px;"></p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        画面にこのアプリを表示させると
+        Unable to create a GL context
+        というエラーが出る．（環境による．）
+        コンソールには
+        ** (flet:2618): CRITICAL **: 18:21:13.358: void fl_keyboard_handler_sync_modifier_if_needed(FlKeyboardHandler *, guint, double): assertion 'FL_IS_KEYBOARD_HANDLER(self)' failed
+        というようなエラーが出る．
+        これは，
+        LIBGL_ALWAYS_SOFTWARE=1 python3 ./main.py
+        として実行すれば解消される．
+        LIBGL_ALWAYS_SOFTWARE=1
+        を
+        echo 'export LIBGL_ALWAYS_SOFTWARE=1' >> ~/.bashrc
+        source ~/.bashrc
+        として環境変数に追加しておけば問題解決．
+        しなかった．
+
+    </p>
 
 
     <!--topages-->
@@ -1231,6 +1252,8 @@ def switch_abled(self):
             上述を参考にしながら進めればこのプログラムで動くと思います<br><br>
             では．
         </p>
+
+
 
     <!--topages-->
     <div class="toPageFlex">
