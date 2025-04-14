@@ -235,6 +235,7 @@ SIDCC-A4QFG Ymwei33koRgcKIhAIP0dx Eleoz5qacailY8pvkdMqeFTISAA3Q2uUyNg_re17c140: 
         ネットワークのファイル名を見ても，動画のものと若干異なっていて何かしら対策がされたのかもしれない．
         残念．この方法は諦めよう．
     </p>
+    
     <p class="headline" style="margin-top:40px;">アプリの変更</p>
     <p style="margin:2vw 2vw 0px 0vw">
         おそらく，youtube側が自動的に動画をuploadできないように対策したようでyoutube musicを使うことを諦めた．
@@ -249,15 +250,49 @@ SIDCC-A4QFG Ymwei33koRgcKIhAIP0dx Eleoz5qacailY8pvkdMqeFTISAA3Q2uUyNg_re17c140: 
         ということでこの方針でいこう
 
     </p>
+
+
     <p class="headline" style="margin-top:40px;"></p>
     <p style="margin:2vw 2vw 0px 0vw">
+        音声データをダウンロードしてファイル名をつけるときに動画のtitleをそのまま使用しているんだけれども長かったりわかりにくかったりする．
+        そこで，生成AIによってtitleを生成してもらうことにした．
+        最初，ChatGPTによるテキスト作成を予定していたが，APIが有料であることからGeminiというGoogleの出しているAPIを使うことにした．
+        https://qiita.com/RyutoYoda/items/a51830dd75a2dac96d72
+        を参照して進めていく
+        https://ai.google.dev/gemini-api/docs/quickstart?hl=ja&lang=python
+        公式documentを参照したほうが早かったや．
+        すぐに実装できた．
+        <img src="./img/api.png" class="imgfullcenter"><br><br>
+
+    </p>
+
+
+    <p class="headline" style="margin-top:40px;"></p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        audio.sh
+
+
+
+#!/bin/bash
+cd /home/pi/Desktop/
+LOGFILE="audio.log"
+
+
+python3 ./audio.py > "$LOGFILE" 2>&1
         
     </p>
 
 
+     <p class="headline" style="margin-top:40px;"></p>
+    <p style="margin:2vw 2vw 0px 0vw">
+        audio.py
+import os
+os.system(f"/usr/bin/mplayer -volume 100 -af scaletempo /home/pi/Desktop/audio/don.mp3")
 
+        ~/.profile
 
-    
+    </p>
+
     <!--topage-->
     <div class="toPagePaRight1">
         <div class="topage "><label for="tab2">To Page 2</label></div>

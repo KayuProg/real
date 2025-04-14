@@ -814,7 +814,10 @@ WantedBy=graphical.target
             WantedBy=timers.target
             
             
-            
+            ただの定期実行は
+            https://monomonotech.jp/kurage/raspberrypi/systemd_autostart.html
+
+            ラズパイ5環境でsystemdだとblootootheのaudio再生はできないが，~/.profileだと可能みたい．
             
             
 
@@ -942,10 +945,37 @@ WantedBy=graphical.target
             としてライブラリの位置を確認．
             sudo ldconfig
             でキャッシュ更新．これで大丈夫．
+            もしくは
+            echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
+            source ~/.bashrc
+            でもよさそう．
 
-            最後に，ffmpeg使うときは，
+
+            
+        </p>
+
+        <p class="headline" style="margin-top:40px;">実際に行ったこと</p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            https://dualbalance.net/2023/06/09/458/
+            を参照して
+            tar zxfv ffmpeg-6.0.tar.gz
+            までやる．
+            次に
+            sudo apt install libmp3lame-dev　libopus-dev
+            sudo apt install libx264-dev pkg-config
+            をしておく．
+            で，cd ffmpet-6.0まで行って
+            ./configure --enable-gpl --enable-libmp3lame --enable-libx264 --enable-libopus --enable-shared
+            をする
+            で
+            make -j$(nproc)
+            de
+            sudo apt update
+            sudo apt install --reinstall ffmpeg libavdevice-dev
+            yatet
 
         </p>
+
 
         <p class="headline" style="margin-top:40px;">音デカすぎ問題</p>
         <p style="margin:2vw 2vw 0px 0vw">
