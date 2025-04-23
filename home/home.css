@@ -1028,7 +1028,7 @@
   font-size:28px;
   width:700px;
   visibility:hidden;
-  margin:0px 0px 0px 20px;
+  margin:25px 0px 0px 40px;
 }
 .fade-in {
 	-webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;

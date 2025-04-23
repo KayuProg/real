@@ -266,32 +266,29 @@ SIDCC-A4QFG Ymwei33koRgcKIhAIP0dx Eleoz5qacailY8pvkdMqeFTISAA3Q2uUyNg_re17c140: 
 
     </p>
 
-
     <p class="headline" style="margin-top:40px;"></p>
     <p style="margin:2vw 2vw 0px 0vw">
-        audio.sh
+        GPTに協力してもらってGeminiへの指示文章を作成した．
+
+        contents=f"「{query}」の文章から音楽の曲名と作者を検索し、「曲名-作者名」という形式で出力しなさい。\
+        出力は1行のみとし、「曲名-作者名」の形から外れてはならない。\
+        曲名・作者名は、**正式な表記（原題）**を用いること。\
+     　・英語の曲は英語の原題\
+　                ・日本語の曲は日本語のままでよい。\
+       和訳や説明、引用符（「」や""など）、補足、記号などは一切含めてはならない。\
+       出力が「曲名-作者名」以外の形式になることは許されない。\
+       ただし，作者名が不明の場合のみに限り，出力を「曲名」とすることを許す．\
+     "
+
+     これがその文章．
+     yotubeのtitleに拘らず「曲名-作者名」になるようにしている．
+     これで音楽を保存するファイル名をわかりやすくできた．
 
 
-
-#!/bin/bash
-cd /home/pi/Desktop/
-LOGFILE="audio.log"
-
-
-python3 ./audio.py > "$LOGFILE" 2>&1
-        
     </p>
 
 
-     <p class="headline" style="margin-top:40px;"></p>
-    <p style="margin:2vw 2vw 0px 0vw">
-        audio.py
-import os
-os.system(f"/usr/bin/mplayer -volume 100 -af scaletempo /home/pi/Desktop/audio/don.mp3")
 
-        ~/.profile
-
-    </p>
 
     <!--topage-->
     <div class="toPagePaRight1">

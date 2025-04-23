@@ -1226,6 +1226,39 @@ WantedBy=graphical.target
             https://www.st.itc.keio.ac.jp/ja/faq_linux_audio_mute_st.html
             を参照してコマンドで音量をmaxにするように変更した．
         </p>
+        <p class="headline" style="margin-top:40px;"></p>
+        <p style="margin:2vw 2vw 0px 0vw">
+            https://forums.raspberrypi.com/viewtopic.php?t=357129
+            によれば，raspi5のGPIOピンからpower supplyできるらしいで，
+            ハードオフでACアダプター買ってきて，先っぽをGPIOに接続できるように加工後，やってみたらできた　！
+            
+
+            https://forums.raspberrypi.com/viewtopic.php?t=358648
+            これを参照しながららずぱいのmenu barに.shを配置した．
+
+            これがyoutube_alarm.desktopの中身
+            このファイルは/usr/share/applicationにおく．
+
+            [Desktop Entry]
+            Type=Application
+            Name=Hello
+            Exec=/home/kayu/Desktop/alarm.sh
+            Icon=/home/kayu/Desktop/youtube_alarm_clock/icon/clock.png
+            Terminal=false
+            Categories=Utility;
+            
+
+            で，~/.config/wf-panel-pi.iniを
+
+[panel]
+launcher_000001=lxde-x-www-browser.desktop
+launcher_000002=pcmanfm.desktop
+launcher_000003=lxterminal.desktop
+launcher_000004=youtube_alarm.desktop
+widgets_left=smenu spacing4 launchers spacing8 window-list
+widgets_right=tray power ejecter updater spacing2 connect spacing2 bluetooth spacing2 netman spacing2 volumepulse spacing2 clock spacing2 spacing2 squeek
+            に書き換える．でtaskbarへの追加は終わり．
+        </p>
 
 
 
