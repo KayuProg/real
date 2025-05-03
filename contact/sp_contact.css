@@ -242,6 +242,7 @@ transform:translateY(-24px);
   height:38px;
 }
 .gmailBotton{
+  display:none;
   margin-left:5px;
   font-size:1rem;
   text-decoration:none;
